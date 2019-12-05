@@ -1,0 +1,346 @@
+---
+title: oci core dedicated vm host
+keywords: documentation
+layout: documentation
+sidebar: oci_config_sidebar
+toc: false
+---
+## Overview
+
+  A dedicated virtual machine host that enables you to host multiple VM instances
+on a dedicated host that is not shared with other tenancies.
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+## Attributes
+
+
+
+Attribute Name                                                                     | Short Description                                                                            |
+---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+[absent_states](#oci_core_dedicated_vm_host_absent_states)                         | The OCI states, pupet will detect as the resource beeing absent.                             |
+[availability_domain](#oci_core_dedicated_vm_host_availability_domain)             |   The availability domain of the dedicated virtual machine host.                             |
+[compartment](#oci_core_dedicated_vm_host_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                              |
+[compartment_id](#oci_core_dedicated_vm_host_compartment_id)                       | The OCID of the compartment that contains the object.                                        |
+[dedicated_vm_host_name](#oci_core_dedicated_vm_host_dedicated_vm_host_name)       | The name of the dedicated_vm_host.                                                           |
+[dedicated_vm_host_shape](#oci_core_dedicated_vm_host_dedicated_vm_host_shape)     |   The dedicated virtual machine host shape.                                                  |
+[defined_tags](#oci_core_dedicated_vm_host_defined_tags)                           |   Defined tags for this resource.                                                            |
+[disable_corrective_change](#oci_core_dedicated_vm_host_disable_corrective_change) | Disable the modification of a resource when Puppet decides it is a corrective change.        |
+[disable_corrective_ensure](#oci_core_dedicated_vm_host_disable_corrective_ensure) | Disable the creation or removal of a resource when Puppet decides is a corrective change.    |
+[ensure](#oci_core_dedicated_vm_host_ensure)                                       | The basic property that the resource should be in.                                           |
+[fault_domain](#oci_core_dedicated_vm_host_fault_domain)                           |   The fault domain for the dedicated virtual machine host's assigned instances.              |
+[freeform_tags](#oci_core_dedicated_vm_host_freeform_tags)                         |   Free-form tags for this resource.                                                          |
+[id](#oci_core_dedicated_vm_host_id)                                               | The OCID of the resource.                                                                    |
+[lifecycle_state](#oci_core_dedicated_vm_host_lifecycle_state)                     | The current state of the dedicated VM host.                                                  |
+[name](#oci_core_dedicated_vm_host_name)                                           | The full name of the object.                                                                 |
+[oci_timeout](#oci_core_dedicated_vm_host_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                      |
+[oci_wait_interval](#oci_core_dedicated_vm_host_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.               |
+[present_states](#oci_core_dedicated_vm_host_present_states)                       | The OCI states, pupet will detect as the resource beeing present.                            |
+[provider](#oci_core_dedicated_vm_host_provider)                                   | resource.                                                                                    |
+[remaining_ocpus](#oci_core_dedicated_vm_host_remaining_ocpus)                     | The available OCPUs of the dedicated VM host.                                                |
+[synchronized](#oci_core_dedicated_vm_host_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource. |
+[tenant](#oci_core_dedicated_vm_host_tenant)                                       | The tenant for this resource.                                                                |
+[time_created](#oci_core_dedicated_vm_host_time_created)                           |   The date and time the dedicated VM host was created, in the format defined by RFC3339.     |
+[total_ocpus](#oci_core_dedicated_vm_host_total_ocpus)                             | The total OCPUs of the dedicated VM host.                                                    |
+
+
+
+
+### absent_states<a name='oci_core_dedicated_vm_host_absent_states'>
+
+The OCI states, pupet will detect as the resource beeing absent.
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### availability_domain<a name='oci_core_dedicated_vm_host_availability_domain'>
+
+  The availability domain of the dedicated virtual machine host.
+
+Example: `Uocm:PHX-AD-1`
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### compartment<a name='oci_core_dedicated_vm_host_compartment'>
+
+The Puppet name of the resource identified by `compartment_id`.
+
+See the documentation of compartment_id for all details.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### compartment_id<a name='oci_core_dedicated_vm_host_compartment_id'>
+
+The OCID of the compartment that contains the object.
+
+Rather use the property `compartment` instead of a direct OCID reference.
+
+This documentation is generated from the Ruby OCI SDK.
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### dedicated_vm_host_name<a name='oci_core_dedicated_vm_host_dedicated_vm_host_name'>
+
+The name of the dedicated_vm_host.
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### dedicated_vm_host_shape<a name='oci_core_dedicated_vm_host_dedicated_vm_host_shape'>
+
+  The dedicated virtual machine host shape. The shape determines the number of CPUs and
+other resources available for VM instances launched on the dedicated virtual machine host.
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### defined_tags<a name='oci_core_dedicated_vm_host_defined_tags'>
+
+  Defined tags for this resource. Each key is predefined and scoped to a
+namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+
+Example: `{"Operations": {"CostCenter": "42"}}`
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### disable_corrective_change<a name='oci_core_dedicated_vm_host_disable_corrective_change'>
+
+Disable the modification of a resource when Puppet decides it is a corrective change.
+
+(requires easy_type V2.11.0 or higher)
+
+When using a Puppet Server, Puppet knows about adaptive and corrective changes. A corrective change
+is when Puppet notices that the resource has changed, but the catalog has not changed. This can occur
+for example, when a user, by accident or willingly, changed something on the system that Puppet is
+managing. The normal Puppet process then repairs this and puts the resource back in the state as defined
+in the catalog. This process is precisely what you want most of the time, but not always. This can
+sometimes also occur when a hardware or network error occurs. Then Puppet cannot correctly determine
+the current state of the system and thinks the resource is changed, while in fact, it is not. Letting
+Puppet recreate remove or change the resource in these cases, is NOT wat you want.
+
+Using the `disable_corrective_change` parameter, you can disable corrective changes on the current resource.
+
+Here is an example of this:
+
+    crucial_resource {'be_carefull':
+      ...
+      disable_corrective_change => true,
+      ...
+    }
+
+When a corrective ensure does happen on the resource Puppet will not modify the resource
+and signal an error:
+
+        Error: Corrective change present requested by catalog, but disabled by parameter disable_corrective_change
+        Error: /Stage[main]/Main/Crucial_resource[be_carefull]/parameter: change from '10' to '20' failed: Corrective change present requested by catalog, but disabled by parameter disable_corrective_change. (corrective)
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### disable_corrective_ensure<a name='oci_core_dedicated_vm_host_disable_corrective_ensure'>
+
+Disable the creation or removal of a resource when Puppet decides is a corrective change.
+
+(requires easy_type V2.11.0 or higher)
+
+When using a Puppet Server, Puppet knows about adaptive and corrective changes. A corrective change
+is when Puppet notices that the resource has changed, but the catalog has not changed. This can occur
+for example, when a user, by accident or willingly, changed something on the system that Puppet is
+managing. The normal Puppet process then repairs this and puts the resource back in the state as defined
+in the catalog. This process is precisely what you want most of the time, but not always. This can
+sometimes also occur when a hardware or network error occurs. Then Puppet cannot correctly determine
+the current state of the system and thinks the resource is changed, while in fact, it is not. Letting
+Puppet recreate remove or change the resource in these cases, is NOT wat you want.
+
+Using the `disable_corrective_ensure` parameter, you can disable corrective ensure present or ensure absent actions on the current resource.
+
+Here is an example of this:
+
+    crucial_resource {'be_carefull':
+      ensure                    => 'present',
+      ...
+      disable_corrective_ensure => true,
+      ...
+    }
+
+When a corrective ensure does happen on the resource Puppet will not create or remove the resource
+and signal an error:
+
+        Error: Corrective ensure present requested by catalog, but disabled by parameter disable_corrective_ensure.
+        Error: /Stage[main]/Main/Crucial_resource[be_carefull]/ensure: change from 'absent' to 'present' failed: Corrective ensure present requested by catalog, but disabled by parameter disable_corrective_ensure. (corrective)
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### ensure<a name='oci_core_dedicated_vm_host_ensure'>
+
+The basic property that the resource should be in.
+
+Valid values are `present`, `absent`. 
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### fault_domain<a name='oci_core_dedicated_vm_host_fault_domain'>
+
+  The fault domain for the dedicated virtual machine host's assigned instances.
+For more information, see [Fault Domains](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#fault).
+If you do not specify the fault domain, the system selects one for you. To change the fault domain for a dedicated virtual machine host,
+delete it and create a new dedicated virtual machine host in the preferred fault domain.
+
+To get a list of fault domains, use the `ListFaultDomains` operation in
+the [Identity and Access Management Service API](https://docs.cloud.oracle.com/iaas/api/#/en/identity/20160918/).
+
+Example: `FAULT-DOMAIN-1`
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### freeform_tags<a name='oci_core_dedicated_vm_host_freeform_tags'>
+
+  Free-form tags for this resource. Each tag is a simple key-value pair with no
+predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+
+Example: `{"Department": "Finance"}`
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### id<a name='oci_core_dedicated_vm_host_id'>
+
+The OCID of the resource. This is a read-only property.
+
+This documentation is generated from the Ruby OCI SDK.
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### lifecycle_state<a name='oci_core_dedicated_vm_host_lifecycle_state'>
+
+The current state of the dedicated VM host.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### name<a name='oci_core_dedicated_vm_host_name'>
+
+The full name of the object.
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### oci_timeout<a name='oci_core_dedicated_vm_host_oci_timeout'>
+
+The maximum time to wait for the OCI resource to be in the ready state.
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### oci_wait_interval<a name='oci_core_dedicated_vm_host_oci_wait_interval'>
+
+The interval beween calls to OCI to check if a resource is in the ready state.
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### present_states<a name='oci_core_dedicated_vm_host_present_states'>
+
+The OCI states, pupet will detect as the resource beeing present.
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### provider<a name='oci_core_dedicated_vm_host_provider'>
+
+The specific backend to use for this `oci_core_dedicated_vm_host`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.Available providers are:
+
+sdk
+: 
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### remaining_ocpus<a name='oci_core_dedicated_vm_host_remaining_ocpus'>
+
+The available OCPUs of the dedicated VM host.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### synchronized<a name='oci_core_dedicated_vm_host_synchronized'>
+
+Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource.
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### tenant<a name='oci_core_dedicated_vm_host_tenant'>
+
+The tenant for this resource.
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### time_created<a name='oci_core_dedicated_vm_host_time_created'>
+
+  The date and time the dedicated VM host was created, in the format defined by RFC3339.
+
+Example: `2016-08-25T21:10:29.600Z`
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)
+
+### total_ocpus<a name='oci_core_dedicated_vm_host_total_ocpus'>
+
+The total OCPUs of the dedicated VM host.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_dedicated_vm_host](#attributes)

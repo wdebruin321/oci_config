@@ -1,0 +1,382 @@
+---
+title: oci core service gateway
+keywords: documentation
+layout: documentation
+sidebar: oci_config_sidebar
+toc: false
+---
+## Overview
+
+  Represents a router that lets your VCN privately access specific Oracle services such as Object
+Storage without exposing the VCN to the public internet. Traffic leaving the VCN and destined
+for a supported Oracle service (see {#list_services list_services}) is
+routed through the service gateway and does not traverse the internet. The instances in the VCN
+do not need to have public IP addresses nor be in a public subnet. The VCN does not need an internet gateway
+for this traffic. For more information, see
+[Access to Oracle Services: Service Gateway](https://docs.cloud.oracle.com/Content/Network/Tasks/servicegateway.htm).
+
+To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized,
+talk to an administrator. If you're an administrator who needs to write policies to give users access, see
+[Getting Started with Policies](https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
+
+**Warning:** Oracle recommends that you avoid using any confidential information when you
+supply string values using the API.
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+## Attributes
+
+
+
+Attribute Name                                                                   | Short Description                                                                              |
+-------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+[absent_states](#oci_core_service_gateway_absent_states)                         | The OCI states, pupet will detect as the resource beeing absent.                               |
+[block_traffic](#oci_core_service_gateway_block_traffic)                         |   Whether the service gateway blocks all traffic through it.                                   |
+[compartment](#oci_core_service_gateway_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                                |
+[compartment_id](#oci_core_service_gateway_compartment_id)                       | The OCID of the compartment that contains the object.                                          |
+[defined_tags](#oci_core_service_gateway_defined_tags)                           |   Defined tags for this resource.                                                              |
+[disable_corrective_change](#oci_core_service_gateway_disable_corrective_change) | Disable the modification of a resource when Puppet decides it is a corrective change.          |
+[disable_corrective_ensure](#oci_core_service_gateway_disable_corrective_ensure) | Disable the creation or removal of a resource when Puppet decides is a corrective change.      |
+[ensure](#oci_core_service_gateway_ensure)                                       | The basic property that the resource should be in.                                             |
+[freeform_tags](#oci_core_service_gateway_freeform_tags)                         |   Free-form tags for this resource.                                                            |
+[id](#oci_core_service_gateway_id)                                               | The OCID of the resource.                                                                      |
+[lifecycle_state](#oci_core_service_gateway_lifecycle_state)                     | The service gateway's current state.                                                           |
+[name](#oci_core_service_gateway_name)                                           | The full name of the object.                                                                   |
+[oci_timeout](#oci_core_service_gateway_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                        |
+[oci_wait_interval](#oci_core_service_gateway_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.                 |
+[present_states](#oci_core_service_gateway_present_states)                       | The OCI states, pupet will detect as the resource beeing present.                              |
+[provider](#oci_core_service_gateway_provider)                                   | resource.                                                                                      |
+[route_table](#oci_core_service_gateway_route_table)                             | The Puppet name of the resource identified by `route_table_id`.                                |
+[route_table_id](#oci_core_service_gateway_route_table_id)                       |   The OCID of the route table the service gateway will use.                                    |
+[service_gateway_name](#oci_core_service_gateway_service_gateway_name)           | The name of the service_gateway.                                                               |
+[services](#oci_core_service_gateway_services)                                   | enable for the service gateway.                                                                |
+[synchronized](#oci_core_service_gateway_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource.   |
+[tenant](#oci_core_service_gateway_tenant)                                       | The tenant for this resource.                                                                  |
+[time_created](#oci_core_service_gateway_time_created)                           |   The date and time the service gateway was created, in the format defined by RFC3339.         |
+[vcn](#oci_core_service_gateway_vcn)                                             | The Puppet name of the resource identified by `vcn_id`.                                        |
+[vcn_id](#oci_core_service_gateway_vcn_id)                                       | The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN. |
+
+
+
+
+### absent_states<a name='oci_core_service_gateway_absent_states'>
+
+The OCI states, pupet will detect as the resource beeing absent.
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### block_traffic<a name='oci_core_service_gateway_block_traffic'>
+
+  Whether the service gateway blocks all traffic through it. The default is `false`. When
+this is `true`, traffic is not routed to any services, regardless of route rules.
+
+Example: `true`
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### compartment<a name='oci_core_service_gateway_compartment'>
+
+The Puppet name of the resource identified by `compartment_id`.
+
+See the documentation of compartment_id for all details.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### compartment_id<a name='oci_core_service_gateway_compartment_id'>
+
+The OCID of the compartment that contains the object.
+
+Rather use the property `compartment` instead of a direct OCID reference.
+
+This documentation is generated from the Ruby OCI SDK.
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### defined_tags<a name='oci_core_service_gateway_defined_tags'>
+
+  Defined tags for this resource. Each key is predefined and scoped to a
+namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+
+Example: `{"Operations": {"CostCenter": "42"}}`
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### disable_corrective_change<a name='oci_core_service_gateway_disable_corrective_change'>
+
+Disable the modification of a resource when Puppet decides it is a corrective change.
+
+(requires easy_type V2.11.0 or higher)
+
+When using a Puppet Server, Puppet knows about adaptive and corrective changes. A corrective change
+is when Puppet notices that the resource has changed, but the catalog has not changed. This can occur
+for example, when a user, by accident or willingly, changed something on the system that Puppet is
+managing. The normal Puppet process then repairs this and puts the resource back in the state as defined
+in the catalog. This process is precisely what you want most of the time, but not always. This can
+sometimes also occur when a hardware or network error occurs. Then Puppet cannot correctly determine
+the current state of the system and thinks the resource is changed, while in fact, it is not. Letting
+Puppet recreate remove or change the resource in these cases, is NOT wat you want.
+
+Using the `disable_corrective_change` parameter, you can disable corrective changes on the current resource.
+
+Here is an example of this:
+
+    crucial_resource {'be_carefull':
+      ...
+      disable_corrective_change => true,
+      ...
+    }
+
+When a corrective ensure does happen on the resource Puppet will not modify the resource
+and signal an error:
+
+        Error: Corrective change present requested by catalog, but disabled by parameter disable_corrective_change
+        Error: /Stage[main]/Main/Crucial_resource[be_carefull]/parameter: change from '10' to '20' failed: Corrective change present requested by catalog, but disabled by parameter disable_corrective_change. (corrective)
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### disable_corrective_ensure<a name='oci_core_service_gateway_disable_corrective_ensure'>
+
+Disable the creation or removal of a resource when Puppet decides is a corrective change.
+
+(requires easy_type V2.11.0 or higher)
+
+When using a Puppet Server, Puppet knows about adaptive and corrective changes. A corrective change
+is when Puppet notices that the resource has changed, but the catalog has not changed. This can occur
+for example, when a user, by accident or willingly, changed something on the system that Puppet is
+managing. The normal Puppet process then repairs this and puts the resource back in the state as defined
+in the catalog. This process is precisely what you want most of the time, but not always. This can
+sometimes also occur when a hardware or network error occurs. Then Puppet cannot correctly determine
+the current state of the system and thinks the resource is changed, while in fact, it is not. Letting
+Puppet recreate remove or change the resource in these cases, is NOT wat you want.
+
+Using the `disable_corrective_ensure` parameter, you can disable corrective ensure present or ensure absent actions on the current resource.
+
+Here is an example of this:
+
+    crucial_resource {'be_carefull':
+      ensure                    => 'present',
+      ...
+      disable_corrective_ensure => true,
+      ...
+    }
+
+When a corrective ensure does happen on the resource Puppet will not create or remove the resource
+and signal an error:
+
+        Error: Corrective ensure present requested by catalog, but disabled by parameter disable_corrective_ensure.
+        Error: /Stage[main]/Main/Crucial_resource[be_carefull]/ensure: change from 'absent' to 'present' failed: Corrective ensure present requested by catalog, but disabled by parameter disable_corrective_ensure. (corrective)
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### ensure<a name='oci_core_service_gateway_ensure'>
+
+The basic property that the resource should be in.
+
+Valid values are `present`, `absent`. 
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### freeform_tags<a name='oci_core_service_gateway_freeform_tags'>
+
+  Free-form tags for this resource. Each tag is a simple key-value pair with no
+predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+
+Example: `{"Department": "Finance"}`
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### id<a name='oci_core_service_gateway_id'>
+
+The OCID of the resource. This is a read-only property.
+
+This documentation is generated from the Ruby OCI SDK.
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### lifecycle_state<a name='oci_core_service_gateway_lifecycle_state'>
+
+The service gateway's current state.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### name<a name='oci_core_service_gateway_name'>
+
+The full name of the object.
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### oci_timeout<a name='oci_core_service_gateway_oci_timeout'>
+
+The maximum time to wait for the OCI resource to be in the ready state.
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### oci_wait_interval<a name='oci_core_service_gateway_oci_wait_interval'>
+
+The interval beween calls to OCI to check if a resource is in the ready state.
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### present_states<a name='oci_core_service_gateway_present_states'>
+
+The OCI states, pupet will detect as the resource beeing present.
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### provider<a name='oci_core_service_gateway_provider'>
+
+The specific backend to use for this `oci_core_service_gateway`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.Available providers are:
+
+sdk
+: 
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### route_table<a name='oci_core_service_gateway_route_table'>
+
+The Puppet name of the resource identified by `route_table_id`.
+
+See the documentation of route_table_id for all details.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### route_table_id<a name='oci_core_service_gateway_route_table_id'>
+
+  The OCID of the route table the service gateway will use.
+
+If you don't specify a route table here, the service gateway is created without an associated route
+table. The Networking service does NOT automatically associate the attached VCN's default route table
+with the service gateway.
+
+For information about why you would associate a route table with a service gateway, see
+[Transit Routing: Private Access to Oracle Services](https://docs.cloud.oracle.com/Content/Network/Tasks/transitroutingoracleservices.htm).
+  Rather use the property `route_table` instead of a direct OCID reference.
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### service_gateway_name<a name='oci_core_service_gateway_service_gateway_name'>
+
+The name of the service_gateway.
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### services<a name='oci_core_service_gateway_services'>
+
+  List of the OCIDs of the {Service} objects to
+enable for the service gateway. This list can be empty if you don't want to enable any
+`Service` objects when you create the gateway. You can enable a `Service`
+object later by using either {#attach_service_id attach_service_id}
+or {#update_service_gateway update_service_gateway}.
+
+For each enabled `Service`, make sure there's a route rule with the `Service` object's `cidrBlock`
+as the rule's destination and the service gateway as the rule's target. See
+{RouteTable}.
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### synchronized<a name='oci_core_service_gateway_synchronized'>
+
+Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource.
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### tenant<a name='oci_core_service_gateway_tenant'>
+
+The tenant for this resource.
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### time_created<a name='oci_core_service_gateway_time_created'>
+
+  The date and time the service gateway was created, in the format defined by RFC3339.
+
+Example: `2016-08-25T21:10:29.600Z`
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### vcn<a name='oci_core_service_gateway_vcn'>
+
+The Puppet name of the resource identified by `vcn_id`.
+
+See the documentation of vcn_id for all details.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)
+
+### vcn_id<a name='oci_core_service_gateway_vcn_id'>
+
+The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
+Rather use the property `vcn` instead of a direct OCID reference.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_service_gateway](#attributes)

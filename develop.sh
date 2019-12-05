@@ -1,0 +1,15 @@
+alias into="docker exec -it oci_config bash"
+alias stop="docker kill oci_config"
+docker run --rm -d --name oci_config \
+  -h oci \
+  -v $PWD:/root \
+  -v $PWD:/etc/puppetlabs/code/environments/production/modules/oci_config \
+  -v $PWD/../easy_type:/etc/puppetlabs/code/environments/production/modules/easy_type \
+  -v ~/software:/software \
+  enterprisemodules/acc_base:latest /usr/sbin/init
+docker exec oci_config rpm -Uvh https://yum.puppet.com/puppet6/puppet6-release-el-7.noarch.rpm
+docker exec oci_config yum install gcc make puppet -y
+docker exec oci_config /opt/puppetlabs/puppet/bin/gem install  byebug pry bolt --no-ri --no-rdoc
+docker exec oci_config /opt/puppetlabs/puppet/bin/gem install oci --version 2.6.0 --no-ri --no-rdoc
+docker exec oci_config /opt/puppetlabs/bin/puppet apply /software/tenant_setup.pp -t
+docker exec -it oci_config bash

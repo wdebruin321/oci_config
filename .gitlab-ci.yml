@@ -1,0 +1,346 @@
+---
+#
+# Include the defaukls module jobs for gitlab CI definitions
+#
+include:
+  - project: 'enterprisemodules/gitlab_ci'
+    file: 'gitlab-ci.yml'
+
+Quality checks:
+  extends: .quality_check
+
+Module Build:
+  extends:  .em_build
+
+Module Publish:
+  extends:  .em_publish
+
+#
+# Acceptance tests
+#
+oci_core_instance Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_core_instance
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_core_instance.rb"
+      - "lib/puppet/type/oci_core_instance/*.rb"
+      - "lib/provider/oci_core_instance/*.rb"
+      - "spec/acceptance/oci_core_instance_spec.rb"
+
+oci_identity_user Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_identity_user
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_identity_user.rb"
+      - "lib/puppet/type/oci_identity_user/*.rb"
+      - "lib/provider/oci_identity_user/*.rb"
+      - "spec/acceptance/oci_identity_user_spec.rb"
+
+#
+# Because removing the compartments sometimes takes to long (no cause yet)
+# We disable this test for now.
+#
+# oci_identity_compartment Acceptance test:
+#   extends: .named_litmus_acceptance_test
+#   variables:
+#     type: oci_identity_compartment
+#     image: acc_base
+#   only:
+#     changes:
+#       - "lib/puppet/feature/*.rb"
+#       - "lib/puppet_x/**/*.rb"
+#       - "lib/puppet/type/oci_identity_compartment.rb"
+#       - "lib/puppet/type/oci_identity_compartment/*.rb"
+#       - "lib/provider/oci_identity_compartment/*.rb"
+#       - "spec/acceptance/oci_identity_compartment_spec.rb"
+      
+oci_identity_group Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_identity_group
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_identity_group.rb"
+      - "lib/puppet/type/oci_identity_group/*.rb"
+      - "lib/provider/oci_identity_group/*.rb"
+      - "spec/acceptance/oci_identity_group_spec.rb"
+
+oci_budget_budget Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_budget_budget
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_budget_budget.rb"
+      - "lib/puppet/type/oci_budget_budget/*.rb"
+      - "lib/provider/oci_budget_budget/*.rb"
+      - "spec/acceptance/oci_budget_budget_spec.rb"
+
+oci_core_cpe Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_core_cpe
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_core_cpe.rb"
+      - "lib/puppet/type/oci_core_cpe/*.rb"
+      - "lib/provider/oci_core_cpe/*.rb"
+      - "spec/acceptance/oci_core_cpe_spec.rb"
+
+oci_core_drg Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_core_drg
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_core_drg.rb"
+      - "lib/puppet/type/oci_core_drg/*.rb"
+      - "lib/provider/oci_core_drg/*.rb"
+      - "spec/acceptance/oci_core_drg_spec.rb"
+
+oci_core_ip_sec_connection Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_core_ip_sec_connection
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_core_ip_sec_connection.rb"
+      - "lib/puppet/type/oci_core_ip_sec_connection/*.rb"
+      - "lib/provider/oci_core_ip_sec_connection/*.rb"
+      - "spec/acceptance/oci_core_ip_sec_connection_spec.rb"
+
+oci_core_vcn Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_core_vcn
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_core_vcn.rb"
+      - "lib/puppet/type/oci_core_vcn/*.rb"
+      - "lib/provider/oci_core_vcn/*.rb"
+      - "spec/acceptance/oci_core_vcn_spec.rb"
+
+oci_core_volume Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_core_volume
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_core_volume.rb"
+      - "lib/puppet/type/oci_core_volume/*.rb"
+      - "lib/provider/oci_core_volume/*.rb"
+      - "spec/acceptance/oci_core_volume_spec.rb"
+
+oci_identity_dynamic_group Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_identity_dynamic_group
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_identity_dynamic_group.rb"
+      - "lib/puppet/type/oci_identity_dynamic_group/*.rb"
+      - "lib/provider/oci_identity_dynamic_group/*.rb"
+      - "spec/acceptance/oci_identity_dynamic_group_spec.rb"
+
+oci_identity_policy Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_identity_policy
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_identity_policy.rb"
+      - "lib/puppet/type/oci_identity_policy/*.rb"
+      - "lib/provider/oci_identity_policy/*.rb"
+      - "spec/acceptance/oci_identity_policy_spec.rb"
+
+oci_identity_tag_namespace Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_identity_tag_namespace
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_identity_tag_namespace.rb"
+      - "lib/puppet/type/oci_identity_tag_namespace/*.rb"
+      - "lib/provider/oci_identity_tag_namespace/*.rb"
+      - "spec/acceptance/oci_identity_tag_namespace_spec.rb"
+
+oci_core_volume_group Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_core_volume_group
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_core_volume_group.rb"
+      - "lib/puppet/type/oci_core_volume_group/*.rb"
+      - "lib/provider/oci_core_volume_group/*.rb"
+      - "spec/acceptance/oci_core_volume_group_spec.rb"
+      
+oci_core_dhcp_options Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_core_dhcp_options
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_core_dhcp_options.rb"
+      - "lib/puppet/type/oci_core_dhcp_options/*.rb"
+      - "lib/provider/oci_core_dhcp_options/*.rb"
+      - "spec/acceptance/oci_core_dhcp_options_spec.rb"
+
+oci_core_volume_backup Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_core_volume_backup
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_core_volume_backup.rb"
+      - "lib/puppet/type/oci_core_volume_backup/*.rb"
+      - "lib/provider/oci_core_volume_backup/*.rb"
+      - "spec/acceptance/oci_core_volume_backup_spec.rb"
+
+oci_core_internet_gateway Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_core_internet_gateway
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_core_internet_gateway.rb"
+      - "lib/puppet/type/oci_core_internet_gateway/*.rb"
+      - "lib/provider/oci_core_internet_gateway/*.rb"
+      - "spec/acceptance/oci_core_internet_gateway_spec.rb"
+
+oci_core_local_peering_gateway Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_core_local_peering_gateway
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_core_local_peering_gateway.rb"
+      - "lib/puppet/type/oci_core_local_peering_gateway/*.rb"
+      - "lib/provider/oci_core_local_peering_gateway/*.rb"
+      - "spec/acceptance/oci_core_local_peering_gateway_spec.rb"
+
+oci_core_nat_gateway Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_core_nat_gateway
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_core_nat_gateway.rb"
+      - "lib/puppet/type/oci_core_nat_gateway/*.rb"
+      - "lib/provider/oci_core_nat_gateway/*.rb"
+      - "spec/acceptance/oci_core_nat_gateway_spec.rb"
+
+oci_core_network_security_group Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_core_network_security_group
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_core_network_security_group.rb"
+      - "lib/puppet/type/oci_core_network_security_group/*.rb"
+      - "lib/provider/oci_core_network_security_group/*.rb"
+      - "spec/acceptance/oci_core_network_security_group_spec.rb"
+      
+oci_core_route_table Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_core_route_table
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_core_route_table.rb"
+      - "lib/puppet/type/oci_core_route_table/*.rb"
+      - "lib/provider/oci_core_route_table/*.rb"
+      - "spec/acceptance/oci_core_route_table_spec.rb"
+
+oci_core_security_list Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_core_security_list
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_core_security_list.rb"
+      - "lib/puppet/type/oci_core_security_list/*.rb"
+      - "lib/provider/oci_core_security_list/*.rb"
+      - "spec/acceptance/oci_core_security_list_spec.rb"
+
+oci_core_service_gateway Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_core_service_gateway
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_core_service_gateway.rb"
+      - "lib/puppet/type/oci_core_service_gateway/*.rb"
+      - "lib/provider/oci_core_service_gateway/*.rb"
+      - "spec/acceptance/oci_core_service_gateway_spec.rb"
+                        

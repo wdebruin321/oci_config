@@ -1,0 +1,54 @@
+{
+  "name": "enterprisemodules-oci_config",
+  "version": "0.1.0",
+  "author": "Bert Hajee",
+  "summary": "Puppet types, classes and facts to aid in Oracle Cloud Infrastructure deployments",
+  "license": "proprietary",
+  "source": "https://github.com/enterprisemodules/oci_config",
+  "dependencies": [
+    {"name":"enterprisemodules-easy_type","version_requirement":">= 2.13.4 < 3.0.0"}
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "6",
+        "7",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "6",
+        "7",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "6",
+        "7",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [
+        "6",
+        "7",
+        "8"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.10.0 < 7.0.0"
+    }
+  ],
+  "pdk-version": "1.14.0",
+  "template-url": "https://github.com/puppetlabs/pdk-templates#1.14.0",
+  "template-ref": "tags/1.14.0-0-g1bf3a4e"
+}
