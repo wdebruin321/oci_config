@@ -80,7 +80,6 @@ inventory.yaml
 .pki/
 app/
 documentation/
-data/
 generate/
 .local/
 .bash_history
