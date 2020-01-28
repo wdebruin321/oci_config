@@ -27,6 +27,14 @@ talk to an administrator.
 **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values
 using the API.
 
+  Here is an example on how to use this:
+
+   oci_identity_policy { 'tenant (root)/my_policy}':
+      ensure        => 'present',
+      description   => 'My own policy',
+      statements    => ['Allow group Administrators to manage all-resources in compartment my_compartment'],
+    }
+
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
   DESC

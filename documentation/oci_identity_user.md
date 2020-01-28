@@ -28,6 +28,13 @@ see [Getting Started with Policies](https://docs.cloud.oracle.com/Content/Identi
 **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values
 using the API.
 
+  Here is an example on how to use this:
+
+    oci_identity_user { 'tenant (root)/my_user':
+      ensure          => 'present',
+      description     => 'my user',
+    }
+
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 ## Attributes

@@ -19,6 +19,41 @@ talk to an administrator. If you're an administrator who needs to write policies
 **Warning:** Oracle recommends that you avoid using any confidential information when you
 supply string values using the API.
 
+  Here is an example on how to use this:
+
+    oci_core_instance { 'tenant (root)/my_instance':
+      ensure              => 'present',
+      availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
+      fault_domain        => 'FAULT-DOMAIN-2',
+      image               => 'Oracle-Linux-7.7-2019.12.18-0',
+      launch_mode         => 'NATIVE',
+      region              => 'eu-frankfurt-1',
+      shape               => 'VM.Standard2.1',
+      vnics               => {
+        'nic1' => {
+          'nic_index' => 0,
+          'hostname_label' => 'my_host',
+          'is_primary' => true,
+          'skip_source_dest_check' => true,
+          'subnet' => 'Public Subnet'
+        }
+      },
+      volumes             => {
+        'data_disk_1' => {
+          'attachment_type' => 'paravirtualized',
+          'device' => '/dev/oracleoci/oraclevdb',
+          'display_name' => 'data_disk_1',
+          'is_read_only' => true,
+        },
+        'data_disk_2' => {
+          'attachment_type' => 'paravirtualized',
+          'device' => '/dev/oracleoci/oraclevdc',
+          'display_name' => 'data_disk_2',
+          'is_read_only' => true,
+        }
+      },
+    }
+
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 ## Attributes

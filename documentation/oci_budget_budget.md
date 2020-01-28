@@ -9,6 +9,15 @@ toc: false
 
 A budget.
 
+Here is an example on how to use this:
+
+    oci_budget_budget { 'tenant (root)/test_budget':
+      ensure             => 'present',
+      target_compartment => 'my_compartment',
+      amount             => 100.0,
+      description        => 'test Budget',
+    }
+
 This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 ## Attributes

@@ -13,6 +13,14 @@ volumes. For more information, see [Volume Groups](https://docs.cloud.oracle.com
 **Warning:** Oracle recommends that you avoid using any confidential information when you
 supply string values using the API.
 
+  Here is an example on how to use this:
+
+   oci_core_volume_group { 'tenant (root)/my_volume_group':
+      ensure              => 'present',
+      availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
+      volumes             => ['my_compartment/my_volume_1'],
+    }
+
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 ## Attributes

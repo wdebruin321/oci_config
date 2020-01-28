@@ -49,6 +49,13 @@ talk to an administrator. If you're an administrator who needs to write policies
 **Warning:** Oracle recommends that you avoid using any confidential information when you
 supply string values using the API.
 
+  Here is an example on how to use this:
+
+    oci_core_network_security_group { 'tenant (root)/my_security_group':
+      ensure      => 'present',
+      vcn         => 'my_compartment/my_vcn',
+    }
+
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 ## Attributes

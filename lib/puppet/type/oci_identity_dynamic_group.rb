@@ -23,6 +23,14 @@ For more information, see [Managing Dynamic Groups](https://docs.cloud.oracle.co
 **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using
 the API.
 
+  Here is an example on how to use this:
+
+   oci_identity_dynamic_group { 'tenant (root)/my_dynamic_group':
+      ensure        => 'present',
+      description   => 'description',
+      matching_rule => "any {ANY {instance.id = 'ocid1.instance.region1.sea.abzwkljrobrgevdin34ftbzurf6vqutavtfqadaa2xlj3e66qwudvljkffxa'}}",
+    }
+
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
   DESC

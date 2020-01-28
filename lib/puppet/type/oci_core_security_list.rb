@@ -32,6 +32,52 @@ talk to an administrator. If you're an administrator who needs to write policies
 **Warning:** Oracle recommends that you avoid using any confidential information when you
 supply string values using the API.
 
+  Here is an example on how to use this:
+
+    oci_core_security_list { 'tenant (root)/my_security_list':
+      ensure                 => 'present',
+      vcn                    => 'my_compartment/my_vcn',
+      egress_security_rules  => [
+      {
+        'destination' => '0.0.0.0/0',
+        'destination_type' => 'CIDR_BLOCK',
+        'is_stateless' => false,
+        'protocol' => 'all'
+      }],
+      ingress_security_rules => [
+      {
+        'is_stateless' => false,
+        'protocol' => '6',
+        'source' => '0.0.0.0/0',
+        'source_type' => 'CIDR_BLOCK',
+        'tcp_options' => {
+          'destination_port_range' => {
+            'max' => 22,
+            'min' => 22
+          }
+        }
+      },
+      {
+        'icmp_options' => {
+          'code' => 4,
+          'type' => 3
+        },
+        'is_stateless' => false,
+        'protocol' => '1',
+        'source' => '0.0.0.0/0',
+        'source_type' => 'CIDR_BLOCK'
+      },
+      {
+        'icmp_options' => {
+          'type' => 3
+        },
+        'is_stateless' => false,
+        'protocol' => '1',
+        'source' => '10.0.0.0/16',
+        'source_type' => 'CIDR_BLOCK'
+      }],
+    }
+
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
   DESC

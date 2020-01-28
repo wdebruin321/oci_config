@@ -17,6 +17,14 @@ talk to an administrator. If you're an administrator who needs to write policies
 **Warning:** Oracle recommends that you avoid using any confidential information when you
 supply string values using the API.
 
+  Here is an example on how to use this:
+
+   oci_core_vcn { 'tenant (root)/my_vcn':
+      ensure        => 'present',
+      cidr_block    => '10.0.0.0/16',
+      freeform_tags => {'test' => 'yes'},
+    }
+
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 ## Attributes

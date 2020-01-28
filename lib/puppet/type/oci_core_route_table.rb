@@ -21,6 +21,26 @@ talk to an administrator. If you're an administrator who needs to write policies
 **Warning:** Oracle recommends that you avoid using any confidential information when you
 supply string values using the API.
 
+  Here is an example on how to use this:
+
+    oci_core_route_table { 'tenant (root)/my_route_table':
+      ensure      => 'present',
+      vcn         => 'my_compartment/my_vcn',
+      route_rules => [
+        {
+          'cidr_block' => '0.0.0.0/0',
+          'destination' => '0.0.0.0/0',
+          'destination_type' => 'CIDR_BLOCK',
+          'network_entity_type' => 'internetgateway',
+          'network_entity' => 'my_compartment/my_ig'
+        }
+      ],
+    }
+    oci_core_cpe { 'tenant (root)/test_cpe':
+      ensure     => 'present',
+      ip_address => '10.0.0.1',
+    }
+
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
   DESC

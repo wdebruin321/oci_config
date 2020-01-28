@@ -75,7 +75,24 @@ oci_budget_budget:
 
         Example: `{\"Operations\": {\"CostCenter\": \"42\"}}`
   desc: A budget.
+  example: |-
+    Here is an example on how to use this:
+
+          oci_budget_budget { 'tenant (root)/test_budget':
+            ensure             => 'present',
+            target_compartment => 'my_compartment',
+            amount             => 100.0,
+            description        => 'test Budget',
+          }
 oci_core_cpe:
+  example: |-
+    Here is an example on how to use this:
+
+        oci_core_cpe { 'tenant (root)/test_cpe':
+          ensure     => 'present',
+          ip_address => '10.0.0.1',
+        }
+
   klass: OCI::Core::Models::Cpe
   properties:
     compartment_id:
@@ -128,6 +145,24 @@ oci_core_cpe:
     **Warning:** Oracle recommends that you avoid using any confidential information when you
     supply string values using the API.
 oci_core_dhcp_options:
+  example: |-
+    Here is an example on how to use this:
+
+        oci_core_dhcp_options { 'tenant (root)/my_options':
+          ensure          => 'present',
+          options         => [
+          {
+            'type' => 'DomainNameServer',
+            'custom_dns_servers' => [],
+            'server_type' => 'VcnLocalPlusInternet'
+          },
+          {
+            'type' => 'SearchDomain',
+            'search_domain_names' => ['vcn.oraclevcn.com']
+          }],
+          vcn => 'VirtualCloudNetwork-20200103-0949',
+        }
+
   klass: OCI::Core::Models::DhcpOptions
   includes:
     - update_and_create_classes
@@ -193,6 +228,14 @@ oci_core_dhcp_options:
     **Warning:** Oracle recommends that you avoid using any confidential information when you
     supply string values using the API.
 oci_core_drg:
+  example: |-
+    Here is an example on how to use this:
+
+        oci_core_drg { 'tenant (root)/my_drg':
+          ensure        => 'present',
+          freeform_tags => {'test' => 'no'},
+        }
+
   klass: OCI::Core::Models::Drg
   properties:
     compartment_id:
@@ -243,6 +286,15 @@ oci_core_drg:
     **Warning:** Oracle recommends that you avoid using any confidential information when you
     supply string values using the API.
 oci_core_internet_gateway:
+  example: |-
+    Here is an example on how to use this:
+
+        oci_core_internet_gateway { 'tenant (root)/my_igw':
+          ensure     => 'present',
+          vcn        => 'my_compartment/my_own_vcn}',
+          is_enabled => true,
+        }
+
   klass: OCI::Core::Models::InternetGateway
   properties:
     compartment_id:
@@ -298,6 +350,15 @@ oci_core_internet_gateway:
     **Warning:** Oracle recommends that you avoid using any confidential information when you
     supply string values using the API.
 oci_core_local_peering_gateway:
+  example: |-
+    Here is an example on how to use this:
+
+        oci_core_local_peering_gateway { 'tenant (root)/my_peering_gatewaye':
+          ensure      => 'present',
+          vcn         => 'my_compartment/my_vcn',
+          route_table => 'my_compartment/my_route_table',
+        }
+
   klass: OCI::Core::Models::LocalPeeringGateway
   properties:
     compartment_id:
@@ -397,6 +458,14 @@ oci_core_local_peering_gateway:
     **Warning:** Oracle recommends that you avoid using any confidential information when you
     supply string values using the API.
 oci_core_nat_gateway:
+  example: |-
+    Here is an example on how to use this:
+
+        oci_core_nat_gateway { 'tenant (root)/my_nat_gatewway':
+          ensure      => 'present',
+          vcn         => 'my_compartment/my_vcn',
+        }
+
   klass: OCI::Core::Models::NatGateway
   properties:
     compartment_id:
@@ -466,6 +535,14 @@ oci_core_nat_gateway:
     **Warning:** Oracle recommends that you avoid using any confidential information when you
     supply string values using the API.
 oci_core_network_security_group:
+  example: |-
+    Here is an example on how to use this:
+
+        oci_core_network_security_group { 'tenant (root)/my_security_group':
+          ensure      => 'present',
+          vcn         => 'my_compartment/my_vcn',
+        }
+
   klass: OCI::Core::Models::NetworkSecurityGroup
   properties:
     compartment_id:
@@ -636,6 +713,27 @@ oci_core_remote_peering_connection:
     **Warning:** Oracle recommends that you avoid using any confidential information when you
     supply string values using the API.
 oci_core_route_table:
+  example: |-
+    Here is an example on how to use this:
+
+        oci_core_route_table { 'tenant (root)/my_route_table':
+          ensure      => 'present',
+          vcn         => 'my_compartment/my_vcn',
+          route_rules => [
+            {
+              'cidr_block' => '0.0.0.0/0',
+              'destination' => '0.0.0.0/0',
+              'destination_type' => 'CIDR_BLOCK',
+              'network_entity_type' => 'internetgateway',
+              'network_entity' => 'my_compartment/my_ig'
+            }
+          ],
+        }
+        oci_core_cpe { 'tenant (root)/test_cpe':
+          ensure     => 'present',
+          ip_address => '10.0.0.1',
+        }
+
   klass: OCI::Core::Models::RouteTable
   properties:
     compartment_id:
@@ -691,6 +789,53 @@ oci_core_route_table:
     **Warning:** Oracle recommends that you avoid using any confidential information when you
     supply string values using the API.
 oci_core_security_list:
+  example: |-
+    Here is an example on how to use this:
+
+        oci_core_security_list { 'tenant (root)/my_security_list':
+          ensure                 => 'present',
+          vcn                    => 'my_compartment/my_vcn',
+          egress_security_rules  => [
+          {
+            'destination' => '0.0.0.0/0',
+            'destination_type' => 'CIDR_BLOCK',
+            'is_stateless' => false,
+            'protocol' => 'all'
+          }],
+          ingress_security_rules => [
+          {
+            'is_stateless' => false,
+            'protocol' => '6',
+            'source' => '0.0.0.0/0',
+            'source_type' => 'CIDR_BLOCK',
+            'tcp_options' => {
+              'destination_port_range' => {
+                'max' => 22,
+                'min' => 22
+              }
+            }
+          },
+          {
+            'icmp_options' => {
+              'code' => 4,
+              'type' => 3
+            },
+            'is_stateless' => false,
+            'protocol' => '1',
+            'source' => '0.0.0.0/0',
+            'source_type' => 'CIDR_BLOCK'
+          },
+          {
+            'icmp_options' => {
+              'type' => 3
+            },
+            'is_stateless' => false,
+            'protocol' => '1',
+            'source' => '10.0.0.0/16',
+            'source_type' => 'CIDR_BLOCK'
+          }],
+        }
+
   klass: OCI::Core::Models::SecurityList
   properties:
     compartment_id:
@@ -760,6 +905,15 @@ oci_core_security_list:
     **Warning:** Oracle recommends that you avoid using any confidential information when you
     supply string values using the API.
 oci_core_service_gateway:
+  example: |-
+    Here is an example on how to use this:
+
+        oci_core_service_gateway { 'tenant (root)/my_service_gateway':
+          ensure     => 'present',
+          vcn        => 'my_compartment/my_vcn',
+          services   => [],
+        }
+
   klass: OCI::Core::Models::ServiceGateway
   properties:
     block_traffic:
@@ -851,6 +1005,22 @@ oci_core_service_gateway:
     **Warning:** Oracle recommends that you avoid using any confidential information when you
     supply string values using the API.
 oci_core_subnet:
+  example: |-
+    Here is an example on how to use this:
+
+        oci_core_subnet { 'tenant (root)/my_subnet':
+          ensure             => 'present',
+          cidr_block         => '10.0.0.0/24',
+          dhcp_options       => 'my_compartment/my_dhcp_options',
+          dns_label          => 'subnet',
+          route_table        => 'my_compartment/my_route_table_',
+          security_lists     => ['my_compartment/my_security_list_'],
+          subnet_domain_name => 'subnet.vcn.oraclevcn.com',
+          vcn                => 'my_compartment/my_vcn',
+          virtual_router_ip  => '10.0.0.1',
+          virtual_router_mac => '00:00:17:9B:B0:3F',
+        }
+
   klass: OCI::Core::Models::Subnet
   properties:
     availability_domain:
@@ -1027,6 +1197,15 @@ oci_core_subnet:
     **Warning:** Oracle recommends that you avoid using any confidential information when you
     supply string values using the API.
 oci_core_vcn:
+  example: |-
+    Here is an example on how to use this:
+
+       oci_core_vcn { 'tenant (root)/my_vcn':
+          ensure        => 'present',
+          cidr_block    => '10.0.0.0/16',
+          freeform_tags => {'test' => 'yes'},
+        }
+
   klass: OCI::Core::Models::Vcn
   properties:
     cidr_block:
@@ -1539,6 +1718,42 @@ oci_core_image:
     **Warning:** Oracle recommends that you avoid using any confidential information when you
     supply string values using the API.
 oci_core_instance:
+  example: |-
+    Here is an example on how to use this:
+
+        oci_core_instance { 'tenant (root)/my_instance':
+          ensure              => 'present',
+          availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
+          fault_domain        => 'FAULT-DOMAIN-2',
+          image               => 'Oracle-Linux-7.7-2019.12.18-0',
+          launch_mode         => 'NATIVE',
+          region              => 'eu-frankfurt-1',
+          shape               => 'VM.Standard2.1',
+          vnics               => {
+            'nic1' => {
+              'nic_index' => 0,
+              'hostname_label' => 'my_host',
+              'is_primary' => true,
+              'skip_source_dest_check' => true,
+              'subnet' => 'Public Subnet'
+            }
+          },
+          volumes             => {
+            'data_disk_1' => {
+              'attachment_type' => 'paravirtualized',
+              'device' => '/dev/oracleoci/oraclevdb',
+              'display_name' => 'data_disk_1',
+              'is_read_only' => true,
+            },
+            'data_disk_2' => {
+              'attachment_type' => 'paravirtualized',
+              'device' => '/dev/oracleoci/oraclevdc',
+              'display_name' => 'data_disk_2',
+              'is_read_only' => true,
+            }
+          },
+        }
+
   klass: OCI::Core::Models::Instance
   properties:
     volumes:
@@ -2027,6 +2242,15 @@ oci_core_boot_volume_backup:
     **Warning:** Oracle recommends that you avoid using any confidential information when you
     supply string values using the API.
 oci_core_volume:
+  example: |-
+    Here is an example on how to use this:
+
+       oci_core_volume { 'tenant (root)/my_volume':
+          ensure              => 'present',
+          availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
+          size_in_gbs         => 50,
+        }
+
   klass: OCI::Core::Models::Volume
   properties:
     availability_domain:
@@ -2124,6 +2348,14 @@ oci_core_volume:
     **Warning:** Oracle recommends that you avoid using any confidential information when you
     supply string values using the API.
 oci_core_volume_backup:
+  example: |-
+    Here is an example on how to use this:
+
+       oci_core_volume_backup { 'tenant (root)/my_backup':
+          ensure              => 'present',
+          volume              => 'my_compartment/my_volume',
+        }
+
   klass: OCI::Core::Models::VolumeBackup
   properties:
     compartment_id:
@@ -2231,6 +2463,32 @@ oci_core_volume_backup:
     **Warning:** Oracle recommends that you avoid using any confidential information when you
     supply string values using the API.
 oci_core_volume_backup_policy:
+  example: |-
+    Here is an example on how to use this:
+
+       oci_core_volume_backup_policy { 'tenant (root)/my_backup_policy':
+          ensure              => 'present',
+          schedules    => [
+            {
+              'backup_type' => 'INCREMENTAL',
+              'offset_seconds' => 0,
+              'period' => 'ONE_WEEK',
+              'retention_seconds' => 2419200
+            },
+            {
+              'backup_type' => 'INCREMENTAL',
+              'offset_seconds' => 0,
+              'period' => 'ONE_MONTH',
+              'retention_seconds' => 31557600
+            },
+            {
+              'backup_type' => 'FULL',
+              'offset_seconds' => 0,
+              'period' => 'ONE_YEAR',
+              'retention_seconds' => 157680000
+            }],
+        }
+
   klass: OCI::Core::Models::VolumeBackupPolicy
   properties:
     display_name:
@@ -2274,6 +2532,15 @@ oci_core_volume_backup_policy:
     **Warning:** Oracle recommends that you avoid using any confidential information when you
     supply string values using the API.
 oci_core_volume_group:
+  example: |-
+    Here is an example on how to use this:
+
+       oci_core_volume_group { 'tenant (root)/my_volume_group':
+          ensure              => 'present',
+          availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
+          volumes             => ['my_compartment/my_volume_1'],
+        }
+
   includes:
     - before_create
   klass: OCI::Core::Models::VolumeGroup
@@ -2420,6 +2687,15 @@ oci_core_volume_group_backup:
     **Warning:** Oracle recommends that you avoid using any confidential information when you
     supply string values using the API.
 oci_identity_dynamic_group:
+  example: |-
+    Here is an example on how to use this:
+
+       oci_identity_dynamic_group { 'tenant (root)/my_dynamic_group':
+          ensure        => 'present',
+          description   => 'description',
+          matching_rule => "any {ANY {instance.id = 'ocid1.instance.region1.sea.abzwkljrobrgevdin34ftbzurf6vqutavtfqadaa2xlj3e66qwudvljkffxa'}}",
+        }
+
   klass: OCI::Identity::Models::DynamicGroup
   properties:
     id:
@@ -2483,6 +2759,14 @@ oci_identity_dynamic_group:
     **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using
     the API.
 oci_identity_group:
+  example: |-
+    Here is an example on how to use this:
+
+        oci_identity_group { 'tenant (root)/my_group':
+          ensure => 'present',
+          users  => ['my_user_1','my_user_2']
+        }
+
   klass: OCI::Identity::Models::Group
   properties:
     users:
@@ -2547,6 +2831,14 @@ oci_identity_group:
     **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values
     using the API.
 oci_identity_identity_provider:
+  example: |-
+    Here is an example on how to use this:
+
+        oci_identity_provider { 'tenant (root)/my_provider':
+          ensure          => 'present',
+          description     => 'my own provider',
+        }
+
   klass: OCI::Identity::Models::IdentityProvider
   properties:
     id:
@@ -2623,6 +2915,15 @@ oci_identity_identity_provider:
 
     This class has direct subclasses. If you are using this class as input to a service operations then you should favor using a subclass over the base class
 oci_identity_policy:
+  example: |-
+    Here is an example on how to use this:
+
+       oci_identity_policy { 'tenant (root)/my_policy}':
+          ensure        => 'present',
+          description   => 'My own policy',
+          statements    => ['Allow group Administrators to manage all-resources in compartment my_compartment'],
+        }
+
   klass: OCI::Identity::Models::Policy
   properties:
     id:
@@ -2698,6 +2999,14 @@ oci_identity_policy:
     **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values
     using the API.
 oci_identity_tag_namespace:
+  example: |-
+    Here is an example on how to use this:
+
+       oci_identity_tag_namespace { 'tenant (root)/my_namespace':
+          ensure              => 'present',
+          description         => 'my namespace',
+        }
+
   klass: OCI::Identity::Models::TagNamespace
   properties:
     id:
@@ -2748,6 +3057,14 @@ oci_identity_tag_namespace:
     **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values
     using the API.
 oci_identity_user:
+  example: |-
+    Here is an example on how to use this:
+
+        oci_identity_user { 'tenant (root)/my_user':
+          ensure          => 'present',
+          description     => 'my user',
+        }
+
   klass: OCI::Identity::Models::User
   includes:
     - before_destroy
@@ -2838,6 +3155,14 @@ oci_identity_user:
     **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values
     using the API.
 oci_identity_compartment:
+  example: |-
+    Here is an example on how to use this:
+
+        oci_identity_compartment { 'tenant (root)/my_compartment':
+          ensure          => 'present',
+          description     => 'my own compartment',
+        }
+
   klass: OCI::Identity::Models::Compartment
   properties:
     id:
@@ -2910,6 +3235,17 @@ oci_identity_compartment:
     **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values
     using the API.
 oci_core_ip_sec_connection:
+  example: |-
+    Here is an example on how to use this:
+
+        oci_core_ip_sec_connection { 'tenant (root)/my_ip_sec_connection':
+          ensure        => 'present',
+          drg           => 'my_compartment/my_drg',
+          cpe           => 'my_compartment/my_cpe',
+          static_routes => ['10.0.0.0/16'],
+          oci_timeout   => 1200, # This can take a long time, so we need a longer timeout
+        }
+
   klass: OCI::Core::Models::IPSecConnection
   properties:
     compartment_id:

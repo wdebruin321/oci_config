@@ -14,6 +14,31 @@ how backups are created.
 **Warning:** Oracle recommends that you avoid using any confidential information when you
 supply string values using the API.
 
+  Here is an example on how to use this:
+
+   oci_core_volume_backup_policy { 'tenant (root)/my_backup_policy':
+      ensure              => 'present',
+      schedules    => [
+        {
+          'backup_type' => 'INCREMENTAL',
+          'offset_seconds' => 0,
+          'period' => 'ONE_WEEK',
+          'retention_seconds' => 2419200
+        },
+        {
+          'backup_type' => 'INCREMENTAL',
+          'offset_seconds' => 0,
+          'period' => 'ONE_MONTH',
+          'retention_seconds' => 31557600
+        },
+        {
+          'backup_type' => 'FULL',
+          'offset_seconds' => 0,
+          'period' => 'ONE_YEAR',
+          'retention_seconds' => 157680000
+        }],
+    }
+
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 ## Attributes

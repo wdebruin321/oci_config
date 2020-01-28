@@ -23,6 +23,21 @@ talk to an administrator. If you're an administrator who needs to write policies
 **Warning:** Oracle recommends that you avoid using any confidential information when you
 supply string values using the API.
 
+  Here is an example on how to use this:
+
+    oci_core_subnet { 'tenant (root)/my_subnet':
+      ensure             => 'present',
+      cidr_block         => '10.0.0.0/24',
+      dhcp_options       => 'my_compartment/my_dhcp_options',
+      dns_label          => 'subnet',
+      route_table        => 'my_compartment/my_route_table_',
+      security_lists     => ['my_compartment/my_security_list_'],
+      subnet_domain_name => 'subnet.vcn.oraclevcn.com',
+      vcn                => 'my_compartment/my_vcn',
+      virtual_router_ip  => '10.0.0.1',
+      virtual_router_mac => '00:00:17:9B:B0:3F',
+    }
+
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
   DESC

@@ -12,6 +12,11 @@ Puppet::Type.newtype(:<%= type %>) do
 <% if @data[type]['desc'] -%>
   desc <<-DESC
   <%= @data[type]['desc'] -%>
+<% if @data[type]['example'] -%>
+
+
+  <%= @data[type]['example'] -%>
+<% end -%>
 
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).

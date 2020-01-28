@@ -29,6 +29,23 @@ talk to an administrator. If you're an administrator who needs to write policies
 **Warning:** Oracle recommends that you avoid using any confidential information when you
 supply string values using the API.
 
+  Here is an example on how to use this:
+
+    oci_core_dhcp_options { 'tenant (root)/my_options':
+      ensure          => 'present',
+      options         => [
+      {
+        'type' => 'DomainNameServer',
+        'custom_dns_servers' => [],
+        'server_type' => 'VcnLocalPlusInternet'
+      },
+      {
+        'type' => 'SearchDomain',
+        'search_domain_names' => ['vcn.oraclevcn.com']
+      }],
+      vcn => 'VirtualCloudNetwork-20200103-0949',
+    }
+
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
   DESC

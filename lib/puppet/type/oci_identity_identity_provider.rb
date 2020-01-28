@@ -25,6 +25,13 @@ values using the API.
 
 This class has direct subclasses. If you are using this class as input to a service operations then you should favor using a subclass over the base class
 
+  Here is an example on how to use this:
+
+    oci_identity_provider { 'tenant (root)/my_provider':
+      ensure          => 'present',
+      description     => 'my own provider',
+    }
+
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
   DESC

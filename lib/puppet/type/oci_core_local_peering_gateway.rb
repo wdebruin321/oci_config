@@ -23,6 +23,14 @@ talk to an administrator. If you're an administrator who needs to write policies
 **Warning:** Oracle recommends that you avoid using any confidential information when you
 supply string values using the API.
 
+  Here is an example on how to use this:
+
+    oci_core_local_peering_gateway { 'tenant (root)/my_peering_gatewaye':
+      ensure      => 'present',
+      vcn         => 'my_compartment/my_vcn',
+      route_table => 'my_compartment/my_route_table',
+    }
+
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
   DESC

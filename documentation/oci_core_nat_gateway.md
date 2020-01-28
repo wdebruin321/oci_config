@@ -21,6 +21,13 @@ Policies](https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstart
 **Warning:** Oracle recommends that you avoid using any confidential information when you
 supply string values using the API.
 
+  Here is an example on how to use this:
+
+    oci_core_nat_gateway { 'tenant (root)/my_nat_gatewway':
+      ensure      => 'present',
+      vcn         => 'my_compartment/my_vcn',
+    }
+
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 ## Attributes

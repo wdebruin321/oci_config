@@ -21,6 +21,14 @@ talk to an administrator. If you're an administrator who needs to write policies
 **Warning:** Oracle recommends that you avoid using any confidential information when you
 supply string values using the API.
 
+  Here is an example on how to use this:
+
+    oci_core_internet_gateway { 'tenant (root)/my_igw':
+      ensure     => 'present',
+      vcn        => 'my_compartment/my_own_vcn}',
+      is_enabled => true,
+    }
+
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
   DESC
