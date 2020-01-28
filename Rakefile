@@ -120,7 +120,11 @@ namespace :generate do
     YamlGenerator.new(OCI::Budget,'Budget$').generate
     #
     # YamlGenerator.new(OCI::ContainerEngine).generate
-
+    #
+    # Types for key managemtn
+    #
+    YamlGenerator.new(OCI::KeyManagement, '^Key$').generate
+    YamlGenerator.new(OCI::KeyManagement, '^Vault$').generate
     #
     # types for core services on VirtualNetworkClient
     #

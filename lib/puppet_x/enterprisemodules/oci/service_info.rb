@@ -25,8 +25,12 @@ module Puppet_X
           with_type_entry(type) { |e| e[4] }
         end
 
-        def self.id_to_class(type)
-          with_id_entry(type) { |e| Object.const_get(e[2]) }
+        def self.id_to_class(id)
+          with_id_entry(id) { |e| Object.const_get(e[2]) }
+        end
+
+        def self.id_to_type(id)
+          with_id_entry(id) { |e| e[0] }
         end
 
         def self.with_type_entry(type)

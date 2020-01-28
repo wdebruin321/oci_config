@@ -4,6 +4,7 @@ module Puppet_X
   module EnterpriseModules
     module Oci
       # Docs
+      # rubocop: disable Metrics/ClassLength
       class ResourceLister
         include Config
         include Settings
@@ -16,6 +17,7 @@ module Puppet_X
           @resolver = Puppet_X::EnterpriseModules::Oci::NameResolver.instance(tenant)
         end
 
+        # rubocop: disable Metrics/CyclomaticComplexity
         def resource_list(compartment_id = nil)
           all_resources = case ServiceInfo.type_to_primary_key(@resource_type)
                           when :root
@@ -28,11 +30,14 @@ module Puppet_X
                             resources_in_availability_domains(compartment_id)
                           when :compartment
                             resources_in_compartments(compartment_id)
+                          when :vault
+                            resources_in_vaults(compartment_id)
                           else
                             fail "Internal error: invalid primary_key for #{@resource_type}"
                           end
           all_resources.select(&:present?)
         end
+        # rubocop: enable Metrics/CyclomaticComplexity
 
         private
 
@@ -72,6 +77,20 @@ module Puppet_X
         # rubocop: enable Metrics/AbcSize
 
         # rubocop: disable Metrics/AbcSize
+        def resources_in_vaults(specified_compartment)
+          compartment_list = specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) : [specified_compartment]
+          compartment_list.collect do |compartment_id|
+            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)}..."
+            vaults_in(compartment_id).collect do |vault|
+              kms_management_client = OCI::KeyManagement::KmsManagementClient.new(:config => tenant_config(@tenant), :endpoint => vault.management_endpoint, :retry_config => retry_config)
+              Puppet.debug "Inspecting vault #{vault.id}..."
+              kms_management_client.send("list_#{object_type_plural}", compartment_id).data
+            end
+          end.flatten.compact.uniq(&:id)
+        end
+        # rubocop: enable Metrics/AbcSize
+
+        # rubocop: disable Metrics/AbcSize
         def resources_in_availability_domains(specified_compartment)
           compartment_list = specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) : [specified_compartment]
           compartment_list.collect do |compartment_id|
@@ -87,6 +106,11 @@ module Puppet_X
         def vncs_in(compartment_id)
           vcn_client = OCI::Core::VirtualNetworkClient.new(:config => tenant_config(@tenant), :retry_config => retry_config)
           vcn_client.send('list_vcns', compartment_id).data.collect(&:id)
+        end
+
+        def vaults_in(compartment_id)
+          vault_client = OCI::KeyManagement::KmsVaultClient.new(:config => tenant_config(@tenant), :retry_config => retry_config)
+          vault_client.send('list_vaults', compartment_id).data
         end
 
         def availability_domains_in(compartment_id)
@@ -108,6 +132,7 @@ module Puppet_X
           end
         end
       end
+      # rubocop: enable Metrics/ClassLength
     end
   end
 end

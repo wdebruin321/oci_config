@@ -19,5 +19,6 @@ newparam(:present_states) do
     ATTACHED
     ASSIGNED
     UP
+    ENABLED
   ]
 end

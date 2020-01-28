@@ -29,7 +29,7 @@ module Puppet_X
         def present?
           return true unless respond_to?(:lifecycle_state)
 
-          %w[PROVISIONING AVAILABLE RUNNING ACTIVE ATTACHED ATTACHING].include?(lifecycle_state)
+          %w[PROVISIONING AVAILABLE RUNNING ACTIVE ATTACHED ATTACHING ENABLED].include?(lifecycle_state)
         end
       end
     end
@@ -81,7 +81,9 @@ models = [
   OCI::Core::Models::BootVolumeAttachment,
   OCI::Core::Models::VnicAttachment,
   OCI::Budget::Models::BudgetSummary,
-  OCI::Database::Models::AutonomousDatabaseSummary
+  OCI::Database::Models::AutonomousDatabaseSummary,
+  OCI::KeyManagement::Models::VaultSummary,
+  OCI::KeyManagement::Models::KeySummary
 ].freeze
 
 models.each do |model|

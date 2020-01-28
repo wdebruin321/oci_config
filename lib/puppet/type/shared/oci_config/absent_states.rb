@@ -19,5 +19,6 @@ newparam(:absent_states) do
     DELETED
     UNASSIGNED
     DOWN
+    DISABLED
   ]
 end

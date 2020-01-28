@@ -266,3 +266,17 @@
   - OCI::Database::DatabaseClient
   - :compartment
   - :autonomous_database_id
+-  
+  - :oci_key_management_vault
+  - :vault
+  - OCI::KeyManagement::Models::Vault
+  - OCI::KeyManagement::KmsVaultClient
+  - :compartment
+  - :vault_id
+-
+  - :oci_key_management_key
+  - :key
+  - OCI::KeyManagement::Models::Key
+  - OCI::KeyManagement::KmsManagementClient
+  - :vault
+  - :key_id
