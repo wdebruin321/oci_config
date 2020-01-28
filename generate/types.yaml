@@ -1046,7 +1046,7 @@ oci_core_subnet:
 
         Example: `{\"Operations\": {\"CostCenter\": \"42\"}}`
     dhcp_options_id:
-      reference_type: dhcpoption
+      reference_type: dhcpoptions
       data_type: String[1]
       desc: |-
         The OCID of the set of DHCP options the subnet will use. If you don't
@@ -1208,7 +1208,7 @@ oci_core_vcn:
       desc: The OCID of the compartment to contain the VCN.
     default_dhcp_options_id:
       custom: true
-      reference_type: dhcpoption
+      reference_type: dhcpoptions
       data_type: String[1]
       desc: The OCID for the VCN's default set of DHCP options.
     default_route_table_id:
@@ -2113,12 +2113,12 @@ oci_core_boot_volume:
       data_type: String[1]
       desc: The OCID of the source volume group.
     kms_key_id:
-      reference_type: kmskey
+      reference_type: key
       data_type: String[1]
       desc: The OCID of the KMS key to be used as the master encryption key for the
         boot volume.
     backup_policy_id:
-      reference_type: backuppolicy
+      reference_type: volumebackuppolicy
       data_type: String[1]
       desc: |-
         If provided, specifies the ID of the boot volume backup policy to assign to the newly
@@ -2184,7 +2184,7 @@ oci_core_boot_volume_backup:
       data_type: String[1]
       desc: The image OCID used to create the boot volume the backup is taken from.
     kms_key_id:
-      reference_type: kmskey
+      reference_type: key
       data_type: String[1]
       desc: |-
         The OCID of the KMS key which is the master encryption key for the boot volume backup.
@@ -2282,7 +2282,7 @@ oci_core_volume:
       desc: Specifies whether the cloned volume's data has finished copying from the
         source volume or backup.
     kms_key_id:
-      reference_type: kmskey
+      reference_type: key
       data_type: String[1]
       desc: The OCID of the KMS key to be used as the master encryption key for the
         volume.
@@ -2311,7 +2311,7 @@ oci_core_volume:
       data_type: String[1]
       desc: The OCID of the source volume group.
     backup_policy_id:
-      reference_type: backuppolicy
+      reference_type: volumebackuppolicy
       data_type: String[1]
       desc: |-
         If provided, specifies the ID of the volume backup policy to assign to the newly
@@ -2384,7 +2384,7 @@ oci_core_volume_backup:
       data_type: String[1]
       desc: The OCID of the volume backup.
     kms_key_id:
-      reference_type: kmskey
+      reference_type: key
       data_type: String[1]
       desc: |-
         The OCID of the KMS key which is the master encryption key for the volume backup.
@@ -3062,7 +3062,7 @@ oci_identity_user:
       data_type: String[1]
       desc: The email you assign to the user. Has to be unique across the tenancy.
     identity_provider_id:
-      reference_type: todo
+      reference_type: saml2idp
       data_type: String[1]
       desc: The OCID of the `IdentityProvider` this user belongs to.
     external_identifier:
@@ -3382,7 +3382,7 @@ oci_database_autonomous_database:
       desc: True if the database uses the [dedicated deployment](https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm)
         option.
     autonomous_container_database_id:
-      reference_type: todoautonomous_container_database
+      reference_type: todo_autonomous_container_database
       data_type: String[1]
       desc: The Autonomous Container Database [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
     time_created:

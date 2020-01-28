@@ -14,8 +14,8 @@ newproperty(:backup_policy, :parent => Puppet_X::EnterpriseModules::Oci::Propert
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
   references :backup_policy_id
-  reference_type :backuppolicy
+  reference_type :volumebackuppolicy
   data_type('Optional[String[1]]')
 end
 
-child_of(:backuppolicy, :backup_policy) { "#{tenant_string}/#{backup_policy}" }
+child_of(:volumebackuppolicy, :backup_policy) { "#{tenant_string}/#{backup_policy}" }

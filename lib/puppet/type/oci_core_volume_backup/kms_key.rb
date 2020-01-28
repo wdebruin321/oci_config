@@ -14,8 +14,8 @@ newproperty(:kms_key, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
   references :kms_key_id
-  reference_type :kmskey
+  reference_type :key
   data_type('Optional[String[1]]')
 end
 
-child_of(:kmskey, :kms_key) { "#{tenant_string}/#{kms_key}" }
+child_of(:key, :kms_key) { "#{tenant_string}/#{kms_key}" }

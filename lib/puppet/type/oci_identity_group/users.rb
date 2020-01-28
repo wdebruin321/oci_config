@@ -18,4 +18,4 @@ newproperty(:users, :array_matching => :all, :parent => Puppet_X::EnterpriseModu
   association :user_group_membership => { :from => :group_id, :to => :user_id, :model => OCI::Identity::Models::AddUserToGroupDetails, :remove => :remove_user_from_group, :add => :add_user_to_group }
 end
 
-child_of(:user_id) { users&.collect { |u| "#{tenant_string}/#{u}" } }
+child_of(:user) { users&.collect { |u| "#{tenant_string}/#{u}" } }

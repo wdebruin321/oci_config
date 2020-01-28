@@ -274,7 +274,8 @@ module Puppet_X
           #
           #
           # rubocop: disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Style/NestedTernaryOperator, Metrics/MethodLength, Metrics/PerceivedComplexity, Style/IfInsideElse, Style/IfUnlessModifierOfIfUnless, Metrics/BlockNesting
-          def child_of(type, variable = nil, &proc)
+          def child_of(id, variable = nil, &proc)
+            type = ServiceInfo.id_to_type(id)
             autorequire(type) do
               begin
                 present = self[:ensure].to_s == 'present'

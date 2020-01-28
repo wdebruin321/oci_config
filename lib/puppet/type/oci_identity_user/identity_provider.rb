@@ -14,8 +14,8 @@ newproperty(:identity_provider, :parent => Puppet_X::EnterpriseModules::Oci::Pro
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
   references :identity_provider_id
-  reference_type :todo
+  reference_type :saml2idp
   data_type('Optional[String[1]]')
 end
 
-child_of(:todo, :identity_provider) { "#{tenant_string}/#{identity_provider}" }
+child_of(:saml2idp, :identity_provider) { "#{tenant_string}/#{identity_provider}" }

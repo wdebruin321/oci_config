@@ -42,4 +42,4 @@ newproperty(:volumes, :parent => Puppet_X::EnterpriseModules::Oci::AssociatedHas
   association :volume_attachment => { :from => :instance_id, :to => :volume_id, :model => OCI::Core::Models::AttachVolumeDetails, :remove => :detach_volume, :add => :attach_volume }
 end
 
-child_of(:volume_id) { volumes&.collect { |v| "#{tenant_string}/#{v}" } }
+child_of(:volume) { volumes&.collect { |v| "#{tenant_string}/#{v}" } }

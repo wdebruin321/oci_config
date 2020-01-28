@@ -19,4 +19,4 @@ newproperty(:compartment, :parent => Puppet_X::EnterpriseModules::Oci::Property)
   data_type('Optional[String]')
 end
 
-child_of(:compartment_id, :compartment) { "#{tenant_string}/#{compartment}" }
+child_of(:compartment, :compartment) { "#{tenant_string}/#{compartment}" }

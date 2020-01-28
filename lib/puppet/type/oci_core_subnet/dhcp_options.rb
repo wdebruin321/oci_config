@@ -14,8 +14,8 @@ newproperty(:dhcp_options, :parent => Puppet_X::EnterpriseModules::Oci::Property
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
   references :dhcp_options_id
-  reference_type :dhcpoption
+  reference_type :dhcpoptions
   data_type('Optional[String[1]]')
 end
 
-child_of(:dhcpoption, :dhcp_options) { "#{tenant_string}/#{dhcp_options}" }
+child_of(:dhcpoptions, :dhcp_options) { "#{tenant_string}/#{dhcp_options}" }
