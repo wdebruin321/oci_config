@@ -126,8 +126,17 @@ module Puppet_X
           @tenant = raw_resource['tenant']
           value = if @reference
                     ocid = raw_resource[@reference.to_s]
-                    Puppet.debug "Resolving id for #{name}"
-                    ocid ? resolver.ocid_to_name(@tenant, ocid) : nil
+                    begin
+                      Puppet.debug "Resolving id for #{name}"
+                      ocid ? resolver.ocid_to_name(@tenant, ocid) : nil
+                    rescue StandardError
+                      #
+                      # Sometimes because of timing issues, a reference to an unkown ocid is found.
+                      # In these cases we don't want to fail, but just return the bara information.
+                      #
+                      #
+                      "References unkown ocid: #{ocid}"
+                    end
                   else
                     raw_resource[name.to_s]
                   end
