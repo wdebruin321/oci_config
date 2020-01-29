@@ -280,3 +280,48 @@
   - OCI::KeyManagement::KmsManagementClient
   - :vault
   - :key_id
+#
+# Fill in some not yet known values to enable documentation generation
+#
+-
+  - :unknown
+  - :listing
+  - UNKOWN
+  - OUNKOWN
+  - :compartment
+  - :listing_id
+-
+  - :unknown
+  - :resource
+  - UNKOWN
+  - OUNKOWN
+  - :compartment
+  - :resource_id
+-
+  - :unknown
+  - :service
+  - UNKOWN
+  - OUNKOWN
+  - :compartment
+  - :service_id
+-
+  - :unknown
+  - :peer
+  - UNKOWN
+  - OUNKOWN
+  - :compartment
+  - :peer_id
+-
+  - :unknown
+  - :tenancy
+  - UNKOWN
+  - OUNKOWN
+  - :compartment
+  - :tenancy_id
+-
+  - :unknown
+  - :autonomouscontainer
+  - UNKOWN
+  - OUNKOWN
+  - :compartment
+  - :autonomouscontainer_id

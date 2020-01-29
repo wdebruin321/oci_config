@@ -18,4 +18,4 @@ newproperty(:gateway, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   data_type('Optional[String[1]]')
 end
 
-child_of(:gateway, :gateway) { "#{tenant_string}/#{gateway}" }
+child_of(:internetgateway, :gateway) { "#{tenant_string}/#{gateway}" }

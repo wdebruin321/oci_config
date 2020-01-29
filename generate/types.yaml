@@ -1380,7 +1380,7 @@ oci_core_virtual_circuit:
 
         Example: `{\"Department\": \"Finance\"}`
     gateway_id:
-      reference_type: gateway
+      reference_type: internetgateway
       data_type: String[1]
       desc: |-
         For private virtual circuits only. The OCID of the {Drg}
@@ -3382,7 +3382,7 @@ oci_database_autonomous_database:
       desc: True if the database uses the [dedicated deployment](https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm)
         option.
     autonomous_container_database_id:
-      reference_type: todo_autonomous_container_database
+      reference_type: autonomouscontainerdatabase
       data_type: String[1]
       desc: The Autonomous Container Database [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
     time_created:
