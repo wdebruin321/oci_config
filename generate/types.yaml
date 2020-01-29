@@ -3453,6 +3453,20 @@ oci_database_autonomous_database:
       data_type: String[1]
   desc: An Oracle Autonomous Database.
 oci_key_management_key:
+  desc: An encryption key.
+  example: |-
+    Here is an example on how to use this:
+
+        oci_key_management_key { 'tenant (root)/my_key}':
+          ensure    => 'present',
+          vault     => 'my_compartmentt/my_vault',
+          key_shape =>  {
+            algorithm => 'AES',
+            length    => 16,
+          },
+        }
+  includes:
+  - client
   klass: OCI::KeyManagement::Models::Key
   properties:
     compartment_id:
@@ -3479,6 +3493,7 @@ oci_key_management_key:
     id:
       data_type: String[1]
     key_shape:
+      custom: true
       data_type: Oci_config::KeyShape
       desc: This attribute is required.
     lifecycle_state:
@@ -3491,6 +3506,15 @@ oci_key_management_key:
       reference_type: vault
       data_type: String[1]
 oci_key_management_vault:
+  desc: A vault to manage keys.
+  example: |-
+    Here is an example on how to use this:
+
+        oci_key_management_vault { 'tenant (root)/my_vault:
+          ensure        => 'present',
+          vault_type    => 'DEFAULT',
+        }
+
   klass: OCI::KeyManagement::Models::Vault
   properties:
     compartment_id:

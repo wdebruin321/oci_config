@@ -9,6 +9,19 @@ require 'puppet_x/enterprisemodules/oci/core'
 
 Puppet::Type.newtype(:oci_key_management_vault) do
   include Puppet_X::EnterpriseModules::Oci::Type
+  desc <<-DESC
+  A vault to manage keys.
+
+  Here is an example on how to use this:
+
+    oci_key_management_vault { 'tenant (root)/my_vault:
+      ensure        => 'present',
+      vault_type    => 'DEFAULT',
+    }
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+  DESC
 
   add_title_attributes(:vault_name)
 

@@ -90,8 +90,14 @@ module Puppet_X
         def on_destroy
           Puppet.debug "destroy #{object_type} #{name} "
           handle_oci_request(object_type, synchronized, provider.id) do
-            if object_type == 'instance'
+            case object_type
+            when 'instance'
               client.send('terminate_instance', provider.id)
+            when 'vault'
+              details = OCI::KeyManagement::Models::ScheduleVaultDeletionDetails.new
+              client.send('schedule_vault_deletion', provider.id, details)
+            when 'key'
+              client.disable_key(provider.id)
             else
               client.send("delete_#{object_type}", provider.id)
             end

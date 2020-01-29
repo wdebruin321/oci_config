@@ -9,8 +9,29 @@ require 'puppet_x/enterprisemodules/oci/core'
 
 Puppet::Type.newtype(:oci_key_management_key) do
   include Puppet_X::EnterpriseModules::Oci::Type
+  desc <<-DESC
+  An encryption key.
+
+  Here is an example on how to use this:
+
+    oci_key_management_key { 'tenant (root)/my_key}':
+      ensure    => 'present',
+      vault     => 'my_compartmentt/my_vault',
+      key_shape =>  {
+        algorithm => 'AES',
+        length    => 16,
+      },
+    }
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+  DESC
 
   add_title_attributes(:key_name)
+  #
+  # The include files contain specific non-generated code for the types
+  #
+  include_file "puppet/type/#{name}/client", binding
 
   ensurable
 
