@@ -15,3 +15,5 @@ newparam(:tenant) do
 
   data_type('String[1]')
 end
+
+autorequire(:oci_tenant) { tenant }
