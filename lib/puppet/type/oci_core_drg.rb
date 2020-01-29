@@ -25,10 +25,10 @@ supply string values using the API.
 
   Here is an example on how to use this:
 
-    oci_core_drg { 'tenant (root)/my_drg':
-      ensure        => 'present',
-      freeform_tags => {'test' => 'no'},
-    }
+      oci_core_drg { 'tenant (root)/my_drg':
+        ensure        => 'present',
+        freeform_tags => {'test' => 'no'},
+      }
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 

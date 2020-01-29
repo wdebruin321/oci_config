@@ -38,7 +38,7 @@ supply string values using the API.
 
 Attribute Name                                                                   | Short Description                                                                            |
 -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-[absent_states](#oci_core_virtual_circuit_absent_states)                         | The OCI states, pupet will detect as the resource beeing absent.                             |
+[absent_states](#oci_core_virtual_circuit_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                             |
 [bandwidth_shape_name](#oci_core_virtual_circuit_bandwidth_shape_name)           |   The provisioned data rate of the connection.                                               |
 [bgp_management](#oci_core_virtual_circuit_bgp_management)                       |   Deprecated.                                                                                |
 [bgp_session_state](#oci_core_virtual_circuit_bgp_session_state)                 | The state of the BGP session associated with the virtual circuit.                            |
@@ -59,7 +59,7 @@ Attribute Name                                                                  
 [oci_timeout](#oci_core_virtual_circuit_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                      |
 [oci_wait_interval](#oci_core_virtual_circuit_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.               |
 [oracle_bgp_asn](#oci_core_virtual_circuit_oracle_bgp_asn)                       | The Oracle BGP ASN.                                                                          |
-[present_states](#oci_core_virtual_circuit_present_states)                       | The OCI states, pupet will detect as the resource beeing present.                            |
+[present_states](#oci_core_virtual_circuit_present_states)                       | The OCI states, puppet will detect as the resource being present.                            |
 [provider](#oci_core_virtual_circuit_provider)                                   | resource.                                                                                    |
 [provider_name](#oci_core_virtual_circuit_provider_name)                         |   Deprecated.                                                                                |
 [provider_service](#oci_core_virtual_circuit_provider_service)                   | The Puppet name of the resource identified by `provider_service_id`.                         |
@@ -82,7 +82,7 @@ Attribute Name                                                                  
 
 ### absent_states<a name='oci_core_virtual_circuit_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -357,7 +357,7 @@ This documentation is generated from the [Ruby OCI SDK](https://github.com/oracl
 
 ### present_states<a name='oci_core_virtual_circuit_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

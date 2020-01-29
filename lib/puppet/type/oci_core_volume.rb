@@ -23,11 +23,11 @@ supply string values using the API.
 
   Here is an example on how to use this:
 
-   oci_core_volume { 'tenant (root)/my_volume':
-      ensure              => 'present',
-      availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
-      size_in_gbs         => 50,
-    }
+    oci_core_volume { 'tenant (root)/my_volume':
+        ensure              => 'present',
+        availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
+        size_in_gbs         => 50,
+      }
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 

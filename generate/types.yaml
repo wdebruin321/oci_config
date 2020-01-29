@@ -88,10 +88,10 @@ oci_core_cpe:
   example: |-
     Here is an example on how to use this:
 
-        oci_core_cpe { 'tenant (root)/test_cpe':
-          ensure     => 'present',
-          ip_address => '10.0.0.1',
-        }
+          oci_core_cpe { 'tenant (root)/test_cpe':
+            ensure     => 'present',
+            ip_address => '10.0.0.1',
+          }
   klass: OCI::Core::Models::Cpe
   properties:
     compartment_id:
@@ -229,10 +229,10 @@ oci_core_drg:
   example: |-
     Here is an example on how to use this:
 
-        oci_core_drg { 'tenant (root)/my_drg':
-          ensure        => 'present',
-          freeform_tags => {'test' => 'no'},
-        }
+          oci_core_drg { 'tenant (root)/my_drg':
+            ensure        => 'present',
+            freeform_tags => {'test' => 'no'},
+          }
   klass: OCI::Core::Models::Drg
   properties:
     compartment_id:
@@ -1189,11 +1189,11 @@ oci_core_vcn:
   example: |-
     Here is an example on how to use this:
 
-       oci_core_vcn { 'tenant (root)/my_vcn':
-          ensure        => 'present',
-          cidr_block    => '10.0.0.0/16',
-          freeform_tags => {'test' => 'yes'},
-        }
+        oci_core_vcn { 'tenant (root)/my_vcn':
+            ensure        => 'present',
+            cidr_block    => '10.0.0.0/16',
+            freeform_tags => {'test' => 'yes'},
+          }
   klass: OCI::Core::Models::Vcn
   properties:
     cidr_block:
@@ -2233,11 +2233,11 @@ oci_core_volume:
   example: |-
     Here is an example on how to use this:
 
-       oci_core_volume { 'tenant (root)/my_volume':
-          ensure              => 'present',
-          availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
-          size_in_gbs         => 50,
-        }
+        oci_core_volume { 'tenant (root)/my_volume':
+            ensure              => 'present',
+            availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
+            size_in_gbs         => 50,
+          }
   klass: OCI::Core::Models::Volume
   properties:
     availability_domain:
@@ -2338,10 +2338,10 @@ oci_core_volume_backup:
   example: |-
     Here is an example on how to use this:
 
-       oci_core_volume_backup { 'tenant (root)/my_backup':
-          ensure              => 'present',
-          volume              => 'my_compartment/my_volume',
-        }
+        oci_core_volume_backup { 'tenant (root)/my_backup':
+            ensure              => 'present',
+            volume              => 'my_compartment/my_volume',
+          }
   klass: OCI::Core::Models::VolumeBackup
   properties:
     compartment_id:
@@ -2452,28 +2452,28 @@ oci_core_volume_backup_policy:
   example: |-
     Here is an example on how to use this:
 
-       oci_core_volume_backup_policy { 'tenant (root)/my_backup_policy':
-          ensure              => 'present',
-          schedules    => [
-            {
-              'backup_type' => 'INCREMENTAL',
-              'offset_seconds' => 0,
-              'period' => 'ONE_WEEK',
-              'retention_seconds' => 2419200
-            },
-            {
-              'backup_type' => 'INCREMENTAL',
-              'offset_seconds' => 0,
-              'period' => 'ONE_MONTH',
-              'retention_seconds' => 31557600
-            },
-            {
-              'backup_type' => 'FULL',
-              'offset_seconds' => 0,
-              'period' => 'ONE_YEAR',
-              'retention_seconds' => 157680000
-            }],
-        }
+        oci_core_volume_backup_policy { 'tenant (root)/my_backup_policy':
+            ensure              => 'present',
+            schedules    => [
+              {
+                'backup_type' => 'INCREMENTAL',
+                'offset_seconds' => 0,
+                'period' => 'ONE_WEEK',
+                'retention_seconds' => 2419200
+              },
+              {
+                'backup_type' => 'INCREMENTAL',
+                'offset_seconds' => 0,
+                'period' => 'ONE_MONTH',
+                'retention_seconds' => 31557600
+              },
+              {
+                'backup_type' => 'FULL',
+                'offset_seconds' => 0,
+                'period' => 'ONE_YEAR',
+                'retention_seconds' => 157680000
+              }],
+          }
   klass: OCI::Core::Models::VolumeBackupPolicy
   properties:
     display_name:
@@ -2520,7 +2520,7 @@ oci_core_volume_group:
   example: |-
     Here is an example on how to use this:
 
-       oci_core_volume_group { 'tenant (root)/my_volume_group':
+        oci_core_volume_group { 'tenant (root)/my_volume_group':
           ensure              => 'present',
           availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
           volumes             => ['my_compartment/my_volume_1'],
@@ -2669,11 +2669,11 @@ oci_identity_dynamic_group:
   example: |-
     Here is an example on how to use this:
 
-       oci_identity_dynamic_group { 'tenant (root)/my_dynamic_group':
-          ensure        => 'present',
-          description   => 'description',
-          matching_rule => "any {ANY {instance.id = 'ocid1.instance.region1.sea.abzwkljrobrgevdin34ftbzurf6vqutavtfqadaa2xlj3e66qwudvljkffxa'}}",
-        }
+        oci_identity_dynamic_group { 'tenant (root)/my_dynamic_group':
+            ensure        => 'present',
+            description   => 'description',
+            matching_rule => "any {ANY {instance.id = 'ocid1.instance.region1.sea.abzwkljrobrgevdin34ftbzurf6vqutavtfqadaa2xlj3e66qwudvljkffxa'}}",
+          }
   klass: OCI::Identity::Models::DynamicGroup
   properties:
     id:
@@ -2894,11 +2894,11 @@ oci_identity_policy:
   example: |-
     Here is an example on how to use this:
 
-       oci_identity_policy { 'tenant (root)/my_policy}':
-          ensure        => 'present',
-          description   => 'My own policy',
-          statements    => ['Allow group Administrators to manage all-resources in compartment my_compartment'],
-        }
+        oci_identity_policy { 'tenant (root)/my_policy}':
+            ensure        => 'present',
+            description   => 'My own policy',
+            statements    => ['Allow group Administrators to manage all-resources in compartment my_compartment'],
+          }
   klass: OCI::Identity::Models::Policy
   properties:
     id:
@@ -2977,10 +2977,10 @@ oci_identity_tag_namespace:
   example: |-
     Here is an example on how to use this:
 
-       oci_identity_tag_namespace { 'tenant (root)/my_namespace':
-          ensure              => 'present',
-          description         => 'my namespace',
-        }
+          oci_identity_tag_namespace { 'tenant (root)/my_namespace':
+              ensure              => 'present',
+              description         => 'my namespace',
+            }
   klass: OCI::Identity::Models::TagNamespace
   properties:
     id:
@@ -3457,14 +3457,14 @@ oci_key_management_key:
   example: |-
     Here is an example on how to use this:
 
-        oci_key_management_key { 'tenant (root)/my_key}':
-          ensure    => 'present',
-          vault     => 'my_compartmentt/my_vault',
-          key_shape =>  {
-            algorithm => 'AES',
-            length    => 16,
-          },
-        }
+          oci_key_management_key { 'tenant (root)/my_key}':
+            ensure    => 'present',
+            vault     => 'my_compartmentt/my_vault',
+            key_shape =>  {
+              algorithm => 'AES',
+              length    => 16,
+            },
+          }
   includes:
   - client
   klass: OCI::KeyManagement::Models::Key
@@ -3510,10 +3510,10 @@ oci_key_management_vault:
   example: |-
     Here is an example on how to use this:
 
-        oci_key_management_vault { 'tenant (root)/my_vault:
-          ensure        => 'present',
-          vault_type    => 'DEFAULT',
-        }
+          oci_key_management_vault { 'tenant (root)/my_vault:
+            ensure        => 'present',
+            vault_type    => 'DEFAULT',
+          }
 
   klass: OCI::KeyManagement::Models::Vault
   properties:

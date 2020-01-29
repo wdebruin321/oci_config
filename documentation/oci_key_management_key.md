@@ -11,14 +11,14 @@ An encryption key.
 
 Here is an example on how to use this:
 
-  oci_key_management_key { 'tenant (root)/my_key}':
-    ensure    => 'present',
-    vault     => 'my_compartmentt/my_vault',
-    key_shape =>  {
-      algorithm => 'AES',
-      length    => 16,
-    },
-  }
+    oci_key_management_key { 'tenant (root)/my_key}':
+      ensure    => 'present',
+      vault     => 'my_compartmentt/my_vault',
+      key_shape =>  {
+        algorithm => 'AES',
+        length    => 16,
+      },
+    }
 
 This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
@@ -28,7 +28,7 @@ This documentation is generated from the [Ruby OCI SDK](https://github.com/oracl
 
 Attribute Name                                                                 | Short Description                                                                            |
 ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
-[absent_states](#oci_key_management_key_absent_states)                         | The OCI states, pupet will detect as the resource beeing absent.                             |
+[absent_states](#oci_key_management_key_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                             |
 [compartment](#oci_key_management_key_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                              |
 [compartment_id](#oci_key_management_key_compartment_id)                       | The OCID of the compartment that contains the object.                                        |
 [current_key_version](#oci_key_management_key_current_key_version)             | 
@@ -46,7 +46,7 @@ Attribute Name                                                                 |
 [name](#oci_key_management_key_name)                                           | The full name of the object.                                                                 |
 [oci_timeout](#oci_key_management_key_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                      |
 [oci_wait_interval](#oci_key_management_key_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.               |
-[present_states](#oci_key_management_key_present_states)                       | The OCI states, pupet will detect as the resource beeing present.                            |
+[present_states](#oci_key_management_key_present_states)                       | The OCI states, puppet will detect as the resource being present.                            |
 [provider](#oci_key_management_key_provider)                                   | resource.                                                                                    |
 [synchronized](#oci_key_management_key_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource. |
 [tenant](#oci_key_management_key_tenant)                                       | The tenant for this resource.                                                                |
@@ -64,7 +64,7 @@ Attribute Name                                                                 |
 
 ### absent_states<a name='oci_key_management_key_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -266,7 +266,7 @@ The interval beween calls to OCI to check if a resource is in the ready state.
 
 ### present_states<a name='oci_key_management_key_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

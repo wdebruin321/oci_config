@@ -17,7 +17,7 @@ This documentation is generated from the [Ruby OCI SDK](https://github.com/oracl
 
 Attribute Name                                                                                    | Short Description                                                                            |
 ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-[absent_states](#oci_core_app_catalog_subscription_absent_states)                                 | The OCI states, pupet will detect as the resource beeing absent.                             |
+[absent_states](#oci_core_app_catalog_subscription_absent_states)                                 | The OCI states, puppet will detect as the resource being absent.                             |
 [app_catalog_subscription_name](#oci_core_app_catalog_subscription_app_catalog_subscription_name) | The name of the app_catalog_subscription.                                                    |
 [compartment](#oci_core_app_catalog_subscription_compartment)                                     | The Puppet name of the resource identified by `compartment_id`.                              |
 [compartment_id](#oci_core_app_catalog_subscription_compartment_id)                               | The OCID of the compartment that contains the object.                                        |
@@ -37,7 +37,7 @@ Attribute Name                                                                  
 [oci_wait_interval](#oci_core_app_catalog_subscription_oci_wait_interval)                         | The interval beween calls to OCI to check if a resource is in the ready state.               |
 [oracle_terms_of_use_link](#oci_core_app_catalog_subscription_oracle_terms_of_use_link)           | Oracle TOU link
                                                                              |
-[present_states](#oci_core_app_catalog_subscription_present_states)                               | The OCI states, pupet will detect as the resource beeing present.                            |
+[present_states](#oci_core_app_catalog_subscription_present_states)                               | The OCI states, puppet will detect as the resource being present.                            |
 [provider](#oci_core_app_catalog_subscription_provider)                                           | resource.                                                                                    |
 [publisher_name](#oci_core_app_catalog_subscription_publisher_name)                               | Name of the publisher who published this listing.                                            |
 [signature](#oci_core_app_catalog_subscription_signature)                                         | A generated signature for this listing resource version retrieved the agreements API.        |
@@ -52,7 +52,7 @@ Attribute Name                                                                  
 
 ### absent_states<a name='oci_core_app_catalog_subscription_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -281,7 +281,7 @@ This documentation is generated from the [Ruby OCI SDK](https://github.com/oracl
 
 ### present_states<a name='oci_core_app_catalog_subscription_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

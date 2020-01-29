@@ -320,8 +320,8 @@
   - :tenancy_id
 -
   - :unknown
-  - :autonomouscontainer
+  - :autonomouscontainerdatabase
   - UNKOWN
   - OUNKOWN
   - :compartment
-  - :autonomouscontainer_id
+  - :autonomouscontainerdatabase_id

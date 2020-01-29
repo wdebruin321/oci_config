@@ -28,7 +28,7 @@ supply string values using the API.
 
 Attribute Name                                                                                       | Short Description                                                                            |
 ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-[absent_states](#oci_core_remote_peering_connection_absent_states)                                   | The OCI states, pupet will detect as the resource beeing absent.                             |
+[absent_states](#oci_core_remote_peering_connection_absent_states)                                   | The OCI states, puppet will detect as the resource being absent.                             |
 [compartment](#oci_core_remote_peering_connection_compartment)                                       | The Puppet name of the resource identified by `compartment_id`.                              |
 [compartment_id](#oci_core_remote_peering_connection_compartment_id)                                 | The OCID of the compartment that contains the object.                                        |
 [defined_tags](#oci_core_remote_peering_connection_defined_tags)                                     |   Defined tags for this resource.                                                            |
@@ -50,7 +50,7 @@ Attribute Name                                                                  
 [peer_tenancy](#oci_core_remote_peering_connection_peer_tenancy)                                     | The Puppet name of the resource identified by `peer_tenancy_id`.                             |
 [peer_tenancy_id](#oci_core_remote_peering_connection_peer_tenancy_id)                               | If this RPC is peered, this value is the OCID of the other RPC's tenancy.                    |
 [peering_status](#oci_core_remote_peering_connection_peering_status)                                 |   Whether the RPC is peered with another RPC.                                                |
-[present_states](#oci_core_remote_peering_connection_present_states)                                 | The OCI states, pupet will detect as the resource beeing present.                            |
+[present_states](#oci_core_remote_peering_connection_present_states)                                 | The OCI states, puppet will detect as the resource being present.                            |
 [provider](#oci_core_remote_peering_connection_provider)                                             | resource.                                                                                    |
 [remote_peering_connection_name](#oci_core_remote_peering_connection_remote_peering_connection_name) | The name of the remote_peering_connection.                                                   |
 [synchronized](#oci_core_remote_peering_connection_synchronized)                                     | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource. |
@@ -62,7 +62,7 @@ Attribute Name                                                                  
 
 ### absent_states<a name='oci_core_remote_peering_connection_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -348,7 +348,7 @@ RPC at the other end of the peering has been deleted.
 
 ### present_states<a name='oci_core_remote_peering_connection_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

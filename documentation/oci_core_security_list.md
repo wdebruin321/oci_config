@@ -83,7 +83,7 @@ supply string values using the API.
 
 Attribute Name                                                                 | Short Description                                                                            |
 ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
-[absent_states](#oci_core_security_list_absent_states)                         | The OCI states, pupet will detect as the resource beeing absent.                             |
+[absent_states](#oci_core_security_list_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                             |
 [compartment](#oci_core_security_list_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                              |
 [compartment_id](#oci_core_security_list_compartment_id)                       | The OCID of the compartment that contains the object.                                        |
 [defined_tags](#oci_core_security_list_defined_tags)                           |   Defined tags for this resource.                                                            |
@@ -98,7 +98,7 @@ Attribute Name                                                                 |
 [name](#oci_core_security_list_name)                                           | The full name of the object.                                                                 |
 [oci_timeout](#oci_core_security_list_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                      |
 [oci_wait_interval](#oci_core_security_list_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.               |
-[present_states](#oci_core_security_list_present_states)                       | The OCI states, pupet will detect as the resource beeing present.                            |
+[present_states](#oci_core_security_list_present_states)                       | The OCI states, puppet will detect as the resource being present.                            |
 [provider](#oci_core_security_list_provider)                                   | resource.                                                                                    |
 [security_list_name](#oci_core_security_list_security_list_name)               | The name of the security_list.                                                               |
 [synchronized](#oci_core_security_list_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource. |
@@ -112,7 +112,7 @@ Attribute Name                                                                 |
 
 ### absent_states<a name='oci_core_security_list_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -313,7 +313,7 @@ The interval beween calls to OCI to check if a resource is in the ready state.
 
 ### present_states<a name='oci_core_security_list_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

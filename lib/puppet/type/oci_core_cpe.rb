@@ -25,10 +25,10 @@ supply string values using the API.
 
   Here is an example on how to use this:
 
-    oci_core_cpe { 'tenant (root)/test_cpe':
-      ensure     => 'present',
-      ip_address => '10.0.0.1',
-    }
+      oci_core_cpe { 'tenant (root)/test_cpe':
+        ensure     => 'present',
+        ip_address => '10.0.0.1',
+      }
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 

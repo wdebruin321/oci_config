@@ -36,7 +36,7 @@ supply string values using the API.
 
 Attribute Name                                                               | Short Description                                                                                                     |
 ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-[absent_states](#oci_core_nat_gateway_absent_states)                         | The OCI states, pupet will detect as the resource beeing absent.                                                      |
+[absent_states](#oci_core_nat_gateway_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                                                      |
 [block_traffic](#oci_core_nat_gateway_block_traffic)                         |   Whether the NAT gateway blocks traffic through it.                                                                  |
 [compartment](#oci_core_nat_gateway_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                                                       |
 [compartment_id](#oci_core_nat_gateway_compartment_id)                       | The OCID of the compartment that contains the object.                                                                 |
@@ -52,7 +52,7 @@ Attribute Name                                                               | S
 [nat_ip](#oci_core_nat_gateway_nat_ip)                                       | The IP address associated with the NAT gateway.                                                                       |
 [oci_timeout](#oci_core_nat_gateway_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                                               |
 [oci_wait_interval](#oci_core_nat_gateway_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.                                        |
-[present_states](#oci_core_nat_gateway_present_states)                       | The OCI states, pupet will detect as the resource beeing present.                                                     |
+[present_states](#oci_core_nat_gateway_present_states)                       | The OCI states, puppet will detect as the resource being present.                                                     |
 [provider](#oci_core_nat_gateway_provider)                                   | resource.                                                                                                             |
 [synchronized](#oci_core_nat_gateway_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource.                          |
 [tenant](#oci_core_nat_gateway_tenant)                                       | The tenant for this resource.                                                                                         |
@@ -65,7 +65,7 @@ Attribute Name                                                               | S
 
 ### absent_states<a name='oci_core_nat_gateway_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -276,7 +276,7 @@ The interval beween calls to OCI to check if a resource is in the ready state.
 
 ### present_states<a name='oci_core_nat_gateway_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

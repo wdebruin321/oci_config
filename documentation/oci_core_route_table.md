@@ -46,7 +46,7 @@ supply string values using the API.
 
 Attribute Name                                                               | Short Description                                                                            |
 ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-[absent_states](#oci_core_route_table_absent_states)                         | The OCI states, pupet will detect as the resource beeing absent.                             |
+[absent_states](#oci_core_route_table_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                             |
 [compartment](#oci_core_route_table_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                              |
 [compartment_id](#oci_core_route_table_compartment_id)                       | The OCID of the compartment that contains the object.                                        |
 [defined_tags](#oci_core_route_table_defined_tags)                           |   Defined tags for this resource.                                                            |
@@ -59,7 +59,7 @@ Attribute Name                                                               | S
 [name](#oci_core_route_table_name)                                           | The full name of the object.                                                                 |
 [oci_timeout](#oci_core_route_table_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                      |
 [oci_wait_interval](#oci_core_route_table_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.               |
-[present_states](#oci_core_route_table_present_states)                       | The OCI states, pupet will detect as the resource beeing present.                            |
+[present_states](#oci_core_route_table_present_states)                       | The OCI states, puppet will detect as the resource being present.                            |
 [provider](#oci_core_route_table_provider)                                   | resource.                                                                                    |
 [route_rules](#oci_core_route_table_route_rules)                             | The collection of rules used for routing destination IPs to network devices.                 |
 [route_table_name](#oci_core_route_table_route_table_name)                   | The name of the route_table.                                                                 |
@@ -74,7 +74,7 @@ Attribute Name                                                               | S
 
 ### absent_states<a name='oci_core_route_table_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -255,7 +255,7 @@ The interval beween calls to OCI to check if a resource is in the ready state.
 
 ### present_states<a name='oci_core_route_table_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

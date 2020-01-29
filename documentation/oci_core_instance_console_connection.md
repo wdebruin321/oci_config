@@ -21,7 +21,7 @@ For more information about console access, see
 
 Attribute Name                                                                                             | Short Description                                                                            |
 ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-[absent_states](#oci_core_instance_console_connection_absent_states)                                       | The OCI states, pupet will detect as the resource beeing absent.                             |
+[absent_states](#oci_core_instance_console_connection_absent_states)                                       | The OCI states, puppet will detect as the resource being absent.                             |
 [compartment](#oci_core_instance_console_connection_compartment)                                           | The Puppet name of the resource identified by `compartment_id`.                              |
 [compartment_id](#oci_core_instance_console_connection_compartment_id)                                     | The OCID of the compartment that contains the object.                                        |
 [connection_string](#oci_core_instance_console_connection_connection_string)                               | The SSH connection string for the console connection.                                        |
@@ -39,7 +39,7 @@ Attribute Name                                                                  
 [name](#oci_core_instance_console_connection_name)                                                         | The full name of the object.                                                                 |
 [oci_timeout](#oci_core_instance_console_connection_oci_timeout)                                           | The maximum time to wait for the OCI resource to be in the ready state.                      |
 [oci_wait_interval](#oci_core_instance_console_connection_oci_wait_interval)                               | The interval beween calls to OCI to check if a resource is in the ready state.               |
-[present_states](#oci_core_instance_console_connection_present_states)                                     | The OCI states, pupet will detect as the resource beeing present.                            |
+[present_states](#oci_core_instance_console_connection_present_states)                                     | The OCI states, puppet will detect as the resource being present.                            |
 [provider](#oci_core_instance_console_connection_provider)                                                 | resource.                                                                                    |
 [public_key](#oci_core_instance_console_connection_public_key)                                             | The SSH public key used to authenticate the console connection.                              |
 [synchronized](#oci_core_instance_console_connection_synchronized)                                         | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource. |
@@ -51,7 +51,7 @@ Attribute Name                                                                  
 
 ### absent_states<a name='oci_core_instance_console_connection_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -283,7 +283,7 @@ The interval beween calls to OCI to check if a resource is in the ready state.
 
 ### present_states<a name='oci_core_instance_console_connection_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

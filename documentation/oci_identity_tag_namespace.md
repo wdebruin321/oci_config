@@ -15,10 +15,10 @@ using the API.
 
   Here is an example on how to use this:
 
-   oci_identity_tag_namespace { 'tenant (root)/my_namespace':
-      ensure              => 'present',
-      description         => 'my namespace',
-    }
+      oci_identity_tag_namespace { 'tenant (root)/my_namespace':
+          ensure              => 'present',
+          description         => 'my namespace',
+        }
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
@@ -28,7 +28,7 @@ using the API.
 
 Attribute Name                                                                     | Short Description                                                                            |
 ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-[absent_states](#oci_identity_tag_namespace_absent_states)                         | The OCI states, pupet will detect as the resource beeing absent.                             |
+[absent_states](#oci_identity_tag_namespace_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                             |
 [compartment](#oci_identity_tag_namespace_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                              |
 [compartment_id](#oci_identity_tag_namespace_compartment_id)                       | The OCID of the compartment that contains the object.                                        |
 [defined_tags](#oci_identity_tag_namespace_defined_tags)                           |   Defined tags for this resource.                                                            |
@@ -43,7 +43,7 @@ Attribute Name                                                                  
 [name](#oci_identity_tag_namespace_name)                                           | The full name of the object.                                                                 |
 [oci_timeout](#oci_identity_tag_namespace_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                      |
 [oci_wait_interval](#oci_identity_tag_namespace_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.               |
-[present_states](#oci_identity_tag_namespace_present_states)                       | The OCI states, pupet will detect as the resource beeing present.                            |
+[present_states](#oci_identity_tag_namespace_present_states)                       | The OCI states, puppet will detect as the resource being present.                            |
 [provider](#oci_identity_tag_namespace_provider)                                   | resource.                                                                                    |
 [synchronized](#oci_identity_tag_namespace_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource. |
 [tag_namespace_name](#oci_identity_tag_namespace_tag_namespace_name)               | The name of the tag_namespace.                                                               |
@@ -55,7 +55,7 @@ Attribute Name                                                                  
 
 ### absent_states<a name='oci_identity_tag_namespace_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -255,7 +255,7 @@ The interval beween calls to OCI to check if a resource is in the ready state.
 
 ### present_states<a name='oci_identity_tag_namespace_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

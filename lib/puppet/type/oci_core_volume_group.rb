@@ -18,7 +18,7 @@ supply string values using the API.
 
   Here is an example on how to use this:
 
-   oci_core_volume_group { 'tenant (root)/my_volume_group':
+    oci_core_volume_group { 'tenant (root)/my_volume_group':
       ensure              => 'present',
       availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
       volumes             => ['my_compartment/my_volume_1'],

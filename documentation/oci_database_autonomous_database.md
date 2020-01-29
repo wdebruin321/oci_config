@@ -17,7 +17,7 @@ This documentation is generated from the [Ruby OCI SDK](https://github.com/oracl
 
 Attribute Name                                                                                                                     | Short Description                                                                                                                       |
 ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-[absent_states](#oci_database_autonomous_database_absent_states)                                                                   | The OCI states, pupet will detect as the resource beeing absent.                                                                        |
+[absent_states](#oci_database_autonomous_database_absent_states)                                                                   | The OCI states, puppet will detect as the resource being absent.                                                                        |
 [admin_password](#oci_database_autonomous_database_admin_password)                                                                 | 
                                                                                                                                        |
 [autonomous_container_database](#oci_database_autonomous_database_autonomous_container_database)                                   | The Puppet name of the resource identified by `autonomous_container_database_id`.                                                       |
@@ -51,7 +51,7 @@ Attribute Name                                                                  
 [name](#oci_database_autonomous_database_name)                                                                                     | The full name of the object.                                                                                                            |
 [oci_timeout](#oci_database_autonomous_database_oci_timeout)                                                                       | The maximum time to wait for the OCI resource to be in the ready state.                                                                 |
 [oci_wait_interval](#oci_database_autonomous_database_oci_wait_interval)                                                           | The interval beween calls to OCI to check if a resource is in the ready state.                                                          |
-[present_states](#oci_database_autonomous_database_present_states)                                                                 | The OCI states, pupet will detect as the resource beeing present.                                                                       |
+[present_states](#oci_database_autonomous_database_present_states)                                                                 | The OCI states, puppet will detect as the resource being present.                                                                       |
 [provider](#oci_database_autonomous_database_provider)                                                                             | resource.                                                                                                                               |
 [service_console_url](#oci_database_autonomous_database_service_console_url)                                                       | The URL of the Service Console for the Autonomous Database.                                                                             |
 [source](#oci_database_autonomous_database_source)                                                                                 | 
@@ -70,7 +70,7 @@ Attribute Name                                                                  
 
 ### absent_states<a name='oci_database_autonomous_database_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -424,7 +424,7 @@ The interval beween calls to OCI to check if a resource is in the ready state.
 
 ### present_states<a name='oci_database_autonomous_database_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

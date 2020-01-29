@@ -25,7 +25,7 @@ supply string values using the API.
 
 Attribute Name                                                         | Short Description                                                                            |
 ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-[absent_states](#oci_core_image_absent_states)                         | The OCI states, pupet will detect as the resource beeing absent.                             |
+[absent_states](#oci_core_image_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                             |
 [agent_features](#oci_core_image_agent_features)                       | 
                                                                                             |
 [base_image](#oci_core_image_base_image)                               | The Puppet name of the resource identified by `base_image_id`.                               |
@@ -53,7 +53,7 @@ Attribute Name                                                         | Short D
 [oci_wait_interval](#oci_core_image_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.               |
 [operating_system](#oci_core_image_operating_system)                   |   The image's operating system.                                                              |
 [operating_system_version](#oci_core_image_operating_system_version)   |   The image's operating system version.                                                      |
-[present_states](#oci_core_image_present_states)                       | The OCI states, pupet will detect as the resource beeing present.                            |
+[present_states](#oci_core_image_present_states)                       | The OCI states, puppet will detect as the resource being present.                            |
 [provider](#oci_core_image_provider)                                   | resource.                                                                                    |
 [size_in_mbs](#oci_core_image_size_in_mbs)                             |   The boot volume size for an instance launched from this image, (1 MB = 1048576 bytes).     |
 [synchronized](#oci_core_image_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource. |
@@ -65,7 +65,7 @@ Attribute Name                                                         | Short D
 
 ### absent_states<a name='oci_core_image_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -377,7 +377,7 @@ Example: `7.2`
 
 ### present_states<a name='oci_core_image_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

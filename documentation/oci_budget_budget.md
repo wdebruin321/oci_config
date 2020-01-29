@@ -26,7 +26,7 @@ This documentation is generated from the [Ruby OCI SDK](https://github.com/oracl
 
 Attribute Name                                                            | Short Description                                                                                 |
 ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-[absent_states](#oci_budget_budget_absent_states)                         | The OCI states, pupet will detect as the resource beeing absent.                                  |
+[absent_states](#oci_budget_budget_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                                  |
 [actual_spend](#oci_budget_budget_actual_spend)                           | The actual spend in currency for the current budget cycle
                                         |
 [alert_rule_count](#oci_budget_budget_alert_rule_count)                   | Total number of alert rules in the budget
@@ -48,7 +48,7 @@ Attribute Name                                                            | Shor
 [name](#oci_budget_budget_name)                                           | The full name of the object.                                                                      |
 [oci_timeout](#oci_budget_budget_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                           |
 [oci_wait_interval](#oci_budget_budget_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.                    |
-[present_states](#oci_budget_budget_present_states)                       | The OCI states, pupet will detect as the resource beeing present.                                 |
+[present_states](#oci_budget_budget_present_states)                       | The OCI states, puppet will detect as the resource being present.                                 |
 [provider](#oci_budget_budget_provider)                                   | resource.                                                                                         |
 [reset_period](#oci_budget_budget_reset_period)                           | The reset period for the budget.                                                                  |
 [synchronized](#oci_budget_budget_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource.      |
@@ -70,7 +70,7 @@ Attribute Name                                                            | Shor
 
 ### absent_states<a name='oci_budget_budget_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -309,7 +309,7 @@ The interval beween calls to OCI to check if a resource is in the ready state.
 
 ### present_states<a name='oci_budget_budget_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

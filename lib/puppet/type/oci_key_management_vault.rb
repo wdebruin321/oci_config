@@ -14,10 +14,10 @@ Puppet::Type.newtype(:oci_key_management_vault) do
 
   Here is an example on how to use this:
 
-    oci_key_management_vault { 'tenant (root)/my_vault:
-      ensure        => 'present',
-      vault_type    => 'DEFAULT',
-    }
+      oci_key_management_vault { 'tenant (root)/my_vault:
+        ensure        => 'present',
+        vault_type    => 'DEFAULT',
+      }
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 

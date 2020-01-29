@@ -7,7 +7,7 @@ newparam(:present_states) do
   include EasyType
 
   desc <<-DESC
-  The OCI states, pupet will detect as the resource beeing present.
+  The OCI states, puppet will detect as the resource being present.
   DESC
 
   data_type('Array[String[1]]')

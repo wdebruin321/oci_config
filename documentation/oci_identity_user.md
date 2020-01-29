@@ -43,7 +43,7 @@ using the API.
 
 Attribute Name                                                            | Short Description                                                                            |
 ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-[absent_states](#oci_identity_user_absent_states)                         | The OCI states, pupet will detect as the resource beeing absent.                             |
+[absent_states](#oci_identity_user_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                             |
 [capabilities](#oci_identity_user_capabilities)                           | Properties indicating how the user is allowed to authenticate.                               |
 [compartment](#oci_identity_user_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                              |
 [compartment_id](#oci_identity_user_compartment_id)                       | The OCID of the compartment that contains the object.                                        |
@@ -65,7 +65,7 @@ Attribute Name                                                            | Shor
 [name](#oci_identity_user_name)                                           | The full name of the object.                                                                 |
 [oci_timeout](#oci_identity_user_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                      |
 [oci_wait_interval](#oci_identity_user_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.               |
-[present_states](#oci_identity_user_present_states)                       | The OCI states, pupet will detect as the resource beeing present.                            |
+[present_states](#oci_identity_user_present_states)                       | The OCI states, puppet will detect as the resource being present.                            |
 [provider](#oci_identity_user_provider)                                   | resource.                                                                                    |
 [synchronized](#oci_identity_user_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource. |
 [tenant](#oci_identity_user_tenant)                                       | The tenant for this resource.                                                                |
@@ -77,7 +77,7 @@ Attribute Name                                                            | Shor
 
 ### absent_states<a name='oci_identity_user_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -345,7 +345,7 @@ The interval beween calls to OCI to check if a resource is in the ready state.
 
 ### present_states<a name='oci_identity_user_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

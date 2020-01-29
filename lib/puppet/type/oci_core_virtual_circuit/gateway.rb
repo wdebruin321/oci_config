@@ -14,7 +14,7 @@ newproperty(:gateway, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
   references :gateway_id
-  reference_type :gateway
+  reference_type :internetgateway
   data_type('Optional[String[1]]')
 end
 

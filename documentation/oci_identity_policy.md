@@ -26,11 +26,11 @@ using the API.
 
   Here is an example on how to use this:
 
-   oci_identity_policy { 'tenant (root)/my_policy}':
-      ensure        => 'present',
-      description   => 'My own policy',
-      statements    => ['Allow group Administrators to manage all-resources in compartment my_compartment'],
-    }
+    oci_identity_policy { 'tenant (root)/my_policy}':
+        ensure        => 'present',
+        description   => 'My own policy',
+        statements    => ['Allow group Administrators to manage all-resources in compartment my_compartment'],
+      }
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
@@ -40,7 +40,7 @@ using the API.
 
 Attribute Name                                                              | Short Description                                                                            |
 --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-[absent_states](#oci_identity_policy_absent_states)                         | The OCI states, pupet will detect as the resource beeing absent.                             |
+[absent_states](#oci_identity_policy_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                             |
 [compartment](#oci_identity_policy_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                              |
 [compartment_id](#oci_identity_policy_compartment_id)                       | The OCID of the compartment that contains the object.                                        |
 [defined_tags](#oci_identity_policy_defined_tags)                           |   Defined tags for this resource.                                                            |
@@ -56,7 +56,7 @@ Attribute Name                                                              | Sh
 [oci_timeout](#oci_identity_policy_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                      |
 [oci_wait_interval](#oci_identity_policy_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.               |
 [policy_name](#oci_identity_policy_policy_name)                             | The name of the policy.                                                                      |
-[present_states](#oci_identity_policy_present_states)                       | The OCI states, pupet will detect as the resource beeing present.                            |
+[present_states](#oci_identity_policy_present_states)                       | The OCI states, puppet will detect as the resource being present.                            |
 [provider](#oci_identity_policy_provider)                                   | resource.                                                                                    |
 [statements](#oci_identity_policy_statements)                               |   An array of policy statements written in the policy language.                              |
 [synchronized](#oci_identity_policy_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource. |
@@ -69,7 +69,7 @@ Attribute Name                                                              | Sh
 
 ### absent_states<a name='oci_identity_policy_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -277,7 +277,7 @@ The name of the policy.
 
 ### present_states<a name='oci_identity_policy_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

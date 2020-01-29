@@ -43,7 +43,7 @@ supply string values using the API.
 
 Attribute Name                                                            | Short Description                                                                            |
 ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-[absent_states](#oci_core_subnet_absent_states)                           | The OCI states, pupet will detect as the resource beeing absent.                             |
+[absent_states](#oci_core_subnet_absent_states)                           | The OCI states, puppet will detect as the resource being absent.                             |
 [availability_domain](#oci_core_subnet_availability_domain)               |   Controls whether the subnet is regional or specific to an availability domain.             |
 [cidr_block](#oci_core_subnet_cidr_block)                                 |   The CIDR IP address range of the subnet.                                                   |
 [compartment](#oci_core_subnet_compartment)                               | The Puppet name of the resource identified by `compartment_id`.                              |
@@ -64,7 +64,7 @@ Attribute Name                                                            | Shor
 [name](#oci_core_subnet_name)                                             | The full name of the object.                                                                 |
 [oci_timeout](#oci_core_subnet_oci_timeout)                               | The maximum time to wait for the OCI resource to be in the ready state.                      |
 [oci_wait_interval](#oci_core_subnet_oci_wait_interval)                   | The interval beween calls to OCI to check if a resource is in the ready state.               |
-[present_states](#oci_core_subnet_present_states)                         | The OCI states, pupet will detect as the resource beeing present.                            |
+[present_states](#oci_core_subnet_present_states)                         | The OCI states, puppet will detect as the resource being present.                            |
 [prohibit_public_ip_on_vnic](#oci_core_subnet_prohibit_public_ip_on_vnic) |   Whether VNICs within this subnet can have public IP addresses.                             |
 [provider](#oci_core_subnet_provider)                                     | resource.                                                                                    |
 [route_table](#oci_core_subnet_route_table)                               | The Puppet name of the resource identified by `route_table_id`.                              |
@@ -86,7 +86,7 @@ Attribute Name                                                            | Shor
 
 ### absent_states<a name='oci_core_subnet_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -391,7 +391,7 @@ The interval beween calls to OCI to check if a resource is in the ready state.
 
 ### present_states<a name='oci_core_subnet_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

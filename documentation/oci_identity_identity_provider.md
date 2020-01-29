@@ -37,7 +37,7 @@ This class has direct subclasses. If you are using this class as input to a serv
 
 Attribute Name                                                                         | Short Description                                                                            |
 -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-[absent_states](#oci_identity_identity_provider_absent_states)                         | The OCI states, pupet will detect as the resource beeing absent.                             |
+[absent_states](#oci_identity_identity_provider_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                             |
 [compartment](#oci_identity_identity_provider_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                              |
 [compartment_id](#oci_identity_identity_provider_compartment_id)                       | The OCID of the compartment that contains the object.                                        |
 [defined_tags](#oci_identity_identity_provider_defined_tags)                           |   Defined tags for this resource.                                                            |
@@ -53,7 +53,7 @@ Attribute Name                                                                  
 [name](#oci_identity_identity_provider_name)                                           | The full name of the object.                                                                 |
 [oci_timeout](#oci_identity_identity_provider_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                      |
 [oci_wait_interval](#oci_identity_identity_provider_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.               |
-[present_states](#oci_identity_identity_provider_present_states)                       | The OCI states, pupet will detect as the resource beeing present.                            |
+[present_states](#oci_identity_identity_provider_present_states)                       | The OCI states, puppet will detect as the resource being present.                            |
 [product_type](#oci_identity_identity_provider_product_type)                           |   The identity provider service or product.                                                  |
 [protocol](#oci_identity_identity_provider_protocol)                                   |   The protocol used for federation.                                                          |
 [provider](#oci_identity_identity_provider_provider)                                   | resource.                                                                                    |
@@ -66,7 +66,7 @@ Attribute Name                                                                  
 
 ### absent_states<a name='oci_identity_identity_provider_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -275,7 +275,7 @@ The interval beween calls to OCI to check if a resource is in the ready state.
 
 ### present_states<a name='oci_identity_identity_provider_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

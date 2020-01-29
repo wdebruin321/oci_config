@@ -26,7 +26,7 @@ supply string values using the API.
 
 Attribute Name                                                                      | Short Description                                                                            |
 ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-[absent_states](#oci_core_boot_volume_backup_absent_states)                         | The OCI states, pupet will detect as the resource beeing absent.                             |
+[absent_states](#oci_core_boot_volume_backup_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                             |
 [boot_volume](#oci_core_boot_volume_backup_boot_volume)                             | The Puppet name of the resource identified by `boot_volume_id`.                              |
 [boot_volume_backup_name](#oci_core_boot_volume_backup_boot_volume_backup_name)     | The name of the boot_volume_backup.                                                          |
 [boot_volume_id](#oci_core_boot_volume_backup_boot_volume_id)                       | The OCID of the boot volume that needs to be backed up.                                      |
@@ -47,7 +47,7 @@ Attribute Name                                                                  
 [name](#oci_core_boot_volume_backup_name)                                           | The full name of the object.                                                                 |
 [oci_timeout](#oci_core_boot_volume_backup_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                      |
 [oci_wait_interval](#oci_core_boot_volume_backup_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.               |
-[present_states](#oci_core_boot_volume_backup_present_states)                       | The OCI states, pupet will detect as the resource beeing present.                            |
+[present_states](#oci_core_boot_volume_backup_present_states)                       | The OCI states, puppet will detect as the resource being present.                            |
 [provider](#oci_core_boot_volume_backup_provider)                                   | resource.                                                                                    |
 [size_in_gbs](#oci_core_boot_volume_backup_size_in_gbs)                             | The size of the boot volume, in GBs.                                                         |
 [source_type](#oci_core_boot_volume_backup_source_type)                             | Specifies whether the backup was created manually, or via scheduled backup policy.           |
@@ -64,7 +64,7 @@ Attribute Name                                                                  
 
 ### absent_states<a name='oci_core_boot_volume_backup_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -339,7 +339,7 @@ The interval beween calls to OCI to check if a resource is in the ready state.
 
 ### present_states<a name='oci_core_boot_volume_backup_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

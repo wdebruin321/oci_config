@@ -7,7 +7,7 @@ newparam(:absent_states) do
   include EasyType
 
   desc <<-DESC
-  The OCI states, pupet will detect as the resource beeing absent.
+  The OCI states, puppet will detect as the resource being absent.
   DESC
 
   data_type('Array[String[1]]')

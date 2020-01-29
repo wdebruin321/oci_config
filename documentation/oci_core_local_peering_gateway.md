@@ -36,7 +36,7 @@ supply string values using the API.
 
 Attribute Name                                                                               | Short Description                                                                            |
 -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-[absent_states](#oci_core_local_peering_gateway_absent_states)                               | The OCI states, pupet will detect as the resource beeing absent.                             |
+[absent_states](#oci_core_local_peering_gateway_absent_states)                               | The OCI states, puppet will detect as the resource being absent.                             |
 [compartment](#oci_core_local_peering_gateway_compartment)                                   | The Puppet name of the resource identified by `compartment_id`.                              |
 [compartment_id](#oci_core_local_peering_gateway_compartment_id)                             | The OCID of the compartment that contains the object.                                        |
 [defined_tags](#oci_core_local_peering_gateway_defined_tags)                                 |   Defined tags for this resource.                                                            |
@@ -55,7 +55,7 @@ Attribute Name                                                                  
 [peer_advertised_cidr_details](#oci_core_local_peering_gateway_peer_advertised_cidr_details) | end of the peering from this LPG.                                                            |
 [peering_status](#oci_core_local_peering_gateway_peering_status)                             |   Whether the LPG is peered with another LPG.                                                |
 [peering_status_details](#oci_core_local_peering_gateway_peering_status_details)             | Additional information regarding the peering status, if applicable.                          |
-[present_states](#oci_core_local_peering_gateway_present_states)                             | The OCI states, pupet will detect as the resource beeing present.                            |
+[present_states](#oci_core_local_peering_gateway_present_states)                             | The OCI states, puppet will detect as the resource being present.                            |
 [provider](#oci_core_local_peering_gateway_provider)                                         | resource.                                                                                    |
 [route_table](#oci_core_local_peering_gateway_route_table)                                   | The Puppet name of the resource identified by `route_table_id`.                              |
 [route_table_id](#oci_core_local_peering_gateway_route_table_id)                             |   The OCID of the route table the LPG will use.                                              |
@@ -70,7 +70,7 @@ Attribute Name                                                                  
 
 ### absent_states<a name='oci_core_local_peering_gateway_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -322,7 +322,7 @@ This documentation is generated from the [Ruby OCI SDK](https://github.com/oracl
 
 ### present_states<a name='oci_core_local_peering_gateway_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

@@ -62,7 +62,7 @@ supply string values using the API.
 
 Attribute Name                                                                                | Short Description                                                                                        |
 --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-[absent_states](#oci_core_instance_absent_states)                                             | The OCI states, pupet will detect as the resource beeing absent.                                         |
+[absent_states](#oci_core_instance_absent_states)                                             | The OCI states, puppet will detect as the resource being absent.                                         |
 [agent_config](#oci_core_instance_agent_config)                                               | 
                                                                                                         |
 [availability_domain](#oci_core_instance_availability_domain)                                 |   The availability domain of the instance.                                                               |
@@ -94,7 +94,7 @@ Attribute Name                                                                  
 [name](#oci_core_instance_name)                                                               | The full name of the object.                                                                             |
 [oci_timeout](#oci_core_instance_oci_timeout)                                                 | The maximum time to wait for the OCI resource to be in the ready state.                                  |
 [oci_wait_interval](#oci_core_instance_oci_wait_interval)                                     | The interval beween calls to OCI to check if a resource is in the ready state.                           |
-[present_states](#oci_core_instance_present_states)                                           | The OCI states, pupet will detect as the resource beeing present.                                        |
+[present_states](#oci_core_instance_present_states)                                           | The OCI states, puppet will detect as the resource being present.                                        |
 [provider](#oci_core_instance_provider)                                                       | resource.                                                                                                |
 [region](#oci_core_instance_region)                                                           |   The region that contains the availability domain the instance is running in.                           |
 [shape](#oci_core_instance_shape)                                                             |   The shape of an instance.                                                                              |
@@ -115,7 +115,7 @@ Attribute Name                                                                  
 
 ### absent_states<a name='oci_core_instance_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -558,7 +558,7 @@ The interval beween calls to OCI to check if a resource is in the ready state.
 
 ### present_states<a name='oci_core_instance_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

@@ -57,6 +57,12 @@ This module provides the same functionality as the Terraform provider for OCI. A
 - [oci_identity_tag_namespace](/docs/oci_config/oci_identity_tag_namespace.html)
 - [oci_identity_user](/docs/oci_config/oci_identity_user.html)
 
+## Key Management Services
+
+- [oci_key_management_vault](/docs/oci_config/oci_key_management_vault.html)
+- [oci_key_management_key](/docs/oci_config/oci_key_management_key.html)
+
 ## Generic[](/docs/oci_config/)
 
 - [oci_tenant](/docs/oci_config/oci_tenant.html)
+

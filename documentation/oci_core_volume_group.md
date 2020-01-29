@@ -15,7 +15,7 @@ supply string values using the API.
 
   Here is an example on how to use this:
 
-   oci_core_volume_group { 'tenant (root)/my_volume_group':
+    oci_core_volume_group { 'tenant (root)/my_volume_group':
       ensure              => 'present',
       availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
       volumes             => ['my_compartment/my_volume_1'],
@@ -29,7 +29,7 @@ supply string values using the API.
 
 Attribute Name                                                                | Short Description                                                                                                           |
 ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-[absent_states](#oci_core_volume_group_absent_states)                         | The OCI states, pupet will detect as the resource beeing absent.                                                            |
+[absent_states](#oci_core_volume_group_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                                                            |
 [availability_domain](#oci_core_volume_group_availability_domain)             | The availability domain of the volume group.                                                                                |
 [compartment](#oci_core_volume_group_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                                                             |
 [compartment_id](#oci_core_volume_group_compartment_id)                       | The OCID of the compartment that contains the object.                                                                       |
@@ -44,7 +44,7 @@ Attribute Name                                                                | 
 [name](#oci_core_volume_group_name)                                           | The full name of the object.                                                                                                |
 [oci_timeout](#oci_core_volume_group_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                                                     |
 [oci_wait_interval](#oci_core_volume_group_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.                                              |
-[present_states](#oci_core_volume_group_present_states)                       | The OCI states, pupet will detect as the resource beeing present.                                                           |
+[present_states](#oci_core_volume_group_present_states)                       | The OCI states, puppet will detect as the resource being present.                                                           |
 [provider](#oci_core_volume_group_provider)                                   | resource.                                                                                                                   |
 [size_in_gbs](#oci_core_volume_group_size_in_gbs)                             | The aggregate size of the volume group in GBs.                                                                              |
 [size_in_mbs](#oci_core_volume_group_size_in_mbs)                             | The aggregate size of the volume group in MBs.                                                                              |
@@ -60,7 +60,7 @@ Attribute Name                                                                | 
 
 ### absent_states<a name='oci_core_volume_group_absent_states'>
 
-The OCI states, pupet will detect as the resource beeing absent.
+The OCI states, puppet will detect as the resource being absent.
 
 
 
@@ -261,7 +261,7 @@ The interval beween calls to OCI to check if a resource is in the ready state.
 
 ### present_states<a name='oci_core_volume_group_present_states'>
 
-The OCI states, pupet will detect as the resource beeing present.
+The OCI states, puppet will detect as the resource being present.
 
 
 

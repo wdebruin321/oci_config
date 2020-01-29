@@ -14,8 +14,8 @@ newproperty(:autonomous_container_database, :parent => Puppet_X::EnterpriseModul
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
   references :autonomous_container_database_id
-  reference_type :autonomouscontainer
+  reference_type :autonomouscontainerdatabase
   data_type('Optional[String[1]]')
 end
 
-child_of(:autonomouscontainer, :autonomous_container_database) { "#{tenant_string}/#{autonomous_container_database}" }
+child_of(:autonomouscontainerdatabase, :autonomous_container_database) { "#{tenant_string}/#{autonomous_container_database}" }
