@@ -30,6 +30,10 @@ newproperty(:volumes, :parent => Puppet_X::EnterpriseModules::Oci::AssociatedHas
   DESC
   data_type('Hash[String[1], Any]')
 
+  def before_destroy
+    # Do nothing. Don't detacht the volumes. It is not required.
+  end
+
   # rubocop: disable Naming/MethodParameterName
   def insync?(is)
     # If any disks are added or removed, we are not in sync.

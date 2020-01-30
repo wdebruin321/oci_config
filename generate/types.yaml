@@ -10,6 +10,7 @@ oci_budget_budget:
       reference_type: compartment
       desc: The OCID of the compartment
     target_compartment_id:
+      deprecated: true
       reference_type: compartment
       data_type: String[1]
       desc: This is DEPRECTAED. Set the target compartment id in targets instead.
@@ -30,6 +31,7 @@ oci_budget_budget:
       data_type: String[1]
       desc: The type of target on which the budget is applied.
     targets:
+      custom: true
       data_type: Array[String]
       desc: |-
         The list of targets on which the budget is applied.
@@ -80,7 +82,6 @@ oci_budget_budget:
 
           oci_budget_budget { 'tenant (root)/test_budget':
             ensure             => 'present',
-            target_compartment => 'my_compartment',
             amount             => 100.0,
             description        => 'test Budget',
           }
@@ -1339,6 +1340,7 @@ oci_core_virtual_circuit:
 
         Example: `10 Gbps`
     bgp_management:
+      deprecated: true
       data_type: String[1]
       desc: |-
         Deprecated. Instead use the information in
@@ -1398,6 +1400,7 @@ oci_core_virtual_circuit:
       data_type: Integer
       desc: The Oracle BGP ASN.
     provider_name:
+      deprecated: true
       data_type: String[1]
       desc: |-
         Deprecated. Instead use `providerServiceId`.
@@ -1415,6 +1418,7 @@ oci_core_virtual_circuit:
       desc: The service key name offered by the provider (if the customer is connecting
         via a provider).
     provider_service_name:
+      deprecated: true
       data_type: String[1]
       desc: |-
         Deprecated. Instead use `providerServiceId`.
@@ -1812,6 +1816,7 @@ oci_core_instance:
       data_type: String[1]
       desc: The OCID of the instance.
     image_id:
+      deprecated: true
       reference_type: image
       data_type: String[1]
       desc: |-
@@ -1962,12 +1967,14 @@ oci_core_instance:
         Regardless of how the instance was stopped, the flag will be reset to empty as soon as instance reaches Stopped state.
         Example: `2018-05-25T21:10:29.600Z`
     hostname_label:
+      deprecated: true
       data_type: String[1]
       desc: |-
         Deprecated. Instead use `hostnameLabel` in
         {CreateVnicDetails}.
         If you provide both, the values must match.
     subnet_id:
+      deprecated: true
       reference_type: subnet
       data_type: String[1]
       desc: |-
@@ -2096,6 +2103,7 @@ oci_core_boot_volume:
       data_type: Integer
       desc: The size of the volume in GBs.
     size_in_mbs:
+      deprecated: true
       data_type: Integer
       desc: |-
         The size of the volume in MBs. The value must be a multiple of 1024.
@@ -2317,6 +2325,7 @@ oci_core_volume:
         If provided, specifies the ID of the volume backup policy to assign to the newly
         created volume. If omitted, no policy will be assigned.
     volume_backup_id:
+      deprecated: true
       reference_type: volumebackup
       data_type: String[1]
       desc: |-
@@ -3514,7 +3523,6 @@ oci_key_management_vault:
             ensure        => 'present',
             vault_type    => 'DEFAULT',
           }
-
   klass: OCI::KeyManagement::Models::Vault
   properties:
     compartment_id:

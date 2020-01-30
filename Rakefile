@@ -142,7 +142,6 @@ namespace :generate do
     YamlGenerator.new(OCI::Core, 'ServiceGateway$').generate
     YamlGenerator.new(OCI::Core, '^Subnet$').generate
     YamlGenerator.new(OCI::Core, 'Vcn$').generate
-    YamlGenerator.new(OCI::Core, '^Vnic$').generate
     YamlGenerator.new(OCI::Core, 'VirtualCircuit$').generate
     YamlGenerator.new(OCI::Core, 'IPSecConnection$').generate
     #

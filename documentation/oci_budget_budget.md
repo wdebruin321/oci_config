@@ -13,7 +13,6 @@ Here is an example on how to use this:
 
     oci_budget_budget { 'tenant (root)/test_budget':
       ensure             => 'present',
-      target_compartment => 'my_compartment',
       amount             => 100.0,
       description        => 'test Budget',
     }
@@ -52,8 +51,6 @@ Attribute Name                                                            | Shor
 [provider](#oci_budget_budget_provider)                                   | resource.                                                                                         |
 [reset_period](#oci_budget_budget_reset_period)                           | The reset period for the budget.                                                                  |
 [synchronized](#oci_budget_budget_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource.      |
-[target_compartment](#oci_budget_budget_target_compartment)               | The Puppet name of the resource identified by `target_compartment_id`.                            |
-[target_compartment_id](#oci_budget_budget_target_compartment_id)         | This is DEPRECTAED.                                                                               |
 [target_type](#oci_budget_budget_target_type)                             | The type of target on which the budget is applied.                                                |
 [targets](#oci_budget_budget_targets)                                     |   The list of targets on which the budget is applied.                                             |
 [tenant](#oci_budget_budget_tenant)                                       | The tenant for this resource.                                                                     |
@@ -341,29 +338,6 @@ This documentation is generated from the [Ruby OCI SDK](https://github.com/oracl
 ### synchronized<a name='oci_budget_budget_synchronized'>
 
 Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource.
-
-
-
-[Back to overview of oci_budget_budget](#attributes)
-
-### target_compartment<a name='oci_budget_budget_target_compartment'>
-
-The Puppet name of the resource identified by `target_compartment_id`.
-
-See the documentation of target_compartment_id for all details.
-
-This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
-
-
-
-[Back to overview of oci_budget_budget](#attributes)
-
-### target_compartment_id<a name='oci_budget_budget_target_compartment_id'>
-
-This is DEPRECTAED. Set the target compartment id in targets instead.
-Rather use the property `target_compartment` instead of a direct OCID reference.
-
-This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 
 

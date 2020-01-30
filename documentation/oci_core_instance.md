@@ -79,10 +79,7 @@ Attribute Name                                                                  
 [extended_metadata](#oci_core_instance_extended_metadata)                                     |   Additional metadata key/value pairs that you provide.                                                  |
 [fault_domain](#oci_core_instance_fault_domain)                                               |   A fault domain is a grouping of hardware and infrastructure within an availability domain.             |
 [freeform_tags](#oci_core_instance_freeform_tags)                                             |   Free-form tags for this resource.                                                                      |
-[hostname_label](#oci_core_instance_hostname_label)                                           |   Deprecated.                                                                                            |
 [id](#oci_core_instance_id)                                                                   | The OCID of the resource.                                                                                |
-[image](#oci_core_instance_image)                                                             | The Puppet name of the resource identified by `image_id`.                                                |
-[image_id](#oci_core_instance_image_id)                                                       |   Deprecated.                                                                                            |
 [instance_name](#oci_core_instance_instance_name)                                             | The name of the instance.                                                                                |
 [ipxe_script](#oci_core_instance_ipxe_script)                                                 |   This is an advanced option.                                                                            |
 [is_pv_encryption_in_transit_enabled](#oci_core_instance_is_pv_encryption_in_transit_enabled) | Whether to enable in-transit encryption for the data volume's paravirtualized attachment.                |
@@ -99,8 +96,6 @@ Attribute Name                                                                  
 [region](#oci_core_instance_region)                                                           |   The region that contains the availability domain the instance is running in.                           |
 [shape](#oci_core_instance_shape)                                                             |   The shape of an instance.                                                                              |
 [source_details](#oci_core_instance_source_details)                                           |   Details for creating an instance.                                                                      |
-[subnet](#oci_core_instance_subnet)                                                           | The Puppet name of the resource identified by `subnet_id`.                                               |
-[subnet_id](#oci_core_instance_subnet_id)                                                     |   Deprecated.                                                                                            |
 [synchronized](#oci_core_instance_synchronized)                                               | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource.             |
 [system_tags](#oci_core_instance_system_tags)                                                 |   System tags for this resource.                                                                         |
 [tenant](#oci_core_instance_tenant)                                                           | The tenant for this resource.                                                                            |
@@ -336,47 +331,11 @@ Example: `{"Department": "Finance"}`
 
 [Back to overview of oci_core_instance](#attributes)
 
-### hostname_label<a name='oci_core_instance_hostname_label'>
-
-  Deprecated. Instead use `hostnameLabel` in
-{CreateVnicDetails}.
-If you provide both, the values must match.
-
-  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
-
-
-
-[Back to overview of oci_core_instance](#attributes)
-
 ### id<a name='oci_core_instance_id'>
 
 The OCID of the resource. This is a read-only property.
 
 This documentation is generated from the Ruby OCI SDK.
-
-
-
-[Back to overview of oci_core_instance](#attributes)
-
-### image<a name='oci_core_instance_image'>
-
-The Puppet name of the resource identified by `image_id`.
-
-See the documentation of image_id for all details.
-
-This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
-
-
-
-[Back to overview of oci_core_instance](#attributes)
-
-### image_id<a name='oci_core_instance_image_id'>
-
-  Deprecated. Use `sourceDetails` with {#instance_source_via_image_details instance_source_via_image_details}
-source type instead. If you specify values for both, the values must match.
-  Rather use the property `image` instead of a direct OCID reference.
-
-  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 
 
@@ -609,31 +568,6 @@ You can enumerate all available shapes by calling {#list_shapes list_shapes}.
 
   Details for creating an instance.
 Use this parameter to specify whether a boot volume or an image should be used to launch a new instance.
-
-  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
-
-
-
-[Back to overview of oci_core_instance](#attributes)
-
-### subnet<a name='oci_core_instance_subnet'>
-
-The Puppet name of the resource identified by `subnet_id`.
-
-See the documentation of subnet_id for all details.
-
-This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
-
-
-
-[Back to overview of oci_core_instance](#attributes)
-
-### subnet_id<a name='oci_core_instance_subnet_id'>
-
-  Deprecated. Instead use `subnetId` in
-{CreateVnicDetails}.
-At least one of them is required; if you provide both, the values must match.
-  Rather use the property `subnet` instead of a direct OCID reference.
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 

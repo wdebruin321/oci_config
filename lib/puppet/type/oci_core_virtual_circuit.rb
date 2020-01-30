@@ -54,7 +54,6 @@ supply string values using the API.
   property  :compartment_id
 
   property :bandwidth_shape_name
-  property :bgp_management
   property :bgp_session_state
   property :cross_connect_mappings
   property :customer_bgp_asn
@@ -64,11 +63,9 @@ supply string values using the API.
   property :gateway_id
   property :lifecycle_state
   property :oracle_bgp_asn
-  property :provider_name
   property :provider_service
   property :provider_service_id
   property :provider_service_key_name
-  property :provider_service_name
   property :provider_state
   property :public_prefixes
   property :reference_comment

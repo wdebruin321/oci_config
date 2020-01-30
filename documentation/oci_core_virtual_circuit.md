@@ -40,7 +40,6 @@ Attribute Name                                                                  
 -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 [absent_states](#oci_core_virtual_circuit_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                             |
 [bandwidth_shape_name](#oci_core_virtual_circuit_bandwidth_shape_name)           |   The provisioned data rate of the connection.                                               |
-[bgp_management](#oci_core_virtual_circuit_bgp_management)                       |   Deprecated.                                                                                |
 [bgp_session_state](#oci_core_virtual_circuit_bgp_session_state)                 | The state of the BGP session associated with the virtual circuit.                            |
 [compartment](#oci_core_virtual_circuit_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                              |
 [compartment_id](#oci_core_virtual_circuit_compartment_id)                       | The OCID of the compartment that contains the object.                                        |
@@ -61,11 +60,9 @@ Attribute Name                                                                  
 [oracle_bgp_asn](#oci_core_virtual_circuit_oracle_bgp_asn)                       | The Oracle BGP ASN.                                                                          |
 [present_states](#oci_core_virtual_circuit_present_states)                       | The OCI states, puppet will detect as the resource being present.                            |
 [provider](#oci_core_virtual_circuit_provider)                                   | resource.                                                                                    |
-[provider_name](#oci_core_virtual_circuit_provider_name)                         |   Deprecated.                                                                                |
 [provider_service](#oci_core_virtual_circuit_provider_service)                   | The Puppet name of the resource identified by `provider_service_id`.                         |
 [provider_service_id](#oci_core_virtual_circuit_provider_service_id)             | via a provider).                                                                             |
 [provider_service_key_name](#oci_core_virtual_circuit_provider_service_key_name) | The service key name offered by the provider (if the customer is connecting via a provider). |
-[provider_service_name](#oci_core_virtual_circuit_provider_service_name)         |   Deprecated.                                                                                |
 [provider_state](#oci_core_virtual_circuit_provider_state)                       | customer is connecting via a provider).                                                      |
 [public_prefixes](#oci_core_virtual_circuit_public_prefixes)                     |   For a public virtual circuit.                                                              |
 [reference_comment](#oci_core_virtual_circuit_reference_comment)                 | (if the customer is connecting via a provider).                                              |
@@ -95,17 +92,6 @@ available bandwidth levels (that is, shapes), see
 {#list_fast_connect_provider_virtual_circuit_bandwidth_shapes list_fast_connect_provider_virtual_circuit_bandwidth_shapes}.
 
 Example: `10 Gbps`
-
-  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
-
-
-
-[Back to overview of oci_core_virtual_circuit](#attributes)
-
-### bgp_management<a name='oci_core_virtual_circuit_bgp_management'>
-
-  Deprecated. Instead use the information in
-{FastConnectProviderService}.
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
@@ -376,18 +362,6 @@ sdk
 
 [Back to overview of oci_core_virtual_circuit](#attributes)
 
-### provider_name<a name='oci_core_virtual_circuit_provider_name'>
-
-  Deprecated. Instead use `providerServiceId`.
-To get a list of the provider names, see
-{#list_fast_connect_provider_services list_fast_connect_provider_services}.
-
-  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
-
-
-
-[Back to overview of oci_core_virtual_circuit](#attributes)
-
 ### provider_service<a name='oci_core_virtual_circuit_provider_service'>
 
 The Puppet name of the resource identified by `provider_service_id`.
@@ -418,18 +392,6 @@ via a provider). To get a list of the available service offerings, see
 The service key name offered by the provider (if the customer is connecting via a provider).
 
 This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
-
-
-
-[Back to overview of oci_core_virtual_circuit](#attributes)
-
-### provider_service_name<a name='oci_core_virtual_circuit_provider_service_name'>
-
-  Deprecated. Instead use `providerServiceId`.
-To get a list of the provider names, see
-{#list_fast_connect_provider_services list_fast_connect_provider_services}.
-
-  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 
 

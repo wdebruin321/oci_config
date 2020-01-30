@@ -56,6 +56,8 @@ class YamlGenerator
     @data[type_name]['desc'] = docs.docstring.to_s if docs
     all_properties = properties_in(klass).merge(properties_in(create_class))
     all_properties.each do |property, data_type|
+      next if property.to_s =~ /_details/
+
       data_type = translate_data_type(data_type)
       @data[type_name]['properties'][property.to_s] ||= {}
       @data[type_name]['properties'][property.to_s]['data_type'] = data_type.to_s

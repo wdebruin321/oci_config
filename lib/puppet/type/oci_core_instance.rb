@@ -87,8 +87,6 @@ supply string values using the API.
   property :extended_metadata
   property :fault_domain
   property :freeform_tags
-  property :image
-  property :image_id
   property :ipxe_script
   property :launch_mode
   property :launch_options
@@ -101,15 +99,10 @@ supply string values using the API.
   property :time_created
   property :agent_config
   property :time_maintenance_reboot_due
-  property :hostname_label
-  property :subnet
-  property :subnet_id
   property :is_pv_encryption_in_transit_enabled
 
   validate do
     validate_reference_propery(:compartment_id, self)
     validate_reference_propery(:dedicated_vm_host_id, self)
-    validate_reference_propery(:image_id, self)
-    validate_reference_propery(:subnet_id, self)
   end
 end

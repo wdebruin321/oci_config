@@ -1,5 +1,5 @@
 type Oci_Config::InstanceSourceDetails = Struct[{
-  Optional[source_type] => String[1],
+  source_type           => String[1],
   Optional[image_id]    => String[1],
   Optional[image]       => String[1],
   Optional[image_type]  => String[1],

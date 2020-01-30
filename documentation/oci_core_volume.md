@@ -32,41 +32,39 @@ supply string values using the API.
 
 
 
-Attribute Name                                                          | Short Description                                                                                   |
------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
-[absent_states](#oci_core_volume_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                                    |
-[availability_domain](#oci_core_volume_availability_domain)             |   The availability domain of the volume.                                                            |
-[backup_policy](#oci_core_volume_backup_policy)                         | The Puppet name of the resource identified by `backup_policy_id`.                                   |
-[backup_policy_id](#oci_core_volume_backup_policy_id)                   | created volume.                                                                                     |
-[compartment](#oci_core_volume_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                                     |
-[compartment_id](#oci_core_volume_compartment_id)                       | The OCID of the compartment that contains the object.                                               |
-[defined_tags](#oci_core_volume_defined_tags)                           |   Defined tags for this resource.                                                                   |
-[disable_corrective_change](#oci_core_volume_disable_corrective_change) | Disable the modification of a resource when Puppet decides it is a corrective change.               |
-[disable_corrective_ensure](#oci_core_volume_disable_corrective_ensure) | Disable the creation or removal of a resource when Puppet decides is a corrective change.           |
-[ensure](#oci_core_volume_ensure)                                       | The basic property that the resource should be in.                                                  |
-[freeform_tags](#oci_core_volume_freeform_tags)                         |   Free-form tags for this resource.                                                                 |
-[id](#oci_core_volume_id)                                               | The OCID of the resource.                                                                           |
-[is_hydrated](#oci_core_volume_is_hydrated)                             | Specifies whether the cloned volume's data has finished copying from the source volume or backup.   |
-[kms_key](#oci_core_volume_kms_key)                                     | The Puppet name of the resource identified by `kms_key_id`.                                         |
-[kms_key_id](#oci_core_volume_kms_key_id)                               | The OCID of the KMS key to be used as the master encryption key for the volume.                     |
-[lifecycle_state](#oci_core_volume_lifecycle_state)                     | The current state of a volume.                                                                      |
-[name](#oci_core_volume_name)                                           | The full name of the object.                                                                        |
-[oci_timeout](#oci_core_volume_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                             |
-[oci_wait_interval](#oci_core_volume_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.                      |
-[present_states](#oci_core_volume_present_states)                       | The OCI states, puppet will detect as the resource being present.                                   |
-[provider](#oci_core_volume_provider)                                   | resource.                                                                                           |
-[size_in_gbs](#oci_core_volume_size_in_gbs)                             | The size of the volume in GBs.                                                                      |
-[size_in_mbs](#oci_core_volume_size_in_mbs)                             |   The size of the volume in MBs.                                                                    |
-[source_details](#oci_core_volume_source_details)                       |   Specifies the volume source details for a new Block volume.                                       |
-[synchronized](#oci_core_volume_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource.        |
-[system_tags](#oci_core_volume_system_tags)                             |   System tags for this resource.                                                                    |
-[tenant](#oci_core_volume_tenant)                                       | The tenant for this resource.                                                                       |
-[time_created](#oci_core_volume_time_created)                           | The date and time the volume was created.                                                           |
-[volume_backup](#oci_core_volume_volume_backup)                         | The Puppet name of the resource identified by `volume_backup_id`.                                   |
-[volume_backup_id](#oci_core_volume_volume_backup_id)                   |   The OCID of the volume backup from which the data should be restored on the newly created volume. |
-[volume_group](#oci_core_volume_volume_group)                           | The Puppet name of the resource identified by `volume_group_id`.                                    |
-[volume_group_id](#oci_core_volume_volume_group_id)                     | The OCID of the source volume group.                                                                |
-[volume_name](#oci_core_volume_volume_name)                             | The name of the volume.                                                                             |
+Attribute Name                                                          | Short Description                                                                                 |
+----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+[absent_states](#oci_core_volume_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                                  |
+[availability_domain](#oci_core_volume_availability_domain)             |   The availability domain of the volume.                                                          |
+[backup_policy](#oci_core_volume_backup_policy)                         | The Puppet name of the resource identified by `backup_policy_id`.                                 |
+[backup_policy_id](#oci_core_volume_backup_policy_id)                   | created volume.                                                                                   |
+[compartment](#oci_core_volume_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                                   |
+[compartment_id](#oci_core_volume_compartment_id)                       | The OCID of the compartment that contains the object.                                             |
+[defined_tags](#oci_core_volume_defined_tags)                           |   Defined tags for this resource.                                                                 |
+[disable_corrective_change](#oci_core_volume_disable_corrective_change) | Disable the modification of a resource when Puppet decides it is a corrective change.             |
+[disable_corrective_ensure](#oci_core_volume_disable_corrective_ensure) | Disable the creation or removal of a resource when Puppet decides is a corrective change.         |
+[ensure](#oci_core_volume_ensure)                                       | The basic property that the resource should be in.                                                |
+[freeform_tags](#oci_core_volume_freeform_tags)                         |   Free-form tags for this resource.                                                               |
+[id](#oci_core_volume_id)                                               | The OCID of the resource.                                                                         |
+[is_hydrated](#oci_core_volume_is_hydrated)                             | Specifies whether the cloned volume's data has finished copying from the source volume or backup. |
+[kms_key](#oci_core_volume_kms_key)                                     | The Puppet name of the resource identified by `kms_key_id`.                                       |
+[kms_key_id](#oci_core_volume_kms_key_id)                               | The OCID of the KMS key to be used as the master encryption key for the volume.                   |
+[lifecycle_state](#oci_core_volume_lifecycle_state)                     | The current state of a volume.                                                                    |
+[name](#oci_core_volume_name)                                           | The full name of the object.                                                                      |
+[oci_timeout](#oci_core_volume_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                           |
+[oci_wait_interval](#oci_core_volume_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.                    |
+[present_states](#oci_core_volume_present_states)                       | The OCI states, puppet will detect as the resource being present.                                 |
+[provider](#oci_core_volume_provider)                                   | resource.                                                                                         |
+[size_in_gbs](#oci_core_volume_size_in_gbs)                             | The size of the volume in GBs.                                                                    |
+[size_in_mbs](#oci_core_volume_size_in_mbs)                             |   The size of the volume in MBs.                                                                  |
+[source_details](#oci_core_volume_source_details)                       |   Specifies the volume source details for a new Block volume.                                     |
+[synchronized](#oci_core_volume_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource.      |
+[system_tags](#oci_core_volume_system_tags)                             |   System tags for this resource.                                                                  |
+[tenant](#oci_core_volume_tenant)                                       | The tenant for this resource.                                                                     |
+[time_created](#oci_core_volume_time_created)                           | The date and time the volume was created.                                                         |
+[volume_group](#oci_core_volume_volume_group)                           | The Puppet name of the resource identified by `volume_group_id`.                                  |
+[volume_group_id](#oci_core_volume_volume_group_id)                     | The OCID of the source volume group.                                                              |
+[volume_name](#oci_core_volume_volume_name)                             | The name of the volume.                                                                           |
 
 
 
@@ -407,31 +405,6 @@ The tenant for this resource.
 The date and time the volume was created. Format defined by RFC3339.
 
 This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
-
-
-
-[Back to overview of oci_core_volume](#attributes)
-
-### volume_backup<a name='oci_core_volume_volume_backup'>
-
-The Puppet name of the resource identified by `volume_backup_id`.
-
-See the documentation of volume_backup_id for all details.
-
-This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
-
-
-
-[Back to overview of oci_core_volume](#attributes)
-
-### volume_backup_id<a name='oci_core_volume_volume_backup_id'>
-
-  The OCID of the volume backup from which the data should be restored on the newly created volume.
-This field is deprecated. Use the sourceDetails field instead to specify the
-backup for the volume.
-  Rather use the property `volume_backup` instead of a direct OCID reference.
-
-  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 
 

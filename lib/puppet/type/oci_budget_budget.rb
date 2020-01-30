@@ -16,7 +16,6 @@ Puppet::Type.newtype(:oci_budget_budget) do
 
       oci_budget_budget { 'tenant (root)/test_budget':
         ensure             => 'present',
-        target_compartment => 'my_compartment',
         amount             => 100.0,
         description        => 'test Budget',
       }
@@ -41,8 +40,6 @@ Puppet::Type.newtype(:oci_budget_budget) do
   property  :id
   property  :compartment_id
 
-  property :target_compartment
-  property :target_compartment_id
   property :description
   property :amount
   property :reset_period
@@ -61,6 +58,5 @@ Puppet::Type.newtype(:oci_budget_budget) do
 
   validate do
     validate_reference_propery(:compartment_id, self)
-    validate_reference_propery(:target_compartment_id, self)
   end
 end

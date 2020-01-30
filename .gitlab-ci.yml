@@ -343,31 +343,33 @@ oci_core_service_gateway Acceptance test:
       - "lib/puppet/type/oci_core_service_gateway/*.rb"
       - "lib/provider/oci_core_service_gateway/*.rb"
       - "spec/acceptance/oci_core_service_gateway_spec.rb"
+#
+# These test run into OCI limits. So we comment them out for now
+#
+# oci_key_management_vault Acceptance test:
+#   extends: .named_litmus_acceptance_test
+#   variables:
+#     type: oci_key_management_vault
+#     image: acc_base
+#   only:
+#     changes:
+#       - "lib/puppet/feature/*.rb"
+#       - "lib/puppet_x/**/*.rb"
+#       - "lib/puppet/type/oci_key_management_vault.rb"
+#       - "lib/puppet/type/oci_key_management_vault/*.rb"
+#       - "lib/provider/oci_key_management_vault/*.rb"
+#       - "spec/acceptance/oci_key_management_vault_spec.rb"
 
-oci_key_management_vault Acceptance test:
-  extends: .named_litmus_acceptance_test
-  variables:
-    type: oci_key_management_vault
-    image: acc_base
-  only:
-    changes:
-      - "lib/puppet/feature/*.rb"
-      - "lib/puppet_x/**/*.rb"
-      - "lib/puppet/type/oci_key_management_vault.rb"
-      - "lib/puppet/type/oci_key_management_vault/*.rb"
-      - "lib/provider/oci_key_management_vault/*.rb"
-      - "spec/acceptance/oci_key_management_vault_spec.rb"
-
-oci_key_management_key Acceptance test:
-  extends: .named_litmus_acceptance_test
-  variables:
-    type: oci_key_management_key
-    image: acc_base
-  only:
-    changes:
-      - "lib/puppet/feature/*.rb"
-      - "lib/puppet_x/**/*.rb"
-      - "lib/puppet/type/oci_key_management_key.rb"
-      - "lib/puppet/type/oci_key_management_key/*.rb"
-      - "lib/provider/oci_key_management_key/*.rb"
-      - "spec/acceptance/oci_key_management_key_spec.rb"
+# oci_key_management_key Acceptance test:
+#   extends: .named_litmus_acceptance_test
+#   variables:
+#     type: oci_key_management_key
+#     image: acc_base
+#   only:
+#     changes:
+#       - "lib/puppet/feature/*.rb"
+#       - "lib/puppet_x/**/*.rb"
+#       - "lib/puppet/type/oci_key_management_key.rb"
+#       - "lib/puppet/type/oci_key_management_key/*.rb"
+#       - "lib/provider/oci_key_management_key/*.rb"
+#       - "spec/acceptance/oci_key_management_key_spec.rb"

@@ -49,7 +49,6 @@ supply string values using the API.
   property :is_hydrated
   property :lifecycle_state
   property :size_in_gbs
-  property :size_in_mbs
   property :source_details
   property :time_created
   property :volume_group

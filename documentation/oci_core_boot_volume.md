@@ -50,7 +50,6 @@ Attribute Name                                                               | S
 [present_states](#oci_core_boot_volume_present_states)                       | The OCI states, puppet will detect as the resource being present.                                                |
 [provider](#oci_core_boot_volume_provider)                                   | resource.                                                                                                        |
 [size_in_gbs](#oci_core_boot_volume_size_in_gbs)                             | The size of the volume in GBs.                                                                                   |
-[size_in_mbs](#oci_core_boot_volume_size_in_mbs)                             |   The size of the volume in MBs.                                                                                 |
 [source_details](#oci_core_boot_volume_source_details)                       |   Specifies the boot volume source details for a new boot volume.                                                |
 [synchronized](#oci_core_boot_volume_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource.                     |
 [system_tags](#oci_core_boot_volume_system_tags)                             |   System tags for this resource.                                                                                 |
@@ -369,17 +368,6 @@ sdk
 The size of the volume in GBs.
 
 This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
-
-
-
-[Back to overview of oci_core_boot_volume](#attributes)
-
-### size_in_mbs<a name='oci_core_boot_volume_size_in_mbs'>
-
-  The size of the volume in MBs. The value must be a multiple of 1024.
-This field is deprecated. Please use sizeInGBs.
-
-  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 
 

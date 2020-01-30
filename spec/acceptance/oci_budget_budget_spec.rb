@@ -12,10 +12,10 @@ describe 'oci_budget_budget' do
     it 'should add the budget idempotent' do
       manifest = <<-EOD
         oci_budget_budget { 'enterprisemodules (root)/#{resource_name}':
-          ensure             => 'present',
-          target_compartment => 'acceptance_tests',
-          amount             => 100.0,
-          description        => 'test Budget',
+          ensure      => 'present',
+          amount      => 100.0,
+          description => 'test Budget',
+          targets     => ['acceptance_tests']
         }
       EOD
       apply_manifest(manifest, :expect_changes => true)
@@ -29,6 +29,7 @@ describe 'oci_budget_budget' do
         oci_budget_budget { 'enterprisemodules (root)/#{resource_name}':
           ensure          => 'present',
           description     => 'changed',
+          targets         => ['acceptance_tests']
         }
       EOD
       apply_manifest(manifest, :expect_changes => true)

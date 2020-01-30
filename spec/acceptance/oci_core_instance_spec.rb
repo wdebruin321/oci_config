@@ -62,10 +62,14 @@ describe 'oci_core_instance' do
           ensure              => 'present',
           availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
           fault_domain        => 'FAULT-DOMAIN-2',
-          image               => 'Oracle-Linux-7.7-2019.12.18-0',
           launch_mode         => 'NATIVE',
           region              => 'eu-frankfurt-1',
-          shape               => 'VM.Standard2.1',
+          shape               => 'VM.Standard1.1',
+          source_details      => {
+            source_type => 'image',
+            image_type => 'image',
+            image => 'Oracle-Linux-7.7-2019.12.18-0',
+          },
           vnics               => {
           'nic1' => {
               'nic_index' => 0,
@@ -98,10 +102,14 @@ describe 'oci_core_instance' do
           ensure              => 'present',
           availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
           fault_domain        => 'FAULT-DOMAIN-2',
-          image               => 'Oracle-Linux-7.7-2019.12.18-0',
           launch_mode         => 'NATIVE',
           region              => 'eu-frankfurt-1',
-          shape               => 'VM.Standard2.1',
+          shape               => 'VM.Standard1.1',
+          source_details      => {
+            source_type => 'image',
+            image_type => 'image',
+            image => 'Oracle-Linux-7.7-2019.12.18-0',
+          },
           vnics               => {
           'nic1' => {
               'nic_index' => 0,
@@ -137,10 +145,9 @@ describe 'oci_core_instance' do
           ensure              => 'present',
           availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
           fault_domain        => 'FAULT-DOMAIN-2',
-          image               => 'Oracle-Linux-7.7-2019.12.18-0',
           launch_mode         => 'NATIVE',
           region              => 'eu-frankfurt-1',
-          shape               => 'VM.Standard2.1',
+          shape               => 'VM.Standard1.1',
           vnics               => {
           'nic1' => {
               'nic_index' => 0,
