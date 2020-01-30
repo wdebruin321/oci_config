@@ -45,6 +45,9 @@ class TypeGenerator
 
       next if property[1]['custom']
 
+      `rm -f lib/puppet/type/#{type}/#{name}.rb` if property[1]['deprecated']
+      next if property[1]['deprecated']
+
       generate_property(type, name, binding)
       if name =~ /_id$/
         referenced_property = name[0...-3]
