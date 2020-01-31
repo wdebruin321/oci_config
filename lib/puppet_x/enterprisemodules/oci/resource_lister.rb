@@ -46,13 +46,20 @@ module Puppet_X
           client.send("list_#{object_type_plural}").data
         end
 
+        # rubocop: disable Metrics/AbcSize
         def resources_in_compartments(specified_compartment)
           compartment_list = specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) : [specified_compartment]
           compartment_list.collect do |compartment_id|
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)}..."
-            client.send("list_#{object_type_plural}", compartment_id).data
+            case object_type_plural
+            when 'public_ips'
+              client.list_public_ips('REGION', compartment_id, :lifetime => 'RESERVED').data
+            else
+              client.send("list_#{object_type_plural}", compartment_id).data
+            end
           end.flatten.compact.uniq(&:id)
         end
+        # rubocop: enable Metrics/AbcSize
 
         def resources_in_protocol(specified_compartment)
           compartment_list = specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) : [specified_compartment]

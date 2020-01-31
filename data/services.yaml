@@ -280,6 +280,13 @@
   - OCI::KeyManagement::KmsManagementClient
   - :vault
   - :key_id
+-
+  - :oci_core_public_ip
+  - :publicip
+  - OCI::Core::Models::PublicIp
+  - OCI::Core::VirtualNetworkClient
+  - :compartment
+  - :public_ip_id
 #
 # Fill in some not yet known values to enable documentation generation
 #

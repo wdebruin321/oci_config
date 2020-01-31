@@ -83,7 +83,8 @@ models = [
   OCI::Budget::Models::BudgetSummary,
   OCI::Database::Models::AutonomousDatabaseSummary,
   OCI::KeyManagement::Models::VaultSummary,
-  OCI::KeyManagement::Models::KeySummary
+  OCI::KeyManagement::Models::KeySummary,
+  OCI::Core::Models::PublicIp
 ].freeze
 
 models.each do |model|

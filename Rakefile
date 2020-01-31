@@ -144,6 +144,7 @@ namespace :generate do
     YamlGenerator.new(OCI::Core, 'Vcn$').generate
     YamlGenerator.new(OCI::Core, 'VirtualCircuit$').generate
     YamlGenerator.new(OCI::Core, 'IPSecConnection$').generate
+    YamlGenerator.new(OCI::Core, 'PublicIp$').generate
     #
     # types for core services on ComputeClient
     #

@@ -373,3 +373,16 @@ oci_core_service_gateway Acceptance test:
 #       - "lib/puppet/type/oci_key_management_key/*.rb"
 #       - "lib/provider/oci_key_management_key/*.rb"
 #       - "spec/acceptance/oci_key_management_key_spec.rb"
+oci_core_public_ip Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_core_public_ip
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_core_public_ip.rb"
+      - "lib/puppet/type/oci_core_public_ip/*.rb"
+      - "lib/provider/oci_core_public_ip/*.rb"
+      - "spec/acceptance/oci_core_public_ip_spec.rb"
