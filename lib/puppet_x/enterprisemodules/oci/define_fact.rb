@@ -36,6 +36,10 @@ end
 #
 def oci_define_fact(type_name, fields, &filter)
   Facter.add(type_name) do
+    confine do
+      File.exist?('/etc/oci_tenant.yaml')
+    end
+
     extend Puppet_X::EnterpriseModules::Settings
     extend Puppet_X::EnterpriseModules::Oci::Config
 
