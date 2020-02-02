@@ -7,7 +7,7 @@ require "#{File.dirname(__FILE__)}/core"
 #
 # List all resources and apply selected filer to it. The filter block must return true
 # for evert entry you want. The fields variable selects the fields in puppet syntax (lowercase with underscore)
-# that you want returned in the fact
+# that you want returned in the fact. If however fields is an empty array or nil, **ALL** the fieldss are returned.
 #
 # rubocop: disable Metrics/AbcSize
 def list_for_resource(type, fields, &filter)
@@ -20,7 +20,11 @@ def list_for_resource(type, fields, &filter)
       full_name = "#{tenant} (root)/#{name}"
       next if filter && !filter.call(full_name, hash)
 
-      [full_name, hash.select { |key, _| fields.include?(key) }]
+      if fields.nil? || fields.empty?
+        [full_name, hash]
+      else
+        [full_name, hash.select { |key, _| fields.include?(key) }]
+      end
     end
   end.flatten(1).compact
   Hash[resource_list]
