@@ -29,7 +29,7 @@ module Puppet_X
         def present?
           return true unless respond_to?(:lifecycle_state)
 
-          %w[PROVISIONING AVAILABLE RUNNING ACTIVE ATTACHED ATTACHING ENABLED].include?(lifecycle_state)
+          %w[PROVISIONING SCALING AVAILABLE RUNNING ACTIVE ATTACHED ATTACHING ENABLED].include?(lifecycle_state)
         end
       end
     end
@@ -86,7 +86,8 @@ models = [
   OCI::KeyManagement::Models::KeySummary,
   OCI::Core::Models::PublicIp,
   OCI::Core::Models::InstanceConfigurationSummary,
-  OCI::Core::Models::InstancePoolSummary
+  OCI::Core::Models::InstancePoolSummary,
+  OCI::Autoscaling::Models::AutoScalingConfigurationSummary
 ].freeze
 
 models.each do |model|
