@@ -7,41 +7,103 @@ module Puppet_X
     module Oci
       # Docs
       class ServiceInfo
-        @information = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + '/../../../../data/services.yaml').freeze
+        #
+        # The indexes in the information array
+        #
+        PUPPET_TYPE   = 0
+        OCI_TYPE      = 1
+        SDK_MODEL     = 2
+        SDK_CLIENT    = 3
+        LOOKUP_METHOD = 4
+
+        @information = [
+          # Puppet type name                      OCI identity type            SDK Model name                                     SDK Client                                Resource lookup method
+          #===========================================================================================================================================================================================
+          [:oci_budget_budget,                    :budget,                    'OCI::Budget::Models::Budget',                    'OCI::Budget::BudgetClient',                :compartment],
+          [:oci_core_app_catalog_subscription,    :appcatalogsubscription,    'OCI::Core::Models::AppCatalogSubscription',      'OCI::Core::ComputeClient',                 :compartment],
+          [:oci_core_boot_volume,                 :bootvolume,                'OCI::Core::Models::BootVolume',                  'OCI::Core::BlockstorageClient',            :availability_domains],
+          [:oci_core_boot_volume_backup,          :bootvolumebackup,          'OCI::Core::Models::BootVolume',                  'OCI::Core::BlockstorageClient',            :compartment],
+          [:oci_core_cpe,                         :cpe,                       'OCI::Core::Models::Cpe',                         'OCI::Core::VirtualNetworkClient',          :compartment],
+          [:oci_core_cross_connect,               :crossconnect,              'OCI::Core::Models::CrossConnect',                'OCI::Core::VirtualNetworkClient',          :compartment],
+          [:oci_core_cross_connect_group,         :crossconnectgroup,         'OCI::Core::Models::CrossConnectGroup',           'OCI::Core::VirtualNetworkClient',          :compartment],
+          [:oci_core_dedicated_vm_host,           :dedicatedvmhost,           'OCI::Core::Models::DedicatedVmHost',             'OCI::Core::ComputeClient',                 :compartment],
+          [:oci_core_dhcp_options,                :dhcpoptions,               'OCI::Core::Models::DhcpOptions',                 'OCI::Core::VirtualNetworkClient',          :vcn],
+          [:oci_core_drg,                         :drg,                       'OCI::Core::Models::Drg',                         'OCI::Core::VirtualNetworkClient',          :compartment],
+          [:oci_core_image,                       :image,                     'OCI::Core::Models::Image',                       'OCI::Core::ComputeClient',                 :compartment],
+          [:oci_core_instance,                    :instance,                  'OCI::Core::Models::Instance',                    'OCI::Core::ComputeClient',                 :compartment],
+          [:oci_core_instance_console_connection, :instanceconsoleconnection, 'OCI::Core::Models::InstanceConsoleConnection',   'OCI::Core::ComputeClient',                 :compartment],
+          [:oci_core_internet_gateway,            :internetgateway,           'OCI::Core::Models::InternetGateway',             'OCI::Core::VirtualNetworkClient',          :vcn],
+          [:oci_core_ip_sec_connection,           :ipsecconnection,           'OCI::Core::Models::IPSecConnection',             'OCI::Core::VirtualNetworkClient',          :compartment],
+          [:oci_core_local_peering_gateway,       :localpeeringgateway,       'OCI::Core::Models::LocalPeeringGateway',         'OCI::Core::VirtualNetworkClient',          :vcn],
+          [:oci_core_nat_gateway,                 :natgateway,                'OCI::Core::Models::NatGateway',                  'OCI::Core::VirtualNetworkClient',          :compartment],
+          [:oci_core_network_security_group,      :networksecuritygroup,      'OCI::Core::Models::NetworkSecurityGroup',        'OCI::Core::VirtualNetworkClient',          :compartment],
+          [:oci_core_remote_peering_connection,   :remotepeeringconnection,   'OCI::Core::Models::RemotePeeringConnection',     'OCI::Core::VirtualNetworkClient',          :compartment],
+          [:oci_core_route_table,                 :routetable,                'OCI::Core::Models::RouteTable',                  'OCI::Core::VirtualNetworkClient',          :vcn],
+          [:oci_core_security_list,               :securitylist,              'OCI::Core::Models::SecurityList',                'OCI::Core::VirtualNetworkClient',          :vcn],
+          [:oci_core_service_gateway,             :servicegateway,            'OCI::Core::Models::ServiceGateway',              'OCI::Core::VirtualNetworkClient',          :compartment],
+          [:oci_core_subnet,                      :subnet,                    'OCI::Core::Models::Subnet',                      'OCI::Core::VirtualNetworkClient',          :vcn],
+          [:oci_core_vcn,                         :vcn,                       'OCI::Core::Models::Vcn',                         'OCI::Core::VirtualNetworkClient',          :compartment],
+          [:oci_core_virtual_circuit,             :virtualcircuit,            'OCI::Core::Models::VirtualCircuit',              'OCI::Core::VirtualNetworkClient',          :compartment],
+          [:oci_core_volume,                      :volume,                    'OCI::Core::Models::Volume',                      'OCI::Core::BlockstorageClient',            :compartment],
+          [:oci_core_volume_backup,               :volumebackup,              'OCI::Core::Models::VolumeBackup',                'OCI::Core::BlockstorageClient',            :compartment],
+          [:oci_core_volume_backup_policy,        :volumebackuppolicy,        'OCI::Core::Models::VolumeBackupPolicy',          'OCI::Core::BlockstorageClient',            :root],
+          [:oci_core_volume_group,                :volumegroup,               'OCI::Core::Models::VolumeGroup',                 'OCI::Core::BlockstorageClient',            :compartment],
+          [:oci_core_volume_group_backup,         :volume_group_backup,       'OCI::Core::Models::VolumeGroupBackup',           'OCI::Core::BlockstorageClient',            :compartment],
+          [:oci_identity_compartment,             :compartment,               'OCI::Identity::Models::Compartment',             'OCI::Identity::IdentityClient',            :compartment],
+          [:oci_identity_dynamic_group,           :dynamicgroup,              'OCI::Identity::Models::DynamicGroup',            'OCI::Identity::IdentityClient',            :compartment],
+          [:oci_identity_group,                   :group,                     'OCI::Identity::Models::Group',                   'OCI::Identity::IdentityClient',            :compartment],
+          [:oci_identity_identity_provider,       :saml2idp,                  'OCI::Identity::Models::IdentityProvider',        'OCI::Identity::IdentityClient',            :protocol],
+          [:oci_identity_policy,                  :policy,                    'OCI::Identity::Models::Policy',                  'OCI::Identity::IdentityClient',            :compartment],
+          [:oci_identity_tag_namespace,           :tagnamespace,              'OCI::Identity::Models::TagNamespace',            'OCI::Identity::IdentityClient',            :compartment],
+          [:oci_identity_user,                    :user,                      'OCI::Identity::Models::User',                    'OCI::Identity::IdentityClient',            :compartment],
+          [:oci_database_autonomous_database,     :autonomousdatabase,        'OCI::Database::Models::AutonomousDatabase',      'OCI::Database::DatabaseClient',            :compartment],
+          [:oci_key_management_vault,             :vault,                     'OCI::KeyManagement::Models::Vault',              'OCI::KeyManagement::KmsVaultClient',       :compartment],
+          [:oci_key_management_key,               :key,                       'OCI::KeyManagement::Models::Key',                'OCI::KeyManagement::KmsManagementClient',  :vault],
+          [:oci_core_public_ip,                   :publicip,                  'OCI::Core::Models::PublicIp',                    'OCI::Core::VirtualNetworkClient',          :compartment],
+          #
+          # Some OCI resource ID's we need
+          #
+          [:unknown,                              :listing,                    'UNDEFINED',                                      'UNDEFINED',                               :compartment],
+          [:unknown,                              :resource,                   'UNDEFINED',                                      'UNDEFINED',                               :compartment],
+          [:unknown,                              :service,                    'UNDEFINED',                                      'UNDEFINED',                               :compartment],
+          [:unknown,                              :peer,                       'UNDEFINED',                                      'UNDEFINED',                               :compartment],
+          [:unknown,                              :tenancy,                    'UNDEFINED',                                      'UNDEFINED',                               :compartment],
+          [:unknown,                              :autonomouscontainerdatabase, 'UNDEFINED', 'UNDEFINED', :compartment]
+        ]
 
         def self.type_to_id(type)
-          with_type_entry(type) { |e| e[1] }
+          with_type_entry(type) { |e| e[OCI_TYPE] }
         end
 
         def self.type_to_class(type)
-          with_type_entry(type) { |e| Object.const_get(e[2]) }
+          with_type_entry(type) { |e| Object.const_get(e[SDK_MODEL]) }
         end
 
         def self.type_to_client(type)
-          with_type_entry(type) { |e| Object.const_get(e[3]) }
+          with_type_entry(type) { |e| Object.const_get(e[SDK_CLIENT]) }
         end
 
-        def self.type_to_primary_key(type)
-          with_type_entry(type) { |e| e[4] }
+        def self.type_to_lookup_method(type)
+          with_type_entry(type) { |e| e[LOOKUP_METHOD] }
         end
 
         def self.id_to_class(id)
-          with_id_entry(id) { |e| Object.const_get(e[2]) }
+          with_id_entry(id) { |e| Object.const_get(e[SDK_MODEL]) }
         end
 
         def self.id_to_type(id)
-          with_id_entry(id) { |e| e[0] }
+          with_id_entry(id) { |e| e[PUPPET_TYPE] }
         end
 
         def self.with_type_entry(type)
-          entry = @information.find { |e| e[0] == type }
+          entry = @information.find { |e| e[PUPPET_TYPE] == type }
           fail "Internal error: No information found for #{type}" if entry.nil?
 
           yield entry
         end
 
         def self.with_id_entry(id)
-          entry = @information.find { |e| e[1] == id }
+          entry = @information.find { |e| e[OCI_TYPE] == id }
           fail "Internal error: No information found for #{id}" if entry.nil?
 
           yield entry

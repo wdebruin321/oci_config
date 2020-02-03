@@ -19,7 +19,7 @@ module Puppet_X
 
         # rubocop: disable Metrics/CyclomaticComplexity
         def resource_list(compartment_id = nil)
-          all_resources = case ServiceInfo.type_to_primary_key(@resource_type)
+          all_resources = case ServiceInfo.type_to_lookup_method(@resource_type)
                           when :root
                             resources_at_root
                           when :vcn
