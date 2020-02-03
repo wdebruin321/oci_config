@@ -3777,3 +3777,56 @@ oci_core_instance_configuration:
     An instance configuration is a template that defines the settings to use when creating Compute instances.
     For more information about instance configurations, see
     [Managing Compute Instances](https://docs.cloud.oracle.com/Content/Compute/Concepts/instancemanagement.htm).
+oci_autoscaling_auto_scaling_configuration:
+  custom: true
+  klass: OCI::Autoscaling::Models::AutoScalingConfiguration
+  properties:
+    compartment_id:
+      data_type: String[1]
+      desc: The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+        of the compartment containing the autoscaling configuration.
+    defined_tags:
+      data_type: Hash[String, Hash[String, Object]]
+      desc: |-
+        Defined tags for this resource. Each key is predefined and scoped to a
+        namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+
+        Example: `{\"Operations\": {\"CostCenter\": \"42\"}}`
+    display_name:
+      data_type: String[1]
+      desc: A user-friendly name. Does not have to be unique, and it's changeable.
+        Avoid entering confidential information.
+    freeform_tags:
+      data_type: Hash[String, String]
+      desc: |-
+        Free-form tags for this resource. Each tag is a simple key-value pair with no
+        predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+
+        Example: `{\"Department\": \"Finance\"}`
+    id:
+      data_type: String[1]
+      desc: The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+        of the autoscaling configuration.
+    cool_down_in_seconds:
+      data_type: Integer
+      desc: |-
+        The minimum period of time to wait between scaling actions. The cooldown period gives the system time to stabilize
+        before rescaling. The minimum value is 300 seconds, which is also the default.
+    is_enabled:
+      data_type: Boolean
+      desc: Whether the autoscaling configuration is enabled.
+    resource:
+      data_type: Oci_config::Resource
+      desc: This attribute is required.
+    policies:
+      data_type: Array[Oci_config::CreateAutoScalingPolicyDetails]
+      desc: This attribute is required.
+    time_created:
+      data_type: Runtime
+      desc: |-
+        The date and time the AutoScalingConfiguration was created, in the format defined by RFC3339.
+
+        Example: `2016-08-25T21:10:29.600Z`
+  desc: |-
+    An autoscaling configuration allows you to dynamically scale the resources in a Compute instance pool.
+    For more information, see [Autoscaling](https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/autoscalinginstancepools.htm).

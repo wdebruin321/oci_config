@@ -19,6 +19,7 @@ class TypeGenerator
   end
 
   def generate_type_for(type, data)
+    return if data['custom'] == true
     puts "Generating type and provider for '#{type}'..."
     generate_type(type, data)
     generate_properties(type, data)

@@ -113,7 +113,11 @@ namespace :generate do
     # YamlGenerator.new(OCI::Analytics).generate
     # YamlGenerator.new(OCI::AnnouncementsService).generate
     # YamlGenerator.new(OCI::Audit).generate
-    # YamlGenerator.new(OCI::Autoscaling).generate
+    #
+    #
+    # Types for autoscaling
+    #
+    YamlGenerator.new(OCI::Autoscaling, 'AutoScalingConfiguration$').generate
     #
     # types for Budget services on BudgetClient
     #
