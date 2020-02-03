@@ -16,21 +16,21 @@ newproperty(:policies, :array_matching => :all, :parent => Puppet_X::EnterpriseM
   DESC
   data_type('Optional[Array[Oci_config::CreateAutoScalingPolicyDetails]]')
 
-    #
+  #
   # This property returns a Hash, but it only contains one reference, so we translate it directly
   #
+  # rubocop: disable Metrics/AbcSize
   def self.translate_to_resource(raw_resource, _resource)
     @tenant = raw_resource['tenant']
     id = raw_resource['id']
     client = OCI::Autoscaling::AutoScalingClient.new(:config => tenant_config(@tenant), :retry_config => retry_config)
-    values = policies = client.list_auto_scaling_policies(id).data
-    values = values.collect do | policy|
+    values = client.list_auto_scaling_policies(id).data
+    values = values.collect do |policy|
       data = client.get_auto_scaling_policy(id, policy.id).data.to_hash
       data.delete(:timeCreated)
       data
     end
-    values.map(&:to_hash).map(&:to_puppet).map{|e| e.delete('id') && e}
+    values.map(&:to_hash).map(&:to_puppet).map { |e| e.delete('id') && e }
   end
-
-
+  # rubocop: enable Metrics/AbcSize
 end

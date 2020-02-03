@@ -16,6 +16,7 @@ module Puppet_X
         SDK_CLIENT    = 3
         LOOKUP_METHOD = 4
 
+        # rubocop: disable Layout/LineLength
         @information = [
           # Puppet type name                            OCI identity type            SDK Model name                                     SDK Client                                Resource lookup method
           #==============================================================================================================================================================================================
@@ -73,6 +74,7 @@ module Puppet_X
           [:unknown,                              :tenancy,                    'UNDEFINED',                                      'UNDEFINED',                               :compartment],
           [:unknown,                              :autonomouscontainerdatabase, 'UNDEFINED', 'UNDEFINED', :compartment]
         ]
+        # rubocop: enable Layout/LineLength
 
         def self.type_to_id(type)
           with_type_entry(type) { |e| e[OCI_TYPE] }
