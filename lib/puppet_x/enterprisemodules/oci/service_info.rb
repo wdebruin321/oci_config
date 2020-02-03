@@ -60,6 +60,8 @@ module Puppet_X
           [:oci_key_management_vault,             :vault,                     'OCI::KeyManagement::Models::Vault',              'OCI::KeyManagement::KmsVaultClient',       :compartment],
           [:oci_key_management_key,               :key,                       'OCI::KeyManagement::Models::Key',                'OCI::KeyManagement::KmsManagementClient',  :vault],
           [:oci_core_public_ip,                   :publicip,                  'OCI::Core::Models::PublicIp',                    'OCI::Core::VirtualNetworkClient',          :compartment],
+          [:oci_core_instance_configuration,      :instanceconfiguration,     'OCI::Core::Models::InstanceConfiguration',       'OCI::Core::ComputeManagementClient',       :compartment],
+          [:oci_core_instance_pool,               :instancepool,              'OCI::Core::Models::InstancePool',                'OCI::Core::ComputeManagementClient',       :compartment],
           #
           # Some OCI resource ID's we need
           #

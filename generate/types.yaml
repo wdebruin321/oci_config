@@ -3668,3 +3668,112 @@ oci_core_public_ip:
 
     **Warning:** Oracle recommends that you avoid using any confidential information when you
     supply string values using the API.
+oci_core_instance_pool:
+  includes:
+  - on_modify
+  klass: OCI::Core::Models::InstancePool
+  properties:
+    id:
+      data_type: String[1]
+      desc: The OCID of the instance pool.
+    compartment_id:
+      data_type: String[1]
+      desc: The OCID of the compartment containing the instance pool
+    defined_tags:
+      data_type: Hash[String, Hash[String, Object]]
+      desc: |-
+        Defined tags for this resource. Each key is predefined and scoped to a
+        namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+
+        Example: `{\"Operations\": {\"CostCenter\": \"42\"}}`
+    display_name:
+      data_type: String[1]
+      desc: |-
+        A user-friendly name for the instance pool. Does not have to be unique, and it's
+        changeable. Avoid entering confidential information.
+    freeform_tags:
+      data_type: Hash[String, String]
+      desc: |-
+        Free-form tags for this resource. Each tag is a simple key-value pair with no
+        predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+
+        Example: `{\"Department\": \"Finance\"}`
+    instance_configuration_id:
+      reference_type: instanceconfiguration
+      data_type: String[1]
+      desc: The OCID of the instance configuration associated with the instance pool.
+    lifecycle_state:
+      data_type: String[1]
+      desc: The current state of the instance pool.
+    placement_configurations:
+      custom: true
+      data_type: Array[Oci_config::CreateInstancePoolPlacementConfigurationDetails]
+      desc: |-
+        The placement configurations for the instance pool. Provide one placement configuration for
+        each availability domain.
+
+        To use the instance pool with a regional subnet, provide a placement configuration for
+        each availability domain, and include the regional subnet in each placement
+        configuration.
+    size:
+      data_type: Integer
+      desc: The number of instances that should be in the instance pool.
+    time_created:
+      data_type: Runtime
+      desc: |-
+        The date and time the instance pool was created, in the format defined by RFC3339.
+        Example: `2016-08-25T21:10:29.600Z`
+    load_balancers:
+      data_type: Array[Oci_config::AttachLoadBalancerDetails]
+      desc: The load balancers to attach to the instance pool.
+  desc: |-
+    An instance pool is a group of instances within the same region that are created based off of the same
+    instance configuration. For more information about instance pools and instance configurations, see
+    [Managing Compute Instances](https://docs.cloud.oracle.com/Content/Compute/Concepts/instancemanagement.htm).
+oci_core_instance_configuration:
+  klass: OCI::Core::Models::InstanceConfiguration
+  properties:
+    compartment_id:
+      data_type: String[1]
+      desc: |-
+        The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment
+        containing the instance configuration.
+    defined_tags:
+      data_type: Hash[String, Hash[String, Object]]
+      desc: |-
+        Defined tags for this resource. Each key is predefined and scoped to a
+        namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+
+        Example: `{\"Operations\": {\"CostCenter\": \"42\"}}`
+    display_name:
+      data_type: String[1]
+      desc: A user-friendly name for the instance configuration.
+    freeform_tags:
+      data_type: Hash[String, String]
+      desc: |-
+        Free-form tags for this resource. Each tag is a simple key-value pair with no
+        predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+
+        Example: `{\"Department\": \"Finance\"}`
+    id:
+      data_type: String[1]
+      desc: The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)
+        of the instance configuration.
+    deferred_fields:
+      data_type: Array[String]
+      desc: |-
+        Parameters that were not specified when the instance configuration was created, but that
+        are required to launch an instance from the instance configuration. See the
+        {#launch_instance_configuration launch_instance_configuration} operation.
+    time_created:
+      data_type: Runtime
+      desc: |-
+        The date and time the instance configuration was created, in the format defined by RFC3339.
+
+        Example: `2016-08-25T21:10:29.600Z`
+    source:
+      data_type: String[1]
+  desc: |-
+    An instance configuration is a template that defines the settings to use when creating Compute instances.
+    For more information about instance configurations, see
+    [Managing Compute Instances](https://docs.cloud.oracle.com/Content/Compute/Concepts/instancemanagement.htm).

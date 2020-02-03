@@ -92,7 +92,9 @@ module Puppet_X
           handle_oci_request(object_type, synchronized, provider.id) do
             case object_type
             when 'instance'
-              client.send('terminate_instance', provider.id)
+              client.terminate_instance(provider.id)
+            when 'instance_pool'
+              client.terminate_instance_pool(provider.id)
             when 'vault'
               details = OCI::KeyManagement::Models::ScheduleVaultDeletionDetails.new
               client.send('schedule_vault_deletion', provider.id, details)

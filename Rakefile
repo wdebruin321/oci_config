@@ -153,6 +153,8 @@ namespace :generate do
     YamlGenerator.new(OCI::Core, 'Image$').generate
     YamlGenerator.new(OCI::Core, 'Instance$').generate
     YamlGenerator.new(OCI::Core, 'InstanceConsoleConnection$').generate
+    YamlGenerator.new(OCI::Core, 'InstancePool$').generate
+    YamlGenerator.new(OCI::Core, 'InstanceConfiguration$').generate
     #
     # types for core services on BlockstorageClient
     #
