@@ -109,8 +109,6 @@ namespace :generate do
   desc 'Generate yaml file for all types'
   task :yaml do
     require_relative './generate/yaml_generator'
-    YamlGenerator.new(OCI::FileStorage, '^Export$').generate
-    next
     #
     #
     # Types for autoscaling
@@ -189,6 +187,8 @@ namespace :generate do
     # File systems
     #
     YamlGenerator.new(OCI::FileStorage, '^FileSystem$').generate
+    YamlGenerator.new(OCI::FileStorage, '^Export$').generate
+    YamlGenerator.new(OCI::FileStorage, '^MountTarget$').generate
   end
 
   task :types do

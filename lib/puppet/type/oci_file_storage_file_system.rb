@@ -23,6 +23,13 @@ Policies](https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstart
 
 **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
 
+  Here is an example on how to use this:
+
+    oci_file_storage_file_system { 'tenant (root)/my_file_system':
+      ensure              => 'present',
+      availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
+    }
+
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
   DESC

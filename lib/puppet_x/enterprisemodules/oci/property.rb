@@ -122,10 +122,10 @@ module Puppet_X
           value
         end
 
-        def self.translate_to_resource(raw_resource, _resource)
+        def self.translate_to_resource(raw_resource, partial_resource)
           @tenant = raw_resource['tenant']
           value = if @reference
-                    ocid = raw_resource[@reference.to_s]
+                    ocid = raw_resource[@reference.to_s] || partial_resource[@reference]
                     begin
                       Puppet.debug "Resolving id for #{name}"
                       ocid ? resolver.ocid_to_name(@tenant, ocid) : nil

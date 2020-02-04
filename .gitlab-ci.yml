@@ -373,6 +373,7 @@ oci_core_service_gateway Acceptance test:
 #       - "lib/puppet/type/oci_key_management_key/*.rb"
 #       - "lib/provider/oci_key_management_key/*.rb"
 #       - "spec/acceptance/oci_key_management_key_spec.rb"
+
 oci_core_public_ip Acceptance test:
   extends: .named_litmus_acceptance_test
   variables:
@@ -386,3 +387,60 @@ oci_core_public_ip Acceptance test:
       - "lib/puppet/type/oci_core_public_ip/*.rb"
       - "lib/provider/oci_core_public_ip/*.rb"
       - "spec/acceptance/oci_core_public_ip_spec.rb"
+
+oci_file_storage_export Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_file_storage_export
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_file_storage_export.rb"
+      - "lib/puppet/type/oci_file_storage_export/*.rb"
+      - "lib/provider/oci_file_storage_export/*.rb"
+      - "spec/acceptance/oci_file_storage_export_spec.rb"
+
+oci_file_storage_file_system Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_file_storage_file_system
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_file_storage_file_system.rb"
+      - "lib/puppet/type/oci_file_storage_file_system/*.rb"
+      - "lib/provider/oci_file_storage_file_system/*.rb"
+      - "spec/acceptance/oci_file_storage_file_system_spec.rb"
+
+oci_file_storage_mount_target Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_file_storage_mount_target
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_file_storage_mount_target.rb"
+      - "lib/puppet/type/oci_file_storage_mount_target/*.rb"
+      - "lib/provider/oci_file_storage_mount_target/*.rb"
+      - "spec/acceptance/oci_file_storage_mount_target_spec.rb"
+
+oci_object_storage_bucket Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_object_storage_bucket
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_object_storage_bucket.rb"
+      - "lib/puppet/type/oci_object_storage_bucket/*.rb"
+      - "lib/provider/oci_object_storage_bucket/*.rb"
+      - "spec/acceptance/oci_object_storage_bucket_spec.rb"
+      

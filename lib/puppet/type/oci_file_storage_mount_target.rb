@@ -16,11 +16,23 @@ referenced export set.
 
 **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
 
+  Here is an example on how to use this:
+
+    oci_file_storage_mount_target { 'tenant (root)/my_mount_target':
+      ensure              => 'present',
+      availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
+      subnet              => 'my_sub_net',
+    }
+
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
   DESC
 
   add_title_attributes(:mount_target_name)
+  #
+  # The include files contain specific non-generated code for the types
+  #
+  include_file "puppet/type/#{name}/after_destroy", binding
 
   ensurable
 
@@ -37,7 +49,6 @@ referenced export set.
   property  :compartment_id
 
   property :availability_domain
-  property :export_set_id
   property :lifecycle_state
   property :private_ips
   property :private_ip_ids

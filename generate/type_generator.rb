@@ -48,7 +48,7 @@ class TypeGenerator
       next if property[1]['custom']
 
       `rm -f lib/puppet/type/#{type}/#{name}.rb` if property[1]['deprecated']
-      next if property[1]['deprecated']
+      next if property[1]['deprecated'] || property[1]['skip']
 
       generate_property(type, name, binding)
       if name =~ /_id$/
@@ -68,7 +68,7 @@ class TypeGenerator
   # rubocop: enable Metrics/AbcSize, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
   def reference_properties(type)
-    @data[type]['properties'].reject { |_k, v| v['deprecated'] == true }.keys.grep(/_ids?$/)
+    @data[type]['properties'].reject { |_k, v| v['deprecated'] == true || v['skip'] == true }.keys.grep(/_ids?$/)
   end
 
   def generate_property(type, name, binding)

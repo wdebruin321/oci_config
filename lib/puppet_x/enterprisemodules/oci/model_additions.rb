@@ -91,7 +91,8 @@ models = [
   OCI::ObjectStorage::Models::BucketSummary,
   OCI::ObjectStorage::Models::Bucket,
   OCI::FileStorage::Models::FileSystemSummary,
-  OCI::FileStorage::Models::MountTargetSummary
+  OCI::FileStorage::Models::MountTargetSummary,
+  OCI::FileStorage::Models::Export
 ].freeze
 
 models.each do |model|

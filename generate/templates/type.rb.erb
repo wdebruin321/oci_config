@@ -50,6 +50,7 @@ Puppet::Type.newtype(:<%= type %>) do
 
 <% @data[type]['properties'].each do | property| -%>
 <% next if ['name', 'display_name', 'compartment_id', 'id'].include?(property.first) -%>
+<% next if property[1]['skip'] -%>
 <% next if property[1]['deprecated'] -%>
 <% if extra_property = property.first.scan(/(.*)_id(s)?$/).first&.join -%>
   property :<%= extra_property %>

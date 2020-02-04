@@ -75,7 +75,8 @@ describe 'oci_file_storage_mount_target' do
     it "should remove the mount target idempotent" do
       manifest = <<-EOD
         oci_file_storage_mount_target { 'enterprisemodules (root)/#{resource_name}':
-          ensure => 'absent',
+          ensure        => 'absent',
+          absent_states => ['DELETED'], # Really wait unit it is gone so we can remove the setup too
         }
       EOD
       apply_manifest(manifest, :expect_changes => true)

@@ -59,8 +59,8 @@ module Puppet_X
               # Copy the content of the path variable to name to make pupet happy
               #
               summary_data = client.list_exports(:compartment_id => compartment_id).data
-              summary_data.collect do |export| 
-                export_data = client.get_export(export.id).data
+              summary_data.collect do |export|
+                client.get_export(export.id).data
               end
             when 'public_ips'
               client.list_public_ips('REGION', compartment_id, :lifetime => 'RESERVED').data
@@ -76,6 +76,7 @@ module Puppet_X
         end
         # rubocop: enable Metrics/AbcSize
 
+        # rubocop: disable Metrics/AbcSize
         def resources_in_protocol(specified_compartment)
           compartment_list = specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) : [specified_compartment]
           compartment_list.collect do |compartment_id|
@@ -84,6 +85,7 @@ module Puppet_X
             client.send("list_#{object_type_plural}", 'SAML2', compartment_id).data
           end.flatten.compact.uniq(&:id)
         end
+        # rubocop: enable Metrics/AbcSize
 
         # rubocop: disable Metrics/AbcSize
         def resources_in_vncs(specified_compartment)
@@ -131,7 +133,7 @@ module Puppet_X
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
             availability_domains_in(compartment_id).collect do |availability_domain|
               Puppet.debug "Inspecting availability domain #{availability_domain} for #{object_type_plural}..."
-              case  @object_type
+              case @object_type
               when 'file_system', 'mount_target'
                 client.send("list_#{object_type_plural}", compartment_id, availability_domain).data
               else
