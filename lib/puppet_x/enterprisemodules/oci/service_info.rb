@@ -66,6 +66,8 @@ module Puppet_X
           [:oci_autoscaling_auto_scaling_configuration, :autoscalingconfiguration,  'OCI::Autoscaling::Models::AutoScalingConfiguration', 'OCI::Autoscaling::AutoScalingClient',      :compartment],
           [:oci_object_storage_bucket,                  :bucket,                    'OCI::ObjectStorage::Models::Bucket',                 'OCI::ObjectStorage::ObjectStorageClient',  :namespace],
           [:oci_file_storage_file_system,               :filesystem,                'OCI::FileStorage::Models::FileSystem',               'OCI::FileStorage::FileStorageClient',      :availability_domains],
+          [:oci_file_storage_mount_target,              :mounttarget,               'OCI::FileStorage::Models::MountTarget',              'OCI::FileStorage::FileStorageClient',      :availability_domains],
+          [:oci_file_storage_export_set,                :exportset,                 'OCI::FileStorage::Models::ExportSet',                'OCI::FileStorage::FileStorageClient',      :availability_domains],
           #
           # Some OCI resource ID's we need
           #

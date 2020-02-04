@@ -123,7 +123,8 @@ module Puppet_X
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)}..."
             availability_domains_in(compartment_id).collect do |availability_domain|
               Puppet.debug "Inspecting availability domain #{availability_domain}..."
-              if @object_type == 'file_system'
+              case  @object_type
+              when 'file_system', 'mount_target'
                 client.send("list_#{object_type_plural}", compartment_id, availability_domain).data
               else
                 client.send("list_#{object_type_plural}", availability_domain, compartment_id).data
