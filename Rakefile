@@ -196,7 +196,10 @@ namespace :generate do
     # YamlGenerator.new(OCI::Limits).generate
     # YamlGenerator.new(OCI::LoadBalancer).generate
     # YamlGenerator.new(OCI::Monitoring).generate
-    # YamlGenerator.new(OCI::ObjectStorage, 'Bucket$').generate
+    #
+    # Object storage
+    #
+    YamlGenerator.new(OCI::ObjectStorage, '^Bucket$').generate
     # YamlGenerator.new(OCI::Oce).generate
     # YamlGenerator.new(OCI::Oda).generate
     # YamlGenerator.new(OCI::Ons).generate

@@ -64,6 +64,7 @@ module Puppet_X
           [:oci_core_instance_configuration,            :instanceconfiguration,     'OCI::Core::Models::InstanceConfiguration',           'OCI::Core::ComputeManagementClient',       :compartment],
           [:oci_core_instance_pool,                     :instancepool,              'OCI::Core::Models::InstancePool',                    'OCI::Core::ComputeManagementClient',       :compartment],
           [:oci_autoscaling_auto_scaling_configuration, :autoscalingconfiguration,  'OCI::Autoscaling::Models::AutoScalingConfiguration', 'OCI::Autoscaling::AutoScalingClient',      :compartment],
+          [:oci_object_storage_bucket,                  :bucket,                    'OCI::ObjectStorage::Models::Bucket',                 'OCI::ObjectStorage::ObjectStorageClient',  :namespace],
           #
           # Some OCI resource ID's we need
           #

@@ -49,9 +49,14 @@ module Puppet_X
           #
           @oci_api_data = @oci_api_data.to_oci
           handle_oci_request do
-            @oci_api_data = if object_type == 'instance'
+            @oci_api_data = case object_type
+                            when 'instance'
                               launch_details = launch_class.new(@oci_api_data)
                               client.launch_instance(launch_details)
+                            when 'bucket'
+                              namespace = client.get_namespace.data
+                              create_details = create_class.new(@oci_api_data)
+                              client.send("create_#{object_type}", namespace, create_details)
                             else
                               create_details = create_class.new(@oci_api_data)
                               client.send("create_#{object_type}", create_details)
@@ -73,7 +78,6 @@ module Puppet_X
           @oci_api_data.delete(:display_name)
         end
 
-        # rubocop: enable Metrics/AbcSize
         def on_modify
           Puppet.debug "modify #{object_type} #{name}"
           #
@@ -82,15 +86,27 @@ module Puppet_X
           #
           @oci_api_data = @oci_api_data.to_oci
           update_details = update_class.new(@oci_api_data)
-          handle_oci_request { client.send("update_#{object_type}", provider.id, update_details) }
+          handle_oci_request do
+            case object_type
+            when 'bucket'
+              bucket_name = name.split('/').last
+              client.send("update_#{object_type}", provider.namespace, bucket_name, update_details)
+            else
+              client.send("update_#{object_type}", provider.id, update_details)
+            end
+          end
           nil
         end
+        # rubocop: enable Metrics/AbcSize
 
         # rubocop: disable Metrics/AbcSize
         def on_destroy
           Puppet.debug "destroy #{object_type} #{name} "
           handle_oci_request(object_type, synchronized, provider.id) do
             case object_type
+            when 'bucket'
+              bucket_name = name.split('/').last
+              client.send("delete_#{object_type}", provider.namespace, bucket_name)
             when 'instance'
               client.terminate_instance(provider.id)
             when 'instance_pool'
@@ -174,6 +190,8 @@ module Puppet_X
           #
           if wait_for_resource_id && oci_object_type != 'instance'
             wait_for_work_request(wait_for_resource_id)
+          elsif oci_object_type == 'bucket'
+            # Do nothing. We can't sync bucket operations
           elsif id.nil? # We need the id from the operation and the operation is a create or update operation
             wait_for_state(oci_object_type, operation_result.data.id, :create)
           else

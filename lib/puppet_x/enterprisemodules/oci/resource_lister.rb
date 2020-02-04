@@ -32,6 +32,8 @@ module Puppet_X
                             resources_in_compartments(compartment_id)
                           when :vault
                             resources_in_vaults(compartment_id)
+                          when :namespace
+                            resources_in_namespace(compartment_id)
                           else
                             fail "Internal error: invalid primary_key for #{@resource_type}"
                           end
@@ -47,7 +49,7 @@ module Puppet_X
         end
 
         # rubocop: disable Metrics/AbcSize
-        def resources_in_compartments(specified_compartment)
+        def resources_in_compartments(specified_compartment, details_get = false)
           compartment_list = specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) : [specified_compartment]
           compartment_list.collect do |compartment_id|
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)}..."
@@ -55,7 +57,12 @@ module Puppet_X
             when 'public_ips'
               client.list_public_ips('REGION', compartment_id, :lifetime => 'RESERVED').data
             else
-              client.send("list_#{object_type_plural}", compartment_id).data
+              summary_data = client.send("list_#{object_type_plural}", compartment_id).data
+              if details_get
+                summary_data.collect { |s| client.send("get_#{@object_type}", s.id).data }
+              else
+                summary_data
+              end
             end
           end.flatten.compact.uniq(&:id)
         end
@@ -80,6 +87,18 @@ module Puppet_X
               client.send("list_#{object_type_plural}", compartment_id, vnc_id).data
             end
           end.flatten.compact.uniq(&:id)
+        end
+        # rubocop: enable Metrics/AbcSize
+
+        # rubocop: disable Metrics/AbcSize
+        def resources_in_namespace(specified_compartment)
+          namespace = client.get_namespace.data
+          compartment_list = specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) : [specified_compartment]
+          compartment_list.collect do |compartment_id|
+            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)}..."
+            buckets = client.list_buckets(namespace, compartment_id).data
+            buckets.collect { |b| client.get_bucket(namespace, b.name).data }
+          end.flatten.compact.uniq(&:name)
         end
         # rubocop: enable Metrics/AbcSize
 

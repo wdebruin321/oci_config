@@ -3830,3 +3830,69 @@ oci_autoscaling_auto_scaling_configuration:
   desc: |-
     An autoscaling configuration allows you to dynamically scale the resources in a Compute instance pool.
     For more information, see [Autoscaling](https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/autoscalinginstancepools.htm).
+oci_object_storage_bucket:
+  klass: OCI::ObjectStorage::Models::Bucket
+  properties:
+    namespace:
+      data_type: String[1]
+    name:
+      data_type: String[1]
+      desc: |-
+        The name of the bucket. Valid characters are uppercase or lowercase letters, numbers, and dashes.
+        Bucket names must be unique within an Object Storage namespace. Avoid entering confidential information.
+        example: Example: my-new-bucket1
+    compartment_id:
+      data_type: String[1]
+      desc: The ID of the compartment in which to create the bucket.
+    metadata:
+      data_type: Hash[String, String]
+      desc: Arbitrary string, up to 4KB, of keys and values for user-defined metadata.
+    created_by:
+      data_type: String[1]
+    time_created:
+      data_type: Runtime
+    etag:
+      data_type: String[1]
+    public_access_type:
+      data_type: String[1]
+      desc: |-
+        The type of public access enabled on this bucket.
+        A bucket is set to `NoPublicAccess` by default, which only allows an authenticated caller to access the
+        bucket and its contents. When `ObjectRead` is enabled on the bucket, public access is allowed for the
+        `GetObject`, `HeadObject`, and `ListObjects` operations. When `ObjectReadWithoutList` is enabled on the bucket,
+        public access is allowed for the `GetObject` and `HeadObject` operations.
+    storage_tier:
+      data_type: String[1]
+      desc: |-
+        The type of storage tier of this bucket.
+        A bucket is set to 'Standard' tier by default, which means the bucket will be put in the standard storage tier.
+        When 'Archive' tier type is set explicitly, the bucket is put in the Archive Storage tier. The 'storageTier'
+        property is immutable after bucket is created.
+    object_events_enabled:
+      data_type: Boolean
+      desc: |-
+        A property that determines whether events will be generated for operations on objects in this bucket.
+        This is false by default.
+    freeform_tags:
+      data_type: Hash[String, String]
+      desc: |-
+        Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+        For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+        Example: `{\"Department\": \"Finance\"}`
+    defined_tags:
+      data_type: Hash[String, Hash[String, Object]]
+      desc: |-
+        Defined tags for this resource. Each key is predefined and scoped to a namespace.
+        For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+        Example: `{\"Operations\": {\"CostCenter\": \"42\"}}`
+    kms_key_id:
+      reference_type: key
+      data_type: String[1]
+      desc: The OCID of a KMS key id used to call KMS to generate the data key or
+        decrypt the encrypted data key.
+    object_lifecycle_policy_etag:
+      data_type: String[1]
+    approximate_count:
+      data_type: Integer
+    approximate_size:
+      data_type: Integer
