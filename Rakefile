@@ -109,10 +109,8 @@ namespace :generate do
   desc 'Generate yaml file for all types'
   task :yaml do
     require_relative './generate/yaml_generator'
-    # YamlGenerator.new(OCI::Database).generate
-    # YamlGenerator.new(OCI::Analytics).generate
-    # YamlGenerator.new(OCI::AnnouncementsService).generate
-    # YamlGenerator.new(OCI::Audit).generate
+    YamlGenerator.new(OCI::FileStorage, '^Export$').generate
+    next
     #
     #
     # Types for autoscaling
@@ -173,14 +171,6 @@ namespace :generate do
     # types for Database services
     #
     YamlGenerator.new(OCI::Database, 'AutonomousDatabase$').generate
-    # YamlGenerator.new(OCI::Database).generate
-    # YamlGenerator.new(OCI::Dns).generate
-    # YamlGenerator.new(OCI::Dts).generate
-    # YamlGenerator.new(OCI::Email).generate
-    # YamlGenerator.new(OCI::Events).generate
-    # YamlGenerator.new(OCI::FileStorage).generate
-    # YamlGenerator.new(OCI::Functions).generate
-    # YamlGenerator.new(OCI::Healthchecks).generate
     #
     # types for Identity services on IdentityClient
     #
@@ -191,23 +181,14 @@ namespace :generate do
     YamlGenerator.new(OCI::Identity, '^Policy$').generate
     YamlGenerator.new(OCI::Identity, '^TagNamespace$').generate
     YamlGenerator.new(OCI::Identity, '^User$').generate
-    # YamlGenerator.new(OCI::Integration).generate
-    # YamlGenerator.new(OCI::KeyManagement).generate
-    # YamlGenerator.new(OCI::Limits).generate
-    # YamlGenerator.new(OCI::LoadBalancer).generate
-    # YamlGenerator.new(OCI::Monitoring).generate
     #
     # Object storage
     #
     YamlGenerator.new(OCI::ObjectStorage, '^Bucket$').generate
-    # YamlGenerator.new(OCI::Oce).generate
-    # YamlGenerator.new(OCI::Oda).generate
-    # YamlGenerator.new(OCI::Ons).generate
-    # YamlGenerator.new(OCI::ResourceManager).generate
-    # YamlGenerator.new(OCI::ResourceSearch).generate
-    # YamlGenerator.new(OCI::Streaming).generate
-    # YamlGenerator.new(OCI::Waas).generate
-    # YamlGenerator.new(OCI::WorkRequests).generate
+    #
+    # File systems
+    #
+    YamlGenerator.new(OCI::FileStorage, '^FileSystem$').generate
   end
 
   task :types do

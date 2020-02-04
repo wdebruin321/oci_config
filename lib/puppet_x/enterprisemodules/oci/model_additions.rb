@@ -89,7 +89,8 @@ models = [
   OCI::Core::Models::InstancePoolSummary,
   OCI::Autoscaling::Models::AutoScalingConfigurationSummary,
   OCI::ObjectStorage::Models::BucketSummary,
-  OCI::ObjectStorage::Models::Bucket
+  OCI::ObjectStorage::Models::Bucket,
+  OCI::FileStorage::Models::FileSystemSummary
 ].freeze
 
 models.each do |model|
