@@ -52,8 +52,16 @@ module Puppet_X
         def resources_in_compartments(specified_compartment, details_get = false)
           compartment_list = specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) : [specified_compartment]
           compartment_list.collect do |compartment_id|
-            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)}..."
+            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
             case object_type_plural
+            when 'exports'
+              #
+              # Copy the content of the path variable to name to make pupet happy
+              #
+              summary_data = client.list_exports(:compartment_id => compartment_id).data
+              summary_data.collect do |export| 
+                export_data = client.get_export(export.id).data
+              end
             when 'public_ips'
               client.list_public_ips('REGION', compartment_id, :lifetime => 'RESERVED').data
             else
@@ -71,7 +79,7 @@ module Puppet_X
         def resources_in_protocol(specified_compartment)
           compartment_list = specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) : [specified_compartment]
           compartment_list.collect do |compartment_id|
-            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)}..."
+            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
             Puppet.debug 'Inspecting protocol SAML2...'
             client.send("list_#{object_type_plural}", 'SAML2', compartment_id).data
           end.flatten.compact.uniq(&:id)
@@ -81,7 +89,7 @@ module Puppet_X
         def resources_in_vncs(specified_compartment)
           compartment_list = specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) : [specified_compartment]
           compartment_list.collect do |compartment_id|
-            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)}..."
+            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
             vncs_in(compartment_id).collect do |vnc_id|
               Puppet.debug "Inspecting vnc #{vnc_id}..."
               client.send("list_#{object_type_plural}", compartment_id, vnc_id).data
@@ -95,7 +103,7 @@ module Puppet_X
           namespace = client.get_namespace.data
           compartment_list = specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) : [specified_compartment]
           compartment_list.collect do |compartment_id|
-            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)}..."
+            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
             buckets = client.list_buckets(namespace, compartment_id).data
             buckets.collect { |b| client.get_bucket(namespace, b.name).data }
           end.flatten.compact.uniq(&:name)
@@ -106,7 +114,7 @@ module Puppet_X
         def resources_in_vaults(specified_compartment)
           compartment_list = specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) : [specified_compartment]
           compartment_list.collect do |compartment_id|
-            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)}..."
+            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
             vaults_in(compartment_id).collect do |vault|
               kms_management_client = OCI::KeyManagement::KmsManagementClient.new(:config => tenant_config(@tenant), :endpoint => vault.management_endpoint, :retry_config => retry_config)
               Puppet.debug "Inspecting vault #{vault.id}..."
@@ -120,9 +128,9 @@ module Puppet_X
         def resources_in_availability_domains(specified_compartment)
           compartment_list = specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) : [specified_compartment]
           compartment_list.collect do |compartment_id|
-            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)}..."
+            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
             availability_domains_in(compartment_id).collect do |availability_domain|
-              Puppet.debug "Inspecting availability domain #{availability_domain}..."
+              Puppet.debug "Inspecting availability domain #{availability_domain} for #{object_type_plural}..."
               case  @object_type
               when 'file_system', 'mount_target'
                 client.send("list_#{object_type_plural}", compartment_id, availability_domain).data
