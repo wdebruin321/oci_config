@@ -1,0 +1,8 @@
+{
+  "_installdir": "/etc/puppetlabs/code/environments/production/modules",
+  "source": "enterprisemodules (root)/acceptance_tests/aa",
+  "destination": "ab_backup",
+  "type": "FULL",
+  "wait": true,
+  "timeout": 6000
+}
