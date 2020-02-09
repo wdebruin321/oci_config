@@ -71,12 +71,15 @@ module Puppet_X
         end
         # rubocop: enable Metrics/AbcSize
 
-        # rubocop: disable Metrics/AbcSize
+        # rubocop: disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         def name_to_ocid(tenant, full_name, id_type = :compartment)
           return full_name.collect { |n| name_to_ocid(tenant, n, id_type) } if full_name.is_a?(Array)
 
           full_name = full_name.gsub('//', '/') # Handle double seperators
-          compartment_name, name = full_name.scan(%r{^(?:(.*)/)?(.*)$}).first
+          tenancy, relative_name = full_name.scan(%r{^(?:(.*) \(root\)/)?(.*)?}).first
+          fail "tenancy #{tenancy} different than tenancy in name #{full_name}" if tenancy && tenant != tenancy
+
+          compartment_name, name = relative_name.scan(%r{^(?:(.*)/)?(.*)$}).first
           compartment_id = if compartment_name.nil?
                              @tenant_ids[tenant]
                            else
@@ -97,7 +100,7 @@ module Puppet_X
 
           object.id
         end
-        # rubocop: enable Metrics/AbcSize
+        # rubocop: enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
         # rubocop: disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         def find_in_cache(tenant, id_type, name, compartment_id)
