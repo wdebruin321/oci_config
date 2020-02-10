@@ -1,0 +1,14 @@
+{
+  "description": "Delete a block volume backup .",
+  "input_method": "stdin",
+  "files": [
+    "easy_type/lib/",
+    "oci_config/lib/"
+  ],
+  "parameters": {
+    "volume_name": {
+      "description": "The full name of the block volume backup to be deleted.",
+      "type": "String[1]"
+    }
+  }
+}

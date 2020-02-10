@@ -1,0 +1,4 @@
+{
+  "_installdir": "/etc/puppetlabs/code/environments/production/modules",
+  "volume_name": "enterprisemodules (root)/acceptance_tests/ab_backup"
+}
