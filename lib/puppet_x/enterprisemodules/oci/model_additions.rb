@@ -59,6 +59,7 @@ models = [
   OCI::Core::Models::RouteTable,
   OCI::Core::Models::SecurityList,
   OCI::Core::Models::ServiceGateway,
+  OCI::Core::Models::Service,
   OCI::Core::Models::Subnet,
   OCI::Core::Models::Vcn,
   OCI::Core::Models::VirtualCircuit,

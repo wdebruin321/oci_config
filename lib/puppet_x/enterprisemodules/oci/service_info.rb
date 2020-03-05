@@ -42,6 +42,7 @@ module Puppet_X
           [:oci_core_route_table,                       :routetable,                'OCI::Core::Models::RouteTable',                      'OCI::Core::VirtualNetworkClient',          :vcn],
           [:oci_core_security_list,                     :securitylist,              'OCI::Core::Models::SecurityList',                    'OCI::Core::VirtualNetworkClient',          :vcn],
           [:oci_core_service_gateway,                   :servicegateway,            'OCI::Core::Models::ServiceGateway',                  'OCI::Core::VirtualNetworkClient',          :compartment],
+          [:oci_core_service,                           :service,                   'OCI::Core::Models::Service',                         'OCI::Core::VirtualNetworkClient',          :root],
           [:oci_core_subnet,                            :subnet,                    'OCI::Core::Models::Subnet',                          'OCI::Core::VirtualNetworkClient',          :vcn],
           [:oci_core_vcn,                               :vcn,                       'OCI::Core::Models::Vcn',                             'OCI::Core::VirtualNetworkClient',          :compartment],
           [:oci_core_virtual_circuit,                   :virtualcircuit,            'OCI::Core::Models::VirtualCircuit',                  'OCI::Core::VirtualNetworkClient',          :compartment],
@@ -71,12 +72,11 @@ module Puppet_X
           #
           # Some OCI resource ID's we need
           #
-          [:unknown,                              :listing,                    'UNDEFINED',                                      'UNDEFINED',                               :compartment],
-          [:unknown,                              :resource,                   'UNDEFINED',                                      'UNDEFINED',                               :compartment],
-          [:unknown,                              :service,                    'UNDEFINED',                                      'UNDEFINED',                               :compartment],
-          [:unknown,                              :peer,                       'UNDEFINED',                                      'UNDEFINED',                               :compartment],
-          [:unknown,                              :tenancy,                    'UNDEFINED',                                      'UNDEFINED',                               :compartment],
-          [:unknown,                              :autonomouscontainerdatabase, 'UNDEFINED', 'UNDEFINED', :compartment]
+          [:unknown,                                    :listing,                    'UNDEFINED',                                          'UNDEFINED',                               :compartment],
+          [:unknown,                                    :resource,                   'UNDEFINED',                                          'UNDEFINED',                               :compartment],
+          [:unknown,                                    :peer,                       'UNDEFINED',                                          'UNDEFINED',                               :compartment],
+          [:unknown,                                    :tenancy,                    'UNDEFINED',                                          'UNDEFINED',                               :compartment],
+          [:unknown,                                    :autonomouscontainerdatabase, 'UNDEFINED', 'UNDEFINED', :compartment]
         ]
         # rubocop: enable Layout/LineLength
 

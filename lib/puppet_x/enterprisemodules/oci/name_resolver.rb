@@ -130,13 +130,21 @@ module Puppet_X
           end
         end
 
-        # rubocop: disable Metrics/AbcSize, Metrics/CyclomaticComplexity
+        # rubocop: disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         def ocid_to_name(tenant, ocid)
           return ocid.collect { |i| ocid_to_name(tenant, i) } if ocid.is_a?(Array)
           return '/' if ocid.nil? || tenant?(ocid)
 
           object = from_cache(tenant, ocid)
-          compartment_id = object.compartment_id
+          #
+          # Because some objects from OCI don't have a name compartment, we check
+          # first if the method exists.
+          #
+          compartment_id = object.respond_to?(:compartment_id) ? object.compartment_id : nil
+          #
+          # The name is prefarably fetched by the name attribute. If it doesn't exist,
+          # we use the display_name.
+          #
           name = object.respond_to?(:name) ? object.name : object.display_name
           return name if compartment_id.nil?
 
@@ -149,7 +157,7 @@ module Puppet_X
           end
           names.join('/')
         end
-        # rubocop: enable Metrics/AbcSize, Metrics/CyclomaticComplexity
+        # rubocop: enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
         def tenant?(ocid)
           ocid.scan(/ocid1\.(\w*)\./).first.first == 'tenancy'
