@@ -104,7 +104,7 @@ class YamlGenerator
     when 'DateTime'
       'Runtime'
     else
-      data_type.to_s.tr('<', '[').tr('>', ']')
+      data_type.to_s.tr('<', '[').tr('>', ']').gsub('Object', 'Any')
     end
   end
   # rubocop: enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength

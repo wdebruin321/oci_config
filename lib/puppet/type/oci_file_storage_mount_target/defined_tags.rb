@@ -13,5 +13,5 @@ Example: `{\"Operations\": {\"CostCenter\": \"42\"}}`
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[Hash[String, Hash[String, Object]]]')
+  data_type('Optional[Hash[String, Hash[String, Any]]]')
 end

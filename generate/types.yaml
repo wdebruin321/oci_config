@@ -70,7 +70,7 @@ oci_budget_budget:
 
         Example: `{\"Department\": \"Finance\"}`
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a namespace.
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -99,7 +99,7 @@ oci_core_cpe:
       data_type: String[1]
       desc: The OCID of the compartment to contain the CPE.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -171,7 +171,7 @@ oci_core_dhcp_options:
       data_type: String[1]
       desc: The OCID of the compartment to contain the set of DHCP options.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -241,7 +241,7 @@ oci_core_drg:
       data_type: String[1]
       desc: The OCID of the compartment to contain the DRG.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -299,7 +299,7 @@ oci_core_internet_gateway:
       data_type: String[1]
       desc: The OCID of the compartment to contain the internet gateway.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -362,7 +362,7 @@ oci_core_local_peering_gateway:
       data_type: String[1]
       desc: The OCID of the compartment containing the local peering gateway (LPG).
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -470,7 +470,7 @@ oci_core_nat_gateway:
         The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to contain the
         NAT gateway.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -546,7 +546,7 @@ oci_core_network_security_group:
         The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to contain the
         network security group.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -633,7 +633,7 @@ oci_core_remote_peering_connection:
       data_type: String[1]
       desc: The OCID of the compartment to contain the RPC.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -734,7 +734,7 @@ oci_core_route_table:
       data_type: String[1]
       desc: The OCID of the compartment to contain the route table.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -835,7 +835,7 @@ oci_core_security_list:
       data_type: String[1]
       desc: The OCID of the compartment to contain the security list.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -920,7 +920,7 @@ oci_core_service_gateway:
       desc: The [OCID] (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
         of the compartment to contain the service gateway.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -1040,7 +1040,7 @@ oci_core_subnet:
       data_type: String[1]
       desc: The OCID of the compartment to contain the subnet.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -1221,7 +1221,7 @@ oci_core_vcn:
       data_type: String[1]
       desc: The OCID for the VCN's default security list.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -1364,7 +1364,7 @@ oci_core_virtual_circuit:
         there's a BGP session that goes from your edge router to Oracle.
         Otherwise, leave this empty or null.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -1554,7 +1554,7 @@ oci_core_dedicated_vm_host:
         The dedicated virtual machine host shape. The shape determines the number of CPUs and
         other resources available for VM instances launched on the dedicated virtual machine host.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -1626,7 +1626,7 @@ oci_core_image:
 
         Example: `true`
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -1769,7 +1769,7 @@ oci_core_instance:
       data_type: String[1]
       desc: The OCID of dedicated VM host.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -1783,7 +1783,7 @@ oci_core_instance:
 
         Example: `My bare metal instance`
     extended_metadata:
-      data_type: Hash[String, Object]
+      data_type: Hash[String, Any]
       desc: |-
         Additional metadata key/value pairs that you provide. They serve the same purpose and functionality as fields in the 'metadata' object.
 
@@ -1946,7 +1946,7 @@ oci_core_instance:
         Details for creating an instance.
         Use this parameter to specify whether a boot volume or an image should be used to launch a new instance.
     system_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         System tags for this resource. Each key is predefined and scoped to a namespace.
         Example: `{\"foo-namespace\": {\"bar-key\": \"value\"}}`
@@ -2008,7 +2008,7 @@ oci_core_instance_console_connection:
       data_type: String[1]
       desc: The SSH connection string for the console connection.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -2062,14 +2062,14 @@ oci_core_boot_volume:
       data_type: String[1]
       desc: The OCID of the compartment that contains the boot volume.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 
         Example: `{\"Operations\": {\"CostCenter\": \"42\"}}`
     system_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         System tags for this resource. Each key is predefined and scoped to a namespace.
         Example: `{\"foo-namespace\": {\"bar-key\": \"value\"}}`
@@ -2153,14 +2153,14 @@ oci_core_boot_volume_backup:
       data_type: String[1]
       desc: The OCID of the compartment that contains the boot volume backup.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 
         Example: `{\"Operations\": {\"CostCenter\": \"42\"}}`
     system_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         System tags for this resource. Each key is predefined and scoped to a namespace.
         Example: `{\"foo-namespace\": {\"bar-key\": \"value\"}}`
@@ -2259,7 +2259,7 @@ oci_core_volume:
       data_type: String[1]
       desc: The OCID of the compartment that contains the volume.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -2278,7 +2278,7 @@ oci_core_volume:
 
         Example: `{\"Department\": \"Finance\"}`
     system_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         System tags for this resource. Each key is predefined and scoped to a namespace.
         Example: `{\"foo-namespace\": {\"bar-key\": \"value\"}}`
@@ -2358,14 +2358,14 @@ oci_core_volume_backup:
       data_type: String[1]
       desc: The OCID of the compartment that contains the volume backup.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 
         Example: `{\"Operations\": {\"CostCenter\": \"42\"}}`
     system_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         System tags for this resource. Each key is predefined and scoped to a namespace.
         Example: `{\"foo-namespace\": {\"bar-key\": \"value\"}}`
@@ -2505,7 +2505,7 @@ oci_core_volume_backup_policy:
       data_type: String[1]
       desc: The OCID of the compartment that contains the backup policy.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -2546,7 +2546,7 @@ oci_core_volume_group:
       data_type: String[1]
       desc: The OCID of the compartment that contains the volume group.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -2602,7 +2602,7 @@ oci_core_volume_group_backup:
         This parameter is optional, by default backup will be created in the same
         compartment and source volume group.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -2727,7 +2727,7 @@ oci_identity_dynamic_group:
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
         Example: `{\"Department\": \"Finance\"}`
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a namespace.
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -2794,7 +2794,7 @@ oci_identity_group:
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
         Example: `{\"Department\": \"Finance\"}`
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a namespace.
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -2879,7 +2879,7 @@ oci_identity_identity_provider:
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
         Example: `{\"Department\": \"Finance\"}`
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a namespace.
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -2960,7 +2960,7 @@ oci_identity_policy:
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
         Example: `{\"Department\": \"Finance\"}`
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a namespace.
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -3013,7 +3013,7 @@ oci_identity_tag_namespace:
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
         Example: `{\"Department\": \"Finance\"}`
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a namespace.
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -3104,7 +3104,7 @@ oci_identity_user:
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
         Example: `{\"Department\": \"Finance\"}`
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a namespace.
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -3189,7 +3189,7 @@ oci_identity_compartment:
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
         Example: `{\"Department\": \"Finance\"}`
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a namespace.
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -3236,7 +3236,7 @@ oci_core_ip_sec_connection:
       reference_type: cpe
       desc: The OCID of the {Cpe} object.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -3366,7 +3366,7 @@ oci_database_autonomous_database:
         Note that Always Free Autonomous Databases have 1 CPU and 20GB memory. For
         Always Free databases, memory and CPU cannot be scaled.
     system_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         System tags for this resource. Each key is predefined and scoped to a namespace.
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -3430,7 +3430,7 @@ oci_database_autonomous_database:
 
         Example: `{\"Department\": \"Finance\"}`
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a namespace.
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -3484,7 +3484,7 @@ oci_key_management_key:
     current_key_version:
       data_type: String[1]
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Usage of predefined tag keys. These predefined keys are scoped to namespaces.
         Example: `{\"foo-namespace\": {\"bar-key\": \"foo-value\"}}`
@@ -3531,7 +3531,7 @@ oci_key_management_vault:
     crypto_endpoint:
       data_type: String[1]
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Usage of predefined tag keys. These predefined keys are scoped to namespaces.
         Example: `{\"foo-namespace\": {\"bar-key\": \"foo-value\"}}`
@@ -3568,7 +3568,6 @@ oci_core_public_ip:
             ensure   => 'present',
             lifetime => 'RESERVED',
           }
-  
   klass: OCI::Core::Models::PublicIp
   properties:
     assigned_entity_id:
@@ -3596,7 +3595,7 @@ oci_core_public_ip:
         The OCID of the compartment to contain the public IP. For ephemeral public IPs,
         you must set this to the private IP's compartment OCID.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -3688,7 +3687,7 @@ oci_core_instance_pool:
       data_type: String[1]
       desc: The OCID of the compartment containing the instance pool
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -3747,7 +3746,7 @@ oci_core_instance_configuration:
         The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment
         containing the instance configuration.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -3794,7 +3793,7 @@ oci_autoscaling_auto_scaling_configuration:
       desc: The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
         of the compartment containing the autoscaling configuration.
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a
         namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -3846,7 +3845,6 @@ oci_object_storage_bucket:
             ensure        => 'present',
             freeform_tags => {'test' => 'no'},
           }
-    
   klass: OCI::ObjectStorage::Models::Bucket
   properties:
     namespace:
@@ -3896,7 +3894,7 @@ oci_object_storage_bucket:
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
         Example: `{\"Department\": \"Finance\"}`
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a namespace.
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -3966,14 +3964,14 @@ oci_file_storage_file_system:
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
         Example: `{\"Department\": \"Finance\"}`
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a namespace.
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
         Example: `{\"Operations\": {\"CostCenter\": \"42\"}}`
     kms_key_id:
       reference_type: key
-      data_type: String
+      data_type: String[1]
       desc: The OCID of KMS key used to encrypt the encryption keys associated with
         this file system.
   desc: |-
@@ -3990,8 +3988,8 @@ oci_file_storage_file_system:
 
     **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
 oci_file_storage_mount_target:
-  includes: 
-    - after_destroy
+  includes:
+  - after_destroy
   example: |-
     Here is an example on how to use this:
 
@@ -4000,7 +3998,6 @@ oci_file_storage_mount_target:
           availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
           subnet              => 'my_sub_net',
         }
-  
   klass: OCI::FileStorage::Models::MountTarget
   properties:
     availability_domain:
@@ -4056,7 +4053,7 @@ oci_file_storage_mount_target:
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
         Example: `{\"Department\": \"Finance\"}`
     defined_tags:
-      data_type: Hash[String, Hash[String, Object]]
+      data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a namespace.
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -4093,7 +4090,7 @@ oci_file_storage_mount_target:
 oci_file_storage_export:
   custom: true
   includes:
-    - before_actions
+  - before_actions
   example: |-
     Here is an example on how to use this:
 
@@ -4112,7 +4109,6 @@ oci_file_storage_export:
             }],
           }
         }
-  
   klass: OCI::FileStorage::Models::Export
   properties:
     export_options:

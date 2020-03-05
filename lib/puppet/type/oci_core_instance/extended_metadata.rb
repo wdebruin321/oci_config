@@ -13,5 +13,5 @@ They are distinguished from 'metadata' fields in that these can be nested JSON o
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[Hash[String, Object]]')
+  data_type('Optional[Hash[String, Any]]')
 end
