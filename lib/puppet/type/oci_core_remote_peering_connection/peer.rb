@@ -15,7 +15,7 @@ newproperty(:peer, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   DESC
   references :peer_id
   reference_type :peer
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:peer, :peer) { "#{tenant_string}/#{peer}" }

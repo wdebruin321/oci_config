@@ -15,7 +15,7 @@ newproperty(:listing, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   DESC
   references :listing_id
   reference_type :listing
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:listing, :listing) { "#{tenant_string}/#{listing}" }

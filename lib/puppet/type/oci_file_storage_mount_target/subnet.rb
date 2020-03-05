@@ -15,7 +15,7 @@ newproperty(:subnet, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   DESC
   references :subnet_id
   reference_type :subnet
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:subnet, :subnet) { "#{tenant_string}/#{subnet}" }

@@ -15,7 +15,7 @@ newproperty(:instance_configuration, :parent => Puppet_X::EnterpriseModules::Oci
   DESC
   references :instance_configuration_id
   reference_type :instanceconfiguration
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:instanceconfiguration, :instance_configuration) { "#{tenant_string}/#{instance_configuration}" }

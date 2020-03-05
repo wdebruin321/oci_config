@@ -15,7 +15,7 @@ newproperty(:drg, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   DESC
   references :drg_id
   reference_type :drg
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:drg, :drg) { "#{tenant_string}/#{drg}" }

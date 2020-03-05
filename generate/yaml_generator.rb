@@ -83,7 +83,7 @@ class YamlGenerator
     module_identifier.const_get('Models').constants.reject { |e| e.to_s =~ /Update|Create|Detail|Summary|Validator/ }
   end
 
-  # rubocop: disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
+  # rubocop: disable Metrics/AbcSize
   def translate_data_type(data_type)
     case data_type.to_s
     when /OCI\:\:/
@@ -99,13 +99,11 @@ class YamlGenerator
       output
     when 'BOOLEAN'
       'Boolean'
-    when 'String'
-      'String[1]'
     when 'DateTime'
       'Runtime'
     else
       data_type.to_s.tr('<', '[').tr('>', ']').gsub('Object', 'Any')
     end
   end
-  # rubocop: enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
+  # rubocop: enable Metrics/AbcSize
 end

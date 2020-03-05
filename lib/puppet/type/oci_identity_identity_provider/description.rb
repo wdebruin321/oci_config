@@ -12,5 +12,5 @@ Does not have to be unique, and it's changeable.
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end

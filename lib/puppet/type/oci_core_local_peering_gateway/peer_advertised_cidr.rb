@@ -15,5 +15,5 @@ Example: `192.168.0.0/16`, or if aggregated with `172.16.0.0/24` then `128.0.0.0
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end

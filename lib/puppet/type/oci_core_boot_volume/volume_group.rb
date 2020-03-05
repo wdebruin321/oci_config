@@ -15,7 +15,7 @@ newproperty(:volume_group, :parent => Puppet_X::EnterpriseModules::Oci::Property
   DESC
   references :volume_group_id
   reference_type :volumegroup
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:volumegroup, :volume_group) { "#{tenant_string}/#{volume_group}" }

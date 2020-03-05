@@ -13,5 +13,5 @@ security group in.
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end

@@ -15,7 +15,7 @@ newproperty(:route_table, :parent => Puppet_X::EnterpriseModules::Oci::Property)
   DESC
   references :route_table_id
   reference_type :routetable
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:routetable, :route_table) { "#{tenant_string}/#{route_table}" }

@@ -15,7 +15,7 @@ newproperty(:peer_tenancy, :parent => Puppet_X::EnterpriseModules::Oci::Property
   DESC
   references :peer_tenancy_id
   reference_type :tenancy
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:tenancy, :peer_tenancy) { "#{tenant_string}/#{peer_tenancy}" }

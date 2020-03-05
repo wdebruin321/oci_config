@@ -15,7 +15,7 @@ newproperty(:default_security_list, :parent => Puppet_X::EnterpriseModules::Oci:
   DESC
   references :default_security_list_id
   reference_type :securitylist
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:securitylist, :default_security_list) { "#{tenant_string}/#{default_security_list}" }

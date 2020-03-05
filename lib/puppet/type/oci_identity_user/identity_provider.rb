@@ -15,7 +15,7 @@ newproperty(:identity_provider, :parent => Puppet_X::EnterpriseModules::Oci::Pro
   DESC
   references :identity_provider_id
   reference_type :saml2idp
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:saml2idp, :identity_provider) { "#{tenant_string}/#{identity_provider}" }

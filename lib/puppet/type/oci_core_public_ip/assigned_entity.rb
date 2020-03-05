@@ -15,7 +15,7 @@ newproperty(:assigned_entity, :parent => Puppet_X::EnterpriseModules::Oci::Prope
   DESC
   references :assigned_entity_id
   reference_type :publicip
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:publicip, :assigned_entity) { "#{tenant_string}/#{assigned_entity}" }

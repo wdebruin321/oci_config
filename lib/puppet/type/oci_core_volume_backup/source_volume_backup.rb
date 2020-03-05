@@ -15,7 +15,7 @@ newproperty(:source_volume_backup, :parent => Puppet_X::EnterpriseModules::Oci::
   DESC
   references :source_volume_backup_id
   reference_type :volumebackup
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:volumebackup, :source_volume_backup) { "#{tenant_string}/#{source_volume_backup}" }

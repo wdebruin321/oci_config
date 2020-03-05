@@ -15,7 +15,7 @@ newproperty(:private_ip, :parent => Puppet_X::EnterpriseModules::Oci::Property) 
   DESC
   references :private_ip_id
   reference_type :publicip
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:publicip, :private_ip) { "#{tenant_string}/#{private_ip}" }

@@ -15,7 +15,7 @@ newproperty(:gateway, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   DESC
   references :gateway_id
   reference_type :internetgateway
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:internetgateway, :gateway) { "#{tenant_string}/#{gateway}" }

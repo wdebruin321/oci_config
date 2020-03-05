@@ -15,7 +15,7 @@ newproperty(:kms_key, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   DESC
   references :kms_key_id
   reference_type :key
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:key, :kms_key) { "#{tenant_string}/#{kms_key}" }

@@ -19,5 +19,5 @@ assigned to a private IP. You can later assign the public IP with
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end

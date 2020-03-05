@@ -15,7 +15,7 @@ newproperty(:volume, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   DESC
   references :volume_id
   reference_type :volume
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:volume, :volume) { "#{tenant_string}/#{volume}" }

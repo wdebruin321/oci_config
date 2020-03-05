@@ -8,7 +8,7 @@
 newproperty(:vault, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   references :vault_id
   reference_type :vault
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:vault, :vault) { "#{tenant_string}/#{vault}" }

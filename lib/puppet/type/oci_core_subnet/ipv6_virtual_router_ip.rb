@@ -13,5 +13,5 @@ Example: `2001:0db8:0123:1111:89ab:cdef:1234:5678`
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end

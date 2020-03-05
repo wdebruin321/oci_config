@@ -15,7 +15,7 @@ newproperty(:dhcp_options, :parent => Puppet_X::EnterpriseModules::Oci::Property
   DESC
   references :dhcp_options_id
   reference_type :dhcpoptions
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:dhcpoptions, :dhcp_options) { "#{tenant_string}/#{dhcp_options}" }

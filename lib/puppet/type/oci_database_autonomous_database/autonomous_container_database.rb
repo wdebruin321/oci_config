@@ -15,7 +15,7 @@ newproperty(:autonomous_container_database, :parent => Puppet_X::EnterpriseModul
   DESC
   references :autonomous_container_database_id
   reference_type :autonomouscontainerdatabase
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:autonomouscontainerdatabase, :autonomous_container_database) { "#{tenant_string}/#{autonomous_container_database}" }

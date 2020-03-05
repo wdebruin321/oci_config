@@ -15,7 +15,7 @@ newproperty(:dedicated_vm_host, :parent => Puppet_X::EnterpriseModules::Oci::Pro
   DESC
   references :dedicated_vm_host_id
   reference_type :dedicatedvmhost
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:dedicatedvmhost, :dedicated_vm_host) { "#{tenant_string}/#{dedicated_vm_host}" }

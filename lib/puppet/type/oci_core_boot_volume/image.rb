@@ -15,7 +15,7 @@ newproperty(:image, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   DESC
   references :image_id
   reference_type :image
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:image, :image) { "#{tenant_string}/#{image}" }

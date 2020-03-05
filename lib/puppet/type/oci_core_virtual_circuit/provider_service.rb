@@ -15,7 +15,7 @@ newproperty(:provider_service, :parent => Puppet_X::EnterpriseModules::Oci::Prop
   DESC
   references :provider_service_id
   reference_type :service
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
 
 child_of(:service, :provider_service) { "#{tenant_string}/#{provider_service}" }

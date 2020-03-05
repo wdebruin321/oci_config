@@ -11,5 +11,5 @@ newproperty(:oracle_terms_of_use_link, :parent => Puppet_X::EnterpriseModules::O
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[String[1]]')
+  data_type('Optional[String]')
 end
