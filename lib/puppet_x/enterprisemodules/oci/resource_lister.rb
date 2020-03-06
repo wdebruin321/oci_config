@@ -17,7 +17,7 @@ module Puppet_X
           @resolver = Puppet_X::EnterpriseModules::Oci::NameResolver.instance(tenant)
         end
 
-        # rubocop: disable Metrics/CyclomaticComplexity
+        # rubocop: disable Metrics/CyclomaticComplexity, Metrics/MethodLength
         def resource_list(compartment_id = nil)
           all_resources = case ServiceInfo.type_to_lookup_method(@resource_type)
                           when :root
@@ -30,6 +30,8 @@ module Puppet_X
                             resources_in_availability_domains(compartment_id)
                           when :compartment
                             resources_in_compartments(compartment_id)
+                          when :compartment_detailed
+                            resources_in_compartments(compartment_id, true)
                           when :vault
                             resources_in_vaults(compartment_id)
                           when :namespace
@@ -39,7 +41,7 @@ module Puppet_X
                           end
           all_resources.select(&:present?)
         end
-        # rubocop: enable Metrics/CyclomaticComplexity
+        # rubocop: enable Metrics/CyclomaticComplexity, Metrics/MethodLength
 
         private
 

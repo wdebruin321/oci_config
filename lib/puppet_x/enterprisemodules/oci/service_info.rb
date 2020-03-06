@@ -62,7 +62,7 @@ module Puppet_X
           [:oci_key_management_vault,                   :vault,                     'OCI::KeyManagement::Models::Vault',                  'OCI::KeyManagement::KmsVaultClient',       :compartment],
           [:oci_key_management_key,                     :key,                       'OCI::KeyManagement::Models::Key',                    'OCI::KeyManagement::KmsManagementClient',  :vault],
           [:oci_core_public_ip,                         :publicip,                  'OCI::Core::Models::PublicIp',                        'OCI::Core::VirtualNetworkClient',          :compartment],
-          [:oci_core_instance_configuration,            :instanceconfiguration,     'OCI::Core::Models::InstanceConfiguration',           'OCI::Core::ComputeManagementClient',       :compartment],
+          [:oci_core_instance_configuration,            :instanceconfiguration,     'OCI::Core::Models::InstanceConfiguration',           'OCI::Core::ComputeManagementClient',       :compartment_detailed],
           [:oci_core_instance_pool,                     :instancepool,              'OCI::Core::Models::InstancePool',                    'OCI::Core::ComputeManagementClient',       :compartment],
           [:oci_autoscaling_auto_scaling_configuration, :autoscalingconfiguration,  'OCI::Autoscaling::Models::AutoScalingConfiguration', 'OCI::Autoscaling::AutoScalingClient',      :compartment],
           [:oci_object_storage_bucket,                  :bucket,                    'OCI::ObjectStorage::Models::Bucket',                 'OCI::ObjectStorage::ObjectStorageClient',  :namespace],

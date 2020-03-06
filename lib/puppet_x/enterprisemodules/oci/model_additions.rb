@@ -86,7 +86,7 @@ models = [
   OCI::KeyManagement::Models::VaultSummary,
   OCI::KeyManagement::Models::KeySummary,
   OCI::Core::Models::PublicIp,
-  OCI::Core::Models::InstanceConfigurationSummary,
+  OCI::Core::Models::InstanceConfiguration,
   OCI::Core::Models::InstancePoolSummary,
   OCI::Autoscaling::Models::AutoScalingConfigurationSummary,
   OCI::ObjectStorage::Models::BucketSummary,
