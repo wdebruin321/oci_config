@@ -73,3 +73,10 @@ Facter.add(:oci_vnics) do
     vnic_data
   end
 end
+
+Facter.add(:oci_instance_id) do
+  oci_instance = Facter.value(:oci_instance)
+  setcode do
+    oci_instance['id']
+  end
+end
