@@ -2,6 +2,7 @@
 
 require 'net/http'
 require 'json'
+require_relative '../puppet_x/enterprisemodules/oci/name_resolver'
 
 def instance_path
   '/opc/v1/instance/'
@@ -78,5 +79,19 @@ Facter.add(:oci_instance_id) do
   oci_instance = Facter.value(:oci_instance)
   setcode do
     oci_instance['id']
+  end
+end
+
+Facter.add(:oci_defined_tags) do
+  oci_instance = Facter.value(:oci_instance)
+  setcode do
+    oci_instance['defined_tags']
+  end
+end
+
+Facter.add(:oci_freeform_tags) do
+  oci_instance = Facter.value(:oci_instance)
+  setcode do
+    oci_instance['freeform_tags']
   end
 end
