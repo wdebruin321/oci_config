@@ -1,6 +1,6 @@
 require_relative '../spec_helper_acceptance'
 require_relative '../support/shared_acceptance_specs'
-# rubocop: disable Style/AlignParameters
+# rubocop: disable Style/AlignParameters 
 
 describe 'oci_core_instance' do
   include_context 'setup'
@@ -68,7 +68,7 @@ describe 'oci_core_instance' do
           source_details      => {
             source_type => 'image',
             image_type => 'image',
-            image => 'Oracle-Linux-7.7-2019.12.18-0',
+            image => oci_config::latest_image_for('Oracle Linux', '7.7', /^((?!GPU).)*$/),
           },
           vnics               => {
           'nic1' => {
@@ -108,7 +108,7 @@ describe 'oci_core_instance' do
           source_details      => {
             source_type => 'image',
             image_type => 'image',
-            image => 'Oracle-Linux-7.7-2019.12.18-0',
+            image => oci_config::latest_image_for('Oracle Linux', '7.7', /^((?!GPU).)*$/),
           },
           vnics               => {
           'nic1' => {
