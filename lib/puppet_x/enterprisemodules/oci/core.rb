@@ -26,11 +26,9 @@ require_relative './associated_hash_property'
 #
 begin
   require 'oci/core/models/create_volume_backup_policy_details'
-# rubocop: disable Lint/SuppressedException
 rescue LoadError
   # This version of the Gem doesn't have the volume backup policy.
 end
-# rubocop: enable Lint/SuppressedException
 
 #
 # Add underscore method to String. Method borrowed from Rails

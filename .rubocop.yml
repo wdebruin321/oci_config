@@ -20,6 +20,19 @@ AllCops:
     - 'pkg/**/*'
     - 'bin/*'
 
+# Rubocop 0.80 and 0.8.1
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+#
+#
 Layout/HeredocIndentation:
   Enabled: false
 
