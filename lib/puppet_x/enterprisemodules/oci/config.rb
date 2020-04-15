@@ -31,6 +31,10 @@ module Puppet_X
           )
         end
 
+        def default_tenant
+          configuration.keys.first
+        end
+
         def settings_for(tenant)
           configuration.fetch(tenant)
         end

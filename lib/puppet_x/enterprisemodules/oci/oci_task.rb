@@ -86,7 +86,11 @@ module Puppet_X
             instance_variable_set(:"@#{parameter}", value)
           end
           oci_var = instance_variable_get(:"@#{oci_info}")
-          @tenant = oci_var.match(/^(.*) \(root\).*$/)[1]
+          @tenant = if oci_var.nil?
+                      default_tenant
+                    else
+                      oci_var.match(/^(.*) \(root\).*$/)[1]
+                    end
           @resolver = Puppet_X::EnterpriseModules::Oci::NameResolver.instance(@tenant)
           @client = client_class.new(:config => tenant_config(@tenant), :retry_config => retry_config)
           @result = {}
