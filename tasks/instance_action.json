@@ -1,0 +1,22 @@
+{
+  "description": "Execute an instance action on the specfied instance",
+  "input_method": "stdin",
+  "files": [
+    "easy_type/lib/",
+    "oci_config/lib/"
+  ],
+  "parameters": {
+    "instance_id": {
+      "description": "The ocid of the instance you want to apply the action on.",
+      "type": "Optional[String[1]]"
+    },
+    "instance_name": {
+      "description": "The name of the instance you want to apply the action on.",
+      "type": "Optional[String[1]]"
+    },
+    "action": {
+      "description": "The action you want to apply on the specfied instance.",
+      "type": "Enum['START','STOP','SOFTRESET','SOFTSTOP','RESET']"
+    }
+  }
+}
