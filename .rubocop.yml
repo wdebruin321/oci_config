@@ -20,6 +20,10 @@ AllCops:
     - 'pkg/**/*'
     - 'bin/*'
 
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true     # (0.82)
+Style/ExponentialNotation:
+  Enabled: true     # (0.82)
 # Rubocop 0.80 and 0.8.1
 Lint/RaiseException:
   Enabled: true
