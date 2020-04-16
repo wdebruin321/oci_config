@@ -52,7 +52,7 @@ def oci_try
   value = yield
   Puppet.debug 'oci metadata fetched successfully.'
   value
-rescue Net::ReadTimeout, EOFError
+rescue StandardError
   Puppet.debug 'oci meta data URL not responding. Infering not on OCI.'
   nil
 end
@@ -78,6 +78,10 @@ Facter.add(:oci_vnics) do
 end
 
 Facter.add(:oci_instance_id) do
+  confine :oci_instance do |oci_instance|
+    !oci_instance.nil?
+  end
+
   oci_instance = Facter.value(:oci_instance)
   setcode do
     oci_instance['id']
@@ -85,6 +89,10 @@ Facter.add(:oci_instance_id) do
 end
 
 Facter.add(:oci_defined_tags) do
+  confine :oci_instance do |oci_instance|
+    !oci_instance.nil?
+  end
+
   oci_instance = Facter.value(:oci_instance)
   setcode do
     oci_instance['defined_tags']
@@ -92,6 +100,10 @@ Facter.add(:oci_defined_tags) do
 end
 
 Facter.add(:oci_freeform_tags) do
+  confine :oci_instance do |oci_instance|
+    !oci_instance.nil?
+  end
+
   oci_instance = Facter.value(:oci_instance)
   setcode do
     oci_instance['freeform_tags']
