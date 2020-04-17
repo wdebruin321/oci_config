@@ -7,7 +7,7 @@
 #
 newproperty(:policies, :array_matching => :all, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   extend Puppet_X::EnterpriseModules::Oci::Config
-  extend Puppet_X::EnterpriseModules::Settings
+  extend Puppet_X::EnterpriseModules::Oci::Settings
 
   desc <<-DESC
   This attribute is required.

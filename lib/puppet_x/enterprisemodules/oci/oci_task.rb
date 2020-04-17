@@ -19,7 +19,7 @@ module Puppet_X
       # Docs
       class PuppetTask
         include Puppet_X::EnterpriseModules::Oci::Config
-        include Puppet_X::EnterpriseModules::Settings
+        include Puppet_X::EnterpriseModules::Oci::Settings
 
         def parameters
           self.class.parameter

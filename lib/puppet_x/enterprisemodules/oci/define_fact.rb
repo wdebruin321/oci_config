@@ -40,7 +40,7 @@ def oci_define_fact(type_name, fields, &filter)
       File.exist?('/etc/oci_tenant.yaml')
     end
 
-    extend Puppet_X::EnterpriseModules::Settings
+    extend Puppet_X::EnterpriseModules::Oci::Settings
     extend Puppet_X::EnterpriseModules::Oci::Config
 
     setcode do

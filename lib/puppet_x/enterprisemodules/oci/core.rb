@@ -10,7 +10,7 @@ require 'pathname'
 $LOAD_PATH.unshift(Pathname.new(__FILE__).dirname.parent.parent)
 $LOAD_PATH.unshift(Pathname.new(__FILE__).dirname.parent.parent.parent.parent + 'easy_type' + 'lib')
 require 'easy_type'
-require_relative '../settings'
+require_relative './settings'
 require_relative './type'
 require_relative './property'
 require_relative './config'

@@ -5,7 +5,7 @@ module Puppet_X
     module Oci
       # Docs
       module Config
-        Puppet_X::EnterpriseModules::Settings::SETTINGS_FILE = '/etc/oci_tenant.yaml'
+        Puppet_X::EnterpriseModules::Oci::Settings::SETTINGS_FILE = '/etc/oci_tenant.yaml'
 
         def tenant_config(tenant = nil)
           OCI.logger = Logger.new(STDOUT) if ENV['OCI_CONFIG_DEBUG']

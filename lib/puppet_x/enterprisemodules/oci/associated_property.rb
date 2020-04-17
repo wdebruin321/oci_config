@@ -7,9 +7,9 @@ module Puppet_X
       # rubocop: disable Metrics/ClassLength
       class AssociatedProperty < Puppet::Property
         include Puppet_X::EnterpriseModules::Oci::Config
-        include Puppet_X::EnterpriseModules::Settings
+        include Puppet_X::EnterpriseModules::Oci::Settings
         extend Puppet_X::EnterpriseModules::Oci::Config
-        extend Puppet_X::EnterpriseModules::Settings
+        extend Puppet_X::EnterpriseModules::Oci::Settings
         include EasyType
         include EasyType::ArrayProperty
 

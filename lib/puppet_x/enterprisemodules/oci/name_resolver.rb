@@ -8,7 +8,7 @@ module Puppet_X
       # Docs
       # rubocop: disable Metrics/ClassLength
       class NameResolver
-        include Puppet_X::EnterpriseModules::Settings
+        include Puppet_X::EnterpriseModules::Oci::Settings
         include Puppet_X::EnterpriseModules::Oci::Config
 
         private_class_method :new

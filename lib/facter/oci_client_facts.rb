@@ -2,7 +2,7 @@
 
 require 'net/http'
 require 'json'
-require_relative '../puppet_x/enterprisemodules/settings'
+require_relative '../puppet_x/enterprisemodules/oci/settings'
 require_relative '../puppet_x/enterprisemodules/oci/config'
 require_relative '../puppet_x/enterprisemodules/oci/name_resolver'
 
