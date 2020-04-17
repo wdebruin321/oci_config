@@ -9,7 +9,7 @@
 def client
   return @client if @client
 
-  vault_client = OCI::KeyManagement::KmsVaultClient.new(:config => tenant_config(tenant), :retry_config => retry_config)
+  vault_client = OCI::KeyManagement::KmsVaultClient.new(:proxy_settings => proxy_config(tenant), :config => tenant_config(tenant), :retry_config => retry_config)
   compartment_id = provider.compartment_id
   if compartment_id.to_s == 'absent'
     compartment_id = if compartment.nil?
@@ -23,6 +23,9 @@ def client
   vault_data = vault_client.send('list_vaults', compartment_id).data.find { |e| e.display_name == vault_name }
   fail "#{path}: vault #{vault} does not exist." if vault_data.nil?
 
-  @client = OCI::KeyManagement::KmsManagementClient.new(:config => tenant_config(tenant), :endpoint => vault_data.management_endpoint, :retry_config => retry_config)
+  @client = OCI::KeyManagement::KmsManagementClient.new(:proxy_settings => proxy_config(tenant),
+                                                        :config => tenant_config(tenant),
+                                                        :endpoint => vault_data.management_endpoint,
+                                                        :retry_config => retry_config)
 end
 # rubocop: enable Metrics/AbcSize

@@ -46,7 +46,7 @@ module Puppet_X
         # rubocop: enable Metrics/AbcSize
 
         def self.client(tenant)
-          ServiceInfo.type_to_client(puppet_type).new(:config => tenant_config(tenant), :retry_config => retry_config)
+          ServiceInfo.type_to_client(puppet_type).new(:proxy_settings => proxy_config(tenant), :config => tenant_config(tenant), :retry_config => retry_config)
         end
 
         def self.puppet_type
@@ -96,7 +96,7 @@ module Puppet_X
         end
 
         def client
-          ServiceInfo.type_to_client(puppet_type).new(:config => tenant_config(resource.tenant), :retry_config => retry_config)
+          ServiceInfo.type_to_client(puppet_type).new(:proxy_settings => proxy_config(resource.tenant), :config => tenant_config(resource.tenant), :retry_config => retry_config)
         end
 
         def remove_record_by_name(name)

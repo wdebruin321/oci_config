@@ -253,7 +253,7 @@ module Puppet_X
           end
 
           def client(tenant = nil)
-            client_class.new(:config => tenant_config(tenant), :retry_config => retry_config)
+            client_class.new(:proxy_settings => proxy_config(tenant), :config => tenant_config(tenant), :retry_config => retry_config)
           end
 
           def client_class

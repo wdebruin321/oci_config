@@ -19,11 +19,10 @@ module Puppet_X
           @tenant_ids = {}
         end
 
-        # rubocop: disable Metrics/AbcSize
         def initialize_for_tenant(tenant)
           return if @clients[tenant]
 
-          @clients[tenant]    = OCI::Identity::IdentityClient.new(:config => tenant_config(tenant), :retry_config => retry_config)
+          @clients[tenant]    = OCI::Identity::IdentityClient.new(:proxy_settings => proxy_config(tenant), :config => tenant_config(tenant), :retry_config => retry_config)
           @tenant_ids[tenant] = @clients[tenant].api_client.config.tenancy
           #
           # We now use a large limit, be we need to modify it to use multiple calls.
@@ -32,7 +31,6 @@ module Puppet_X
           # Not sue if we need it. Seems to be more secured so we remove it for now
           # @cache[tenant] << @clients[tenant].get_compartment(@tenant_ids[tenant]).data
         end
-        # rubocop: enable Metrics/AbcSize
 
         def self.instance(tenant)
           @instance ||= new

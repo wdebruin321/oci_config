@@ -43,4 +43,8 @@ Puppet::Type.newtype(type_name) do
   property :region
   property :tenancy_ocid
   property :user_ocid
+  property :proxy_address
+  property :proxy_port
+  property :proxy_user
+  property :proxy_password
 end

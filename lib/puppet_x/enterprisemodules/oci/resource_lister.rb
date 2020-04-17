@@ -120,7 +120,10 @@ module Puppet_X
           compartment_list.collect do |compartment_id|
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
             vaults_in(compartment_id).collect do |vault|
-              kms_management_client = OCI::KeyManagement::KmsManagementClient.new(:config => tenant_config(@tenant), :endpoint => vault.management_endpoint, :retry_config => retry_config)
+              kms_management_client = OCI::KeyManagement::KmsManagementClient.new(:proxy_settings => proxy_config(@tenant),
+                                                                                  :config => tenant_config(@tenant),
+                                                                                  :endpoint => vault.management_endpoint,
+                                                                                  :retry_config => retry_config)
               Puppet.debug "Inspecting vault #{vault.id}..."
               kms_management_client.send("list_#{object_type_plural}", compartment_id).data
             end
@@ -147,22 +150,22 @@ module Puppet_X
         # rubocop: enable Metrics/AbcSize
 
         def vncs_in(compartment_id)
-          vcn_client = OCI::Core::VirtualNetworkClient.new(:config => tenant_config(@tenant), :retry_config => retry_config)
+          vcn_client = OCI::Core::VirtualNetworkClient.new(:proxy_settings => proxy_config(@tenant), :config => tenant_config(@tenant), :retry_config => retry_config)
           vcn_client.send('list_vcns', compartment_id).data.collect(&:id)
         end
 
         def vaults_in(compartment_id)
-          vault_client = OCI::KeyManagement::KmsVaultClient.new(:config => tenant_config(@tenant), :retry_config => retry_config)
+          vault_client = OCI::KeyManagement::KmsVaultClient.new(:proxy_settings => proxy_config(@tenant), :config => tenant_config(@tenant), :retry_config => retry_config)
           vault_client.send('list_vaults', compartment_id).data
         end
 
         def availability_domains_in(compartment_id)
-          identity_client = OCI::Identity::IdentityClient.new(:config => tenant_config(@tenant), :retry_config => retry_config)
+          identity_client = OCI::Identity::IdentityClient.new(:proxy_settings => proxy_config(@tenant), :config => tenant_config(@tenant), :retry_config => retry_config)
           identity_client.send('list_availability_domains', compartment_id).data.collect(&:name)
         end
 
         def client
-          @client ||= ServiceInfo.type_to_client(@resource_type).new(:config => tenant_config(@tenant), :retry_config => retry_config)
+          @client ||= ServiceInfo.type_to_client(@resource_type).new(:proxy_settings => proxy_config(@tenant), :config => tenant_config(@tenant), :retry_config => retry_config)
         end
 
         def object_type_plural

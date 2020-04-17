@@ -18,7 +18,7 @@ end
 
 # rubocop: disable Metrics/AbcSize
 def before_action
-  client = OCI::FileStorage::FileStorageClient.new(:config => tenant_config(tenant), :retry_config => retry_config)
+  client = OCI::FileStorage::FileStorageClient.new(:proxy_settings => proxy_config(tenant), :config => tenant_config(tenant), :retry_config => retry_config)
   mount_target_id = resolver.name_to_ocid(tenant, mount_target, :mounttarget)
   @oci_api_data['export_set_id'] = client.get_mount_target(mount_target_id).data.export_set_id
   @oci_api_data['file_system_id'] = resolver.name_to_ocid(tenant, file_system, :filesystem)

@@ -28,7 +28,7 @@ newproperty(:vnics, :parent => Puppet_X::EnterpriseModules::Oci::AssociatedHashP
   end
 
   def self.resource_name(tenant, record)
-    net_client = OCI::Core::VirtualNetworkClient.new(:config => tenant_config(tenant))
+    net_client = OCI::Core::VirtualNetworkClient.new(:proxy_settings => proxy_config(tenant), :config => tenant_config(tenant))
     @vnic_data = net_client.get_vnic(record.vnic_id).data
     @vnic_data.display_name
   end

@@ -13,6 +13,17 @@ module Puppet_X
           config_for_settings(tenant)
         end
 
+        def proxy_config(tenant)
+          extend(EasyType::Encryption)
+          settings       = settings_for(tenant)
+          proxy_address  = settings['proxy_address']
+          proxy_port     = settings['proxy_port']
+          proxy_user     = settings['proxy_user']
+          proxy_password = decrypted_value(settings['proxy_password']) if settings['proxy_password']
+          proxy_password ||= nil
+          OCI::ApiClientProxySettings.new(proxy_address, proxy_port, proxy_user, proxy_password)
+        end
+
         def retry_config
           OCI::Retry::RetryConfig.new(
             :base_sleep_time_millis => 1000,
