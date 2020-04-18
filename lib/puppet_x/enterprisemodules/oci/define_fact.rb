@@ -44,7 +44,16 @@ def oci_define_fact(type_name, fields, &filter)
     extend Puppet_X::EnterpriseModules::Oci::Config
 
     setcode do
-      list_for_resource(type_name, fields, &filter)
+      begin
+        list_for_resource(type_name, fields, &filter)
+      rescue OCI::Errors::ServiceError => e
+        #
+        # If we are not autorized, return an empty Hash and leave the property blank
+        #
+        raise unless e.service_code == 'NotAuthorizedOrNotFound'
+
+        Puppet.debug "Skip fetching fact #{type_name} because of an authorization failure."
+      end
     end
   end
 end
