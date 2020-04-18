@@ -54,6 +54,14 @@ module Puppet_X
             Puppet.debug "Resolving resource name for #{assoc_record}"
             value[resource_name(tenant, assoc_record)] = resource_data(tenant, assoc_record)
           end
+        rescue OCI::Errors::ServiceError => e
+          #
+          # If we are not autorized, return an empty Hash and leave the property blank
+          #
+          raise unless e.service_code == 'NotAuthorizedOrNotFound'
+
+          Puppet.debug "Skip fetching property #{name} because of an authorization failure."
+          {}
         end
         # rubocop: enable Metrics/AbcSize
 

@@ -27,9 +27,7 @@ module Puppet_X
           #
           # We now use a large limit, be we need to modify it to use multiple calls.
           #
-          @cache[tenant]      = @clients[tenant].list_compartments(@tenant_ids[tenant], :limit => 9_999_999, :access_level => 'ACCESSIBLE', :compartment_id_in_subtree => true).data
-          # Not sue if we need it. Seems to be more secured so we remove it for now
-          # @cache[tenant] << @clients[tenant].get_compartment(@tenant_ids[tenant]).data
+          @cache[tenant] = @clients[tenant].list_compartments(@tenant_ids[tenant], :limit => 9_999_999, :access_level => 'ACCESSIBLE', :compartment_id_in_subtree => true).data
         end
 
         def self.instance(tenant)

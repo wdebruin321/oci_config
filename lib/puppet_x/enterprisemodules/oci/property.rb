@@ -4,6 +4,7 @@ module Puppet_X
   module EnterpriseModules
     module Oci
       # Docs
+      # rubocop: disable Metrics/ClassLength
       class Property < Puppet::Property
         include EasyType
 
@@ -114,9 +115,18 @@ module Puppet_X
 
           if value.is_a?(Hash)
             value.keys.grep(/_ids?$/).each do |key|
-              new_key = key.scan(/(.*)_id(s)?$/).flatten.join
-              value["#{new_key}_type"] = resolver.id_type(value[key]).to_s
-              value[new_key] = resolver.ocid_to_name(@tenant, value[key])
+              begin
+                new_key = key.scan(/(.*)_id(s)?$/).flatten.join
+                value[new_key] = resolver.ocid_to_name(@tenant, value[key])
+                value["#{new_key}_type"] = resolver.id_type(value[key]).to_s
+              rescue OCI::Errors::ServiceError => e
+                #
+                # If we are not autorized, return an empty Hash and leave the property blank
+                #
+                raise unless e.service_code == 'NotAuthorizedOrNotFound'
+
+                Puppet.debug "Skip fetching property #{name} because of an authorization failure."
+              end
             end
           end
           value
@@ -144,6 +154,7 @@ module Puppet_X
         end
         # rubocop: enable Metrics/AbcSize
       end
+      # rubocop: enable Metrics/ClassLength
     end
   end
 end

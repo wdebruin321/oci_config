@@ -14,7 +14,8 @@ module Puppet_X
           @object_class  = object_class
           @object_type   = @object_class.to_s.split('::').last.underscore
           @resource_type = @object_class.to_s.gsub('::Models', '').split('::').join('_').underscore.to_sym
-          @resolver = Puppet_X::EnterpriseModules::Oci::NameResolver.instance(tenant)
+          @tenant_id     = settings_for(@tenant)['tenancy_ocid']
+          @resolver      = Puppet_X::EnterpriseModules::Oci::NameResolver.instance(tenant)
         end
 
         # rubocop: disable Metrics/CyclomaticComplexity, Metrics/MethodLength
@@ -50,10 +51,13 @@ module Puppet_X
           client.send("list_#{object_type_plural}").data
         end
 
+        def compartment_list(specified_compartment)
+          specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) << @tenant_id : [specified_compartment]
+        end
+
         # rubocop: disable Metrics/AbcSize
         def resources_in_compartments(specified_compartment, details_get = false)
-          compartment_list = specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) : [specified_compartment]
-          compartment_list.collect do |compartment_id|
+          compartment_list(specified_compartment).collect do |compartment_id|
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
             case object_type_plural
             when 'exports'
@@ -76,23 +80,18 @@ module Puppet_X
             end
           end.flatten.compact.uniq(&:id)
         end
-        # rubocop: enable Metrics/AbcSize
 
-        # rubocop: disable Metrics/AbcSize
+        # rubocop: enable Metrics/AbcSize
         def resources_in_protocol(specified_compartment)
-          compartment_list = specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) : [specified_compartment]
-          compartment_list.collect do |compartment_id|
+          compartment_list(specified_compartment).collect do |compartment_id|
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
             Puppet.debug 'Inspecting protocol SAML2...'
             client.send("list_#{object_type_plural}", 'SAML2', compartment_id).data
           end.flatten.compact.uniq(&:id)
         end
-        # rubocop: enable Metrics/AbcSize
 
-        # rubocop: disable Metrics/AbcSize
         def resources_in_vncs(specified_compartment)
-          compartment_list = specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) : [specified_compartment]
-          compartment_list.collect do |compartment_id|
+          compartment_list(specified_compartment).collect do |compartment_id|
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
             vncs_in(compartment_id).collect do |vnc_id|
               Puppet.debug "Inspecting vnc #{vnc_id}..."
@@ -100,13 +99,11 @@ module Puppet_X
             end
           end.flatten.compact.uniq(&:id)
         end
-        # rubocop: enable Metrics/AbcSize
 
         # rubocop: disable Metrics/AbcSize
         def resources_in_namespace(specified_compartment)
           namespace = client.get_namespace.data
-          compartment_list = specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) : [specified_compartment]
-          compartment_list.collect do |compartment_id|
+          compartment_list(specified_compartment).collect do |compartment_id|
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
             buckets = client.list_buckets(namespace, compartment_id).data
             buckets.collect { |b| client.get_bucket(namespace, b.name).data }
@@ -116,8 +113,7 @@ module Puppet_X
 
         # rubocop: disable Metrics/AbcSize
         def resources_in_vaults(specified_compartment)
-          compartment_list = specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) : [specified_compartment]
-          compartment_list.collect do |compartment_id|
+          compartment_list(specified_compartment).collect do |compartment_id|
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
             vaults_in(compartment_id).collect do |vault|
               kms_management_client = OCI::KeyManagement::KmsManagementClient.new(:proxy_settings => proxy_config(@tenant),
@@ -133,8 +129,7 @@ module Puppet_X
 
         # rubocop: disable Metrics/AbcSize
         def resources_in_availability_domains(specified_compartment)
-          compartment_list = specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) : [specified_compartment]
-          compartment_list.collect do |compartment_id|
+          compartment_list(specified_compartment).collect do |compartment_id|
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
             availability_domains_in(compartment_id).collect do |availability_domain|
               Puppet.debug "Inspecting availability domain #{availability_domain} for #{object_type_plural}..."
