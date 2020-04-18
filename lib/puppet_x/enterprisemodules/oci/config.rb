@@ -26,12 +26,12 @@ module Puppet_X
 
         def retry_config
           OCI::Retry::RetryConfig.new(
-            :base_sleep_time_millis => 1000,
+            :base_sleep_time_millis => 50,
             :exponential_growth_factor => 2,
-            :sleep_calc_millis_proc => ->(_, _) { 1000 },
-            :max_attempts => 20,
+            :sleep_calc_millis_proc => ->(_, _) { 200 },
+            :max_attempts => 2,
             :max_elapsed_time_millis => 300_000,
-            :max_sleep_between_attempts_millis => 1000,
+            :max_sleep_between_attempts_millis => 500,
             :should_retry_exception_proc => ->(data) do
               return false unless data.last_exception.status_code == 404
 
