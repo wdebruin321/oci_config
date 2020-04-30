@@ -47,4 +47,5 @@ Puppet::Type.newtype(type_name) do
   property :proxy_port
   property :proxy_user
   property :proxy_password
+  property :facts
 end
