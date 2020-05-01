@@ -19,7 +19,7 @@ plan oci_config::shutdown_instances(
     $node_facts = puppetdb_fact([$hostname])
     if $node_facts == {} {
       out::message("Skipping node ${instance.host} not found in Puppetdb.")
-    } elsif $node_facts.dig($hostname, 'oci_instance_id') == nil {
+    } elsif $node_facts.dig($hostname, 'oci_instance_id') == undef {
       out::message("Skipping node ${instance.host} not an OCI node.")
     } else {
       $instance_id = $node_facts.dig($hostname, 'oci_instance_id')
