@@ -18,14 +18,14 @@ plan oci_config::shutdown_instances(
     $hostname = $instance.host
     $node_facts = puppetdb_fact([$hostname])
     if $node_facts == {} {
-      out::message("Skipping node ${instance.host} not found in Puppetdb.")
+      warning("Skipping node ${instance.host} not found in Puppetdb.")
     } elsif $node_facts.dig($hostname, 'oci_instance_id') == undef {
-      out::message("Skipping node ${instance.host} not an OCI node.")
+      warning("Skipping node ${instance.host} not an OCI node.")
     } else {
       $instance_id = $node_facts.dig($hostname, 'oci_instance_id')
-      out::message("Execute regular shutdown on machine ${hostname}...")
+      notice("Execute regular shutdown on machine ${hostname}...")
       run_task('reboot', $instance, message => $shutdown_message, timeout => $wait_for_shutdown, shutdown_only => true)
-      out::message("Execute shutdown on OCI-level for ${hostname} with ocid ${instance_id}...")
+      notice("Execute shutdown on OCI-level for ${hostname} with ocid ${instance_id}...")
       run_task('oci_config::instance_action', $oci_master, instance_id => $instance_id, action => 'SOFTSTOP' )
     }
   }

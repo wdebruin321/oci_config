@@ -16,12 +16,12 @@ plan oci_config::start_instances(
     $hostname = $instance.host
     $node_facts = puppetdb_fact([$hostname])
     if $node_facts == {} {
-      out::message("Skipping node ${instance.host} not found in Puppetdb.")
+      warning("Skipping node ${instance.host} not found in Puppetdb.")
     } elsif $node_facts.dig($hostname, 'oci_instance_id') == undef {
-      out::message("Skipping node ${instance.host} not an OCI node.")
+      warning("Skipping node ${instance.host} not an OCI node.")
     } else {
       $instance_id = $node_facts.dig($hostname, 'oci_instance_id')
-      out::message("Execute sartup on OCI-level for ${hostname} with ocid ${instance_id}...")
+      notice("Execute startup on OCI-level for ${hostname} with ocid ${instance_id}...")
       run_task('oci_config::instance_action', $oci_master, instance_id => $instance_id, action => 'START' )
     }
   }
