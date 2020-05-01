@@ -2,9 +2,6 @@
 
 require 'net/http'
 require 'json'
-require_relative '../puppet_x/enterprisemodules/oci/settings'
-require_relative '../puppet_x/enterprisemodules/oci/config'
-require_relative '../puppet_x/enterprisemodules/oci/name_resolver'
 
 def instance_path
   '/opc/v1/instance/'
