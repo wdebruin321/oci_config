@@ -4,7 +4,6 @@
 plan oci_config::start_instances(
   TargetSpec $instances,
   TargetSpec $oci_master        = 'localhost',
-  String[1]  $skip_label        = 'always_off',
 ) {
   if get_targets($oci_master).length > 1 {
     fail_plan("${oci_master} did not resolve to a single target")
@@ -22,7 +21,9 @@ plan oci_config::start_instances(
     } else {
       $instance_id = $node_facts.dig($hostname, 'oci_instance_id')
       notice("Execute startup on OCI-level for ${hostname} with ocid ${instance_id}...")
-      run_task('oci_config::instance_action', $oci_master, instance_id => $instance_id, action => 'START' )
+      run_task('oci_config::instance_action', $oci_master,
+        instance_id => $instance_id,
+        action => 'START' )
     }
   }
 }
