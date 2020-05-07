@@ -7,6 +7,7 @@ rescue LoadError
 end
 
 require 'pathname'
+require 'etc'
 $LOAD_PATH.unshift(Pathname.new(__FILE__).dirname.parent.parent)
 $LOAD_PATH.unshift(Pathname.new(__FILE__).dirname.parent.parent.parent.parent + 'easy_type' + 'lib')
 require 'easy_type'
@@ -47,6 +48,16 @@ class String
   end
 end
 
+#
+# Dir.home is used in the sdk, but will fail when run as a service. That's
+# why we monley patch our own implementation here that will NOT fail when run as
+# a service
+#
+class Dir
+  def self.home
+    Etc.getpwuid(Process.uid).dir
+  end
+end
 # Add some methods from Rails to aid in changeing keys
 class Hash
   def to_puppet
