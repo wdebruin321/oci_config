@@ -11,16 +11,16 @@ class Dir
   end
 end
 
+require 'pathname'
+require 'etc'
+$LOAD_PATH.unshift(Pathname.new(__FILE__).dirname.parent.parent)
+$LOAD_PATH.unshift(Pathname.new(__FILE__).dirname.parent.parent.parent.parent + 'easy_type' + 'lib')
+
 begin
   require 'oci'
 rescue LoadError
   raise Puppet::Error, 'oci gem is not installed. Please install this gem before using oci_ puppet resources.'
 end
-
-require 'pathname'
-require 'etc'
-$LOAD_PATH.unshift(Pathname.new(__FILE__).dirname.parent.parent)
-$LOAD_PATH.unshift(Pathname.new(__FILE__).dirname.parent.parent.parent.parent + 'easy_type' + 'lib')
 require 'easy_type'
 require_relative './settings'
 require_relative './type'
