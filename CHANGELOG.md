@@ -1,6 +1,38 @@
 History
 ========
 
+## 0.3.0
+
+- [oci_core_instance] Add key is_management_disabled to agent_config
+- [core] Monkey patch implementation of Dir.home
+- [oci_core_instance] Fix agent config when used with 2.8.0 gem
+- [oci_identity_user] Fix user capabilities when used with 2.8.0 gem
+- [functions] Add initial implementation of wait_until_unavailable
+- [plans] Use Puppet messages instead out out::message
+- [facts] Skip OCI facts when no oci gem installed
+- [plan/start_instance] Initial implementation
+- [plan/shutdown_instances] Fix check for oci node
+- [facts] Add posibility to skip facts
+- [facts] Handle authorization failure on facts gracefull
+- [core] Speed up API retries
+- [core] Handle authorization failure on properties gracefull
+- [core] Move settings into oci part to bypass naming conflicts with other modules
+- [core] Add support for proxy servers
+- [oci_tenant] Add proxy properties
+- [plans/shutdown_instances] Initial implementation
+- [core] Make name resolver operate in less secure accounts
+- [oci_client_facts] Fix when used outside of oci
+- [tasks/instance_action] Initial implementation
+- [core] Add support for default tenants
+- [oci_client_facts] Fix settings and config reguire
+- [client_facts] Add oci_defined_tags and oci_freeform_tags as first class facts
+- [client_facts] Add fact oci_instance_id
+- [facts] Add fact oci_core_image and function latest_image_for to use it with ease
+- [oci_core_instance_configuration] Use detailed get_ method
+- [core] Make data type check less restrictive for Strings
+- [core] Fix data_type of defined_tags
+- [oci_core_service_gateway] Fix lookup of service_id’s
+
 ## 0.2.0
 
 - [tasks/*_block_volume_backup] refactered code and added task to delete block_volume backups
