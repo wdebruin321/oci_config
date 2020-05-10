@@ -15,6 +15,20 @@ module Puppet_X
           parent.extend(Settings)
         end
 
+        PUPPET_META_ATTRIBUTES = [:name,
+                                  :alias,
+                                  :audit,
+                                  :before,
+                                  :loglevel,
+                                  :noop,
+                                  :notify,
+                                  :require,
+                                  :schedule,
+                                  :stage,
+                                  :subscribe,
+                                  :tag,
+                                  :provider].freeze
+
         def oci_api_data
           @oci_api_data
         end
@@ -251,6 +265,55 @@ module Puppet_X
           def module_name
             'oci_config'
           end
+
+          # rubocop: disable Metrics/AbcSize, Metrics/MethodLength
+          def execute_prefetch(resources, provider)
+            tenants = resources.map { |title, _content| title.split('/').first }.uniq.map { |e| e.gsub(' (root)', '') }
+            compartments = resources.map { |title, _content| title.split('/')[1...-1].join('/') }.map { |e| e.empty? ? '/' : e }.uniq
+            raw_resources = tenants.collect do |tenant|
+              compartments.collect do |compartment_name|
+                lister = ResourceLister.new(tenant, object_class)
+                resolver = Puppet_X::EnterpriseModules::Oci::NameResolver.instance(tenant)
+                compartment_id = resolver.name_to_ocid(tenant, "#{tenant} (root)/#{compartment_name}")
+                lister.resource_list(compartment_id).collect do |resource|
+                  hash = resource.to_hash.to_puppet
+                  hash['tenant'] = tenant
+                  hash
+                end
+              end
+            end.flatten.compact
+            raw_resources.each do |raw_resource|
+              name_parameter_class = paramclass(:name)
+              name = name_parameter_class.translate_to_resource(raw_resource)     # Get the full name
+              next unless resource_names_in_manifest(resources).include?(name)    # Skip if not in manifest
+
+              specfied_properties = resources[name].to_hash.reject { |key, _value| PUPPET_META_ATTRIBUTES.include?(key) }.keys
+              #
+              # There are anumber of properties we always need. So add them to the list
+              #
+              specfied_properties += [:id, :compartment_id, :namespace, :subnet_id, :vcn_id]
+              resources[name].provider = provider.map_raw_to_resource(raw_resource, specfied_properties)
+            end
+            resources
+          end
+          # rubocop: enable Metrics/AbcSize, Metrics/MethodLength
+
+          #
+          # Check if the resource names are in the manifest and if the resources
+          # contain any tags that are on the list of explicit list fo tags that we need
+          # or explicitly on the list of tags we want to skip.
+          #
+          # rubocop: disable Metrics/AbcSize
+          def resource_names_in_manifest(resources)
+            resources.keys.select do |name|
+              if Puppet['tags'].empty?
+                !resources[name].tagged?(Puppet['skip_tags'])
+              else
+                resources[name].tagged?(Puppet['tags']) && !resources[name].tagged?(Puppet['skip_tags'])
+              end
+            end
+          end
+          # rubocop: enable Metrics/AbcSize
 
           def client(tenant = nil)
             client_class.new(:proxy_settings => proxy_config(tenant), :config => tenant_config(tenant), :retry_config => retry_config)

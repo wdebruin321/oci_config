@@ -19,8 +19,8 @@ oci_core_instance { 'enterprisemodules (root)/bert2':
   shape               => 'VM.Standard1.1',
   source_details      => {
     source_type => 'image',
-    image_type => 'image',
-    image => 'Oracle-Linux-7.7-2019.12.18-0',
+    image_type  => 'image',
+    image       => oci_config::latest_image_for('Oracle Linux', '7.7', /^((?!GPU).)*$/),
   },
   vnics               => {
     'nic1' => {

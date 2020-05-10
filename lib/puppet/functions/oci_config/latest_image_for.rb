@@ -18,7 +18,7 @@ Puppet::Functions.create_function('oci_config::latest_image_for') do
   # rubocop: disable Metrics/AbcSize
   def latest_image_for(operating_system, operating_system_version, name = /.*/)
     variable = 'oci_core_image'
-    return nil unless variable_exists?(variable)
+    fail "Fact #{variable} does not exists. Probably not enabled. Check enabled facts for this tenant." unless variable_exists?(variable)
 
     fact_value = closure_scope.lookupvar("::#{variable}")
     available_images = fact_value.select do |k, v|

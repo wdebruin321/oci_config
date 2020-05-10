@@ -83,6 +83,8 @@ module Puppet_X
                            else
                              name_to_ocid(tenant, compartment_name, :compartment)
                            end
+          return compartment_id if name.empty?
+
           object = find_in_cache(tenant, id_type, name, compartment_id)
           if object.nil? # Not in cache, fetch it
             #
