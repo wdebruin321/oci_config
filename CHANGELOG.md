@@ -1,6 +1,11 @@
 History
 ========
 
+## 0.4.0
+
+- [core] Update all types to gem 2.8.0 definition
+- [core] Fix handling id’s in hash properties
+
 ## 0.3.0
 
 - [oci_core_instance] Add key is_management_disabled to agent_config
