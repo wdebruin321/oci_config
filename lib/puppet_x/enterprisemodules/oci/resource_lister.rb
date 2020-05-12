@@ -55,33 +55,45 @@ module Puppet_X
           specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) << @tenant_id : [specified_compartment]
         end
 
-        # rubocop: disable Metrics/AbcSize
+        # rubocop: disable Metrics/AbcSize, Metrics/MethodLength
         def resources_in_compartments(specified_compartment, details_get = false)
           compartment_list(specified_compartment).collect do |compartment_id|
-            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
-            case object_type_plural
-            when 'exports'
-              #
-              # Copy the content of the path variable to name to make pupet happy
-              #
-              summary_data = client.list_exports(:compartment_id => compartment_id).data
-              summary_data.collect do |export|
-                client.get_export(export.id).data
-              end
-            when 'public_ips'
-              client.list_public_ips('REGION', compartment_id, :lifetime => 'RESERVED').data
-            else
-              summary_data = client.send("list_#{object_type_plural}", compartment_id).data
-              if details_get
-                summary_data.collect { |s| client.send("get_#{@object_type}", s.id).data }
+            begin
+              Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
+              case object_type_plural
+              when 'exports'
+                #
+                # Copy the content of the path variable to name to make pupet happy
+                #
+                summary_data = client.list_exports(:compartment_id => compartment_id).data
+                summary_data.collect do |export|
+                  client.get_export(export.id).data
+                end
+              when 'public_ips'
+                client.list_public_ips('REGION', compartment_id, :lifetime => 'RESERVED').data
               else
-                summary_data
+                summary_data = client.send("list_#{object_type_plural}", compartment_id).data
+                Puppet.debug "Found #{summary_data.size} #{object_type_plural}..."
+                if details_get
+                  Puppet.debug "Fetching detailed data for #{object_type_plural}..."
+                  summary_data.collect { |s| client.send("get_#{@object_type}", s.id).data }
+                else
+                  summary_data
+                end
               end
+            rescue OCI::Errors::ServiceError => e
+              #
+              # If we are not autorized, return an empty Hash and leave the property blank
+              #
+              raise unless e.service_code == 'NotAuthorizedOrNotFound'
+
+              Puppet.debug "Skip fetching resources in #{compartment_id} because of an authorization failure."
+              []
             end
           end.flatten.compact.uniq(&:id)
         end
+        # rubocop: enable Metrics/AbcSize, Metrics/MethodLength
 
-        # rubocop: enable Metrics/AbcSize
         def resources_in_protocol(specified_compartment)
           compartment_list(specified_compartment).collect do |compartment_id|
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
