@@ -158,7 +158,6 @@ module OCI
       next_page = nil
       agregated_data = []
       agregated = false
-      # rubocop: disable Lint/LiteralAsCondition
       while true
         response = proc.call(next_page) unless using_instance_principals?
         response = instance_principals_signer_wrapped_call { proc.call(next_page) } if using_instance_principals?
@@ -170,7 +169,7 @@ module OCI
         agregated = true
         next_page = response.next_page
       end
-      # rubocop: enable Lint/LiteralAsCondition
+
       if agregated
         #
         # Build a new response if we have agregated data

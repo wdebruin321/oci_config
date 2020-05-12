@@ -20,6 +20,10 @@ AllCops:
     - 'pkg/**/*'
     - 'bin/*'
 
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true     # (0.83)
+Style/SlicingWithRange:
+  Enabled: true     # (0.83)
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true     # (0.82)
 Style/ExponentialNotation:
