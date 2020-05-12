@@ -7,7 +7,8 @@
 #
 newproperty(:kms_key_id, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   desc <<-DESC
-  The OCID of a KMS key id used to call KMS to generate the data key or decrypt the encrypted data key.
+  The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a master encryption key used to call the Key
+Management service to generate a data encryption key or to encrypt or decrypt a data encryption key.
   Rather use the property `kms_key` instead of a direct OCID reference.
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).

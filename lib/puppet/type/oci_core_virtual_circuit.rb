@@ -73,6 +73,7 @@ supply string values using the API.
   property :service_type
   property :time_created
   property :type
+  property :customer_asn
 
   validate do
     validate_reference_propery(:compartment_id, self)

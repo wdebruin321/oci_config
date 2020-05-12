@@ -33,27 +33,29 @@ supply string values using the API.
 
 
 
-Attribute Name                                                       | Short Description                                                                            |
--------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-[absent_states](#oci_core_cpe_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                             |
-[compartment](#oci_core_cpe_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                              |
-[compartment_id](#oci_core_cpe_compartment_id)                       | The OCID of the compartment that contains the object.                                        |
-[cpe_name](#oci_core_cpe_cpe_name)                                   | The name of the cpe.                                                                         |
-[defined_tags](#oci_core_cpe_defined_tags)                           |   Defined tags for this resource.                                                            |
-[disable_corrective_change](#oci_core_cpe_disable_corrective_change) | Disable the modification of a resource when Puppet decides it is a corrective change.        |
-[disable_corrective_ensure](#oci_core_cpe_disable_corrective_ensure) | Disable the creation or removal of a resource when Puppet decides is a corrective change.    |
-[ensure](#oci_core_cpe_ensure)                                       | The basic property that the resource should be in.                                           |
-[freeform_tags](#oci_core_cpe_freeform_tags)                         |   Free-form tags for this resource.                                                          |
-[id](#oci_core_cpe_id)                                               | The OCID of the resource.                                                                    |
-[ip_address](#oci_core_cpe_ip_address)                               |   The public IP address of the on-premises router.                                           |
-[name](#oci_core_cpe_name)                                           | The full name of the object.                                                                 |
-[oci_timeout](#oci_core_cpe_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                      |
-[oci_wait_interval](#oci_core_cpe_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.               |
-[present_states](#oci_core_cpe_present_states)                       | The OCI states, puppet will detect as the resource being present.                            |
-[provider](#oci_core_cpe_provider)                                   | resource.                                                                                    |
-[synchronized](#oci_core_cpe_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource. |
-[tenant](#oci_core_cpe_tenant)                                       | The tenant for this resource.                                                                |
-[time_created](#oci_core_cpe_time_created)                           |   The date and time the CPE was created, in the format defined by RFC3339.                   |
+Attribute Name                                                       | Short Description                                                                                            |
+-------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+[absent_states](#oci_core_cpe_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                                             |
+[compartment](#oci_core_cpe_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                                              |
+[compartment_id](#oci_core_cpe_compartment_id)                       | The OCID of the compartment that contains the object.                                                        |
+[cpe_device_shape](#oci_core_cpe_cpe_device_shape)                   | The Puppet name of the resource identified by `cpe_device_shape_id`.                                         |
+[cpe_device_shape_id](#oci_core_cpe_cpe_device_shape_id)             |   The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the CPE device type. |
+[cpe_name](#oci_core_cpe_cpe_name)                                   | The name of the cpe.                                                                                         |
+[defined_tags](#oci_core_cpe_defined_tags)                           |   Defined tags for this resource.                                                                            |
+[disable_corrective_change](#oci_core_cpe_disable_corrective_change) | Disable the modification of a resource when Puppet decides it is a corrective change.                        |
+[disable_corrective_ensure](#oci_core_cpe_disable_corrective_ensure) | Disable the creation or removal of a resource when Puppet decides is a corrective change.                    |
+[ensure](#oci_core_cpe_ensure)                                       | The basic property that the resource should be in.                                                           |
+[freeform_tags](#oci_core_cpe_freeform_tags)                         |   Free-form tags for this resource.                                                                          |
+[id](#oci_core_cpe_id)                                               | The OCID of the resource.                                                                                    |
+[ip_address](#oci_core_cpe_ip_address)                               |   The public IP address of the on-premises router.                                                           |
+[name](#oci_core_cpe_name)                                           | The full name of the object.                                                                                 |
+[oci_timeout](#oci_core_cpe_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                                      |
+[oci_wait_interval](#oci_core_cpe_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.                               |
+[present_states](#oci_core_cpe_present_states)                       | The OCI states, puppet will detect as the resource being present.                                            |
+[provider](#oci_core_cpe_provider)                                   | resource.                                                                                                    |
+[synchronized](#oci_core_cpe_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource.                 |
+[tenant](#oci_core_cpe_tenant)                                       | The tenant for this resource.                                                                                |
+[time_created](#oci_core_cpe_time_created)                           |   The date and time the CPE was created, in the format defined by RFC3339.                                   |
 
 
 
@@ -85,6 +87,40 @@ The OCID of the compartment that contains the object.
 Rather use the property `compartment` instead of a direct OCID reference.
 
 This documentation is generated from the Ruby OCI SDK.
+
+
+
+[Back to overview of oci_core_cpe](#attributes)
+
+### cpe_device_shape<a name='oci_core_cpe_cpe_device_shape'>
+
+The Puppet name of the resource identified by `cpe_device_shape_id`.
+
+See the documentation of cpe_device_shape_id for all details.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_cpe](#attributes)
+
+### cpe_device_shape_id<a name='oci_core_cpe_cpe_device_shape_id'>
+
+  The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the CPE device type. You can provide
+a value if you want to later generate CPE device configuration content for IPSec connections
+that use this CPE. You can also call {#update_cpe update_cpe} later to
+provide a value. For a list of possible values, see
+{#list_cpe_device_shapes list_cpe_device_shapes}.
+
+For more information about generating CPE device configuration content, see:
+
+  * {#get_cpe_device_config_content get_cpe_device_config_content}
+  * {#get_ipsec_cpe_device_config_content get_ipsec_cpe_device_config_content}
+  * {#get_tunnel_cpe_device_config_content get_tunnel_cpe_device_config_content}
+  * {#get_tunnel_cpe_device_config get_tunnel_cpe_device_config}
+  Rather use the property `cpe_device_shape` instead of a direct OCID reference.
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 
 

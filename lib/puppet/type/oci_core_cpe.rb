@@ -54,8 +54,11 @@ supply string values using the API.
   property :freeform_tags
   property :ip_address
   property :time_created
+  property :cpe_device_shape
+  property :cpe_device_shape_id
 
   validate do
     validate_reference_propery(:compartment_id, self)
+    validate_reference_propery(:cpe_device_shape_id, self)
   end
 end

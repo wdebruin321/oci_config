@@ -7,9 +7,8 @@
 #
 newproperty(:customer_bgp_asn, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   desc <<-DESC
-  Your BGP ASN (either public or private). Provide this value only if
-there's a BGP session that goes from your edge router to Oracle.
-Otherwise, leave this empty or null.
+  Deprecated. Instead use `customerAsn`.
+If you specify values for both, the request will be rejected.
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC

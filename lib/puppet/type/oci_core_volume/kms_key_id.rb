@@ -7,7 +7,8 @@
 #
 newproperty(:kms_key_id, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   desc <<-DESC
-  The OCID of the KMS key to be used as the master encryption key for the volume.
+  The OCID of the Key Management key to assign as the master encryption key
+for the volume.
   Rather use the property `kms_key` instead of a direct OCID reference.
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).

@@ -57,6 +57,7 @@ supply string values using the API.
   property :kms_key_id
   property :backup_policy
   property :backup_policy_id
+  property :vpus_per_gb
 
   validate do
     validate_reference_propery(:compartment_id, self)

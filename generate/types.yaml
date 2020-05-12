@@ -36,7 +36,7 @@ oci_budget_budget:
       desc: |-
         The list of targets on which the budget is applied.
           If targetType is \"COMPARTMENT\", targets contains list of compartment OCIDs.
-          If targetType is \"TAG\", targets contains list of tag identifiers in the form of \"{tagNamespace}.{tagKey}.{tagValue}\".
+          If targetType is \"TAG\", targets contains list of cost tracking tag identifiers in the form of \"{tagNamespace}.{tagKey}.{tagValue}\".
         Curerntly, the array should contain EXACT ONE item.
     lifecycle_state:
       data_type: String
@@ -131,6 +131,22 @@ oci_core_cpe:
         The date and time the CPE was created, in the format defined by RFC3339.
 
         Example: `2016-08-25T21:10:29.600Z`
+    cpe_device_shape_id:
+      reference_type: cpe
+      data_type: String
+      desc: |-
+        The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the CPE device type. You can provide
+        a value if you want to later generate CPE device configuration content for IPSec connections
+        that use this CPE. You can also call {#update_cpe update_cpe} later to
+        provide a value. For a list of possible values, see
+        {#list_cpe_device_shapes list_cpe_device_shapes}.
+
+        For more information about generating CPE device configuration content, see:
+
+          * {#get_cpe_device_config_content get_cpe_device_config_content}
+          * {#get_ipsec_cpe_device_config_content get_ipsec_cpe_device_config_content}
+          * {#get_tunnel_cpe_device_config_content get_tunnel_cpe_device_config_content}
+          * {#get_tunnel_cpe_device_config get_tunnel_cpe_device_config}
   desc: |-
     An object you create when setting up an IPSec VPN between your on-premises network
     and VCN. The `Cpe` is a virtual representation of your customer-premises equipment,
@@ -879,7 +895,6 @@ oci_core_security_list:
     level, but the rules are applied to the ingress and egress traffic for the individual instances
     in the subnet. The rules can be stateful or stateless. For more information, see
     [Security Lists](https://docs.cloud.oracle.com/Content/Network/Concepts/securitylists.htm).
-
     **Note:** Compare security lists to {NetworkSecurityGroup}s,
     which let you apply a set of security rules to a *specific set of VNICs* instead of an entire
     subnet. Oracle recommends using network security groups instead of security lists, although you
@@ -1174,7 +1189,7 @@ oci_core_subnet:
 
         Example: `00:00:17:B6:4D:DD`
   desc: |-
-    A logical subdivision of a VCN. Each subnet exists in a single availability domain and
+    A logical subdivision of a VCN. Each subnet
     consists of a contiguous range of IP addresses that do not overlap with
     other subnets in the VCN. Example: 172.16.1.0/24. For more information, see
     [Overview of the Networking Service](https://docs.cloud.oracle.com/Content/Network/Concepts/overview.htm) and
@@ -1360,9 +1375,8 @@ oci_core_virtual_circuit:
     customer_bgp_asn:
       data_type: Integer
       desc: |-
-        Your BGP ASN (either public or private). Provide this value only if
-        there's a BGP session that goes from your edge router to Oracle.
-        Otherwise, leave this empty or null.
+        Deprecated. Instead use `customerAsn`.
+        If you specify values for both, the request will be rejected.
     defined_tags:
       data_type: Hash[String, Hash[String, Any]]
       desc: |-
@@ -1464,6 +1478,15 @@ oci_core_virtual_circuit:
         The type of IP addresses used in this virtual circuit. PRIVATE
         means [RFC 1918](https://tools.ietf.org/html/rfc1918) addresses
         (10.0.0.0/8, 172.16/12, and 192.168/16).
+    customer_asn:
+      data_type: Integer
+      desc: |-
+        Your BGP ASN (either public or private). Provide this value only if
+        there's a BGP session that goes from your edge router to Oracle.
+        Otherwise, leave this empty or null.
+        Can be a 2-byte or 4-byte ASN. Uses \"asplain\" format.
+
+        Example: `12345` (2-byte) or `1587232876` (4-byte)
   desc: |-
     For use with Oracle Cloud Infrastructure FastConnect.
 
@@ -2043,7 +2066,7 @@ oci_core_instance_console_connection:
       data_type: String
       desc: The SSH public key used to authenticate the console connection.
   desc: |-
-    The `InstanceConsoleConnection` API provides you with console access to virtual machine (VM) instances,
+    The `InstanceConsoleConnection` API provides you with console access to Compute instances,
     enabling you to troubleshoot malfunctioning instances remotely.
 
     For more information about console access, see
@@ -2123,14 +2146,27 @@ oci_core_boot_volume:
     kms_key_id:
       reference_type: key
       data_type: String
-      desc: The OCID of the KMS key to be used as the master encryption key for the
-        boot volume.
+      desc: |-
+        The OCID of the Key Management key to assign as the master encryption key
+        for the boot volume.
     backup_policy_id:
       reference_type: volumebackuppolicy
       data_type: String
       desc: |-
         If provided, specifies the ID of the boot volume backup policy to assign to the newly
         created boot volume. If omitted, no policy will be assigned.
+    vpus_per_gb:
+      data_type: Integer
+      desc: |-
+        The number of volume performance units (VPUs) that will be applied to this volume per GB,
+        representing the Block Volume service's elastic performance options.
+        See [Block Volume Elastic Performance](https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more information.
+
+        Allowed values:
+
+          * `10`: Represents Balanced option.
+
+          * `20`: Represents Higher Performance option.
   desc: |-
     A detachable boot volume device that contains the image used to boot a Compute instance. For more information, see
     [Overview of Boot Volumes](https://docs.cloud.oracle.com/Content/Block/Concepts/bootvolumes.htm).
@@ -2226,6 +2262,10 @@ oci_core_boot_volume_backup:
       desc: |-
         The size used by the backup, in GBs. It is typically smaller than sizeInGBs, depending on the space
         consumed on the boot volume and whether the backup is full or incremental.
+    source_boot_volume_backup_id:
+      reference_type: volumebackup
+      data_type: String
+      desc: The OCID of the source boot volume backup.
   desc: |-
     A point-in-time copy of a boot volume that can then be used to create
     a new boot volume or recover a boot volume. For more information, see [Overview
@@ -2292,8 +2332,9 @@ oci_core_volume:
     kms_key_id:
       reference_type: key
       data_type: String
-      desc: The OCID of the KMS key to be used as the master encryption key for the
-        volume.
+      desc: |-
+        The OCID of the Key Management key to assign as the master encryption key
+        for the volume.
     lifecycle_state:
       data_type: String
       desc: The current state of a volume.
@@ -2332,6 +2373,20 @@ oci_core_volume:
         The OCID of the volume backup from which the data should be restored on the newly created volume.
         This field is deprecated. Use the sourceDetails field instead to specify the
         backup for the volume.
+    vpus_per_gb:
+      data_type: Integer
+      desc: |-
+        The number of volume performance units (VPUs) that will be applied to this volume per GB,
+        representing the Block Volume service's elastic performance options.
+        See [Block Volume Elastic Performance](https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more information.
+
+        Allowed values:
+
+          * `0`: Represents Lower Cost option.
+
+          * `10`: Represents Balanced option.
+
+          * `20`: Represents Higher Performance option.
   desc: |-
     A detachable block volume device that allows you to dynamically expand
     the storage capacity of an instance. For more information, see
@@ -2495,7 +2550,10 @@ oci_core_volume_backup_policy:
       desc: The OCID of the volume backup policy.
     schedules:
       data_type: Array[Oci_config::VolumeBackupSchedule]
-      desc: The collection of schedules that this policy will apply.
+      desc: |-
+        The collection of schedules for the volume backup policy. See
+        see [Schedules](https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm#schedules) in
+        [Policy-Based Backups](https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm) for more information.
     time_created:
       data_type: Runtime
       desc: The date and time the volume backup policy was created. Format defined
@@ -2503,7 +2561,7 @@ oci_core_volume_backup_policy:
     compartment_id:
       reference_type: compartment
       data_type: String
-      desc: The OCID of the compartment that contains the backup policy.
+      desc: The OCID of the compartment.
     defined_tags:
       data_type: Hash[String, Hash[String, Any]]
       desc: |-
@@ -3011,12 +3069,14 @@ oci_identity_tag_namespace:
       desc: |-
         Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+
         Example: `{\"Department\": \"Finance\"}`
     defined_tags:
       data_type: Hash[String, Hash[String, Any]]
       desc: |-
         Defined tags for this resource. Each key is predefined and scoped to a namespace.
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+
         Example: `{\"Operations\": {\"CostCenter\": \"42\"}}`
     is_retired:
       data_type: Boolean
@@ -3297,7 +3357,7 @@ oci_core_ip_sec_connection:
         For more information, see the important note in {IPSecConnection}.
 
         The CIDR can be either IPv4 or IPv6. Note that IPv6 addressing is currently supported only
-        in the Government Cloud.
+        in certain regions. See [IPv6 Addresses](https://docs.cloud.oracle.com/Content/Network/Concepts/ipv6.htm).
 
         Example: `10.0.1.0/24`
 
@@ -3460,6 +3520,42 @@ oci_database_autonomous_database:
       data_type: Boolean
     source:
       data_type: String
+    subnet_id:
+      reference_type: subnet
+      data_type: String
+      desc: |-
+        The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the resource is associated with.
+
+        **Subnet Restrictions:**
+        - For bare metal DB systems and for single node virtual machine DB systems, do not use a subnet that overlaps with 192.168.16.16/28.
+        - For Exadata and virtual machine 2-node RAC DB systems, do not use a subnet that overlaps with 192.168.128.0/20.
+        - For Autonomous Database, setting this will disable public secure access to the database.
+
+        These subnets are used by the Oracle Clusterware private interconnect on the database instance.
+        Specifying an overlapping subnet will cause the private interconnect to malfunction.
+        This restriction applies to both the client subnet and the backup subnet.
+    nsg_ids:
+      data_type: Array[String]
+      reference_type: networksecuritygroup
+      desc: |-
+        A list of the [OCIDs](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+        **NsgIds restrictions:**
+        - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty.
+    private_endpoint:
+      data_type: String
+      desc: The private endpoint for the resource.
+    private_endpoint_label:
+      data_type: String
+      desc: The private endpoint label for the resource.
+    data_safe_status:
+      data_type: String
+      desc: Status of the Data Safe registration for this Autonomous Database.
+    time_maintenance_begin:
+      data_type: Runtime
+      desc: The date and time when maintenance will begin.
+    time_maintenance_end:
+      data_type: Runtime
+      desc: The date and time when maintenance will end.
   desc: An Oracle Autonomous Database.
 oci_key_management_key:
   desc: An encryption key.
@@ -3480,14 +3576,15 @@ oci_key_management_key:
   properties:
     compartment_id:
       data_type: String
-      desc: The OCID of the compartment that contains this key.
+      desc: The OCID of the compartment that contains this master encryption key.
     current_key_version:
       data_type: String
     defined_tags:
       data_type: Hash[String, Hash[String, Any]]
       desc: |-
-        Usage of predefined tag keys. These predefined keys are scoped to namespaces.
-        Example: `{\"foo-namespace\": {\"bar-key\": \"foo-value\"}}`
+        Defined tags for this resource. Each key is predefined and scoped to a namespace.
+        For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+        Example: `{\"Operations\": {\"CostCenter\": \"42\"}}`
     display_name:
       data_type: String
       desc: |-
@@ -3496,9 +3593,9 @@ oci_key_management_key:
     freeform_tags:
       data_type: Hash[String, String]
       desc: |-
-        Simple key-value pair that is applied without any predefined name, type, or scope.
-        Exists for cross-compatibility only.
-        Example: `{\"bar-key\": \"value\"}`
+        Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+        For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+        Example: `{\"Department\": \"Finance\"}`
     id:
       data_type: String
     key_shape:
@@ -3533,8 +3630,9 @@ oci_key_management_vault:
     defined_tags:
       data_type: Hash[String, Hash[String, Any]]
       desc: |-
-        Usage of predefined tag keys. These predefined keys are scoped to namespaces.
-        Example: `{\"foo-namespace\": {\"bar-key\": \"foo-value\"}}`
+        Defined tags for this resource. Each key is predefined and scoped to a namespace.
+        For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+        Example: `{\"Operations\": {\"CostCenter\": \"42\"}}`
     display_name:
       data_type: String
       desc: |-
@@ -3543,9 +3641,9 @@ oci_key_management_vault:
     freeform_tags:
       data_type: Hash[String, String]
       desc: |-
-        Simple key-value pair that is applied without any predefined name, type, or scope.
-        Exists for cross-compatibility only.
-        Example: `{\"bar-key\": \"value\"}`
+        Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+        For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+        Example: `{\"Department\": \"Finance\"}`
     id:
       data_type: String
     lifecycle_state:
@@ -3560,6 +3658,9 @@ oci_key_management_vault:
       data_type: String
       desc: The type of vault to create. Each type of vault stores the key with different
         degrees of isolation and has different options and pricing.
+    wrappingkey_id:
+      reference_type: key
+      data_type: String
 oci_core_public_ip:
   example: |-
     Here is an example on how to use this:
@@ -3685,7 +3786,8 @@ oci_core_instance_pool:
       desc: The OCID of the instance pool.
     compartment_id:
       data_type: String
-      desc: The OCID of the compartment containing the instance pool
+      desc: The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+        of the compartment containing the instance pool.
     defined_tags:
       data_type: Hash[String, Hash[String, Any]]
       desc: |-
@@ -3708,7 +3810,9 @@ oci_core_instance_pool:
     instance_configuration_id:
       reference_type: instanceconfiguration
       data_type: String
-      desc: The OCID of the instance configuration associated with the instance pool.
+      desc: |-
+        The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance configuration associated
+        with the instance pool.
     lifecycle_state:
       data_type: String
       desc: The current state of the instance pool.
@@ -3852,7 +3956,7 @@ oci_object_storage_bucket:
     name:
       data_type: String
       desc: |-
-        The name of the bucket. Valid characters are uppercase or lowercase letters, numbers, and dashes.
+        The name of the bucket. Valid characters are uppercase or lowercase letters, numbers, hyphens, underscores, and periods.
         Bucket names must be unique within an Object Storage namespace. Avoid entering confidential information.
         example: Example: my-new-bucket1
     compartment_id:
@@ -3885,8 +3989,9 @@ oci_object_storage_bucket:
     object_events_enabled:
       data_type: Boolean
       desc: |-
-        A property that determines whether events will be generated for operations on objects in this bucket.
-        This is false by default.
+        Whether or not events are emitted for object state changes in this bucket. By default, `objectEventsEnabled` is
+        set to `false`. Set `objectEventsEnabled` to `true` to emit events for object state changes. For more information
+        about events, see [Overview of Events](https://docs.cloud.oracle.com/Content/Events/Concepts/eventsoverview.htm).
     freeform_tags:
       data_type: Hash[String, String]
       desc: |-
@@ -3902,14 +4007,21 @@ oci_object_storage_bucket:
     kms_key_id:
       reference_type: key
       data_type: String
-      desc: The OCID of a KMS key id used to call KMS to generate the data key or
-        decrypt the encrypted data key.
+      desc: |-
+        The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a master encryption key used to call the Key
+        Management service to generate a data encryption key or to encrypt or decrypt a data encryption key.
     object_lifecycle_policy_etag:
       data_type: String
     approximate_count:
       data_type: Integer
     approximate_size:
       data_type: Integer
+    replication_enabled:
+      data_type: Boolean
+    is_read_only:
+      data_type: Boolean
+    id:
+      data_type: String
 oci_file_storage_file_system:
   example: |-
     Here is an example on how to use this:
@@ -4081,6 +4193,14 @@ oci_file_storage_mount_target:
         assigns a private IP address from the subnet.
 
         Example: `10.0.3.3`
+    nsg_ids:
+      reference_type: networksecuritygroup
+      data_type: Array[String]
+      desc: |-
+        A list of Network Security Group [OCIDs](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) associated with this mount target.
+        A maximum of 5 is allowed.
+        Setting this to an empty array after the list is created removes the mount target from all NSGs.
+        For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
   desc: |-
     Provides access to a collection of file systems through one or more VNICs on a
     specified subnet. The set of file systems is controlled through the

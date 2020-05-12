@@ -47,8 +47,11 @@ Puppet::Type.newtype(:oci_key_management_vault) do
   property :time_created
   property :time_of_deletion
   property :vault_type
+  property :wrappingkey
+  property :wrappingkey_id
 
   validate do
     validate_reference_propery(:compartment_id, self)
+    validate_reference_propery(:wrappingkey_id, self)
   end
 end

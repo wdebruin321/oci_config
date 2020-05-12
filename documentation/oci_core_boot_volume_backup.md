@@ -24,40 +24,42 @@ supply string values using the API.
 
 
 
-Attribute Name                                                                      | Short Description                                                                            |
------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
-[absent_states](#oci_core_boot_volume_backup_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                             |
-[boot_volume](#oci_core_boot_volume_backup_boot_volume)                             | The Puppet name of the resource identified by `boot_volume_id`.                              |
-[boot_volume_backup_name](#oci_core_boot_volume_backup_boot_volume_backup_name)     | The name of the boot_volume_backup.                                                          |
-[boot_volume_id](#oci_core_boot_volume_backup_boot_volume_id)                       | The OCID of the boot volume that needs to be backed up.                                      |
-[compartment](#oci_core_boot_volume_backup_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                              |
-[compartment_id](#oci_core_boot_volume_backup_compartment_id)                       | The OCID of the compartment that contains the object.                                        |
-[defined_tags](#oci_core_boot_volume_backup_defined_tags)                           |   Defined tags for this resource.                                                            |
-[disable_corrective_change](#oci_core_boot_volume_backup_disable_corrective_change) | Disable the modification of a resource when Puppet decides it is a corrective change.        |
-[disable_corrective_ensure](#oci_core_boot_volume_backup_disable_corrective_ensure) | Disable the creation or removal of a resource when Puppet decides is a corrective change.    |
-[ensure](#oci_core_boot_volume_backup_ensure)                                       | The basic property that the resource should be in.                                           |
-[expiration_time](#oci_core_boot_volume_backup_expiration_time)                     |   The date and time the volume backup will expire and be automatically deleted.              |
-[freeform_tags](#oci_core_boot_volume_backup_freeform_tags)                         |   Free-form tags for this resource.                                                          |
-[id](#oci_core_boot_volume_backup_id)                                               | The OCID of the resource.                                                                    |
-[image](#oci_core_boot_volume_backup_image)                                         | The Puppet name of the resource identified by `image_id`.                                    |
-[image_id](#oci_core_boot_volume_backup_image_id)                                   | The image OCID used to create the boot volume the backup is taken from.                      |
-[kms_key](#oci_core_boot_volume_backup_kms_key)                                     | The Puppet name of the resource identified by `kms_key_id`.                                  |
-[kms_key_id](#oci_core_boot_volume_backup_kms_key_id)                               |   The OCID of the KMS key which is the master encryption key for the boot volume backup.     |
-[lifecycle_state](#oci_core_boot_volume_backup_lifecycle_state)                     | The current state of a boot volume backup.                                                   |
-[name](#oci_core_boot_volume_backup_name)                                           | The full name of the object.                                                                 |
-[oci_timeout](#oci_core_boot_volume_backup_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                      |
-[oci_wait_interval](#oci_core_boot_volume_backup_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.               |
-[present_states](#oci_core_boot_volume_backup_present_states)                       | The OCI states, puppet will detect as the resource being present.                            |
-[provider](#oci_core_boot_volume_backup_provider)                                   | resource.                                                                                    |
-[size_in_gbs](#oci_core_boot_volume_backup_size_in_gbs)                             | The size of the boot volume, in GBs.                                                         |
-[source_type](#oci_core_boot_volume_backup_source_type)                             | Specifies whether the backup was created manually, or via scheduled backup policy.           |
-[synchronized](#oci_core_boot_volume_backup_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource. |
-[system_tags](#oci_core_boot_volume_backup_system_tags)                             |   System tags for this resource.                                                             |
-[tenant](#oci_core_boot_volume_backup_tenant)                                       | The tenant for this resource.                                                                |
-[time_created](#oci_core_boot_volume_backup_time_created)                           |   The date and time the boot volume backup was created.                                      |
-[time_request_received](#oci_core_boot_volume_backup_time_request_received)         | The date and time the request to create the boot volume backup was received.                 |
-[type](#oci_core_boot_volume_backup_type)                                           | The type of backup to create.                                                                |
-[unique_size_in_gbs](#oci_core_boot_volume_backup_unique_size_in_gbs)               |   The size used by the backup, in GBs.                                                       |
+Attribute Name                                                                            | Short Description                                                                            |
+----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+[absent_states](#oci_core_boot_volume_backup_absent_states)                               | The OCI states, puppet will detect as the resource being absent.                             |
+[boot_volume](#oci_core_boot_volume_backup_boot_volume)                                   | The Puppet name of the resource identified by `boot_volume_id`.                              |
+[boot_volume_backup_name](#oci_core_boot_volume_backup_boot_volume_backup_name)           | The name of the boot_volume_backup.                                                          |
+[boot_volume_id](#oci_core_boot_volume_backup_boot_volume_id)                             | The OCID of the boot volume that needs to be backed up.                                      |
+[compartment](#oci_core_boot_volume_backup_compartment)                                   | The Puppet name of the resource identified by `compartment_id`.                              |
+[compartment_id](#oci_core_boot_volume_backup_compartment_id)                             | The OCID of the compartment that contains the object.                                        |
+[defined_tags](#oci_core_boot_volume_backup_defined_tags)                                 |   Defined tags for this resource.                                                            |
+[disable_corrective_change](#oci_core_boot_volume_backup_disable_corrective_change)       | Disable the modification of a resource when Puppet decides it is a corrective change.        |
+[disable_corrective_ensure](#oci_core_boot_volume_backup_disable_corrective_ensure)       | Disable the creation or removal of a resource when Puppet decides is a corrective change.    |
+[ensure](#oci_core_boot_volume_backup_ensure)                                             | The basic property that the resource should be in.                                           |
+[expiration_time](#oci_core_boot_volume_backup_expiration_time)                           |   The date and time the volume backup will expire and be automatically deleted.              |
+[freeform_tags](#oci_core_boot_volume_backup_freeform_tags)                               |   Free-form tags for this resource.                                                          |
+[id](#oci_core_boot_volume_backup_id)                                                     | The OCID of the resource.                                                                    |
+[image](#oci_core_boot_volume_backup_image)                                               | The Puppet name of the resource identified by `image_id`.                                    |
+[image_id](#oci_core_boot_volume_backup_image_id)                                         | The image OCID used to create the boot volume the backup is taken from.                      |
+[kms_key](#oci_core_boot_volume_backup_kms_key)                                           | The Puppet name of the resource identified by `kms_key_id`.                                  |
+[kms_key_id](#oci_core_boot_volume_backup_kms_key_id)                                     |   The OCID of the KMS key which is the master encryption key for the boot volume backup.     |
+[lifecycle_state](#oci_core_boot_volume_backup_lifecycle_state)                           | The current state of a boot volume backup.                                                   |
+[name](#oci_core_boot_volume_backup_name)                                                 | The full name of the object.                                                                 |
+[oci_timeout](#oci_core_boot_volume_backup_oci_timeout)                                   | The maximum time to wait for the OCI resource to be in the ready state.                      |
+[oci_wait_interval](#oci_core_boot_volume_backup_oci_wait_interval)                       | The interval beween calls to OCI to check if a resource is in the ready state.               |
+[present_states](#oci_core_boot_volume_backup_present_states)                             | The OCI states, puppet will detect as the resource being present.                            |
+[provider](#oci_core_boot_volume_backup_provider)                                         | resource.                                                                                    |
+[size_in_gbs](#oci_core_boot_volume_backup_size_in_gbs)                                   | The size of the boot volume, in GBs.                                                         |
+[source_boot_volume_backup](#oci_core_boot_volume_backup_source_boot_volume_backup)       | The Puppet name of the resource identified by `source_boot_volume_backup_id`.                |
+[source_boot_volume_backup_id](#oci_core_boot_volume_backup_source_boot_volume_backup_id) | The OCID of the source boot volume backup.                                                   |
+[source_type](#oci_core_boot_volume_backup_source_type)                                   | Specifies whether the backup was created manually, or via scheduled backup policy.           |
+[synchronized](#oci_core_boot_volume_backup_synchronized)                                 | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource. |
+[system_tags](#oci_core_boot_volume_backup_system_tags)                                   |   System tags for this resource.                                                             |
+[tenant](#oci_core_boot_volume_backup_tenant)                                             | The tenant for this resource.                                                                |
+[time_created](#oci_core_boot_volume_backup_time_created)                                 |   The date and time the boot volume backup was created.                                      |
+[time_request_received](#oci_core_boot_volume_backup_time_request_received)               | The date and time the request to create the boot volume backup was received.                 |
+[type](#oci_core_boot_volume_backup_type)                                                 | The type of backup to create.                                                                |
+[unique_size_in_gbs](#oci_core_boot_volume_backup_unique_size_in_gbs)                     |   The size used by the backup, in GBs.                                                       |
 
 
 
@@ -361,6 +363,29 @@ sdk
 ### size_in_gbs<a name='oci_core_boot_volume_backup_size_in_gbs'>
 
 The size of the boot volume, in GBs.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_boot_volume_backup](#attributes)
+
+### source_boot_volume_backup<a name='oci_core_boot_volume_backup_source_boot_volume_backup'>
+
+The Puppet name of the resource identified by `source_boot_volume_backup_id`.
+
+See the documentation of source_boot_volume_backup_id for all details.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_boot_volume_backup](#attributes)
+
+### source_boot_volume_backup_id<a name='oci_core_boot_volume_backup_source_boot_volume_backup_id'>
+
+The OCID of the source boot volume backup.
+Rather use the property `source_boot_volume_backup` instead of a direct OCID reference.
 
 This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 

@@ -7,7 +7,9 @@
 #
 newproperty(:schedules, :array_matching => :all, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   desc <<-DESC
-  The collection of schedules that this policy will apply.
+  The collection of schedules for the volume backup policy. See
+see [Schedules](https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm#schedules) in
+[Policy-Based Backups](https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm) for more information.
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC

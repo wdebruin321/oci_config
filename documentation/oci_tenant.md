@@ -35,11 +35,16 @@ Attribute Name                                                     | Short Descr
 ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
 [disable_corrective_change](#oci_tenant_disable_corrective_change) | Disable the modification of a resource when Puppet decides it is a corrective change.     |
 [disable_corrective_ensure](#oci_tenant_disable_corrective_ensure) | Disable the creation or removal of a resource when Puppet decides is a corrective change. |
+[facts](#oci_tenant_facts)                                         | The facts you want to enable on this tennant.                                             |
 [fingerprint](#oci_tenant_fingerprint)                             | SSL Fingerprint to use for authentication.                                                |
 [name](#oci_tenant_name)                                           | The name of the setting.                                                                  |
 [private_key](#oci_tenant_private_key)                             | Client private key content.                                                               |
 [private_key_password](#oci_tenant_private_key_password)           | Pass phrase used for key file, if it is encrypted.                                        |
 [provider](#oci_tenant_provider)                                   | resource.                                                                                 |
+[proxy_address](#oci_tenant_proxy_address)                         | Address (fqdn) of the proxy server.                                                       |
+[proxy_password](#oci_tenant_proxy_password)                       | Proxy password.                                                                           |
+[proxy_port](#oci_tenant_proxy_port)                               | IP port of the proxy server.                                                              |
+[proxy_user](#oci_tenant_proxy_user)                               | Username for the proxy.                                                                   |
 [region](#oci_tenant_region)                                       | A region to use for APIs created with this instance.                                      |
 [tenancy_ocid](#oci_tenant_tenancy_ocid)                           | OCID of the tenancy to use for authentication.                                            |
 [user_ocid](#oci_tenant_user_ocid)                                 | OCID of the user to use for authentication.                                               |
@@ -118,6 +123,14 @@ and signal an error:
 
 [Back to overview of oci_tenant](#attributes)
 
+### facts<a name='oci_tenant_facts'>
+
+The facts you want to enable on this tennant.
+
+
+
+[Back to overview of oci_tenant](#attributes)
+
 ### fingerprint<a name='oci_tenant_fingerprint'>
 
 SSL Fingerprint to use for authentication.
@@ -158,6 +171,38 @@ discover the appropriate provider for your platform.Available providers are:
 
 simple
 : Manage oci tenant through yaml file
+
+
+
+[Back to overview of oci_tenant](#attributes)
+
+### proxy_address<a name='oci_tenant_proxy_address'>
+
+Address (fqdn) of the proxy server.
+
+
+
+[Back to overview of oci_tenant](#attributes)
+
+### proxy_password<a name='oci_tenant_proxy_password'>
+
+Proxy password.
+
+
+
+[Back to overview of oci_tenant](#attributes)
+
+### proxy_port<a name='oci_tenant_proxy_port'>
+
+IP port of the proxy server.
+
+
+
+[Back to overview of oci_tenant](#attributes)
+
+### proxy_user<a name='oci_tenant_proxy_user'>
+
+Username for the proxy.
 
 
 

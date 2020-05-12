@@ -41,6 +41,8 @@ Puppet::Type.newtype(:oci_object_storage_bucket) do
   property :object_lifecycle_policy_etag
   property :approximate_count
   property :approximate_size
+  property :replication_enabled
+  property :is_read_only
 
   validate do
     validate_reference_propery(:compartment_id, self)

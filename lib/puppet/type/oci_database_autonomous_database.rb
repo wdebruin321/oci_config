@@ -60,9 +60,20 @@ Puppet::Type.newtype(:oci_database_autonomous_database) do
   property :admin_password
   property :is_preview_version_with_service_terms_accepted
   property :source
+  property :subnet
+  property :subnet_id
+  property :nsgs
+  property :nsg_ids
+  property :private_endpoint
+  property :private_endpoint_label
+  property :data_safe_status
+  property :time_maintenance_begin
+  property :time_maintenance_end
 
   validate do
     validate_reference_propery(:compartment_id, self)
     validate_reference_propery(:autonomous_container_database_id, self)
+    validate_reference_propery(:subnet_id, self)
+    validate_reference_propery(:nsg_ids, self)
   end
 end

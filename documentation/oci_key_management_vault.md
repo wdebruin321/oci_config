@@ -29,11 +29,11 @@ Attribute Name                                                                  
 [compartment_id](#oci_key_management_vault_compartment_id)                       | The OCID of the compartment that contains the object.                                        |
 [crypto_endpoint](#oci_key_management_vault_crypto_endpoint)                     | 
                                                                                             |
-[defined_tags](#oci_key_management_vault_defined_tags)                           |   Usage of predefined tag keys.                                                              |
+[defined_tags](#oci_key_management_vault_defined_tags)                           |   Defined tags for this resource.                                                            |
 [disable_corrective_change](#oci_key_management_vault_disable_corrective_change) | Disable the modification of a resource when Puppet decides it is a corrective change.        |
 [disable_corrective_ensure](#oci_key_management_vault_disable_corrective_ensure) | Disable the creation or removal of a resource when Puppet decides is a corrective change.    |
 [ensure](#oci_key_management_vault_ensure)                                       | The basic property that the resource should be in.                                           |
-[freeform_tags](#oci_key_management_vault_freeform_tags)                         |   Simple key-value pair that is applied without any predefined name, type, or scope.         |
+[freeform_tags](#oci_key_management_vault_freeform_tags)                         |   Free-form tags for this resource.                                                          |
 [id](#oci_key_management_vault_id)                                               | The OCID of the resource.                                                                    |
 [lifecycle_state](#oci_key_management_vault_lifecycle_state)                     | 
                                                                                             |
@@ -52,6 +52,10 @@ Attribute Name                                                                  
                                                                                             |
 [vault_name](#oci_key_management_vault_vault_name)                               | The name of the vault.                                                                       |
 [vault_type](#oci_key_management_vault_vault_type)                               | The type of vault to create.                                                                 |
+[wrappingkey](#oci_key_management_vault_wrappingkey)                             | 
+                                                                                            |
+[wrappingkey_id](#oci_key_management_vault_wrappingkey_id)                       | 
+                                                                                            |
 
 
 
@@ -98,8 +102,9 @@ This documentation is generated from the Ruby OCI SDK.
 
 ### defined_tags<a name='oci_key_management_vault_defined_tags'>
 
-  Usage of predefined tag keys. These predefined keys are scoped to namespaces.
-Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
+  Defined tags for this resource. Each key is predefined and scoped to a namespace.
+For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+Example: `{"Operations": {"CostCenter": "42"}}`
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
@@ -188,9 +193,9 @@ Valid values are `present`, `absent`.
 
 ### freeform_tags<a name='oci_key_management_vault_freeform_tags'>
 
-  Simple key-value pair that is applied without any predefined name, type, or scope.
-Exists for cross-compatibility only.
-Example: `{"bar-key": "value"}`
+  Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+Example: `{"Department": "Finance"}`
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
@@ -314,6 +319,22 @@ The name of the vault.
 The type of vault to create. Each type of vault stores the key with different degrees of isolation and has different options and pricing.
 
 This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_key_management_vault](#attributes)
+
+### wrappingkey<a name='oci_key_management_vault_wrappingkey'>
+
+
+
+
+
+[Back to overview of oci_key_management_vault](#attributes)
+
+### wrappingkey_id<a name='oci_key_management_vault_wrappingkey_id'>
+
+
 
 
 

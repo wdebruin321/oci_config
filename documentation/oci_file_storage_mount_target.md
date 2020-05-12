@@ -27,34 +27,36 @@ referenced export set.
 
 
 
-Attribute Name                                                                        | Short Description                                                                            |
-------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-[absent_states](#oci_file_storage_mount_target_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                             |
-[availability_domain](#oci_file_storage_mount_target_availability_domain)             |   The availability domain in which to create the mount target.                               |
-[compartment](#oci_file_storage_mount_target_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                              |
-[compartment_id](#oci_file_storage_mount_target_compartment_id)                       | The OCID of the compartment that contains the object.                                        |
-[defined_tags](#oci_file_storage_mount_target_defined_tags)                           |   Defined tags for this resource.                                                            |
-[disable_corrective_change](#oci_file_storage_mount_target_disable_corrective_change) | Disable the modification of a resource when Puppet decides it is a corrective change.        |
-[disable_corrective_ensure](#oci_file_storage_mount_target_disable_corrective_ensure) | Disable the creation or removal of a resource when Puppet decides is a corrective change.    |
-[ensure](#oci_file_storage_mount_target_ensure)                                       | The basic property that the resource should be in.                                           |
-[freeform_tags](#oci_file_storage_mount_target_freeform_tags)                         |   Free-form tags for this resource.                                                          |
-[hostname_label](#oci_file_storage_mount_target_hostname_label)                       | DNS resolution.                                                                              |
-[id](#oci_file_storage_mount_target_id)                                               | The OCID of the resource.                                                                    |
-[ip_address](#oci_file_storage_mount_target_ip_address)                               |   A private IP address of your choice.                                                       |
-[lifecycle_state](#oci_file_storage_mount_target_lifecycle_state)                     | The current state of the mount target.                                                       |
-[mount_target_name](#oci_file_storage_mount_target_mount_target_name)                 | The name of the mount_target.                                                                |
-[name](#oci_file_storage_mount_target_name)                                           | The full name of the object.                                                                 |
-[oci_timeout](#oci_file_storage_mount_target_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                      |
-[oci_wait_interval](#oci_file_storage_mount_target_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.               |
-[present_states](#oci_file_storage_mount_target_present_states)                       | The OCI states, puppet will detect as the resource being present.                            |
-[private_ip_ids](#oci_file_storage_mount_target_private_ip_ids)                       | The OCIDs of the private IP addresses associated with this mount target.                     |
-[private_ips](#oci_file_storage_mount_target_private_ips)                             | The Puppet name of the resource identified by `private_ip_ids`.                              |
-[provider](#oci_file_storage_mount_target_provider)                                   | resource.                                                                                    |
-[subnet](#oci_file_storage_mount_target_subnet)                                       | The Puppet name of the resource identified by `subnet_id`.                                   |
-[subnet_id](#oci_file_storage_mount_target_subnet_id)                                 | The OCID of the subnet in which to create the mount target.                                  |
-[synchronized](#oci_file_storage_mount_target_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource. |
-[tenant](#oci_file_storage_mount_target_tenant)                                       | The tenant for this resource.                                                                |
-[time_created](#oci_file_storage_mount_target_time_created)                           | in [RFC 3339](https://tools.ietf.org/rfc/rfc3339) timestamp format.                          |
+Attribute Name                                                                        | Short Description                                                                                                                                     |
+------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+[absent_states](#oci_file_storage_mount_target_absent_states)                         | The OCI states, puppet will detect as the resource being absent.                                                                                      |
+[availability_domain](#oci_file_storage_mount_target_availability_domain)             |   The availability domain in which to create the mount target.                                                                                        |
+[compartment](#oci_file_storage_mount_target_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                                                                                       |
+[compartment_id](#oci_file_storage_mount_target_compartment_id)                       | The OCID of the compartment that contains the object.                                                                                                 |
+[defined_tags](#oci_file_storage_mount_target_defined_tags)                           |   Defined tags for this resource.                                                                                                                     |
+[disable_corrective_change](#oci_file_storage_mount_target_disable_corrective_change) | Disable the modification of a resource when Puppet decides it is a corrective change.                                                                 |
+[disable_corrective_ensure](#oci_file_storage_mount_target_disable_corrective_ensure) | Disable the creation or removal of a resource when Puppet decides is a corrective change.                                                             |
+[ensure](#oci_file_storage_mount_target_ensure)                                       | The basic property that the resource should be in.                                                                                                    |
+[freeform_tags](#oci_file_storage_mount_target_freeform_tags)                         |   Free-form tags for this resource.                                                                                                                   |
+[hostname_label](#oci_file_storage_mount_target_hostname_label)                       | DNS resolution.                                                                                                                                       |
+[id](#oci_file_storage_mount_target_id)                                               | The OCID of the resource.                                                                                                                             |
+[ip_address](#oci_file_storage_mount_target_ip_address)                               |   A private IP address of your choice.                                                                                                                |
+[lifecycle_state](#oci_file_storage_mount_target_lifecycle_state)                     | The current state of the mount target.                                                                                                                |
+[mount_target_name](#oci_file_storage_mount_target_mount_target_name)                 | The name of the mount_target.                                                                                                                         |
+[name](#oci_file_storage_mount_target_name)                                           | The full name of the object.                                                                                                                          |
+[nsg_ids](#oci_file_storage_mount_target_nsg_ids)                                     |   A list of Network Security Group [OCIDs](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) associated with this mount target. |
+[nsgs](#oci_file_storage_mount_target_nsgs)                                           | The Puppet name of the resource identified by `nsg_ids`.                                                                                              |
+[oci_timeout](#oci_file_storage_mount_target_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                                                                               |
+[oci_wait_interval](#oci_file_storage_mount_target_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.                                                                        |
+[present_states](#oci_file_storage_mount_target_present_states)                       | The OCI states, puppet will detect as the resource being present.                                                                                     |
+[private_ip_ids](#oci_file_storage_mount_target_private_ip_ids)                       | The OCIDs of the private IP addresses associated with this mount target.                                                                              |
+[private_ips](#oci_file_storage_mount_target_private_ips)                             | The Puppet name of the resource identified by `private_ip_ids`.                                                                                       |
+[provider](#oci_file_storage_mount_target_provider)                                   | resource.                                                                                                                                             |
+[subnet](#oci_file_storage_mount_target_subnet)                                       | The Puppet name of the resource identified by `subnet_id`.                                                                                            |
+[subnet_id](#oci_file_storage_mount_target_subnet_id)                                 | The OCID of the subnet in which to create the mount target.                                                                                           |
+[synchronized](#oci_file_storage_mount_target_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource.                                                          |
+[tenant](#oci_file_storage_mount_target_tenant)                                       | The tenant for this resource.                                                                                                                         |
+[time_created](#oci_file_storage_mount_target_time_created)                           | in [RFC 3339](https://tools.ietf.org/rfc/rfc3339) timestamp format.                                                                                   |
 
 
 
@@ -273,6 +275,32 @@ The name of the mount_target.
 ### name<a name='oci_file_storage_mount_target_name'>
 
 The full name of the object.
+
+
+
+[Back to overview of oci_file_storage_mount_target](#attributes)
+
+### nsg_ids<a name='oci_file_storage_mount_target_nsg_ids'>
+
+  A list of Network Security Group [OCIDs](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) associated with this mount target.
+A maximum of 5 is allowed.
+Setting this to an empty array after the list is created removes the mount target from all NSGs.
+For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+  Rather use the property `nsgs` instead of a direct OCID reference.
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_file_storage_mount_target](#attributes)
+
+### nsgs<a name='oci_file_storage_mount_target_nsgs'>
+
+The Puppet name of the resource identified by `nsg_ids`.
+
+See the documentation of nsg_ids for all details.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 
 

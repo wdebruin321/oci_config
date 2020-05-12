@@ -58,11 +58,14 @@ supply string values using the API.
   property :time_request_received
   property :type
   property :unique_size_in_gbs
+  property :source_boot_volume_backup
+  property :source_boot_volume_backup_id
 
   validate do
     validate_reference_propery(:boot_volume_id, self)
     validate_reference_propery(:compartment_id, self)
     validate_reference_propery(:image_id, self)
     validate_reference_propery(:kms_key_id, self)
+    validate_reference_propery(:source_boot_volume_backup_id, self)
   end
 end

@@ -61,7 +61,7 @@ Attribute Name                                                                  
 [oci_wait_interval](#oci_core_volume_backup_policy_oci_wait_interval)                 | The interval beween calls to OCI to check if a resource is in the ready state.               |
 [present_states](#oci_core_volume_backup_policy_present_states)                       | The OCI states, puppet will detect as the resource being present.                            |
 [provider](#oci_core_volume_backup_policy_provider)                                   | resource.                                                                                    |
-[schedules](#oci_core_volume_backup_policy_schedules)                                 | The collection of schedules that this policy will apply.                                     |
+[schedules](#oci_core_volume_backup_policy_schedules)                                 |   The collection of schedules for the volume backup policy.                                  |
 [synchronized](#oci_core_volume_backup_policy_synchronized)                           | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource. |
 [tenant](#oci_core_volume_backup_policy_tenant)                                       | The tenant for this resource.                                                                |
 [time_created](#oci_core_volume_backup_policy_time_created)                           | The date and time the volume backup policy was created.                                      |
@@ -264,9 +264,11 @@ sdk
 
 ### schedules<a name='oci_core_volume_backup_policy_schedules'>
 
-The collection of schedules that this policy will apply.
+  The collection of schedules for the volume backup policy. See
+see [Schedules](https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm#schedules) in
+[Policy-Based Backups](https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm) for more information.
 
-This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 
 

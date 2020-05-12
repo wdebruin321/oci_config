@@ -59,10 +59,13 @@ referenced export set.
   property :defined_tags
   property :hostname_label
   property :ip_address
+  property :nsgs
+  property :nsg_ids
 
   validate do
     validate_reference_propery(:compartment_id, self)
     validate_reference_propery(:private_ip_ids, self)
     validate_reference_propery(:subnet_id, self)
+    validate_reference_propery(:nsg_ids, self)
   end
 end

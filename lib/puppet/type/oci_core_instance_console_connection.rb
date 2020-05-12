@@ -10,7 +10,7 @@ require 'puppet_x/enterprisemodules/oci/core'
 Puppet::Type.newtype(:oci_core_instance_console_connection) do
   include Puppet_X::EnterpriseModules::Oci::Type
   desc <<-DESC
-  The `InstanceConsoleConnection` API provides you with console access to virtual machine (VM) instances,
+  The `InstanceConsoleConnection` API provides you with console access to Compute instances,
 enabling you to troubleshoot malfunctioning instances remotely.
 
 For more information about console access, see

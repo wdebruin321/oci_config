@@ -7,7 +7,8 @@
 #
 newproperty(:instance_configuration_id, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   desc <<-DESC
-  The OCID of the instance configuration associated with the instance pool.
+  The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance configuration associated
+with the instance pool.
   Rather use the property `instance_configuration` instead of a direct OCID reference.
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).

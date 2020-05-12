@@ -29,7 +29,7 @@ Attribute Name                                                                 |
 [freeform_tags](#oci_core_instance_pool_freeform_tags)                         |   Free-form tags for this resource.                                                          |
 [id](#oci_core_instance_pool_id)                                               | The OCID of the resource.                                                                    |
 [instance_configuration](#oci_core_instance_pool_instance_configuration)       | The Puppet name of the resource identified by `instance_configuration_id`.                   |
-[instance_configuration_id](#oci_core_instance_pool_instance_configuration_id) | The OCID of the instance configuration associated with the instance pool.                    |
+[instance_configuration_id](#oci_core_instance_pool_instance_configuration_id) | with the instance pool.                                                                      |
 [instance_pool_name](#oci_core_instance_pool_instance_pool_name)               | The name of the instance_pool.                                                               |
 [lifecycle_state](#oci_core_instance_pool_lifecycle_state)                     | The current state of the instance pool.                                                      |
 [load_balancers](#oci_core_instance_pool_load_balancers)                       | The load balancers to attach to the instance pool.                                           |
@@ -208,10 +208,11 @@ This documentation is generated from the [Ruby OCI SDK](https://github.com/oracl
 
 ### instance_configuration_id<a name='oci_core_instance_pool_instance_configuration_id'>
 
-The OCID of the instance configuration associated with the instance pool.
-Rather use the property `instance_configuration` instead of a direct OCID reference.
+  The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance configuration associated
+with the instance pool.
+  Rather use the property `instance_configuration` instead of a direct OCID reference.
 
-This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 
 

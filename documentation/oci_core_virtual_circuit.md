@@ -44,7 +44,8 @@ Attribute Name                                                                  
 [compartment](#oci_core_virtual_circuit_compartment)                             | The Puppet name of the resource identified by `compartment_id`.                              |
 [compartment_id](#oci_core_virtual_circuit_compartment_id)                       | The OCID of the compartment that contains the object.                                        |
 [cross_connect_mappings](#oci_core_virtual_circuit_cross_connect_mappings)       | group this virtual circuit will run on.                                                      |
-[customer_bgp_asn](#oci_core_virtual_circuit_customer_bgp_asn)                   |   Your BGP ASN (either public or private).                                                   |
+[customer_asn](#oci_core_virtual_circuit_customer_asn)                           |   Your BGP ASN (either public or private).                                                   |
+[customer_bgp_asn](#oci_core_virtual_circuit_customer_bgp_asn)                   |   Deprecated.                                                                                |
 [defined_tags](#oci_core_virtual_circuit_defined_tags)                           |   Defined tags for this resource.                                                            |
 [disable_corrective_change](#oci_core_virtual_circuit_disable_corrective_change) | Disable the modification of a resource when Puppet decides it is a corrective change.        |
 [disable_corrective_ensure](#oci_core_virtual_circuit_disable_corrective_ensure) | Disable the creation or removal of a resource when Puppet decides is a corrective change.    |
@@ -144,11 +145,25 @@ group this virtual circuit will run on.
 
 [Back to overview of oci_core_virtual_circuit](#attributes)
 
-### customer_bgp_asn<a name='oci_core_virtual_circuit_customer_bgp_asn'>
+### customer_asn<a name='oci_core_virtual_circuit_customer_asn'>
 
   Your BGP ASN (either public or private). Provide this value only if
 there's a BGP session that goes from your edge router to Oracle.
 Otherwise, leave this empty or null.
+Can be a 2-byte or 4-byte ASN. Uses "asplain" format.
+
+Example: `12345` (2-byte) or `1587232876` (4-byte)
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_virtual_circuit](#attributes)
+
+### customer_bgp_asn<a name='oci_core_virtual_circuit_customer_bgp_asn'>
+
+  Deprecated. Instead use `customerAsn`.
+If you specify values for both, the request will be rejected.
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 

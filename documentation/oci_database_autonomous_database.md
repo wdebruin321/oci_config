@@ -15,55 +15,64 @@ This documentation is generated from the [Ruby OCI SDK](https://github.com/oracl
 
 
 
-Attribute Name                                                                                                                     | Short Description                                                                                                                       |
----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-[absent_states](#oci_database_autonomous_database_absent_states)                                                                   | The OCI states, puppet will detect as the resource being absent.                                                                        |
+Attribute Name                                                                                                                     | Short Description                                                                                                                                                    |
+---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+[absent_states](#oci_database_autonomous_database_absent_states)                                                                   | The OCI states, puppet will detect as the resource being absent.                                                                                                     |
 [admin_password](#oci_database_autonomous_database_admin_password)                                                                 | 
-                                                                                                                                       |
-[autonomous_container_database](#oci_database_autonomous_database_autonomous_container_database)                                   | The Puppet name of the resource identified by `autonomous_container_database_id`.                                                       |
-[autonomous_container_database_id](#oci_database_autonomous_database_autonomous_container_database_id)                             | The Autonomous Container Database [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).                       |
-[autonomous_database_name](#oci_database_autonomous_database_autonomous_database_name)                                             | The name of the autonomous_database.                                                                                                    |
-[compartment](#oci_database_autonomous_database_compartment)                                                                       | The Puppet name of the resource identified by `compartment_id`.                                                                         |
-[compartment_id](#oci_database_autonomous_database_compartment_id)                                                                 | The OCID of the compartment that contains the object.                                                                                   |
-[connection_strings](#oci_database_autonomous_database_connection_strings)                                                         | The connection string used to connect to the Autonomous Database.                                                                       |
+                                                                                                                                                                    |
+[autonomous_container_database](#oci_database_autonomous_database_autonomous_container_database)                                   | The Puppet name of the resource identified by `autonomous_container_database_id`.                                                                                    |
+[autonomous_container_database_id](#oci_database_autonomous_database_autonomous_container_database_id)                             | The Autonomous Container Database [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).                                                    |
+[autonomous_database_name](#oci_database_autonomous_database_autonomous_database_name)                                             | The name of the autonomous_database.                                                                                                                                 |
+[compartment](#oci_database_autonomous_database_compartment)                                                                       | The Puppet name of the resource identified by `compartment_id`.                                                                                                      |
+[compartment_id](#oci_database_autonomous_database_compartment_id)                                                                 | The OCID of the compartment that contains the object.                                                                                                                |
+[connection_strings](#oci_database_autonomous_database_connection_strings)                                                         | The connection string used to connect to the Autonomous Database.                                                                                                    |
 [connection_urls](#oci_database_autonomous_database_connection_urls)                                                               | 
-                                                                                                                                       |
-[cpu_core_count](#oci_database_autonomous_database_cpu_core_count)                                                                 | The number of CPU cores to be made available to the database.                                                                           |
-[data_storage_size_in_tbs](#oci_database_autonomous_database_data_storage_size_in_tbs)                                             | The quantity of data in the database, in terabytes.                                                                                     |
-[db_name](#oci_database_autonomous_database_db_name)                                                                               | The database name.                                                                                                                      |
-[db_version](#oci_database_autonomous_database_db_version)                                                                         | A valid Oracle Database version for Autonomous Database.                                                                                |
-[db_workload](#oci_database_autonomous_database_db_workload)                                                                       | The Autonomous Database workload type.                                                                                                  |
-[defined_tags](#oci_database_autonomous_database_defined_tags)                                                                     |   Defined tags for this resource.                                                                                                       |
-[disable_corrective_change](#oci_database_autonomous_database_disable_corrective_change)                                           | Disable the modification of a resource when Puppet decides it is a corrective change.                                                   |
-[disable_corrective_ensure](#oci_database_autonomous_database_disable_corrective_ensure)                                           | Disable the creation or removal of a resource when Puppet decides is a corrective change.                                               |
-[ensure](#oci_database_autonomous_database_ensure)                                                                                 | The basic property that the resource should be in.                                                                                      |
-[freeform_tags](#oci_database_autonomous_database_freeform_tags)                                                                   |   Free-form tags for this resource.                                                                                                     |
-[id](#oci_database_autonomous_database_id)                                                                                         | The OCID of the resource.                                                                                                               |
-[is_auto_scaling_enabled](#oci_database_autonomous_database_is_auto_scaling_enabled)                                               | Indicates if auto scaling is enabled for the Autonomous Database CPU core count.                                                        |
-[is_dedicated](#oci_database_autonomous_database_is_dedicated)                                                                     | True if the database uses the [dedicated deployment](https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm) option. |
-[is_free_tier](#oci_database_autonomous_database_is_free_tier)                                                                     | Indicates if this is an Always Free resource.                                                                                           |
-[is_preview](#oci_database_autonomous_database_is_preview)                                                                         | Indicates if the Autonomous Database version is a preview version.                                                                      |
+                                                                                                                                                                    |
+[cpu_core_count](#oci_database_autonomous_database_cpu_core_count)                                                                 | The number of CPU cores to be made available to the database.                                                                                                        |
+[data_safe_status](#oci_database_autonomous_database_data_safe_status)                                                             | Status of the Data Safe registration for this Autonomous Database.                                                                                                   |
+[data_storage_size_in_tbs](#oci_database_autonomous_database_data_storage_size_in_tbs)                                             | The quantity of data in the database, in terabytes.                                                                                                                  |
+[db_name](#oci_database_autonomous_database_db_name)                                                                               | The database name.                                                                                                                                                   |
+[db_version](#oci_database_autonomous_database_db_version)                                                                         | A valid Oracle Database version for Autonomous Database.                                                                                                             |
+[db_workload](#oci_database_autonomous_database_db_workload)                                                                       | The Autonomous Database workload type.                                                                                                                               |
+[defined_tags](#oci_database_autonomous_database_defined_tags)                                                                     |   Defined tags for this resource.                                                                                                                                    |
+[disable_corrective_change](#oci_database_autonomous_database_disable_corrective_change)                                           | Disable the modification of a resource when Puppet decides it is a corrective change.                                                                                |
+[disable_corrective_ensure](#oci_database_autonomous_database_disable_corrective_ensure)                                           | Disable the creation or removal of a resource when Puppet decides is a corrective change.                                                                            |
+[ensure](#oci_database_autonomous_database_ensure)                                                                                 | The basic property that the resource should be in.                                                                                                                   |
+[freeform_tags](#oci_database_autonomous_database_freeform_tags)                                                                   |   Free-form tags for this resource.                                                                                                                                  |
+[id](#oci_database_autonomous_database_id)                                                                                         | The OCID of the resource.                                                                                                                                            |
+[is_auto_scaling_enabled](#oci_database_autonomous_database_is_auto_scaling_enabled)                                               | Indicates if auto scaling is enabled for the Autonomous Database CPU core count.                                                                                     |
+[is_dedicated](#oci_database_autonomous_database_is_dedicated)                                                                     | True if the database uses the [dedicated deployment](https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm) option.                              |
+[is_free_tier](#oci_database_autonomous_database_is_free_tier)                                                                     | Indicates if this is an Always Free resource.                                                                                                                        |
+[is_preview](#oci_database_autonomous_database_is_preview)                                                                         | Indicates if the Autonomous Database version is a preview version.                                                                                                   |
 [is_preview_version_with_service_terms_accepted](#oci_database_autonomous_database_is_preview_version_with_service_terms_accepted) | 
-                                                                                                                                       |
-[license_model](#oci_database_autonomous_database_license_model)                                                                   | The Oracle license model that applies to the Oracle Autonomous Database.                                                                |
-[lifecycle_details](#oci_database_autonomous_database_lifecycle_details)                                                           | Information about the current lifecycle state.                                                                                          |
-[lifecycle_state](#oci_database_autonomous_database_lifecycle_state)                                                               | The current state of the database.                                                                                                      |
-[name](#oci_database_autonomous_database_name)                                                                                     | The full name of the object.                                                                                                            |
-[oci_timeout](#oci_database_autonomous_database_oci_timeout)                                                                       | The maximum time to wait for the OCI resource to be in the ready state.                                                                 |
-[oci_wait_interval](#oci_database_autonomous_database_oci_wait_interval)                                                           | The interval beween calls to OCI to check if a resource is in the ready state.                                                          |
-[present_states](#oci_database_autonomous_database_present_states)                                                                 | The OCI states, puppet will detect as the resource being present.                                                                       |
-[provider](#oci_database_autonomous_database_provider)                                                                             | resource.                                                                                                                               |
-[service_console_url](#oci_database_autonomous_database_service_console_url)                                                       | The URL of the Service Console for the Autonomous Database.                                                                             |
+                                                                                                                                                                    |
+[license_model](#oci_database_autonomous_database_license_model)                                                                   | The Oracle license model that applies to the Oracle Autonomous Database.                                                                                             |
+[lifecycle_details](#oci_database_autonomous_database_lifecycle_details)                                                           | Information about the current lifecycle state.                                                                                                                       |
+[lifecycle_state](#oci_database_autonomous_database_lifecycle_state)                                                               | The current state of the database.                                                                                                                                   |
+[name](#oci_database_autonomous_database_name)                                                                                     | The full name of the object.                                                                                                                                         |
+[nsg_ids](#oci_database_autonomous_database_nsg_ids)                                                                               |   A list of the [OCIDs](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this resource belongs to. |
+[nsgs](#oci_database_autonomous_database_nsgs)                                                                                     | The Puppet name of the resource identified by `nsg_ids`.                                                                                                             |
+[oci_timeout](#oci_database_autonomous_database_oci_timeout)                                                                       | The maximum time to wait for the OCI resource to be in the ready state.                                                                                              |
+[oci_wait_interval](#oci_database_autonomous_database_oci_wait_interval)                                                           | The interval beween calls to OCI to check if a resource is in the ready state.                                                                                       |
+[present_states](#oci_database_autonomous_database_present_states)                                                                 | The OCI states, puppet will detect as the resource being present.                                                                                                    |
+[private_endpoint](#oci_database_autonomous_database_private_endpoint)                                                             | The private endpoint for the resource.                                                                                                                               |
+[private_endpoint_label](#oci_database_autonomous_database_private_endpoint_label)                                                 | The private endpoint label for the resource.                                                                                                                         |
+[provider](#oci_database_autonomous_database_provider)                                                                             | resource.                                                                                                                                                            |
+[service_console_url](#oci_database_autonomous_database_service_console_url)                                                       | The URL of the Service Console for the Autonomous Database.                                                                                                          |
 [source](#oci_database_autonomous_database_source)                                                                                 | 
-                                                                                                                                       |
-[synchronized](#oci_database_autonomous_database_synchronized)                                                                     | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource.                                            |
-[system_tags](#oci_database_autonomous_database_system_tags)                                                                       |   System tags for this resource.                                                                                                        |
-[tenant](#oci_database_autonomous_database_tenant)                                                                                 | The tenant for this resource.                                                                                                           |
-[time_created](#oci_database_autonomous_database_time_created)                                                                     | The date and time the database was created.                                                                                             |
-[time_deletion_of_free_autonomous_database](#oci_database_autonomous_database_time_deletion_of_free_autonomous_database)           | The date and time the Always Free database will be automatically deleted because of inactivity.                                         |
-[time_reclamation_of_free_autonomous_database](#oci_database_autonomous_database_time_reclamation_of_free_autonomous_database)     | The date and time the Always Free database will be stopped because of inactivity.                                                       |
-[used_data_storage_size_in_tbs](#oci_database_autonomous_database_used_data_storage_size_in_tbs)                                   | The amount of storage that has been used, in terabytes.                                                                                 |
-[whitelisted_ips](#oci_database_autonomous_database_whitelisted_ips)                                                               |   The client IP access control list (ACL).                                                                                              |
+                                                                                                                                                                    |
+[subnet](#oci_database_autonomous_database_subnet)                                                                                 | The Puppet name of the resource identified by `subnet_id`.                                                                                                           |
+[subnet_id](#oci_database_autonomous_database_subnet_id)                                                                           |   The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the resource is associated with.                                  |
+[synchronized](#oci_database_autonomous_database_synchronized)                                                                     | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource.                                                                         |
+[system_tags](#oci_database_autonomous_database_system_tags)                                                                       |   System tags for this resource.                                                                                                                                     |
+[tenant](#oci_database_autonomous_database_tenant)                                                                                 | The tenant for this resource.                                                                                                                                        |
+[time_created](#oci_database_autonomous_database_time_created)                                                                     | The date and time the database was created.                                                                                                                          |
+[time_deletion_of_free_autonomous_database](#oci_database_autonomous_database_time_deletion_of_free_autonomous_database)           | The date and time the Always Free database will be automatically deleted because of inactivity.                                                                      |
+[time_maintenance_begin](#oci_database_autonomous_database_time_maintenance_begin)                                                 | The date and time when maintenance will begin.                                                                                                                       |
+[time_maintenance_end](#oci_database_autonomous_database_time_maintenance_end)                                                     | The date and time when maintenance will end.                                                                                                                         |
+[time_reclamation_of_free_autonomous_database](#oci_database_autonomous_database_time_reclamation_of_free_autonomous_database)     | The date and time the Always Free database will be stopped because of inactivity.                                                                                    |
+[used_data_storage_size_in_tbs](#oci_database_autonomous_database_used_data_storage_size_in_tbs)                                   | The amount of storage that has been used, in terabytes.                                                                                                              |
+[whitelisted_ips](#oci_database_autonomous_database_whitelisted_ips)                                                               |   The client IP access control list (ACL).                                                                                                                           |
 
 
 
@@ -160,6 +169,16 @@ This documentation is generated from the [Ruby OCI SDK](https://github.com/oracl
 ### cpu_core_count<a name='oci_database_autonomous_database_cpu_core_count'>
 
 The number of CPU cores to be made available to the database.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_database_autonomous_database](#attributes)
+
+### data_safe_status<a name='oci_database_autonomous_database_data_safe_status'>
+
+Status of the Data Safe registration for this Autonomous Database.
 
 This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
@@ -406,6 +425,31 @@ The full name of the object.
 
 [Back to overview of oci_database_autonomous_database](#attributes)
 
+### nsg_ids<a name='oci_database_autonomous_database_nsg_ids'>
+
+  A list of the [OCIDs](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+**NsgIds restrictions:**
+- Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty.
+  Rather use the property `nsgs` instead of a direct OCID reference.
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_database_autonomous_database](#attributes)
+
+### nsgs<a name='oci_database_autonomous_database_nsgs'>
+
+The Puppet name of the resource identified by `nsg_ids`.
+
+See the documentation of nsg_ids for all details.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_database_autonomous_database](#attributes)
+
 ### oci_timeout<a name='oci_database_autonomous_database_oci_timeout'>
 
 The maximum time to wait for the OCI resource to be in the ready state.
@@ -425,6 +469,26 @@ The interval beween calls to OCI to check if a resource is in the ready state.
 ### present_states<a name='oci_database_autonomous_database_present_states'>
 
 The OCI states, puppet will detect as the resource being present.
+
+
+
+[Back to overview of oci_database_autonomous_database](#attributes)
+
+### private_endpoint<a name='oci_database_autonomous_database_private_endpoint'>
+
+The private endpoint for the resource.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_database_autonomous_database](#attributes)
+
+### private_endpoint_label<a name='oci_database_autonomous_database_private_endpoint_label'>
+
+The private endpoint label for the resource.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 
 
@@ -456,6 +520,38 @@ This documentation is generated from the [Ruby OCI SDK](https://github.com/oracl
 ### source<a name='oci_database_autonomous_database_source'>
 
 
+
+
+
+[Back to overview of oci_database_autonomous_database](#attributes)
+
+### subnet<a name='oci_database_autonomous_database_subnet'>
+
+The Puppet name of the resource identified by `subnet_id`.
+
+See the documentation of subnet_id for all details.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_database_autonomous_database](#attributes)
+
+### subnet_id<a name='oci_database_autonomous_database_subnet_id'>
+
+  The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the resource is associated with.
+
+**Subnet Restrictions:**
+- For bare metal DB systems and for single node virtual machine DB systems, do not use a subnet that overlaps with 192.168.16.16/28.
+- For Exadata and virtual machine 2-node RAC DB systems, do not use a subnet that overlaps with 192.168.128.0/20.
+- For Autonomous Database, setting this will disable public secure access to the database.
+
+These subnets are used by the Oracle Clusterware private interconnect on the database instance.
+Specifying an overlapping subnet will cause the private interconnect to malfunction.
+This restriction applies to both the client subnet and the backup subnet.
+  Rather use the property `subnet` instead of a direct OCID reference.
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 
 
@@ -501,6 +597,26 @@ This documentation is generated from the [Ruby OCI SDK](https://github.com/oracl
 ### time_deletion_of_free_autonomous_database<a name='oci_database_autonomous_database_time_deletion_of_free_autonomous_database'>
 
 The date and time the Always Free database will be automatically deleted because of inactivity. If the database is in the STOPPED state and without activity until this time, it will be deleted.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_database_autonomous_database](#attributes)
+
+### time_maintenance_begin<a name='oci_database_autonomous_database_time_maintenance_begin'>
+
+The date and time when maintenance will begin.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_database_autonomous_database](#attributes)
+
+### time_maintenance_end<a name='oci_database_autonomous_database_time_maintenance_end'>
+
+The date and time when maintenance will end.
 
 This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 

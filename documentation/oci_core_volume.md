@@ -48,7 +48,7 @@ Attribute Name                                                          | Short 
 [id](#oci_core_volume_id)                                               | The OCID of the resource.                                                                         |
 [is_hydrated](#oci_core_volume_is_hydrated)                             | Specifies whether the cloned volume's data has finished copying from the source volume or backup. |
 [kms_key](#oci_core_volume_kms_key)                                     | The Puppet name of the resource identified by `kms_key_id`.                                       |
-[kms_key_id](#oci_core_volume_kms_key_id)                               | The OCID of the KMS key to be used as the master encryption key for the volume.                   |
+[kms_key_id](#oci_core_volume_kms_key_id)                               | for the volume.                                                                                   |
 [lifecycle_state](#oci_core_volume_lifecycle_state)                     | The current state of a volume.                                                                    |
 [name](#oci_core_volume_name)                                           | The full name of the object.                                                                      |
 [oci_timeout](#oci_core_volume_oci_timeout)                             | The maximum time to wait for the OCI resource to be in the ready state.                           |
@@ -65,6 +65,7 @@ Attribute Name                                                          | Short 
 [volume_group](#oci_core_volume_volume_group)                           | The Puppet name of the resource identified by `volume_group_id`.                                  |
 [volume_group_id](#oci_core_volume_volume_group_id)                     | The OCID of the source volume group.                                                              |
 [volume_name](#oci_core_volume_volume_name)                             | The name of the volume.                                                                           |
+[vpus_per_gb](#oci_core_volume_vpus_per_gb)                             | representing the Block Volume service's elastic performance options.                              |
 
 
 
@@ -276,10 +277,11 @@ This documentation is generated from the [Ruby OCI SDK](https://github.com/oracl
 
 ### kms_key_id<a name='oci_core_volume_kms_key_id'>
 
-The OCID of the KMS key to be used as the master encryption key for the volume.
-Rather use the property `kms_key` instead of a direct OCID reference.
+  The OCID of the Key Management key to assign as the master encryption key
+for the volume.
+  Rather use the property `kms_key` instead of a direct OCID reference.
 
-This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 
 
@@ -436,6 +438,26 @@ This documentation is generated from the [Ruby OCI SDK](https://github.com/oracl
 ### volume_name<a name='oci_core_volume_volume_name'>
 
 The name of the volume.
+
+
+
+[Back to overview of oci_core_volume](#attributes)
+
+### vpus_per_gb<a name='oci_core_volume_vpus_per_gb'>
+
+  The number of volume performance units (VPUs) that will be applied to this volume per GB,
+representing the Block Volume service's elastic performance options.
+See [Block Volume Elastic Performance](https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more information.
+
+Allowed values:
+
+  * `0`: Represents Lower Cost option.
+
+  * `10`: Represents Balanced option.
+
+  * `20`: Represents Higher Performance option.
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 
 

@@ -7,8 +7,9 @@
 #
 newproperty(:object_events_enabled, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   desc <<-DESC
-  A property that determines whether events will be generated for operations on objects in this bucket.
-This is false by default.
+  Whether or not events are emitted for object state changes in this bucket. By default, `objectEventsEnabled` is
+set to `false`. Set `objectEventsEnabled` to `true` to emit events for object state changes. For more information
+about events, see [Overview of Events](https://docs.cloud.oracle.com/Content/Events/Concepts/eventsoverview.htm).
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC

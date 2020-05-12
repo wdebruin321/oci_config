@@ -10,7 +10,7 @@ require 'puppet_x/enterprisemodules/oci/core'
 Puppet::Type.newtype(:oci_core_subnet) do
   include Puppet_X::EnterpriseModules::Oci::Type
   desc <<-DESC
-  A logical subdivision of a VCN. Each subnet exists in a single availability domain and
+  A logical subdivision of a VCN. Each subnet
 consists of a contiguous range of IP addresses that do not overlap with
 other subnets in the VCN. Example: 172.16.1.0/24. For more information, see
 [Overview of the Networking Service](https://docs.cloud.oracle.com/Content/Network/Concepts/overview.htm) and

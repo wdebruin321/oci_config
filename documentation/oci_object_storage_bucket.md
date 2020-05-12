@@ -13,45 +13,49 @@ toc: false
 
 
 
-Attribute Name                                                                          | Short Description                                                                                       |
---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-[absent_states](#oci_object_storage_bucket_absent_states)                               | The OCI states, puppet will detect as the resource being absent.                                        |
+Attribute Name                                                                          | Short Description                                                                                    |
+--------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+[absent_states](#oci_object_storage_bucket_absent_states)                               | The OCI states, puppet will detect as the resource being absent.                                     |
 [approximate_count](#oci_object_storage_bucket_approximate_count)                       | 
-                                                                                                       |
+                                                                                                    |
 [approximate_size](#oci_object_storage_bucket_approximate_size)                         | 
-                                                                                                       |
-[bucket_name](#oci_object_storage_bucket_bucket_name)                                   | The name of the bucket.                                                                                 |
-[compartment](#oci_object_storage_bucket_compartment)                                   | The Puppet name of the resource identified by `compartment_id`.                                         |
-[compartment_id](#oci_object_storage_bucket_compartment_id)                             | The OCID of the compartment that contains the object.                                                   |
+                                                                                                    |
+[bucket_name](#oci_object_storage_bucket_bucket_name)                                   | The name of the bucket.                                                                              |
+[compartment](#oci_object_storage_bucket_compartment)                                   | The Puppet name of the resource identified by `compartment_id`.                                      |
+[compartment_id](#oci_object_storage_bucket_compartment_id)                             | The OCID of the compartment that contains the object.                                                |
 [created_by](#oci_object_storage_bucket_created_by)                                     | 
-                                                                                                       |
-[defined_tags](#oci_object_storage_bucket_defined_tags)                                 |   Defined tags for this resource.                                                                       |
-[disable_corrective_change](#oci_object_storage_bucket_disable_corrective_change)       | Disable the modification of a resource when Puppet decides it is a corrective change.                   |
-[disable_corrective_ensure](#oci_object_storage_bucket_disable_corrective_ensure)       | Disable the creation or removal of a resource when Puppet decides is a corrective change.               |
-[ensure](#oci_object_storage_bucket_ensure)                                             | The basic property that the resource should be in.                                                      |
+                                                                                                    |
+[defined_tags](#oci_object_storage_bucket_defined_tags)                                 |   Defined tags for this resource.                                                                    |
+[disable_corrective_change](#oci_object_storage_bucket_disable_corrective_change)       | Disable the modification of a resource when Puppet decides it is a corrective change.                |
+[disable_corrective_ensure](#oci_object_storage_bucket_disable_corrective_ensure)       | Disable the creation or removal of a resource when Puppet decides is a corrective change.            |
+[ensure](#oci_object_storage_bucket_ensure)                                             | The basic property that the resource should be in.                                                   |
 [etag](#oci_object_storage_bucket_etag)                                                 | 
-                                                                                                       |
-[freeform_tags](#oci_object_storage_bucket_freeform_tags)                               |   Free-form tags for this resource.                                                                     |
-[id](#oci_object_storage_bucket_id)                                                     | The OCID of the resource.                                                                               |
-[kms_key](#oci_object_storage_bucket_kms_key)                                           | The Puppet name of the resource identified by `kms_key_id`.                                             |
-[kms_key_id](#oci_object_storage_bucket_kms_key_id)                                     | The OCID of a KMS key id used to call KMS to generate the data key or decrypt the encrypted data key.   |
-[metadata](#oci_object_storage_bucket_metadata)                                         | Arbitrary string, up to 4KB, of keys and values for user-defined metadata.                              |
-[name](#oci_object_storage_bucket_name)                                                 | The full name of the object.                                                                            |
+                                                                                                    |
+[freeform_tags](#oci_object_storage_bucket_freeform_tags)                               |   Free-form tags for this resource.                                                                  |
+[id](#oci_object_storage_bucket_id)                                                     | The OCID of the resource.                                                                            |
+[is_read_only](#oci_object_storage_bucket_is_read_only)                                 | 
+                                                                                                    |
+[kms_key](#oci_object_storage_bucket_kms_key)                                           | The Puppet name of the resource identified by `kms_key_id`.                                          |
+[kms_key_id](#oci_object_storage_bucket_kms_key_id)                                     | Management service to generate a data encryption key or to encrypt or decrypt a data encryption key. |
+[metadata](#oci_object_storage_bucket_metadata)                                         | Arbitrary string, up to 4KB, of keys and values for user-defined metadata.                           |
+[name](#oci_object_storage_bucket_name)                                                 | The full name of the object.                                                                         |
 [namespace](#oci_object_storage_bucket_namespace)                                       | 
-                                                                                                       |
-[object_events_enabled](#oci_object_storage_bucket_object_events_enabled)               |   A property that determines whether events will be generated for operations on objects in this bucket. |
+                                                                                                    |
+[object_events_enabled](#oci_object_storage_bucket_object_events_enabled)               |   Whether or not events are emitted for object state changes in this bucket.                         |
 [object_lifecycle_policy_etag](#oci_object_storage_bucket_object_lifecycle_policy_etag) | 
-                                                                                                       |
-[oci_timeout](#oci_object_storage_bucket_oci_timeout)                                   | The maximum time to wait for the OCI resource to be in the ready state.                                 |
-[oci_wait_interval](#oci_object_storage_bucket_oci_wait_interval)                       | The interval beween calls to OCI to check if a resource is in the ready state.                          |
-[present_states](#oci_object_storage_bucket_present_states)                             | The OCI states, puppet will detect as the resource being present.                                       |
-[provider](#oci_object_storage_bucket_provider)                                         | resource.                                                                                               |
-[public_access_type](#oci_object_storage_bucket_public_access_type)                     |   The type of public access enabled on this bucket.                                                     |
-[storage_tier](#oci_object_storage_bucket_storage_tier)                                 |   The type of storage tier of this bucket.                                                              |
-[synchronized](#oci_object_storage_bucket_synchronized)                                 | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource.            |
-[tenant](#oci_object_storage_bucket_tenant)                                             | The tenant for this resource.                                                                           |
+                                                                                                    |
+[oci_timeout](#oci_object_storage_bucket_oci_timeout)                                   | The maximum time to wait for the OCI resource to be in the ready state.                              |
+[oci_wait_interval](#oci_object_storage_bucket_oci_wait_interval)                       | The interval beween calls to OCI to check if a resource is in the ready state.                       |
+[present_states](#oci_object_storage_bucket_present_states)                             | The OCI states, puppet will detect as the resource being present.                                    |
+[provider](#oci_object_storage_bucket_provider)                                         | resource.                                                                                            |
+[public_access_type](#oci_object_storage_bucket_public_access_type)                     |   The type of public access enabled on this bucket.                                                  |
+[replication_enabled](#oci_object_storage_bucket_replication_enabled)                   | 
+                                                                                                    |
+[storage_tier](#oci_object_storage_bucket_storage_tier)                                 |   The type of storage tier of this bucket.                                                           |
+[synchronized](#oci_object_storage_bucket_synchronized)                                 | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource.         |
+[tenant](#oci_object_storage_bucket_tenant)                                             | The tenant for this resource.                                                                        |
 [time_created](#oci_object_storage_bucket_time_created)                                 | 
-                                                                                                       |
+                                                                                                    |
 
 
 
@@ -241,6 +245,14 @@ This documentation is generated from the Ruby OCI SDK.
 
 [Back to overview of oci_object_storage_bucket](#attributes)
 
+### is_read_only<a name='oci_object_storage_bucket_is_read_only'>
+
+
+
+
+
+[Back to overview of oci_object_storage_bucket](#attributes)
+
 ### kms_key<a name='oci_object_storage_bucket_kms_key'>
 
 The Puppet name of the resource identified by `kms_key_id`.
@@ -255,10 +267,11 @@ This documentation is generated from the [Ruby OCI SDK](https://github.com/oracl
 
 ### kms_key_id<a name='oci_object_storage_bucket_kms_key_id'>
 
-The OCID of a KMS key id used to call KMS to generate the data key or decrypt the encrypted data key.
-Rather use the property `kms_key` instead of a direct OCID reference.
+  The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a master encryption key used to call the Key
+Management service to generate a data encryption key or to encrypt or decrypt a data encryption key.
+  Rather use the property `kms_key` instead of a direct OCID reference.
 
-This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 
 
@@ -292,8 +305,9 @@ The full name of the object.
 
 ### object_events_enabled<a name='oci_object_storage_bucket_object_events_enabled'>
 
-  A property that determines whether events will be generated for operations on objects in this bucket.
-This is false by default.
+  Whether or not events are emitted for object state changes in this bucket. By default, `objectEventsEnabled` is
+set to `false`. Set `objectEventsEnabled` to `true` to emit events for object state changes. For more information
+about events, see [Overview of Events](https://docs.cloud.oracle.com/Content/Events/Concepts/eventsoverview.htm).
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
@@ -355,6 +369,14 @@ bucket and its contents. When `ObjectRead` is enabled on the bucket, public acce
 public access is allowed for the `GetObject` and `HeadObject` operations.
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_object_storage_bucket](#attributes)
+
+### replication_enabled<a name='oci_object_storage_bucket_replication_enabled'>
+
+
 
 
 
