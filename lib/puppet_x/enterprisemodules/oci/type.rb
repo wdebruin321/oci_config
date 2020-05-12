@@ -274,7 +274,12 @@ module Puppet_X
               compartments.collect do |compartment_name|
                 lister = ResourceLister.new(tenant, object_class)
                 resolver = Puppet_X::EnterpriseModules::Oci::NameResolver.instance(tenant)
-                compartment_id = resolver.name_to_ocid(tenant, "#{tenant} (root)/#{compartment_name}")
+                begin
+                  compartment_id = resolver.name_to_ocid(tenant, "#{tenant} (root)/#{compartment_name}")
+                rescue StandardError
+                  # Skip if compartment doesn't exist
+                  next
+                end
                 lister.resource_list(compartment_id).collect do |resource|
                   hash = resource.to_hash.to_puppet
                   hash['tenant'] = tenant
