@@ -269,7 +269,7 @@ module Puppet_X
           # rubocop: disable Metrics/AbcSize, Metrics/MethodLength
           def execute_prefetch(resources, provider)
             tenants = resources.map { |title, _content| title.split('/').first }.uniq.map { |e| e.gsub(' (root)', '') }
-            compartments = resources.map { |title, _content| title.split('/')[1...-1].join('/') }.map { |e| e.empty? ? '/' : e }.uniq
+            compartments = resources.map { |title, _content| title.split(/\/|:/)[1...-1].join('/') }.map { |e| e.empty? ? '/' : e }.uniq
             raw_resources = tenants.collect do |tenant|
               compartments.collect do |compartment_name|
                 lister = ResourceLister.new(tenant, object_class)
@@ -296,7 +296,7 @@ module Puppet_X
               #
               # There are anumber of properties we always need. So add them to the list
               #
-              specfied_properties += [:id, :compartment_id, :namespace, :subnet_id, :vcn_id]
+              specfied_properties += [:id, :compartment_id, :namespace, :subnet_id, :vcn_id, :compartment, :mount_target_id]
               resources[name].provider = provider.map_raw_to_resource(raw_resource, specfied_properties)
             end
             resources

@@ -48,7 +48,7 @@ Use `exportOptions` to control access to an export. For more information, see
 
 Here is an example on how to use this:
 
-        oci_file_storage_export { 'tenant (root)/my_export5':
+        oci_file_storage_export { 'tenant (root)/my_compartment:my_export5':
           ensure          => 'present',
           file_system     => 'my_file_system',
           mount_target    => 'my_mount_target',
@@ -68,8 +68,13 @@ Here is an example on how to use this:
 
   DESC
 
-  add_title_attributes(:export_name)
+  full_regexp           = Regexp.new("^((.*) \\(root\\)\/(.*):(.*))$")
+  top_level_regexp      = Regexp.new("^((.*) \\(root\\):(.*))$")
 
+  map_titles_to_attributes([
+                             full_regexp, [:name, :tenant, :compartment, :export_name],
+                             top_level_regexp, [:name, :tenant, :export_name]
+                           ])
   #
   # The include files contain specific non-generated code for the types
   #

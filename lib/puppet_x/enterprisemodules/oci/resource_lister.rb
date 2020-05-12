@@ -62,9 +62,6 @@ module Puppet_X
               Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
               case object_type_plural
               when 'exports'
-                #
-                # Copy the content of the path variable to name to make pupet happy
-                #
                 summary_data = client.list_exports(:compartment_id => compartment_id).data
                 summary_data.collect do |export|
                   client.get_export(export.id).data

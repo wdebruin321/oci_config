@@ -6,7 +6,7 @@ describe 'oci_file_storage_export' do
   include_context 'setup'
   test_name = unique_test_name
 
-  let(:resource_name) { "test_export_#{test_name}" }
+  let(:resource_name) { "/test_export_#{test_name}" }
 
   before(:all) do
     manifest = <<-EOD
@@ -69,7 +69,7 @@ describe 'oci_file_storage_export' do
   context 'export does not exists' do
     it 'should add the export idempotent' do
       manifest = <<-EOD
-        oci_file_storage_export { 'enterprisemodules (root)/#{resource_name}':
+        oci_file_storage_export { 'enterprisemodules (root)/acceptance_tests:#{resource_name}':
           ensure          => 'present',
           file_system     => 'acceptance_tests/file_system_#{test_name}',
           mount_target    => 'acceptance_tests/mount_target_#{test_name}',
@@ -94,7 +94,7 @@ describe 'oci_file_storage_export' do
 
     it "should change the export idempotent" do
       manifest = <<-EOD
-      oci_file_storage_export { 'enterprisemodules (root)/#{resource_name}':
+      oci_file_storage_export { 'enterprisemodules (root)/acceptance_tests:#{resource_name}':
           ensure          => 'present',
           file_system     => 'acceptance_tests/file_system_#{test_name}',
           mount_target    => 'acceptance_tests/mount_target_#{test_name}',
@@ -115,7 +115,7 @@ describe 'oci_file_storage_export' do
 
     it "should remove the export idempotent" do
       manifest = <<-EOD
-        oci_file_storage_export { 'enterprisemodules (root)/#{resource_name}':
+        oci_file_storage_export { 'enterprisemodules (root)/acceptance_tests:#{resource_name}':
           ensure        => 'absent',
           absent_states => ['DELETED'], # Really wait unit it is gone so we can remove the setup too
         }

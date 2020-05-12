@@ -5,6 +5,8 @@
 #
 newparam(:name) do
   include EasyType
+  extend Puppet_X::EnterpriseModules::Oci::Config
+  extend Puppet_X::EnterpriseModules::Oci::Settings
 
   desc <<-DESC
   The full name of the object.
@@ -16,10 +18,13 @@ newparam(:name) do
 
   to_translate_to_resource do |raw_resource|
     tenant = raw_resource['tenant']
-    compartment_id = raw_resource['compartment_id']
-    name = raw_resource['path'][1..-1]
+    client = OCI::FileStorage::FileStorageClient.new(:proxy_settings => proxy_config(tenant), :config => tenant_config(tenant))
+    export_set_id = raw_resource['export_set_id']
+    export_set_info = client.get_export_set(export_set_id).data
+    compartment_id = export_set_info.compartment_id
     resolver = Puppet_X::EnterpriseModules::Oci::NameResolver.instance(tenant)
+    name = raw_resource['path']
     compartment = resolver.ocid_to_full_name(tenant, compartment_id)
-    "#{compartment}/#{name}"
+    "#{compartment}:#{name}"
   end
 end

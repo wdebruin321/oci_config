@@ -22,8 +22,8 @@ def before_action
   mount_target_id = resolver.name_to_ocid(tenant, mount_target, :mounttarget)
   @oci_api_data['export_set_id'] = client.get_mount_target(mount_target_id).data.export_set_id
   @oci_api_data['file_system_id'] = resolver.name_to_ocid(tenant, file_system, :filesystem)
-  @oci_api_data[:name] = "/#{bare_name}"
-  @oci_api_data[:display_name] = "/#{bare_name}"
-  @oci_api_data[:path] = "/#{bare_name}"
+  @oci_api_data[:name] = "#{bare_name}"
+  @oci_api_data[:display_name] = "#{bare_name}"
+  @oci_api_data[:path] = "#{bare_name}"
 end
 # rubocop: enable Metrics/AbcSize
