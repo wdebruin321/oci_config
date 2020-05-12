@@ -92,7 +92,7 @@ module Puppet_X
             data.delete("#{reference_property}_type")
           end
         end
-        # rubocop: ensable Metrics/AbcSize
+        # rubocop: enable Metrics/AbcSize
 
         def reference_attributes
           self.class.data_type.to_alias_expanded_s.scan(/'(\w*?_ids?|id)'/).flatten
@@ -115,7 +115,7 @@ module Puppet_X
           @resolver ||= Puppet_X::EnterpriseModules::Oci::NameResolver.instance(@tenant)
         end
 
-        # rubocop: disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity, Metrics/BlockNesting
+        # rubocop: disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity, Metrics/BlockNesting, Metrics/AbcSize
         def self.fill_in_references(value)
           return value.collect { |v| fill_in_references(v) } if value.is_a?(Array)
 
@@ -153,11 +153,12 @@ module Puppet_X
           end
           value
         end
-        # rubocop: enable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity, Metrics/BlockNesting
+        # rubocop: enable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity, Metrics/BlockNesting, Metrics/AbcSize
 
+        # rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/AbcSize
         def self.translate_to_resource(raw_resource, partial_resource)
           @tenant = raw_resource['tenant']
-          value = if @reference
+          value = if @reference && (raw_resource[@reference.to_s] || partial_resource[@reference])
                     ocid = raw_resource[@reference.to_s] || partial_resource[@reference]
                     begin
                       Puppet.debug "Resolving id for #{name}"
@@ -175,7 +176,7 @@ module Puppet_X
                   end
           fill_in_references(value)
         end
-        # rubocop: enable Metrics/AbcSize
+        # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/AbcSize
       end
       # rubocop: enable Metrics/ClassLength
     end
