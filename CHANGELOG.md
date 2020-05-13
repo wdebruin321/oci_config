@@ -1,6 +1,14 @@
 History
 ========
 
+## 0.5.0
+
+- [oci_file_storage_export] Fix prefetching for this resource
+- [core] skip prefetching in unkown compartments
+- [core] Work arround for OCI pagination
+- [core] skip over unautorised compartments
+- [core] Add prefetching to speed up on large tenants
+
 ## 0.4.0
 
 - [core] Update all types to gem 2.8.0 definition
