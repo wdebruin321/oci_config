@@ -14,9 +14,10 @@ module Puppet_X
         private_class_method :new
 
         def initialize
-          @clients    = {}
-          @cache      = {}
-          @tenant_ids = {}
+          @clients      = {}
+          @cache        = {}
+          @cached_types = []
+          @tenant_ids   = {}
         end
 
         def initialize_for_tenant(tenant)
@@ -54,14 +55,17 @@ module Puppet_X
           object = @cache[tenant].find { |e| e.id == ocid && e.id_type == ocid_type }
           return object if object
 
-          #
-          # Fetch all objects of specfied type
-          #
-          object_class = ServiceInfo.id_to_class(ocid_type)
-          lister = ResourceLister.new(tenant, object_class)
-          @cache[tenant] += lister.resource_list
-          @cache[tenant].uniq(&:id) # remove duplicate from cache
-          object = @cache[tenant].find { |e| e.id == ocid && e.id_type == ocid_type }
+          unless @cached_types.include?(ocid_type)
+            #
+            # Fetch all objects of specfied type
+            #
+            object_class = ServiceInfo.id_to_class(ocid_type)
+            lister = ResourceLister.new(tenant, object_class)
+            @cache[tenant] += lister.resource_list
+            @cache[tenant].uniq(&:id) # remove duplicate from cache
+            @cached_types << ocid_type
+            object = @cache[tenant].find { |e| e.id == ocid && e.id_type == ocid_type }
+          end
           fail "Object with #{ocid} not found." if object.nil?
 
           object
