@@ -91,31 +91,65 @@ module Puppet_X
         end
         # rubocop: enable Metrics/AbcSize, Metrics/MethodLength
 
+        # rubocop: disable Metrics/AbcSize
         def resources_in_protocol(specified_compartment)
           compartment_list(specified_compartment).collect do |compartment_id|
-            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
-            Puppet.debug 'Inspecting protocol SAML2...'
-            client.send("list_#{object_type_plural}", 'SAML2', compartment_id).data
+            begin
+              Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
+              Puppet.debug 'Inspecting protocol SAML2...'
+              client.send("list_#{object_type_plural}", 'SAML2', compartment_id).data
+            rescue OCI::Errors::ServiceError => e
+              #
+              # If we are not autorized, return an empty Hash and leave the property blank
+              #
+              raise unless e.service_code == 'NotAuthorizedOrNotFound'
+
+              Puppet.debug "Skip fetching resources in #{compartment_id} because of an authorization failure."
+              []
+            end
           end.flatten.compact.uniq(&:id)
         end
+        # rubocop: enable Metrics/AbcSize
 
+        # rubocop: disable Metrics/AbcSize
         def resources_in_vncs(specified_compartment)
           compartment_list(specified_compartment).collect do |compartment_id|
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
             vncs_in(compartment_id).collect do |vnc_id|
-              Puppet.debug "Inspecting vnc #{vnc_id}..."
-              client.send("list_#{object_type_plural}", compartment_id, vnc_id).data
+              begin
+                Puppet.debug "Inspecting vnc #{vnc_id}..."
+                client.send("list_#{object_type_plural}", compartment_id, vnc_id).data
+              rescue OCI::Errors::ServiceError => e
+                #
+                # If we are not autorized, return an empty Hash and leave the property blank
+                #
+                raise unless e.service_code == 'NotAuthorizedOrNotFound'
+
+                Puppet.debug "Skip fetching resources in #{compartment_id} because of an authorization failure."
+                []
+              end
             end
           end.flatten.compact.uniq(&:id)
         end
+        # rubocop: enable Metrics/AbcSize
 
         # rubocop: disable Metrics/AbcSize
         def resources_in_namespace(specified_compartment)
           namespace = client.get_namespace.data
           compartment_list(specified_compartment).collect do |compartment_id|
-            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
-            buckets = client.list_buckets(namespace, compartment_id).data
-            buckets.collect { |b| client.get_bucket(namespace, b.name).data }
+            begin
+              Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
+              buckets = client.list_buckets(namespace, compartment_id).data
+              buckets.collect { |b| client.get_bucket(namespace, b.name).data }
+            rescue OCI::Errors::ServiceError => e
+              #
+              # If we are not autorized, return an empty Hash and leave the property blank
+              #
+              raise unless e.service_code == 'NotAuthorizedOrNotFound'
+
+              Puppet.debug "Skip fetching resources in #{compartment_id} because of an authorization failure."
+              []
+            end
           end.flatten.compact.uniq(&:name)
         end
         # rubocop: enable Metrics/AbcSize
@@ -125,12 +159,22 @@ module Puppet_X
           compartment_list(specified_compartment).collect do |compartment_id|
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
             vaults_in(compartment_id).collect do |vault|
-              kms_management_client = OCI::KeyManagement::KmsManagementClient.new(:proxy_settings => proxy_config(@tenant),
-                                                                                  :config => tenant_config(@tenant),
-                                                                                  :endpoint => vault.management_endpoint,
-                                                                                  :retry_config => retry_config)
-              Puppet.debug "Inspecting vault #{vault.id}..."
-              kms_management_client.send("list_#{object_type_plural}", compartment_id).data
+              begin
+                kms_management_client = OCI::KeyManagement::KmsManagementClient.new(:proxy_settings => proxy_config(@tenant),
+                                                                                    :config => tenant_config(@tenant),
+                                                                                    :endpoint => vault.management_endpoint,
+                                                                                    :retry_config => retry_config)
+                Puppet.debug "Inspecting vault #{vault.id}..."
+                kms_management_client.send("list_#{object_type_plural}", compartment_id).data
+              rescue OCI::Errors::ServiceError => e
+                #
+                # If we are not autorized, return an empty Hash and leave the property blank
+                #
+                raise unless e.service_code == 'NotAuthorizedOrNotFound'
+
+                Puppet.debug "Skip fetching resources in #{compartment_id} because of an authorization failure."
+                []
+              end
             end
           end.flatten.compact.uniq(&:id)
         end
@@ -141,12 +185,22 @@ module Puppet_X
           compartment_list(specified_compartment).collect do |compartment_id|
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
             availability_domains_in(compartment_id).collect do |availability_domain|
-              Puppet.debug "Inspecting availability domain #{availability_domain} for #{object_type_plural}..."
-              case @object_type
-              when 'file_system', 'mount_target'
-                client.send("list_#{object_type_plural}", compartment_id, availability_domain).data
-              else
-                client.send("list_#{object_type_plural}", availability_domain, compartment_id).data
+              begin
+                Puppet.debug "Inspecting availability domain #{availability_domain} for #{object_type_plural}..."
+                case @object_type
+                when 'file_system', 'mount_target'
+                  client.send("list_#{object_type_plural}", compartment_id, availability_domain).data
+                else
+                  client.send("list_#{object_type_plural}", availability_domain, compartment_id).data
+                end
+              rescue OCI::Errors::ServiceError => e
+                #
+                # If we are not autorized, return an empty Hash and leave the property blank
+                #
+                raise unless e.service_code == 'NotAuthorizedOrNotFound'
+
+                Puppet.debug "Skip fetching resources in #{compartment_id} because of an authorization failure."
+                []
               end
             end
           end.flatten.compact.uniq(&:id)
@@ -156,16 +210,40 @@ module Puppet_X
         def vncs_in(compartment_id)
           vcn_client = OCI::Core::VirtualNetworkClient.new(:proxy_settings => proxy_config(@tenant), :config => tenant_config(@tenant), :retry_config => retry_config)
           vcn_client.send('list_vcns', compartment_id).data.collect(&:id)
+        rescue OCI::Errors::ServiceError => e
+          #
+          # If we are not autorized, return an empty Hash and leave the property blank
+          #
+          raise unless e.service_code == 'NotAuthorizedOrNotFound'
+
+          Puppet.debug "Skip fetching resources in #{compartment_id} because of an authorization failure."
+          []
         end
 
         def vaults_in(compartment_id)
           vault_client = OCI::KeyManagement::KmsVaultClient.new(:proxy_settings => proxy_config(@tenant), :config => tenant_config(@tenant), :retry_config => retry_config)
           vault_client.send('list_vaults', compartment_id).data
+        rescue OCI::Errors::ServiceError => e
+          #
+          # If we are not autorized, return an empty Hash and leave the property blank
+          #
+          raise unless e.service_code == 'NotAuthorizedOrNotFound'
+
+          Puppet.debug "Skip fetching resources in #{compartment_id} because of an authorization failure."
+          []
         end
 
         def availability_domains_in(compartment_id)
           identity_client = OCI::Identity::IdentityClient.new(:proxy_settings => proxy_config(@tenant), :config => tenant_config(@tenant), :retry_config => retry_config)
           identity_client.send('list_availability_domains', compartment_id).data.collect(&:name)
+        rescue OCI::Errors::ServiceError => e
+          #
+          # If we are not autorized, return an empty Hash and leave the property blank
+          #
+          raise unless e.service_code == 'NotAuthorizedOrNotFound'
+
+          Puppet.debug "Skip fetching resources in #{compartment_id} because of an authorization failure."
+          []
         end
 
         def client
