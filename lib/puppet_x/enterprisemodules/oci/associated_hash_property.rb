@@ -51,7 +51,7 @@ module Puppet_X
                             client(tenant).send("list_#{association_name}s", compartment_id, association_from => resource_id).data.select(&:present?)
                           end
           assoc_records.each_with_object({}) do |assoc_record, value|
-            Puppet.debug "Resolving resource name for #{assoc_record}"
+            Puppet.debug "Resolving resource name for #{assoc_record.puppet_name}"
             value[resource_name(tenant, assoc_record)] = resource_data(tenant, assoc_record)
           end
         rescue OCI::Errors::ServiceError => e
