@@ -1,6 +1,12 @@
 History
 ========
 
+## 0.5.1
+
+- [core] Handle references to properties that we don’t have acces to
+- [core] Optimize name fetching for cache
+- [core] Make all resource listers handle autorisation failure
+
 ## 0.5.0
 
 - [oci_file_storage_export] Fix prefetching for this resource
