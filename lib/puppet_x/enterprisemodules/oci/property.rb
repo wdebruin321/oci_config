@@ -129,6 +129,13 @@ module Puppet_X
                   value["#{new_key}_type"] = resolver.id_type(value[key]).to_s
                 end
                 value[new_key] = resolver.ocid_to_name(@tenant, value[key])
+              rescue  RuntimeError => e
+                #
+                # TODO: make the resolver throw a real error, so it is easier to catch here.
+                #
+                raise unless e.message =~ /Object with .* not found/
+
+                value[new_key] = e.message
               rescue OCI::Errors::ServiceError => e
                 #
                 # If we are not autorized, return an empty Hash and leave the property blank
