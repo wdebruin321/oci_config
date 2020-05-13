@@ -100,14 +100,18 @@ module Puppet_X
           #
           @oci_api_data = @oci_api_data.to_oci
           update_details = update_class.new(@oci_api_data)
-          handle_oci_request do
-            case object_type
-            when 'bucket'
-              bucket_name = name.split('/').last
-              client.send("update_#{object_type}", provider.namespace, bucket_name, update_details)
-            else
-              client.send("update_#{object_type}", provider.id, update_details)
+          if update_details.to_hash != {} # There are changes here
+            handle_oci_request do
+              case object_type
+              when 'bucket'
+                bucket_name = name.split('/').last
+                client.send("update_#{object_type}", provider.namespace, bucket_name, update_details)
+              else
+                client.send("update_#{object_type}", provider.id, update_details)
+              end
             end
+          else
+            Puppet.debug 'No changes in main data. Defering changes to specific properties.'
           end
           nil
         end
@@ -181,7 +185,7 @@ module Puppet_X
         # rubocop: enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
         #
-        # Generates a nice error when an OCI error is raised in the yield. Also waits for the state specfied in the
+        # Generates a nice error when an OCI error is raised in the yield. Also waits for the state specified in the
         # type parameter.
         #
         # rubocop: disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
@@ -296,7 +300,7 @@ module Puppet_X
               #
               # There are anumber of properties we always need. So add them to the list
               #
-              specfied_properties += [:id, :compartment_id, :namespace, :subnet_id, :vcn_id, :compartment, :mount_target_id]
+              specfied_properties += [:id, :compartment_id, :namespace, :subnet_id, :vcn_id, :compartment, :mount_target_id, :backup_policy_id]
               resources[name].provider = provider.map_raw_to_resource(raw_resource, specfied_properties)
             end
             resources

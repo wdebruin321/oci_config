@@ -14,6 +14,7 @@ xdescribe 'oci_core_boot_volume' do
         oci_core_boot_volume { 'enterprisemodules (root)/#{resource_name}':
           ensure              => 'present',
           availability_domain => 'ARML:EU-FRANKFURT-1-AD-1',
+          backup_policy       => 'bronze',
           source_details      => {
             'source_type' => 'image',
             'image' => 'Oracle-Linux-7.7-2019.12.18-0'
@@ -31,7 +32,7 @@ context "boot volume exists" do
       manifest = <<-EOD
         oci_core_boot_volume { 'enterprisemodules (root)/#{resource_name}':
           ensure          => 'present',
-          freeform_tags => {'test' => 'yes',}
+          backup_policy   => 'silver',
         }
       EOD
       apply_manifest(manifest, :expect_changes => true)

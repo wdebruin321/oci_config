@@ -54,17 +54,17 @@ supply string values using the API.
   property :freeform_tags
   property :system_tags
   property :is_hydrated
-  property :kms_key
   property :kms_key_id
+  property :kms_key
   property :lifecycle_state
   property :size_in_gbs
   property :size_in_mbs
   property :source_details
   property :time_created
-  property :volume_group
   property :volume_group_id
-  property :backup_policy
+  property :volume_group
   property :backup_policy_id
+  property :backup_policy
   property :vpus_per_gb
 
   validate do
