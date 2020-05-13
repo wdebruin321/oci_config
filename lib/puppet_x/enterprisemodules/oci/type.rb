@@ -269,7 +269,7 @@ module Puppet_X
           # rubocop: disable Metrics/AbcSize, Metrics/MethodLength
           def execute_prefetch(resources, provider)
             tenants = resources.map { |title, _content| title.split('/').first }.uniq.map { |e| e.gsub(' (root)', '') }
-            compartments = resources.map { |title, _content| title.split(/\/|:/)[1...-1].join('/') }.map { |e| e.empty? ? '/' : e }.uniq
+            compartments = resources.map { |title, _content| title.split(%r{/|:})[1...-1].join('/') }.map { |e| e.empty? ? '/' : e }.uniq
             raw_resources = tenants.collect do |tenant|
               compartments.collect do |compartment_name|
                 lister = ResourceLister.new(tenant, object_class)

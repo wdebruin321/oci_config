@@ -69,7 +69,7 @@ Here is an example on how to use this:
   DESC
 
   full_regexp           = Regexp.new("^((.*) \\(root\\)\/(.*):(.*))$")
-  top_level_regexp      = Regexp.new("^((.*) \\(root\\):(.*))$")
+  top_level_regexp      = Regexp.new('^((.*) \\(root\\):(.*))$')
 
   map_titles_to_attributes([
                              full_regexp, [:name, :tenant, :compartment, :export_name],
