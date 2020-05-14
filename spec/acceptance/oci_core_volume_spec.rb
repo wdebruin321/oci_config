@@ -1,6 +1,6 @@
 require_relative '../spec_helper_acceptance'
 require_relative '../support/shared_acceptance_specs'
-# rubocop: disable Style/AlignParameters
+#rubocop: disable Style/AlignParameters
 
 describe 'oci_core_volume' do
   include_context 'setup'
@@ -27,6 +27,7 @@ describe 'oci_core_volume' do
           ensure              => 'present',
           availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
           size_in_gbs         => 50,
+          vpus_per_gb         => 0,
           freeform_tags       => {'test' => 'yes'},
         }
       EOD
@@ -41,6 +42,7 @@ describe 'oci_core_volume' do
         oci_core_volume { 'enterprisemodules (root)/#{resource_name}':
           ensure          => 'present',
           size_in_gbs   => 60,
+          vpus_per_gb         => 20,
           freeform_tags   => {'test' => 'yes'},
         }
       EOD

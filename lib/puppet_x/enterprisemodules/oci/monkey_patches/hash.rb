@@ -7,7 +7,12 @@ class Hash
     # The keys sometimes use Gbs and Mbs, we don't want to underscore this.
     # So we first  make these lowercase.
     #
-    deep_transform_keys { |key| key.to_s.gsub('GBs', 'Gbs').gsub('MBs', 'Mbs').underscore }
+    deep_transform_keys do |key|
+      key.to_s.
+        gsub('GBs', 'Gbs').
+        gsub('GBs', 'Gbs').
+        underscore
+    end
   end
 
   def to_oci
@@ -15,7 +20,13 @@ class Hash
     # The keys sometimes use Gbs and Mbs, we don't want to underscore this.
     # So we first  make these lowercase.
     #
-    deep_transform_keys { |key| key.to_s.gsub('_gbs', '_g_bs').gsub('_mbs', '_m_bs').split('_').collect(&:capitalize).join.downcase_first_letter }
+    deep_transform_keys do |key|
+      key.to_s.
+        gsub(/_gb/, '_g_b').
+        gsub('_gbs', '_g_bs').
+        gsub('_mbs', '_m_bs').
+        split('_').collect(&:capitalize).join.downcase_first_letter
+    end
   end
 
   def _deep_transform_keys_in_object(object, &block)
