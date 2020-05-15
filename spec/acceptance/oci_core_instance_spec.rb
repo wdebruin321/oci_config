@@ -139,6 +139,49 @@ describe 'oci_core_instance' do
       apply_manifest(manifest, :catch_changes => true)
     end
 
+    it "should change attachment idempotently" do
+      manifest = <<-EOD
+        oci_core_instance { 'enterprisemodules (root)/#{resource_name}':
+          ensure              => 'present',
+          availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
+          fault_domain        => 'FAULT-DOMAIN-2',
+          launch_mode         => 'NATIVE',
+          region              => 'eu-frankfurt-1',
+          shape               => 'VM.Standard1.1',
+          source_details      => {
+            source_type => 'image',
+            image_type => 'image',
+            image => oci_config::latest_image_for('Oracle Linux', '7.7', /^((?!GPU).)*$/),
+          },
+          vnics               => {
+          'nic1' => {
+              'nic_index' => 0,
+              'is_primary' => true,
+              'skip_source_dest_check' => true,
+              'subnet' => 'acceptance_tests/subnet_#{test_name}',
+            }
+          },
+          volumes             => {
+            'acceptance_tests/test_volume_#{test_name}_1' => {
+              'attachment_type' => 'paravirtualized',
+              'device' => '/dev/oracleoci/oraclevdb',
+              'display_name' => 'data_disk_1',
+              'is_read_only' => true,
+            },
+            'acceptance_tests/test_volume_#{test_name}_2' => {
+              'attachment_type' => 'paravirtualized',
+              'device' => '/dev/oracleoci/oraclevdc',
+              'display_name' => 'data_disk_2',
+              'is_read_only' => false,
+            }
+          },
+          oci_timeout   => 1200, # This can take a long time, so we need a longer timeout
+        }
+      EOD
+      apply_manifest(manifest, :expect_changes => true)
+      apply_manifest(manifest, :catch_changes => true)
+    end
+
     it "should remove volume idempotently" do
       manifest = <<-EOD
         oci_core_instance { 'enterprisemodules (root)/#{resource_name}':

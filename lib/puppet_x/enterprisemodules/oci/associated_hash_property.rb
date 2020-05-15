@@ -22,7 +22,7 @@ module Puppet_X
 
               change[0] = change[0].nil? ? :absent : change[0]
               change[1] = change[1].nil? ? :absent : change[1]
-              messages << "changing #{property} of #{resource} from #{change[0]} to #{change[1]}"
+              messages << "changing #{property} of #{resource} from #{change[1]} to #{change[0]}"
             end
           end
           messages.join(' and ') << '.'
@@ -83,7 +83,7 @@ module Puppet_X
         end
 
         def requested_value
-          should.merge(current_value)
+          current_value.merge(should)
         end
 
         def current_records
@@ -91,7 +91,7 @@ module Puppet_X
         end
 
         def updated_records
-          should.deep_diff(current_value).reject { |_k, v| v.is_a?(Array) && (v[0].nil? || v[1].nil?) }.keys
+          should.only_change_diff(current_value).select { |_k, v| v.is_a?(Hash) && !v.empty? }.keys
         end
 
         def removed_records
