@@ -231,6 +231,7 @@ describe 'oci_core_instance' do
               'display_name' => 'data_disk_1',
               'is_read_only' => true,
             },
+          },
           oci_timeout   => 1200, # This can take a long time, so we need a longer timeout
         }
       EOD
@@ -256,12 +257,8 @@ describe 'oci_core_instance' do
             }
           },
           detached_volumes             => {
-            'acceptance_tests/test_volume_#{test_name}_1' => {
-              'attachment_type' => 'paravirtualized',
-              'device' => '/dev/oracleoci/oraclevdb',
-              'display_name' => 'data_disk_1',
-              'is_read_only' => true,
-            },
+            'acceptance_tests/test_volume_#{test_name}_1' => {},
+          },
           oci_timeout   => 1200, # This can take a long time, so we need a longer timeout
         }
       EOD

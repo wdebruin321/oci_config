@@ -29,7 +29,59 @@ newproperty(:attached_volumes, :parent => Puppet_X::EnterpriseModules::Oci::Asso
     # Do nothing. Don't detach the volumes. It is not required.
   end
 
-  def self.translate_to_resource(raw_resource, _resource)
+  def used_devices_in_provider
+    provider.volumes&.collect { |_k, v| v['device'] } || []
+  end
+
+  def used_devices_in_volumes
+    resource.volumes&.collect { |_k, v| v['device'] } || []
+  end
+
+  def used_devices_in_attached_volumes
+    resource.attached_volumes&.collect { |_k, v| v['device'] } || []
+  end
+
+  def used_devices_in_detached_volumes
+    resource.detached_volumes&.collect { |_k, v| v['device'] } || []
+  end
+
+  def used_devices
+    value = used_devices_in_provider +
+            used_devices_in_volumes +
+            used_devices_in_attached_volumes -
+            used_devices_in_detached_volumes
+    value.compact.uniq.sort
+  end
+
+  def next_available_device(device)
+    letter = device.nil? ? 'b' : device[-1, 1].next
+    "/dev/oracleoci/oraclevd#{letter}"
+  end
+
+  # rubocop: disable Metrics/AbcSize
+  def before_apply
+    #
+    # Fill in missing device names
+    #
+    next_device = next_available_device(used_devices&.last)
+    resource.oci_api_data[:volumes]&.each do |volume, properties|
+      next unless properties['device'].nil?
+
+      Puppet.debug "Using next device '#{next_device}' for volume '#{volume}'."
+      properties['device'] = next_device
+      next_device = next_available_device(next_device)
+    end
+    resource.oci_api_data[:attached_volumes]&.each do |volume, properties|
+      next unless properties['device'].nil?
+
+      Puppet.debug "Using next device '#{next_device}' for volume '#{volume}'."
+      properties['device'] = next_device
+      next_device = next_available_device(next_device)
+    end
+  end
+  # rubocop: enable Metrics/AbcSize
+
+  def self.translate_to_resource(_raw_resource, _resource)
     nil
   end
 
@@ -55,8 +107,8 @@ newproperty(:attached_volumes, :parent => Puppet_X::EnterpriseModules::Oci::Asso
   end
 
   # rubocop: disable Naming/MethodParameterName
-  def insync?(is)
-    should.all? {|k,v| current_value.keys.include?(k) }
+  def insync?(_is)
+    should.all? { |k, _v| current_value.keys.include?(k) }
   end
   # rubocop: enable Naming/MethodParameterName
 
