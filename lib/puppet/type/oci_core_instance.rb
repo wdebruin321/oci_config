@@ -100,6 +100,8 @@ supply string values using the API.
   property :agent_config
   property :time_maintenance_reboot_due
   property :is_pv_encryption_in_transit_enabled
+  property :attached_volumes
+  property :detached_volumes
 
   validate do
     validate_reference_propery(:compartment_id, self)

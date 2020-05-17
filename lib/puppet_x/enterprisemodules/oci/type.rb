@@ -300,7 +300,7 @@ module Puppet_X
               #
               # There are anumber of properties we always need. So add them to the list
               #
-              specfied_properties += [:id, :compartment_id, :namespace, :subnet_id, :vcn_id, :compartment, :mount_target_id, :backup_policy_id]
+              specfied_properties += [:id, :compartment_id, :namespace, :subnet_id, :vcn_id, :compartment, :mount_target_id, :backup_policy_id, :volumes]
               resources[name].provider = provider.map_raw_to_resource(raw_resource, specfied_properties)
             end
             resources
