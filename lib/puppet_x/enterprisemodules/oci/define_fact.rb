@@ -16,7 +16,7 @@ def list_for_resource(type, fields, &filter)
     next unless settings_for(tenant)['facts'].any? { |f| type.to_s.=~ Regexp.new(f) }
 
     lister = Puppet_X::EnterpriseModules::Oci::ResourceLister.new(tenant, object_class)
-    lister.resource_list.collect do |resource|
+    lister.resource_list.select(&:present?).collect do |resource|
       hash = resource.to_hash.to_puppet
       name = hash['name'] || hash['display_name']
       full_name = "#{tenant} (root)/#{name}"

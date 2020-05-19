@@ -18,7 +18,7 @@ module Puppet_X
           @resolver      = Puppet_X::EnterpriseModules::Oci::NameResolver.instance(tenant)
         end
 
-        # rubocop: disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/AbcSize
+        # rubocop: disable Metrics/CyclomaticComplexity, Metrics/MethodLength
         def resource_list(compartment_id = nil)
           all_resources = case ServiceInfo.type_to_lookup_method(@resource_type)
                           when :root
@@ -42,9 +42,9 @@ module Puppet_X
                           else
                             fail "Internal error: invalid primary_key for #{@resource_type}"
                           end
-          all_resources.select(&:present?)
+          all_resources
         end
-        # rubocop: enable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/AbcSize
+        # rubocop: enable Metrics/CyclomaticComplexity, Metrics/MethodLength
 
         private
 

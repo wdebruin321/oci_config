@@ -284,7 +284,7 @@ module Puppet_X
                   # Skip if compartment doesn't exist
                   next
                 end
-                lister.resource_list(compartment_id).collect do |resource|
+                lister.resource_list(compartment_id).select(&:present?).collect do |resource|
                   hash = resource.to_hash.to_puppet
                   hash['tenant'] = tenant
                   hash
@@ -353,7 +353,7 @@ module Puppet_X
           def get_raw_resources
             configuration.keys.collect do |tenant|
               lister = ResourceLister.new(tenant, object_class)
-              lister.resource_list.collect do |resource|
+              lister.resource_list.select(&:present?).collect do |resource|
                 hash = resource.to_hash.to_puppet
                 hash['tenant'] = tenant
                 hash

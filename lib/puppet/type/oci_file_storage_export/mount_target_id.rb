@@ -23,6 +23,6 @@ newproperty(:mount_target_id, :parent => Puppet_X::EnterpriseModules::Oci::Prope
     # TODO: This is very inefficient. But we need to find a mere effecient way to get the mount_target_id of an export
     #
     lister = Puppet_X::EnterpriseModules::Oci::ResourceLister.new(@tenant, OCI::FileStorage::Models::MountTarget)
-    lister.resource_list.find { |e| e.export_set_id == raw_resource['export_set_id'] }.id
+    lister.resource_list.select(&:present?).find { |e| e.export_set_id == raw_resource['export_set_id'] }.id
   end
 end
