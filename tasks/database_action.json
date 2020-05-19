@@ -1,0 +1,22 @@
+{
+  "description": "Execute an database action on the specfied node of a database server",
+  "input_method": "stdin",
+  "files": [
+    "easy_type/lib/",
+    "oci_config/lib/"
+  ],
+  "parameters": {
+    "db_node_id": {
+      "description": "The ocid of the database node you want to apply the action on.",
+      "type": "Optional[String[1]]"
+    },
+    "db_node_name": {
+      "description": "The name of the database node you want to apply the action on.",
+      "type": "Optional[String[1]]"
+    },
+    "action": {
+      "description": "The action you want to apply on the specified instance.",
+      "type": "Enum['START','STOP','SOFTRESET','SOFTSTOP','RESET']"
+    }
+  }
+}
