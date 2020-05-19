@@ -57,7 +57,7 @@ module Puppet_X
 
           unless @cached_types.include?(ocid_type)
             #
-            # Fetch all objects of specfied type
+            # Fetch all objects of specified type
             #
             object_class = ServiceInfo.id_to_class(ocid_type)
             lister = ResourceLister.new(tenant, object_class)
@@ -92,7 +92,7 @@ module Puppet_X
           object = find_in_cache(tenant, id_type, name, compartment_id)
           if object.nil? # Not in cache, fetch it
             #
-            # Fetch all objects of specfied type
+            # Fetch all objects of specified type
             #
             object_class = ServiceInfo.id_to_class(id_type)
             lister = ResourceLister.new(tenant, object_class)
@@ -111,7 +111,17 @@ module Puppet_X
           if compartment_id == @tenant_ids[tenant]
             @cache[tenant].find { |o| o.id_type == id_type && o.puppet_name == name && (o.compartment_id == compartment_id || o.compartment_id.nil?) }
           else
-            @cache[tenant].find { |o| o.id_type == id_type && o.puppet_name == name && o.compartment_id == compartment_id }
+            @cache[tenant].find do |object|
+              if object.respond_to?(:compartment_id)
+                object.id_type == id_type && object.puppet_name == name && object.compartment_id == compartment_id
+              else
+                #
+                # TODO: Check if there is a more acurate way to select an object_id on an object that
+                # doesn't respond to compartment_id
+                #
+                object.id_type == id_type && object.puppet_name == name
+              end
+            end
           end
         end
         # rubocop: enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity

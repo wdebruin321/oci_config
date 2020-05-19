@@ -18,13 +18,15 @@ module Puppet_X
           @resolver      = Puppet_X::EnterpriseModules::Oci::NameResolver.instance(tenant)
         end
 
-        # rubocop: disable Metrics/CyclomaticComplexity, Metrics/MethodLength
+        # rubocop: disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/AbcSize
         def resource_list(compartment_id = nil)
           all_resources = case ServiceInfo.type_to_lookup_method(@resource_type)
                           when :root
                             resources_at_root
                           when :vcn
                             resources_in_vncs(compartment_id)
+                          when :db_systems
+                            resources_in_db_systems(compartment_id)
                           when :protocol
                             resources_in_protocol(compartment_id)
                           when :availability_domains
@@ -42,7 +44,7 @@ module Puppet_X
                           end
           all_resources.select(&:present?)
         end
-        # rubocop: enable Metrics/CyclomaticComplexity, Metrics/MethodLength
+        # rubocop: enable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/AbcSize
 
         private
 
@@ -104,6 +106,20 @@ module Puppet_X
             end
           end.flatten.compact.uniq(&:id)
         end
+
+        # rubocop: disable Metrics/AbcSize
+        def resources_in_db_systems(specified_compartment)
+          compartment_list(specified_compartment).collect do |compartment_id|
+            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
+            db_systems_in(compartment_id).collect do |db_system_id|
+              handle_authorisation_errors(compartment_id) do
+                Puppet.debug "Inspecting database #{db_system_id}..."
+                client.send("list_#{object_type_plural}", compartment_id, :db_system_id => db_system_id).data
+              end
+            end
+          end.flatten.compact.uniq(&:id)
+        end
+        # rubocop: enable Metrics/AbcSize
 
         # rubocop: disable Metrics/AbcSize
         def resources_in_vncs(specified_compartment)
@@ -168,6 +184,13 @@ module Puppet_X
           end.flatten.compact.uniq(&:id)
         end
         # rubocop: enable Metrics/AbcSize
+
+        def db_systems_in(compartment_id)
+          handle_authorisation_errors(compartment_id) do
+            db_client = OCI::Database::DatabaseClient.new(:proxy_settings => proxy_config(@tenant), :config => tenant_config(@tenant), :retry_config => retry_config)
+            db_client.send('list_db_systems', compartment_id).data.collect(&:id)
+          end
+        end
 
         def vncs_in(compartment_id)
           handle_authorisation_errors(compartment_id) do

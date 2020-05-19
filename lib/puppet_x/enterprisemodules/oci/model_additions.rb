@@ -21,6 +21,8 @@ module Puppet_X
             name
           elsif respond_to?(:display_name)
             display_name
+          elsif respond_to?(:hostname)
+            hostname
           else
             'unknown name'
           end
@@ -93,7 +95,8 @@ models = [
   OCI::ObjectStorage::Models::Bucket,
   OCI::FileStorage::Models::FileSystemSummary,
   OCI::FileStorage::Models::MountTargetSummary,
-  OCI::FileStorage::Models::Export
+  OCI::FileStorage::Models::Export,
+  OCI::Database::Models::DbNodeSummary
 ].freeze
 
 models.each do |model|
