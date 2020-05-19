@@ -5,7 +5,7 @@
 #
 #
 # Function to fetch the fact ora_is_root_db and based on that information
-# decide if the specfied sid is a root database or not.
+# decide if the specified sid is a root database or not.
 #
 Puppet::Functions.create_function('oci_config::latest_image_for') do
   dispatch :latest_image_for do

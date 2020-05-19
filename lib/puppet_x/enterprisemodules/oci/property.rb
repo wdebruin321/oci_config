@@ -84,7 +84,7 @@ module Puppet_X
             # Translate the reference to the id and then make sure the reference property is removed
             # The OCI api fails if it is still there.
             #
-            # We use the type if it is specfied, if not specified, we infer a type based on
+            # We use the type if it is specified, if not specified, we infer a type based on
             # the singular version of the property.
             #
             data[property] = reference_to_id(data[reference_property], property_type.to_sym)

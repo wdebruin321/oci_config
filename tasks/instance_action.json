@@ -15,7 +15,7 @@
       "type": "Optional[String[1]]"
     },
     "action": {
-      "description": "The action you want to apply on the specfied instance.",
+      "description": "The action you want to apply on the specified instance.",
       "type": "Enum['START','STOP','SOFTRESET','SOFTSTOP','RESET']"
     }
   }

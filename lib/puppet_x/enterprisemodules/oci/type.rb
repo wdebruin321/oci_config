@@ -296,12 +296,12 @@ module Puppet_X
               name = name_parameter_class.translate_to_resource(raw_resource)     # Get the full name
               next unless resource_names_in_manifest(resources).include?(name)    # Skip if not in manifest
 
-              specfied_properties = resources[name].to_hash.reject { |key, _value| PUPPET_META_ATTRIBUTES.include?(key) }.keys
+              specified_properties = resources[name].to_hash.reject { |key, _value| PUPPET_META_ATTRIBUTES.include?(key) }.keys
               #
               # There are anumber of properties we always need. So add them to the list
               #
-              specfied_properties += [:id, :compartment_id, :namespace, :subnet_id, :vcn_id, :compartment, :mount_target_id, :backup_policy_id, :volumes]
-              resources[name].provider = provider.map_raw_to_resource(raw_resource, specfied_properties)
+              specified_properties += [:id, :compartment_id, :namespace, :subnet_id, :vcn_id, :compartment, :mount_target_id, :backup_policy_id, :volumes]
+              resources[name].provider = provider.map_raw_to_resource(raw_resource, specified_properties)
             end
             resources
           end
