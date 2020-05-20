@@ -1,6 +1,18 @@
 History
 ========
 
+## 0.6.0
+
+- [core] Extract the selection of present resource from the resource lister
+- [tasks/database_action] Initial implementation
+- [core] Add basic support for resolving dbnodes
+- [oci_core_instance] Add default devices for attachments
+- [oci_core_instance] Add support for attached_volumes and detached_volumes
+- [oci_core_instance] Fix update on volumes
+- [oci_core_volume] Fix vpus_per_gb property
+- [oci_core_volume] Fix property backup_policy
+- [facts] Use monkey patched Dir to bypass error expanding ‘~’
+
 ## 0.5.1
 
 - [core] Handle references to properties that we don’t have acces to
