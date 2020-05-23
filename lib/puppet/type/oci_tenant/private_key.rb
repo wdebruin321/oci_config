@@ -11,5 +11,5 @@ newproperty(:private_key) do
 
   DESC
 
-  data_type('String')
+  data_type('Optional[String[1]]')
 end

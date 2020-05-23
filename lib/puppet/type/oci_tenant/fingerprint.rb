@@ -10,5 +10,5 @@ newproperty(:fingerprint) do
   SSL Fingerprint to use for authentication.
   DESC
 
-  data_type('String')
+  data_type('Optional[String[1]]')
 end

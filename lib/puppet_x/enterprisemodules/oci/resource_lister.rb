@@ -9,14 +9,16 @@ module Puppet_X
         include Config
         include Settings
 
+        # rubocop: disable  Metrics/AbcSize
         def initialize(tenant, object_class)
           @tenant        = tenant
           @object_class  = object_class
           @object_type   = @object_class.to_s.split('::').last.underscore
           @resource_type = @object_class.to_s.gsub('::Models', '').split('::').join('_').underscore.to_sym
-          @tenant_id     = settings_for(@tenant)['tenancy_ocid']
+          @tenant_id     = settings_for(@tenant)['tenancy_ocid'] || Facter.value(:oci_instance)['compartment_id']
           @resolver      = Puppet_X::EnterpriseModules::Oci::NameResolver.instance(tenant)
         end
+        # rubocop: enable  Metrics/AbcSize
 
         # rubocop: disable Metrics/CyclomaticComplexity, Metrics/MethodLength
         def resource_list(compartment_id = nil)
@@ -154,10 +156,7 @@ module Puppet_X
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
             vaults_in(compartment_id).collect do |vault|
               handle_authorisation_errors(compartment_id) do
-                kms_management_client = OCI::KeyManagement::KmsManagementClient.new(:proxy_settings => proxy_config(@tenant),
-                                                                                    :config => tenant_config(@tenant),
-                                                                                    :endpoint => vault.management_endpoint,
-                                                                                    :retry_config => retry_config)
+                kms_management_client = client_for(OCI::KeyManagement::KmsManagementClient, tenant, :endpoint => vault.management_endpoin)
                 Puppet.debug "Inspecting vault #{vault.id}..."
                 kms_management_client.send("list_#{object_type_plural}", compartment_id).data
               end
@@ -187,34 +186,34 @@ module Puppet_X
 
         def db_systems_in(compartment_id)
           handle_authorisation_errors(compartment_id) do
-            db_client = OCI::Database::DatabaseClient.new(:proxy_settings => proxy_config(@tenant), :config => tenant_config(@tenant), :retry_config => retry_config)
+            db_client = client_for(OCI::Database::DatabaseClient, @tenant)
             db_client.send('list_db_systems', compartment_id).data.collect(&:id)
           end
         end
 
         def vncs_in(compartment_id)
           handle_authorisation_errors(compartment_id) do
-            vcn_client = OCI::Core::VirtualNetworkClient.new(:proxy_settings => proxy_config(@tenant), :config => tenant_config(@tenant), :retry_config => retry_config)
+            vcn_client = client_for(OCI::Core::VirtualNetworkClient, @tenant)
             vcn_client.send('list_vcns', compartment_id).data.collect(&:id)
           end
         end
 
         def vaults_in(compartment_id)
           handle_authorisation_errors(compartment_id) do
-            vault_client = OCI::KeyManagement::KmsVaultClient.new(:proxy_settings => proxy_config(@tenant), :config => tenant_config(@tenant), :retry_config => retry_config)
+            vault_client = client_for(OCI::KeyManagement::KmsVaultClient, @tenant)
             vault_client.send('list_vaults', compartment_id).data
           end
         end
 
         def availability_domains_in(compartment_id)
           handle_authorisation_errors(compartment_id) do
-            identity_client = OCI::Identity::IdentityClient.new(:proxy_settings => proxy_config(@tenant), :config => tenant_config(@tenant), :retry_config => retry_config)
+            identity_client = client_for(OCI::Identity::IdentityClient, @tenant)
             identity_client.send('list_availability_domains', compartment_id).data.collect(&:name)
           end
         end
 
         def client
-          @client ||= ServiceInfo.type_to_client(@resource_type).new(:proxy_settings => proxy_config(@tenant), :config => tenant_config(@tenant), :retry_config => retry_config)
+          @client ||= client_for(ServiceInfo.type_to_client(@resource_type), @tenant)
         end
 
         def object_type_plural

@@ -23,7 +23,7 @@ newproperty(:policies, :array_matching => :all, :parent => Puppet_X::EnterpriseM
   def self.translate_to_resource(raw_resource, _resource)
     @tenant = raw_resource['tenant']
     id = raw_resource['id']
-    client = OCI::Autoscaling::AutoScalingClient.new(:proxy_settings => proxy_config(@tenant), :config => tenant_config(@tenant), :retry_config => retry_config)
+    client = client_for(OCI::Autoscaling::AutoScalingClient, @tenant)
     values = client.list_auto_scaling_policies(id).data
     values = values.collect do |policy|
       data = client.get_auto_scaling_policy(id, policy.id).data.to_hash

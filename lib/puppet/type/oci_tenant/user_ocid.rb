@@ -10,5 +10,5 @@ newproperty(:user_ocid) do
   OCID of the user to use for authentication.
   DESC
 
-  data_type('String[1]')
+  data_type('Optional[String[1]]')
 end

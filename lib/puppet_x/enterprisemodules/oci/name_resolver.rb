@@ -23,8 +23,11 @@ module Puppet_X
         def initialize_for_tenant(tenant)
           return if @clients[tenant]
 
-          @clients[tenant]    = OCI::Identity::IdentityClient.new(:proxy_settings => proxy_config(tenant), :config => tenant_config(tenant), :retry_config => retry_config)
-          @tenant_ids[tenant] = @clients[tenant].api_client.config.tenancy
+          @clients[tenant]    = client_for(OCI::Identity::IdentityClient, tenant)
+          #
+          # If we are using an instance principal then use compartment_id as tenant
+          #
+          @tenant_ids[tenant] = @clients[tenant].api_client.config.tenancy || Facter.value(:oci_instance)['compartment_id']
           #
           # We now use a large limit, be we need to modify it to use multiple calls.
           #

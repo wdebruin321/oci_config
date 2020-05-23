@@ -325,7 +325,7 @@ module Puppet_X
           # rubocop: enable Metrics/AbcSize
 
           def client(tenant = nil)
-            client_class.new(:proxy_settings => proxy_config(tenant), :config => tenant_config(tenant), :retry_config => retry_config)
+            client_for(client_class, tenant)
           end
 
           def client_class

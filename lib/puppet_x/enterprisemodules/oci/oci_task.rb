@@ -92,7 +92,7 @@ module Puppet_X
                       oci_var.match(/^(.*) \(root\).*$/)[1]
                     end
           @resolver = Puppet_X::EnterpriseModules::Oci::NameResolver.instance(@tenant)
-          @client = client_class.new(:proxy_settings => proxy_config(@tenant), :config => tenant_config(@tenant), :retry_config => retry_config)
+          @client = client_for(client_class, @tenant)
           @result = {}
         end
         # rubocop: enable Metrics/AbcSize

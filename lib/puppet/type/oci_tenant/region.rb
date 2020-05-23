@@ -10,5 +10,5 @@ newproperty(:region) do
   A region to use for APIs created with this instance.
   DESC
 
-  data_type('String[1]')
+  data_type('Optional[String[1]]')
 end

@@ -18,7 +18,7 @@ newparam(:name) do
 
   to_translate_to_resource do |raw_resource|
     tenant = raw_resource['tenant']
-    client = OCI::FileStorage::FileStorageClient.new(:proxy_settings => proxy_config(tenant), :config => tenant_config(tenant))
+    client = client_for(OCI::FileStorage::FileStorageClient, tenant)
     export_set_id = raw_resource['export_set_id']
     export_set_info = client.get_export_set(export_set_id).data
     compartment_id = export_set_info.compartment_id

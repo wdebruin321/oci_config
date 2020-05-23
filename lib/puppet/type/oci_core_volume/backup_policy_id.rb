@@ -20,7 +20,7 @@ created volume. If omitted, no policy will be assigned.
 
   def self.translate_to_resource(raw_resource, _partial_resource)
     tenant = raw_resource['tenant']
-    client = OCI::Core::BlockstorageClient.new(:proxy_settings => proxy_config(tenant), :config => tenant_config(tenant))
+    client = client_for(OCI::Core::BlockstorageClient, tenant)
     data = client.get_volume_backup_policy_asset_assignment(raw_resource['id']).data
     return nil if data.size != 1
 

@@ -7,6 +7,16 @@ module Puppet_X
       module Config
         Puppet_X::EnterpriseModules::Oci::Settings::SETTINGS_FILE = '/etc/oci_tenant.yaml'
 
+        def client_for(klass, tenant, options = {})
+          if settings_for(tenant)['instance_principal']
+            instance_principals_signer = OCI::Auth::Signers::InstancePrincipalsSecurityTokenSigner.new
+            full_options = { :config => tenant_config(tenant), :signer => instance_principals_signer, :retry_config => retry_config }.merge(options)
+          else
+            full_options = { :proxy_settings => proxy_config(tenant), :config => tenant_config(tenant), :retry_config => retry_config }.merge(options)
+          end
+          klass.new(full_options)
+        end
+
         def tenant_config(tenant = nil)
           OCI.logger = Logger.new(STDOUT) if ENV['OCI_CONFIG_DEBUG']
           tenant = self.tenant if tenant.nil?
@@ -50,18 +60,25 @@ module Puppet_X
           configuration.fetch(tenant)
         end
 
+        # rubocop: disable Metrics/AbcSize
         def config_for_settings(tenant)
           extend(EasyType::Encryption)
           settings = settings_for(tenant)
           config = OCI::Config.new
-          config.tenancy      = settings['tenancy_ocid']
-          config.user         = settings['user_ocid']
-          config.fingerprint  = settings['fingerprint']
-          config.key_content  = decrypted_value(settings['private_key'])
-          config.pass_phrase  = decrypted_value(settings['private_key_password']) if settings['private_key_password']
-          config.region       = settings['region']
+          #
+          # Always set specified region.
+          #
+          config.region  = settings['region']
+          config.tenancy = settings['tenancy_ocid']
+          return config if settings['instance_principal']
+
+          config.user        = settings['user_ocid']
+          config.fingerprint = settings['fingerprint']
+          config.key_content = decrypted_value(settings['private_key'])
+          config.pass_phrase = decrypted_value(settings['private_key_password']) if settings['private_key_password']
           config
         end
+        # rubocop: enable Metrics/AbcSize
       end
     end
   end

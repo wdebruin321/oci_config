@@ -20,6 +20,8 @@ AllCops:
     - 'pkg/**/*'
     - 'bin/*'
 
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true      # (0.84)
 Layout/EmptyLinesAroundAttributeAccessor:
   Enabled: true     # (0.83)
 Style/SlicingWithRange:
