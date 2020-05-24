@@ -63,6 +63,8 @@ describe 'oci_core_instance' do
           availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
           fault_domain        => 'FAULT-DOMAIN-2',
           launch_mode         => 'NATIVE',
+          ssh_authorized_keys => 'ssh-rsa BBB3NzaC1y fakekey',
+          user_data           => "echo 'hello there'",
           region              => 'eu-frankfurt-1',
           shape               => 'VM.Standard1.1',
           source_details      => {

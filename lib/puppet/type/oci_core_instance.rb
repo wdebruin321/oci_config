@@ -102,6 +102,12 @@ supply string values using the API.
   property :is_pv_encryption_in_transit_enabled
   property :detached_volumes
   property :attached_volumes
+  #
+  # Some helper properties. These properties make it easier to specificy some
+  # often used values
+  #
+  property :user_data
+  property :ssh_authorized_keys
 
   validate do
     validate_reference_propery(:compartment_id, self)
