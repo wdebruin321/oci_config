@@ -1,19 +1,19 @@
 ---
-#
-# Include the defaukls module jobs for gitlab CI definitions
-#
 include:
-  - project: 'enterprisemodules/gitlab_ci'
-    file: 'gitlab-ci.yml'
+- project: enterprisemodules/gitlab_ci
+  file: module-defaults.yml
 
-Quality checks:
-  extends: .quality_check
+# Skip 4.10 unit tests
+Puppet 4.10 Unit Test:
+  only:
+    refs:
+      - never_do_this
 
-Module Build:
-  extends:  .em_build
-
-Module Publish:
-  extends:  .em_publish
+# Skip 5.5 unit tests
+Puppet 5.5 Unit test:
+  only:
+    refs:
+      - never_do_this
 
 #
 # Acceptance tests

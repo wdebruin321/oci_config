@@ -12,7 +12,6 @@ if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('2.3.0')
   gem 'oci'
   gem 'activesupport',  '< 6.0.0'
   gem 'yard'
-  gem 'byebug'
 end
 
 group :unit_test do

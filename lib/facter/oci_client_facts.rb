@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+#
+# See the file "LICENSE" for the full license governing this code.
+#
 require 'net/http'
 require 'json'
 
