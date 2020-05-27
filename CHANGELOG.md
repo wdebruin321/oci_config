@@ -1,6 +1,12 @@
 History
 ========
 
+## 0.7.0
+
+- [oci_config] Add class for easy gem installation
+- [oci_core_instance] Add support for helper properties user_data & ssh_authorized_keys
+- [core] Add support for instance pricipals
+
 ## 0.6.0
 
 - [core] Extract the selection of present resource from the resource lister
