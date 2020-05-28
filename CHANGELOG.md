@@ -1,6 +1,12 @@
 History
 ========
 
+## 0.8.0
+
+- [oci_core_instance] Fix detection of used devices
+- [core] Don’t used destroyed resources for name resolving
+- [core] Make OCI retry settings configurable through oci_tenant
+
 ## 0.7.0
 
 - [oci_config] Add class for easy gem installation
