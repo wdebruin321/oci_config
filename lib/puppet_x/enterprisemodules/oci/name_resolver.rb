@@ -64,7 +64,7 @@ module Puppet_X
             #
             object_class = ServiceInfo.id_to_class(ocid_type)
             lister = ResourceLister.new(tenant, object_class)
-            @cache[tenant] += lister.resource_list
+            @cache[tenant] += lister.resource_list.select(&:present?)
             @cache[tenant].uniq(&:id) # remove duplicate from cache
             @cached_types << ocid_type
             object = @cache[tenant].find { |e| e.id == ocid && e.id_type == ocid_type }
@@ -99,7 +99,7 @@ module Puppet_X
             #
             object_class = ServiceInfo.id_to_class(id_type)
             lister = ResourceLister.new(tenant, object_class)
-            @cache[tenant] += lister.resource_list(compartment_id)
+            @cache[tenant] += lister.resource_list(compartment_id).select(&:present?)
             @cache[tenant].uniq(&:id) # remove duplicate from cache
             object = find_in_cache(tenant, id_type, name, compartment_id)
           end
