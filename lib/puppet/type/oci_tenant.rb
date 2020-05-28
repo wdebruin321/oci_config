@@ -49,4 +49,12 @@ Puppet::Type.newtype(type_name) do
   property :proxy_password
   property :instance_principal
   property :facts
+  #
+  # Properties to control OCI timeouts
+  #
+  property :base_sleep_time_millis
+  property :sleep_calc_millis_proc
+  property :max_attempts
+  property :max_elapsed_time_millis
+  property :max_sleep_between_attempts_millis
 end

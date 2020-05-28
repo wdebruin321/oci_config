@@ -162,7 +162,7 @@ module Puppet_X
         # rubocop: disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         def wait_for_state(oci_object_type, id, type)
           ready_states = type == :create ? present_states : absent_states
-          ready_states << 'UNKNOWN' # Some objects don't have a state. SO they are ready directly
+          ready_states << 'UNKNOWN' # Some objects don't have a state. So they are ready directly
           eval_proc = ->(response) do
             state = response.data.respond_to?(:lifecycle_state) ? response.data.lifecycle_state : 'UNKNOWN'
             if response.data.respond_to?(:puppet_name)
@@ -172,7 +172,7 @@ module Puppet_X
             end
             ready_states.include?(state)
           end
-          local_retry_config = type == :destroy ? nil : retry_config
+          local_retry_config = type == :destroy ? nil : retry_config(tenant)
           waiter_result = client.send("get_#{oci_object_type}", id, :retry_config => local_retry_config)
           waiter_result.wait_until(
             :eval_proc => eval_proc,

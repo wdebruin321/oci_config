@@ -10,9 +10,9 @@ module Puppet_X
         def client_for(klass, tenant, options = {})
           if settings_for(tenant)['instance_principal']
             instance_principals_signer = OCI::Auth::Signers::InstancePrincipalsSecurityTokenSigner.new
-            full_options = { :config => tenant_config(tenant), :signer => instance_principals_signer, :retry_config => retry_config }.merge(options)
+            full_options = { :config => tenant_config(tenant), :signer => instance_principals_signer, :retry_config => retry_config(tenant) }.merge(options)
           else
-            full_options = { :proxy_settings => proxy_config(tenant), :config => tenant_config(tenant), :retry_config => retry_config }.merge(options)
+            full_options = { :proxy_settings => proxy_config(tenant), :config => tenant_config(tenant), :retry_config => retry_config(tenant) }.merge(options)
           end
           klass.new(full_options)
         end
@@ -34,14 +34,21 @@ module Puppet_X
           OCI::ApiClientProxySettings.new(proxy_address, proxy_port, proxy_user, proxy_password)
         end
 
-        def retry_config
+        # rubocop: disable Metrics/AbcSize, Metrics/CyclomaticComplexity
+        def retry_config(tenant)
+          settings                          = settings_for(tenant)
+          base_sleep_time_millis            = settings['base_sleep_time_millis'] || 50
+          sleep_calc_millis                 = settings['sleep_calc_millis'] || 200
+          max_attempts                      = settings['max_attempts'] || 2
+          max_elapsed_time_millis           = settings['max_elapsed_time_millis'] || 300_000
+          max_sleep_between_attempts_millis = settings['max_sleep_between_attempts_millis'] || 500
           OCI::Retry::RetryConfig.new(
-            :base_sleep_time_millis => 50,
+            :base_sleep_time_millis => base_sleep_time_millis,
             :exponential_growth_factor => 2,
-            :sleep_calc_millis_proc => ->(_, _) { 200 },
-            :max_attempts => 2,
-            :max_elapsed_time_millis => 300_000,
-            :max_sleep_between_attempts_millis => 500,
+            :sleep_calc_millis_proc => ->(_, _) { sleep_calc_millis },
+            :max_attempts => max_attempts,
+            :max_elapsed_time_millis => max_elapsed_time_millis,
+            :max_sleep_between_attempts_millis => max_sleep_between_attempts_millis,
             :should_retry_exception_proc => ->(data) do
               return false unless data.last_exception.status_code == 404
 
@@ -51,6 +58,7 @@ module Puppet_X
             end
           )
         end
+        # rubocop: enable Metrics/AbcSize, Metrics/CyclomaticComplexity
 
         def default_tenant
           configuration.keys.first
