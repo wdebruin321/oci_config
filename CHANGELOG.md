@@ -1,6 +1,10 @@
 History
 ========
 
+## 0.8.1
+
+- [doc] Add REFERENCE.md
+
 ## 0.8.0
 
 - [oci_core_instance] Fix detection of used devices
