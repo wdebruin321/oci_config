@@ -1,6 +1,21 @@
 #
-# Use this plan to correctly shutdown an OCI instance on OS level and then stop the instance on OCI level
+# See the file "LICENSE" for the full license governing this code.
 #
+#++--++
+#
+# @summary This plan will start the specified OCI instances
+#
+# @example
+#   bolt plan run oci_config::start_instances oci_master=mypupptserver instances=mynode1,mynode2,mynode3
+#
+# @param [TargetSpec] oci_master
+#   The Puppetserver that has the oci_config module installed and has one or more
+#   oci_tenant instances defined on it.
+#
+# @param [TargetSpec] instances
+#   The OCI instanc names you want to start
+#
+#--++--
 plan oci_config::start_instances(
   TargetSpec $instances,
   TargetSpec $oci_master        = 'localhost',

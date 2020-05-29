@@ -8,6 +8,16 @@ toc: false
 ## Overview
 
 
+Manage object storage buckets.
+
+Here is an example on how to use this:
+
+    oci_object_storage_bucket { 'tenant (root)/my_bucket':
+      ensure        => 'present',
+      freeform_tags => {'test' => 'no'},
+    }
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 
 ## Attributes
 
@@ -354,7 +364,7 @@ resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.Available providers are:
 
 sdk
-: 
+: This provider uses the [Oracle Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk) to do its work.
 
 
 

@@ -1,3 +1,4 @@
+# The details of the launch options
 type Oci_Config::LaunchOptions = Struct[{
   Optional[boot_volume_type]                    => String[1],
   Optional[firmware]                            => String[1],

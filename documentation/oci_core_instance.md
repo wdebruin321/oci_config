@@ -65,6 +65,7 @@ Attribute Name                                                                  
 [absent_states](#oci_core_instance_absent_states)                                             | The OCI states, puppet will detect as the resource being absent.                                         |
 [agent_config](#oci_core_instance_agent_config)                                               | 
                                                                                                         |
+[attached_volumes](#oci_core_instance_attached_volumes)                                       | The volumes your want ensure are connected to the instance.                                              |
 [availability_domain](#oci_core_instance_availability_domain)                                 |   The availability domain of the instance.                                                               |
 [boot_volumes](#oci_core_instance_boot_volumes)                                               | 
                                                                                                         |
@@ -73,6 +74,7 @@ Attribute Name                                                                  
 [dedicated_vm_host](#oci_core_instance_dedicated_vm_host)                                     | The Puppet name of the resource identified by `dedicated_vm_host_id`.                                    |
 [dedicated_vm_host_id](#oci_core_instance_dedicated_vm_host_id)                               | The OCID of dedicated VM host.                                                                           |
 [defined_tags](#oci_core_instance_defined_tags)                                               |   Defined tags for this resource.                                                                        |
+[detached_volumes](#oci_core_instance_detached_volumes)                                       | The volumes your want ensure are detached from  the instance.                                            |
 [disable_corrective_change](#oci_core_instance_disable_corrective_change)                     | Disable the modification of a resource when Puppet decides it is a corrective change.                    |
 [disable_corrective_ensure](#oci_core_instance_disable_corrective_ensure)                     | Disable the creation or removal of a resource when Puppet decides is a corrective change.                |
 [ensure](#oci_core_instance_ensure)                                                           | The basic property that the resource should be in.                                                       |
@@ -96,11 +98,14 @@ Attribute Name                                                                  
 [region](#oci_core_instance_region)                                                           |   The region that contains the availability domain the instance is running in.                           |
 [shape](#oci_core_instance_shape)                                                             |   The shape of an instance.                                                                              |
 [source_details](#oci_core_instance_source_details)                                           |   Details for creating an instance.                                                                      |
+[ssh_authorized_keys](#oci_core_instance_ssh_authorized_keys)                                 |   Provide one or more public SSH keys to be included in the `~/.ssh/authorized_keys` file
+               |
 [synchronized](#oci_core_instance_synchronized)                                               | Specifies if Puppet waits for OCI actions to be ready before moving on to an other resource.             |
 [system_tags](#oci_core_instance_system_tags)                                                 |   System tags for this resource.                                                                         |
 [tenant](#oci_core_instance_tenant)                                                           | The tenant for this resource.                                                                            |
 [time_created](#oci_core_instance_time_created)                                               |   The date and time the instance was created, in the format defined by RFC3339.                          |
 [time_maintenance_reboot_due](#oci_core_instance_time_maintenance_reboot_due)                 |   The date and time the instance is expected to be stopped / started,  in the format defined by RFC3339. |
+[user_data](#oci_core_instance_user_data)                                                     | Cloud-Init configuration.                                                                                |
 [vnics](#oci_core_instance_vnics)                                                             | 
                                                                                                         |
 [volumes](#oci_core_instance_volumes)                                                         |     The volumes connected to the instance.                                                               |
@@ -119,6 +124,29 @@ The OCI states, puppet will detect as the resource being absent.
 ### agent_config<a name='oci_core_instance_agent_config'>
 
 
+
+
+
+[Back to overview of oci_core_instance](#attributes)
+
+### attached_volumes<a name='oci_core_instance_attached_volumes'>
+
+The volumes your want ensure are connected to the instance. This is different from the
+regular `volumes` property in the sense that this is only about the specified
+volumes. It doesn't care about any other volumes attached. It doesn't describe the
+the full state, but only the partial state of this volume.
+
+Here is an example on how to use this:
+
+    oci_core_instance { 'tenant (root)/my_instance':
+      ensure              => 'present',
+        .
+        .
+      attached_volumes             => {
+        'compartment_name/my_volume_1' => {
+          'attachment_type' => 'paravirtualized',
+        }
+    }
 
 
 
@@ -199,6 +227,31 @@ namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.c
 Example: `{"Operations": {"CostCenter": "42"}}`
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_instance](#attributes)
+
+### detached_volumes<a name='oci_core_instance_detached_volumes'>
+
+The volumes your want ensure are detached from  the instance. This is different from the
+regular `volumes` property in the sense that this is only about the specified
+volumes. It doesn't care about any other volumes attached. It doesn't describe the
+the full state, but only the partial state of this volume.
+
+Here is an example on how to use this:
+
+    oci_core_instance { 'tenant (root)/my_instance':
+      ensure              => 'present',
+        .
+        .
+      detached_volumes             => {
+        'compartment_name/my_volume_1' => {}
+      }
+    }
+
+The empty hash is required. This is to keep this property the same as all other
+volume related properties. Any other information in there will be disregarded
 
 
 
@@ -530,7 +583,7 @@ resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.Available providers are:
 
 sdk
-: 
+: This provider uses the [Oracle Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk) to do its work.
 
 
 
@@ -570,6 +623,28 @@ You can enumerate all available shapes by calling {#list_shapes list_shapes}.
 Use this parameter to specify whether a boot volume or an image should be used to launch a new instance.
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_instance](#attributes)
+
+### ssh_authorized_keys<a name='oci_core_instance_ssh_authorized_keys'>
+
+  Provide one or more public SSH keys to be included in the `~/.ssh/authorized_keys` file
+  for the default user on the instance. Use a newline character to separate multiple keys.
+  The SSH keys must be in the format necessary for the `authorized_keys` file, as shown
+  in the example below.
+
+      oci_core_instance { '....':
+        ...
+        ssh_authorized_keys => "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCZ06fccNTQfq+xubFlJ5ZR3kt+uzspdH9tXL+lAejSM1NXM+CFZev7MIxfEjas06y80ZBZ7DUTQO0GxJPeD8NCOb1VorF8M4xuLwrmzRtkoZzU16umt4y1W0Q4ifdp3IiiU0U8/WxczSXcUVZOLqkz5dc6oMHdMVpkimietWzGZ4LBBsH/LjEVY7E0V+a0sNchlVDIZcm7ErReBLcdTGDq0uLBiuChyl6RUkX1PNhusquTGwK7zc8OBXkRuubn5UKXhI3Ul9Nyk4XESkVWIGNKmw8mSpoJSjR8P9ZjRmcZVo8S+x4KVPMZKQEor== ryan.smith@company.com
+ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAzJSAtwEPoB3Jmr58IXrDGzLuDYkWAYg8AsLYlo6JZvKpjY1xednIcfEVQJm4T2DhVmdWhRrwQ8DmayVZvBkLt+zs2LdoAJEVimKwXcJFD/7wtH8Lnk17HiglbbbNXsemjDY0hea4JUE5CfvkIdZBITuMrfqSmA4n3VNoorXYdvtTMoGG8fxMub46RPtuxtqi9bG9Zqenordkg5FJt2mVNfQRqf83CWojcOkklUWq4CjyxaeLf5i9gv1fRoBo4QhiA8I6NCSppO8GnoV/6Ox6TNoh9BiifqGKC9VGYuC89RvUajRBTZSK2TK4DPfaT+2R+slPsFrwiT/oPEhhEK1S5Q== rsa-key-20160227",
+
+        ...
+      }
+
+  This property is an helper property and in the end, will fill in the values in the property `metadata`. If you specify
+  values in both `metadata` and `ssh_authorized_keys`, you might get unexpected results.
 
 
 
@@ -622,6 +697,28 @@ Regardless of how the instance was stopped, the flag will be reset to empty as s
 Example: `2018-05-25T21:10:29.600Z`
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+
+[Back to overview of oci_core_instance](#attributes)
+
+### user_data<a name='oci_core_instance_user_data'>
+
+Provide your own data to be used by Cloud-Init to run custom scripts or provide custom
+Cloud-Init configuration. For information about how to take advantage of user data, see the
+[Cloud-Init Documentation](http://cloudinit.readthedocs.org/en/latest/topics/format.html).
+
+This property is an helper property and in the end, will fill in the values in the property `metadata`. If you specify
+values in both `metadata` and `user_data`, you might get unexpected results.
+
+This propery will take care of the base64 encoding for you. So you can specify a regular value here. Here is
+an example on how to use this:
+
+    oci_core_instance { '...':
+      ...
+      user_data => epp('my_module/startup_script.sh'),
+      ...
+    }
 
 
 

@@ -1,3 +1,4 @@
+# The details of an autonomous Database connection String
 type Oci_Config::AutonomousDatabaseConnectionStrings = Struct[{
   Optional[high]                   => String[1],
   Optional[medium]                 => String[1],

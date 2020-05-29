@@ -1,5 +1,37 @@
 #
-# Use this plan to correctly shutdown an OCI instance on OS level and then stop the instance on OCI level
+# See the file "LICENSE" for the full license governing this code.
+#
+#++--++
+#
+# @summary Use this plan to correctly shutdown an OCI instance on OS level 
+#          and then stop the instance on OCI level. This is usefull for making
+#
+# @example
+#   bolt plan run oci_config::shutdowm_instances oci_master=mypupptserver instances=mynode1,mynode2,mynode3
+#
+# @param [TargetSpec] oci_master
+#   The Puppetserver that has the oci_config module installed and has one or more
+#   oci_tenant instances defined on it.
+#
+# @param [TargetSpec] instances
+#   The OCI instance names you want to shutdown
+#
+# @param [String[1]] shutdown_message
+#   The shutdown message to display on the specified node
+#
+# @param [Integer] after
+#   The time in seconds to wait before actually start the shutdown.
+#
+# @param [Integer] wait_time
+#   The time in seconds to wait for the system to be shutdown. After this
+#   wait time is exceded and the system is still not down, continue processing.
+#
+# @param [Integer] retry_interval
+#   The retry interval between checks if the system is really down.
+#
+#--++--
+#
+# 
 #
 plan oci_config::shutdown_instances(
   TargetSpec $instances,

@@ -31,23 +31,28 @@ Based on this information you can identify yourself to Puppet:
 
 
 
-Attribute Name                                                     | Short Description                                                                         |
------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-[disable_corrective_change](#oci_tenant_disable_corrective_change) | Disable the modification of a resource when Puppet decides it is a corrective change.     |
-[disable_corrective_ensure](#oci_tenant_disable_corrective_ensure) | Disable the creation or removal of a resource when Puppet decides is a corrective change. |
-[facts](#oci_tenant_facts)                                         | The facts you want to enable on this tennant.                                             |
-[fingerprint](#oci_tenant_fingerprint)                             | SSL Fingerprint to use for authentication.                                                |
-[name](#oci_tenant_name)                                           | The name of the setting.                                                                  |
-[private_key](#oci_tenant_private_key)                             | Client private key content.                                                               |
-[private_key_password](#oci_tenant_private_key_password)           | Pass phrase used for key file, if it is encrypted.                                        |
-[provider](#oci_tenant_provider)                                   | resource.                                                                                 |
-[proxy_address](#oci_tenant_proxy_address)                         | Address (fqdn) of the proxy server.                                                       |
-[proxy_password](#oci_tenant_proxy_password)                       | Proxy password.                                                                           |
-[proxy_port](#oci_tenant_proxy_port)                               | IP port of the proxy server.                                                              |
-[proxy_user](#oci_tenant_proxy_user)                               | Username for the proxy.                                                                   |
-[region](#oci_tenant_region)                                       | A region to use for APIs created with this instance.                                      |
-[tenancy_ocid](#oci_tenant_tenancy_ocid)                           | OCID of the tenancy to use for authentication.                                            |
-[user_ocid](#oci_tenant_user_ocid)                                 | OCID of the user to use for authentication.                                               |
+Attribute Name                                                                     | Short Description                                                                         |
+---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+[disable_corrective_change](#oci_tenant_disable_corrective_change)                 | Disable the modification of a resource when Puppet decides it is a corrective change.     |
+[disable_corrective_ensure](#oci_tenant_disable_corrective_ensure)                 | Disable the creation or removal of a resource when Puppet decides is a corrective change. |
+[facts](#oci_tenant_facts)                                                         | The facts you want to enable on this tennant.                                             |
+[fingerprint](#oci_tenant_fingerprint)                                             | SSL Fingerprint to use for authentication.                                                |
+[instance_principal](#oci_tenant_instance_principal)                               | Authenticate as an instance principal.                                                    |
+[max_attempts](#oci_tenant_max_attempts)                                           | to make calls and declare a timeout or that we have no rights to access the resource.     |
+[max_elapsed_time_millis](#oci_tenant_max_elapsed_time_millis)                     | to make calls and declare a timeout or that we have no rights to access the resource.     |
+[max_sleep_between_attempts_millis](#oci_tenant_max_sleep_between_attempts_millis) | sleep between attempts.                                                                   |
+[name](#oci_tenant_name)                                                           | The name of the setting.                                                                  |
+[private_key](#oci_tenant_private_key)                                             | Client private key content.                                                               |
+[private_key_password](#oci_tenant_private_key_password)                           | Pass phrase used for key file, if it is encrypted.                                        |
+[provider](#oci_tenant_provider)                                                   | resource.                                                                                 |
+[proxy_address](#oci_tenant_proxy_address)                                         | Address (fqdn) of the proxy server.                                                       |
+[proxy_password](#oci_tenant_proxy_password)                                       | Proxy password.                                                                           |
+[proxy_port](#oci_tenant_proxy_port)                                               | IP port of the proxy server.                                                              |
+[proxy_user](#oci_tenant_proxy_user)                                               | Username for the proxy.                                                                   |
+[region](#oci_tenant_region)                                                       | A region to use for APIs created with this instance.                                      |
+[sleep_calc_millis_proc](#oci_tenant_sleep_calc_millis_proc)                       | The time to sleep between the OCI call attempts.                                          |
+[tenancy_ocid](#oci_tenant_tenancy_ocid)                                           | OCID of the tenancy to use for authentication.                                            |
+[user_ocid](#oci_tenant_user_ocid)                                                 | OCID of the user to use for authentication.                                               |
 
 
 
@@ -139,6 +144,61 @@ SSL Fingerprint to use for authentication.
 
 [Back to overview of oci_tenant](#attributes)
 
+### instance_principal<a name='oci_tenant_instance_principal'>
+
+Authenticate as an instance principal.
+
+This means for this tenancy, the oci_config module will connect to OCI without any
+of the other authorisation properties and behave like an instance principal.
+
+Make sure you have given the instance enough rights to do the actions you want it to do.
+
+
+
+[Back to overview of oci_tenant](#attributes)
+
+### max_attempts<a name='oci_tenant_max_attempts'>
+
+The number of attempts for OCI calls before we stop trying
+to make calls and declare a timeout or that we have no rights to access the resource.
+
+** WARNING **
+
+Be very carefull when specifying these values. In general the provided defaults work well. Changes
+to these values may have dramtic effects.
+
+
+
+[Back to overview of oci_tenant](#attributes)
+
+### max_elapsed_time_millis<a name='oci_tenant_max_elapsed_time_millis'>
+
+The maximum amount of time (in milliseconds) that can elapse for all attempts before we stop trying
+to make calls and declare a timeout or that we have no rights to access the resource.
+
+** WARNING **
+
+Be very carefull when specifying these values. In general the provided defaults work well. Changes
+to these values may have dramtic effects.
+
+
+
+[Back to overview of oci_tenant](#attributes)
+
+### max_sleep_between_attempts_millis<a name='oci_tenant_max_sleep_between_attempts_millis'>
+
+For exponential backoff and retry calclulation, the maximum amount of time (in milliseconds) to
+sleep between attempts.
+
+** WARNING **
+
+Be very carefull when specifying these values. In general the provided defaults work well. Changes
+to these values may have dramtic effects.
+
+
+
+[Back to overview of oci_tenant](#attributes)
+
 ### name<a name='oci_tenant_name'>
 
 The name of the setting.
@@ -170,7 +230,7 @@ resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.Available providers are:
 
 simple
-: Manage oci tenant through yaml file
+: Manage the oci_tenant file through yaml
 
 
 
@@ -211,6 +271,19 @@ Username for the proxy.
 ### region<a name='oci_tenant_region'>
 
 A region to use for APIs created with this instance.
+
+
+
+[Back to overview of oci_tenant](#attributes)
+
+### sleep_calc_millis_proc<a name='oci_tenant_sleep_calc_millis_proc'>
+
+The time to sleep between the OCI call attempts.
+
+** WARNING **
+
+Be very carefull when specifying these values. In general the provided defaults work well. Changes
+to these values may have dramtic effects.
 
 
 

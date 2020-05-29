@@ -9,5 +9,10 @@ require 'easy_type'
 
 Puppet::Type.type(:oci_key_management_vault).provide(:sdk) do
   include EasyType::Provider
+  desc <<-DESC
+
+  This provider uses the [Oracle Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk) to do its work.
+
+  DESC
   mk_resource_methods
 end

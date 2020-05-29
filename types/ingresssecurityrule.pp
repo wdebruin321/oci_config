@@ -1,3 +1,4 @@
+# The details of ingress security rule
 type Oci_Config::IngressSecurityRule = Struct[{
   Optional[source_type]      => String[1],
   Optional[source]           => String[1],

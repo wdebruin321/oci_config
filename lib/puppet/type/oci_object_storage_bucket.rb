@@ -9,6 +9,21 @@ require 'puppet_x/enterprisemodules/oci/core'
 
 Puppet::Type.newtype(:oci_object_storage_bucket) do
   include Puppet_X::EnterpriseModules::Oci::Type
+  desc <<-DESC
+
+  Manage object storage buckets.
+
+  Here is an example on how to use this:
+
+      oci_object_storage_bucket { 'tenant (root)/my_bucket':
+        ensure        => 'present',
+        freeform_tags => {'test' => 'no'},
+      }
+
+  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+
+  DESC
 
   add_title_attributes(:bucket_name)
 

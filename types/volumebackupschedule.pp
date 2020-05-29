@@ -1,3 +1,4 @@
+# The details of the volume backup schedule
 type Oci_Config::VolumeBackupSchedule = Struct[{
   Optional[backup_type]       => String[1],
   Optional[offset_seconds]    => Integer,

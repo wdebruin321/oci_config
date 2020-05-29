@@ -1,5 +1,13 @@
 #
-# Install the required gem
+# oci_config
+#
+# @summary Installs the required OCI GEM on the system.
+#
+# @param [String[1]] version
+#    The version of the gem to install
+#
+# @param [Stdlib::Absolutepath] tmp_dir
+#    The directory to use for temporary storing the gem file
 #
 class oci_config(
   String[1]            $version,

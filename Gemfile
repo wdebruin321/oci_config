@@ -1,7 +1,7 @@
 
 source ENV['GEM_SOURCE'] || 'https://rubygems.org'
 
-puppetversion = ENV.key?('PUPPET_GEM_VERSION') ? "#{ENV['PUPPET_GEM_VERSION']}" :  '6.4.2'
+puppetversion = ENV.key?('PUPPET_GEM_VERSION') ? "#{ENV['PUPPET_GEM_VERSION']}" :  '6.15.0'
 
 gem 'puppet', puppetversion, :require => false, :groups => [:test]
 if Gem::Version.new(puppetversion) > Gem::Version.new('5.0.0')
@@ -12,6 +12,8 @@ if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('2.3.0')
   gem 'oci'
   gem 'activesupport',  '< 6.0.0'
   gem 'yard'
+  gem 'rgen'
+  gem 'puppet-strings'
 end
 
 group :unit_test do

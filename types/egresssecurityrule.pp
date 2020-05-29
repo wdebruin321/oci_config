@@ -1,3 +1,4 @@
+# The details of EGress security rule
 type Oci_Config::EgressSecurityRule = Struct[{
   Optional[destination]      => String[1],
   Optional[destination_type] => String[1],

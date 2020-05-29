@@ -1,3 +1,4 @@
+# The details of a Load Balancer attachment
 type Oci_Config::AttachLoadBalancerDetails = Struct[{
   Optional[load_balancer_id] => String,
   Optional[load_balancer]    => String,

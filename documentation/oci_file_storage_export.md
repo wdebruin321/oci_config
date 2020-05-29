@@ -45,7 +45,7 @@ Use `exportOptions` to control access to an export. For more information, see
 
 Here is an example on how to use this:
 
-        oci_file_storage_export { 'tenant (root)/my_export5':
+        oci_file_storage_export { 'tenant (root)/my_compartment:my_export5':
           ensure          => 'present',
           file_system     => 'my_file_system',
           mount_target    => 'my_mount_target',
@@ -365,7 +365,7 @@ resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.Available providers are:
 
 sdk
-: 
+: This provider uses the [Oracle Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk) to do its work.
 
 
 

@@ -359,7 +359,7 @@ resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.Available providers are:
 
 sdk
-: 
+: This provider uses the [Oracle Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk) to do its work.
 
 
 

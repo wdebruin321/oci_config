@@ -1,1 +1,0 @@
-# type Oci_Config::Resource = 

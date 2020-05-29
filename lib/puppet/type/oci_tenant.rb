@@ -5,9 +5,7 @@
 #
 require 'puppet_x/enterprisemodules/oci/core'
 
-type_name = File.basename(__FILE__, '.rb').to_sym
-
-Puppet::Type.newtype(type_name) do
+Puppet::Type.newtype(:oci_tenant) do
   include EasyType::YamlType
 
   config_file '/etc/oci_tenant.yaml'

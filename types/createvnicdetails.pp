@@ -1,3 +1,4 @@
+# The details of VNIC
 type Oci_Config::CreateVnicDetails = Struct[{
   Optional[assign_public_ip]       => Boolean,
   Optional[defined_tags]           => Hash[String[1],String[1]],

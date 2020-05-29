@@ -9,5 +9,10 @@ require 'easy_type'
 
 Puppet::Type.type(:oci_autoscaling_auto_scaling_configuration).provide(:sdk) do
   include EasyType::Provider
+  desc <<-DESC
+
+  This provider uses the [Oracle Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk) to do its work.
+
+  DESC
   mk_resource_methods
 end

@@ -1,3 +1,4 @@
+# The details of the user capabilities
 type Oci_Config::UserCapabilities = Struct[{
   Optional[can_use_console_password]           => Boolean,
   Optional[can_use_api_keys]                   => Boolean,
