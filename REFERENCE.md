@@ -89,6 +89,7 @@
 * [`Oci_Config::LaunchInstanceAgentConfigDetails`](#oci_configlaunchinstanceagentconfigdetails): The details of the launch instance agent config
 * [`Oci_Config::LaunchOptions`](#oci_configlaunchoptions): The details of the launch options
 * [`Oci_Config::PortRange`](#oci_configportrange): The details of port range
+* [`Oci_Config::RouteRule`](#oci_configrouterule): The details of the route rule
 * [`Oci_Config::ServiceIdRequestDetails`](#oci_configserviceidrequestdetails): The details of the service id request
 * [`Oci_Config::ServiceIdResponseDetails`](#oci_configserviceidresponsedetails): The details of the service id response
 * [`Oci_Config::TcpOptions`](#oci_configtcpoptions): The details of the TCP options
@@ -2193,6 +2194,19 @@ The details of port range
 Alias of `Struct[{
   Optional[min] => Integer,
   Optional[max] => Integer,
+}]`
+
+### Oci_Config::RouteRule
+
+The details of the route rule
+
+Alias of `Struct[{
+  Optional[cidr_block]         => String[1],
+  Optional[destination]         => String[1],
+  Optional[destination_type]    => String[1],
+  Optional[network_entity_id]   => String[1],
+  Optional[network_entity]      => String[1],
+  Optional[network_entity_type] => String[1],
 }]`
 
 ### Oci_Config::ServiceIdRequestDetails

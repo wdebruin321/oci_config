@@ -24,9 +24,9 @@ group :unit_test do
   gem 'mocha', '1.3.0'
 end
 
-group 'acceptance_test' do
-  gem 'bolt', git: 'https://github.com/enterprisemodules/bolt.git' if puppetversion == '6.4.2'
-  gem 'puppet_litmus', git: 'https://github.com/enterprisemodules/puppet_litmus.git' if puppetversion == '6.4.2'
+group :acceptance_test do
+  gem 'bolt', git: 'https://github.com/enterprisemodules/bolt.git'
+  gem 'puppet_litmus', git: 'https://github.com/enterprisemodules/puppet_litmus.git'
   gem 'serverspec'
   gem 'rspec-retry'
   if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('2.0.0')
