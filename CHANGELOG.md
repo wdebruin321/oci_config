@@ -1,6 +1,10 @@
 History
 ========
 
+## 0.8.2
+
+- [core] Fix typo in router rule
+
 ## 0.8.1
 
 - [doc] Add REFERENCE.md
