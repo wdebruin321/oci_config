@@ -77,6 +77,7 @@ module Puppet_X
 
         # rubocop: disable Metrics/AbcSize
         def fetch_input
+          @result = {}
           params = JSON.parse(STDIN.read)
           #
           # Fetch defined variables from input
@@ -89,11 +90,12 @@ module Puppet_X
           @tenant = if oci_var.nil?
                       default_tenant
                     else
-                      oci_var.match(/^(.*) \(root\).*$/)[1]
+                      text = oci_var.match(/^(.*) \(root\).*$/)
+                      text[1] if text
+                      fail 'invalid formatted oci_tenant specified.'
                     end
           @resolver = Puppet_X::EnterpriseModules::Oci::NameResolver.instance(@tenant)
           @client = client_for(client_class, @tenant)
-          @result = {}
         end
         # rubocop: enable Metrics/AbcSize
 

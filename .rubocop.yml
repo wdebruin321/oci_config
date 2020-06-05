@@ -20,6 +20,12 @@ AllCops:
     - 'pkg/**/*'
     - 'bin/*'
 
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true       # (0.85)
+Style/RedundantRegexpCharacterClass:
+  Enabled: true       # (0.85)
+Style/RedundantRegexpEscape:
+  Enabled: true       # (0.85)
 Lint/DeprecatedOpenSSLConstant:
   Enabled: true      # (0.84)
 Layout/EmptyLinesAroundAttributeAccessor:

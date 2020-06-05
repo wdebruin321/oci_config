@@ -86,7 +86,7 @@ class YamlGenerator
   # rubocop: disable Metrics/AbcSize
   def translate_data_type(data_type)
     case data_type.to_s
-    when /OCI\:\:/
+    when /OCI::/
       if data_type.to_s =~ /Array<.*>/
         type = data_type.to_s.scan(/Array<(.*)>/).first.first.split('::').last
         output = "Array[Oci_config::#{type}]"
