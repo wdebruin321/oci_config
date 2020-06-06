@@ -15,19 +15,19 @@ module Puppet_X
           parent.extend(Settings)
         end
 
-        PUPPET_META_ATTRIBUTES = [:name,
-                                  :alias,
-                                  :audit,
-                                  :before,
-                                  :loglevel,
-                                  :noop,
-                                  :notify,
-                                  :require,
-                                  :schedule,
-                                  :stage,
-                                  :subscribe,
-                                  :tag,
-                                  :provider].freeze
+        PUPPET_META_ATTRIBUTES ||= [:name,
+                                    :alias,
+                                    :audit,
+                                    :before,
+                                    :loglevel,
+                                    :noop,
+                                    :notify,
+                                    :require,
+                                    :schedule,
+                                    :stage,
+                                    :subscribe,
+                                    :tag,
+                                    :provider].freeze
 
         def oci_api_data
           @oci_api_data

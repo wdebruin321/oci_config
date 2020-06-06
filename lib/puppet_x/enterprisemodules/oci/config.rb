@@ -5,7 +5,7 @@ module Puppet_X
     module Oci
       # Docs
       module Config
-        Puppet_X::EnterpriseModules::Oci::Settings::SETTINGS_FILE = '/etc/oci_tenant.yaml'
+        Puppet_X::EnterpriseModules::Oci::Settings::SETTINGS_FILE ||= '/etc/oci_tenant.yaml'
 
         def client_for(klass, tenant, options = {})
           if settings_for(tenant)['instance_principal']

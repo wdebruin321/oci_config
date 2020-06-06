@@ -10,11 +10,11 @@ module Puppet_X
         #
         # The indexes in the information array
         #
-        PUPPET_TYPE   = 0
-        OCI_TYPE      = 1
-        SDK_MODEL     = 2
-        SDK_CLIENT    = 3
-        LOOKUP_METHOD = 4
+        PUPPET_TYPE   ||= 0
+        OCI_TYPE      ||= 1
+        SDK_MODEL     ||= 2
+        SDK_CLIENT    ||= 3
+        LOOKUP_METHOD ||= 4
 
         # rubocop: disable Layout/LineLength
         @information = [

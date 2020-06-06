@@ -19,7 +19,7 @@ module Puppet_X
           end
         end
 
-        ACTIVE_ASSOCIATIONS = %w[ACTIVE ATTACHED].freeze
+        ACTIVE_ASSOCIATIONS ||= %w[ACTIVE ATTACHED].freeze
 
         # rubocop: disable Metrics/AbcSize
         def before_destroy
