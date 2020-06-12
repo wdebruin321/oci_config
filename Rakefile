@@ -170,6 +170,7 @@ namespace :generate do
     #
     YamlGenerator.new(OCI::Database, 'AutonomousDatabase$').generate
     YamlGenerator.new(OCI::Database, 'DbSystem$').generate
+    YamlGenerator.new(OCI::Database, 'Database$').generate
     #
     # types for Identity services on IdentityClient
     #

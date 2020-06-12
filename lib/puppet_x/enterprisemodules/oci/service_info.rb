@@ -69,8 +69,9 @@ module Puppet_X
           [:oci_file_storage_file_system,               :filesystem,                'OCI::FileStorage::Models::FileSystem',               'OCI::FileStorage::FileStorageClient',      :availability_domains],
           [:oci_file_storage_mount_target,              :mounttarget,               'OCI::FileStorage::Models::MountTarget',              'OCI::FileStorage::FileStorageClient',      :availability_domains],
           [:oci_file_storage_export,                    :export,                    'OCI::FileStorage::Models::Export',                   'OCI::FileStorage::FileStorageClient',      :compartment],
-          [:oci_database_db_system,                     :dbsystem,                   'OCI::Database::Models::DbSystem',                   'OCI::Database::DatabaseClient',            :compartment],
-          [:oci_database_db_node,                       :dbnode,                     'OCI::Database::Models::DbNode',                     'OCI::Database::DatabaseClient',            :db_systems],
+          [:oci_database_db_system,                     :dbsystem,                  'OCI::Database::Models::DbSystem',                    'OCI::Database::DatabaseClient',            :compartment],
+          [:oci_database_db_node,                       :dbnode,                    'OCI::Database::Models::DbNode',                      'OCI::Database::DatabaseClient',            :db_systems],
+          [:oci_database_database,                      :database,                  'OCI::Database::Models::Database',                    'OCI::Database::DatabaseClient',            :systems],
           #
           # Some OCI resource ID's we need
           #
@@ -82,7 +83,9 @@ module Puppet_X
           [:unknown,                                    :last_patch_history_entry,   'UNDEFINED',                                          'UNDEFINED',                               :compartment],
           [:unknown,                                    :scan_ip,                    'UNDEFINED',                                          'UNDEFINED',                               :compartment],
           [:unknown,                                    :vip,                        'UNDEFINED',                                          'UNDEFINED',                               :compartment],
-          [:unknown,                                    :scan_dns_record,            'UNDEFINED',                                          'UNDEFINED',                               :compartment]
+          [:unknown,                                    :scan_dns_record,            'UNDEFINED',                                          'UNDEFINED',                               :compartment],
+          [:unknown,                                    :db_home,                    'UNDEFINED',                                          'UNDEFINED',                               :compartment],
+          [:unknown,                                    :vm_cluster,                 'UNDEFINED',                                          'UNDEFINED',                               :compartment]
         ]
         # rubocop: enable Layout/LineLength
 
