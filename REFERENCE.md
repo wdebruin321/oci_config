@@ -42,6 +42,7 @@
 * [`oci_core_volume_group`](#oci_core_volume_group): Specifies a volume group which is a collection of volumes. For more information, see [Volume Groups](https://docs.cloud.oracle.com/Content/Bl
 * [`oci_core_volume_group_backup`](#oci_core_volume_group_backup): A point-in-time copy of a volume group that can then be used to create a new volume group or restore a volume group. For more information, se
 * [`oci_database_autonomous_database`](#oci_database_autonomous_database): An Oracle Autonomous Database.  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+* [`oci_database_db_system`](#oci_database_db_system): DbSystem model.  This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
 * [`oci_file_storage_export`](#oci_file_storage_export): A file system and the path that you can use to mount it. Each export resource belongs to exactly one export set.  The export's path attribute
 * [`oci_file_storage_file_system`](#oci_file_storage_file_system): An NFS file system. To allow access to a file system, add it to an export set and associate the export set with a mount target. The same file
 * [`oci_file_storage_mount_target`](#oci_file_storage_mount_target): Provides access to a collection of file systems through one or more VNICs on a specified subnet. The set of file systems is controlled throug
@@ -71,14 +72,17 @@
 * [`Oci_Config::Capacity`](#oci_configcapacity): The details of the capacity
 * [`Oci_Config::ClientOptions`](#oci_configclientoptions): The details of the client options
 * [`Oci_Config::CreateAutoScalingPolicyDetails`](#oci_configcreateautoscalingpolicydetails): The details of the auto scaling policy
+* [`Oci_Config::CreateDbHomeDetails`](#oci_configcreatedbhomedetails): 
 * [`Oci_Config::CreateIPSecConnectionTunnelDetails`](#oci_configcreateipsecconnectiontunneldetails): The details of the IPSec connection tunnel
 * [`Oci_Config::CreateIPSecTunnelBgpSessionDetails`](#oci_configcreateipsectunnelbgpsessiondetails): The details of the IPSec tunnel BGP session
 * [`Oci_Config::CreateInstancePoolPlacementConfigurationDetails`](#oci_configcreateinstancepoolplacementconfigurationdetails): The details of the instance pool placement configuration
 * [`Oci_Config::CreateVirtualCircuitPublicPrefixDetails`](#oci_configcreatevirtualcircuitpublicprefixdetails): The details of the virtual circuit public prefix
 * [`Oci_Config::CreateVnicDetails`](#oci_configcreatevnicdetails): The details of VNIC
 * [`Oci_Config::CrossConnectMapping`](#oci_configcrossconnectmapping): The details cross connect mapping
+* [`Oci_Config::DbSystemOptions`](#oci_configdbsystemoptions): 
 * [`Oci_Config::DhcpOption`](#oci_configdhcpoption): The details of the DHCP option
 * [`Oci_Config::EgressSecurityRule`](#oci_configegresssecurityrule): The details of EGress security rule
+* [`Oci_Config::ExadataIormConfig`](#oci_configexadataiormconfig): 
 * [`Oci_Config::IcmpOptions`](#oci_configicmpoptions): The details of the ICMP options
 * [`Oci_Config::ImageSourceDetails`](#oci_configimagesourcedetails): The details of the image source
 * [`Oci_Config::IngressSecurityRule`](#oci_configingresssecurityrule): The details of ingress security rule
@@ -1313,6 +1317,24 @@ The basic property that the resource should be in.
 
 Default value: present
 
+### oci_database_db_system
+
+DbSystem model.
+
+This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
+
+#### Properties
+
+The following properties are available in the `oci_database_db_system` type.
+
+##### `ensure`
+
+Valid values: present, absent
+
+The basic property that the resource should be in.
+
+Default value: present
+
 ### oci_file_storage_export
 
 A file system and the path that you can use to mount it. Each export
@@ -1944,8 +1966,9 @@ Alias of `Struct[{
 The details of an autonomous Database connection url
 
 Alias of `Struct[{
-  Optional['sql_dev_web_url'] => String[1],
-  Optional['apex_url']        => String[1],
+  Optional['sql_dev_web_url']                      => String[1],
+  Optional['apex_url']                             => String[1],
+  Optional['machine_learning_user_management_url'] => String[1],
 }]`
 
 ### Oci_Config::BootVolumeSourceDetails
@@ -1990,6 +2013,16 @@ Alias of `Struct[{
   Optional[display_name] => String,
   Optional[policy_type]  => String,
   Optional[rules]        => Array[Any],
+}]`
+
+### Oci_Config::CreateDbHomeDetails
+
+The Oci_Config::CreateDbHomeDetails data type.
+
+Alias of `Struct[{
+  Optional[display_name] => String[1],
+  Optional[db_version] => String[1],
+  Optional[database] => Oci_ConfigCreateDatabaseDetails,
 }]`
 
 ### Oci_Config::CreateIPSecConnectionTunnelDetails
@@ -2067,6 +2100,14 @@ Alias of `Struct[{
   Optional[vlan]                                    => Integer,
 }]`
 
+### Oci_Config::DbSystemOptions
+
+The Oci_Config::DbSystemOptions data type.
+
+Alias of `Struct[{
+  Optional[storage_management] => String[1],
+}]`
+
 ### Oci_Config::DhcpOption
 
 The details of the DHCP option
@@ -2090,6 +2131,16 @@ Alias of `Struct[{
   Optional[protocol]         => String[1],
   Optional[tcp_options]      => Oci_config::TcpOptions,
   Optional[udp_options]      => Oci_config::UdpOptions,
+}]`
+
+### Oci_Config::ExadataIormConfig
+
+The Oci_Config::ExadataIormConfig data type.
+
+Alias of `Struct[{
+  Optional[db_name]           => String[1],
+  Optional[share]             => Integer,
+  Optional[flash_cache_limit] => String[1],
 }]`
 
 ### Oci_Config::IcmpOptions
