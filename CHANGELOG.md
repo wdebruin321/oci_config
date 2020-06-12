@@ -1,6 +1,13 @@
 History
 ========
 
+## 0.9.0
+
+- [oci_database_db_system] Initial implementation (experimental)
+- [oci_database_autonomous_database] fix error unrecognized key 'machine_learning_user_management_url'
+- [core] Fix warning: previous definition of xxx was here
+- [oci_task] Fix error when invalid tenant format is used
+
 ## 0.8.2
 
 - [core] Fix typo in router rule
