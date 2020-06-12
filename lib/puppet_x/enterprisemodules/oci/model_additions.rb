@@ -96,6 +96,7 @@ models = [
   OCI::FileStorage::Models::FileSystemSummary,
   OCI::FileStorage::Models::MountTargetSummary,
   OCI::FileStorage::Models::Export,
+  OCI::Database::Models::DbSystemSummary,
   OCI::Database::Models::DbNodeSummary
 ].freeze
 

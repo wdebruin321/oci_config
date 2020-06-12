@@ -42,6 +42,8 @@ class YamlGenerator
     # instances don't have a create methode, but use a luanch method. So we need to adjust for that
     #
     create_class = case type_name
+                   when 'oci_database_db_system'
+                     'OCI::Database::Models::LaunchDbSystemDetails'
                    when 'oci_core_instance'
                      'OCI::Core::Models::LaunchInstanceDetails'
                    when 'oci_core_dhcp_options'
