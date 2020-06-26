@@ -34,8 +34,6 @@ Puppet::Functions.create_function('oci_config::wait_until_unavailable') do
     executor = Puppet.lookup(:bolt_executor)
     inventory = Puppet.lookup(:bolt_inventory)
 
-    executor.report_function_call(self.class.name)
-
     # Ensure that given targets are all Target instances
     targets = inventory.get_targets(targets)
 
