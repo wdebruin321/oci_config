@@ -14,8 +14,6 @@ Puppet::Functions.create_function('oci_config::latest_image_for') do
     optional_param 'Regexp',    :name
     return_type 'String'
   end
-
-  # rubocop: disable Metrics/AbcSize
   def latest_image_for(operating_system, operating_system_version, name = /.*/)
     variable = 'oci_core_image'
     fail "Fact #{variable} does not exists. Probably not enabled. Check enabled facts for this tenant." unless variable_exists?(variable)
@@ -30,7 +28,6 @@ Puppet::Functions.create_function('oci_config::latest_image_for') do
 
     available_images.min_by { |k, _v| k['time_created'] }.first.split('/').last
   end
-  # rubocop: enable Metrics/AbcSize
 
   # Check if the variable exists without generating a warning
   def variable_exists?(var)

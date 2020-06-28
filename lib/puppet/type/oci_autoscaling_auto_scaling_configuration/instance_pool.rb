@@ -26,7 +26,6 @@ newproperty(:instance_pool, :parent => Puppet_X::EnterpriseModules::Oci::Propert
     resolver.ocid_to_name(@tenant, raw_resource['resource']['id'])
   end
 
-  # rubocop: disable Metrics/AbcSize
   def before_apply
     resource.oci_api_data['resource'] = {}
     resource.oci_api_data['resource']['type'] = 'instancePool'
@@ -34,5 +33,4 @@ newproperty(:instance_pool, :parent => Puppet_X::EnterpriseModules::Oci::Propert
     resource.oci_api_data.delete('instance_pool')
     resource.oci_api_data.delete('instance_pool_id')
   end
-  # rubocop: enable Metrics/AbcSize
 end

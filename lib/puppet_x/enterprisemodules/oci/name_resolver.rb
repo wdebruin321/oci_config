@@ -6,7 +6,6 @@ module Puppet_X
   module EnterpriseModules
     module Oci
       # Docs
-      # rubocop: disable Metrics/ClassLength
       class NameResolver
         include Puppet_X::EnterpriseModules::Oci::Settings
         include Puppet_X::EnterpriseModules::Oci::Config
@@ -52,7 +51,6 @@ module Puppet_X
           ocid.scan(/ocid1\.(\w*)\./).first.first.to_sym
         end
 
-        # rubocop: disable Metrics/AbcSize
         def from_cache(tenant, ocid)
           ocid_type = id_type(ocid)
           object = @cache[tenant].find { |e| e.id == ocid && e.id_type == ocid_type }
@@ -73,9 +71,7 @@ module Puppet_X
 
           object
         end
-        # rubocop: enable Metrics/AbcSize
 
-        # rubocop: disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         def name_to_ocid(tenant, full_name, id_type = :compartment)
           return full_name.collect { |n| name_to_ocid(tenant, n, id_type) } if full_name.is_a?(Array)
 
@@ -107,9 +103,7 @@ module Puppet_X
 
           object.id
         end
-        # rubocop: enable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
-        # rubocop: disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         def find_in_cache(tenant, id_type, name, compartment_id)
           if compartment_id == @tenant_ids[tenant]
             @cache[tenant].find { |o| o.id_type == id_type && o.puppet_name == name && (o.compartment_id == compartment_id || o.compartment_id.nil?) }
@@ -127,7 +121,6 @@ module Puppet_X
             end
           end
         end
-        # rubocop: enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
         def compartment_ocid_to_name(tenant, ocid)
           compartment = @cache[tenant].find { |e| e.id == ocid }
@@ -147,7 +140,6 @@ module Puppet_X
           end
         end
 
-        # rubocop: disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         def ocid_to_name(tenant, ocid)
           return ocid.collect { |i| ocid_to_name(tenant, i) } if ocid.is_a?(Array)
           return '/' if ocid.nil? || tenant?(ocid)
@@ -174,7 +166,6 @@ module Puppet_X
           end
           names.join('/')
         end
-        # rubocop: enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
         def tenant?(ocid)
           ocid.scan(/ocid1\.(\w*)\./).first.first == 'tenancy'
@@ -190,5 +181,4 @@ module Puppet_X
       end
     end
   end
-  # rubocop: enable Metrics/ClassLength
 end

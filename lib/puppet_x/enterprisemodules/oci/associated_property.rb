@@ -4,7 +4,6 @@ module Puppet_X
   module EnterpriseModules
     module Oci
       # Docs
-      # rubocop: disable Metrics/ClassLength
       class AssociatedProperty < Puppet::Property
         include Puppet_X::EnterpriseModules::Oci::Config
         include Puppet_X::EnterpriseModules::Oci::Settings
@@ -20,8 +19,6 @@ module Puppet_X
         end
 
         ACTIVE_ASSOCIATIONS ||= %w[ACTIVE ATTACHED].freeze
-
-        # rubocop: disable Metrics/AbcSize
         def before_destroy
           #
           # Most of the time, we access the list by only differentiation on compartment_id. Sometimes
@@ -43,7 +40,6 @@ module Puppet_X
           assoc_ids = assoc_data.select { |e| ACTIVE_ASSOCIATIONS.include?(e.lifecycle_state) }.collect(&association_to)
           assoc_ids.each { |r| remove_record_by_id(r) }
         end
-        # rubocop: enable Metrics/AbcSize
 
         def self.client(tenant)
           client_for(ServiceInfo.type_to_client(puppet_type), tenant)
@@ -105,7 +101,6 @@ module Puppet_X
           remove_record_by_id(record_id)
         end
 
-        # rubocop: disable Metrics/AbcSize
         def remove_record_by_id(id)
           Puppet.debug "Removing association between #{resource.name} and #{id}"
           first_parameter = client.method("list_#{association_name}s").parameters[0]
@@ -141,9 +136,7 @@ module Puppet_X
           details = association_model.new(association_data)
           resource.handle_oci_request(association_name, true) { client.send(association_add, details) }
         end
-        # rubocop: enable Metrics/AbcSize
       end
-      # rubocop: enable Metrics/ClassLength
     end
   end
 end

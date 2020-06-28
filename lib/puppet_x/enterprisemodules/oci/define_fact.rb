@@ -9,7 +9,6 @@ require "#{File.dirname(__FILE__)}/core"
 # for evert entry you want. The fields variable selects the fields in puppet syntax (lowercase with underscore)
 # that you want returned in the fact. If however fields is an empty array or nil, **ALL** the fieldss are returned.
 #
-# rubocop: disable Metrics/AbcSize, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 def list_for_resource(type, fields, &filter)
   object_class = Puppet_X::EnterpriseModules::Oci::ServiceInfo.type_to_class(type)
   resource_list = configuration.keys.collect do |tenant|
@@ -31,7 +30,6 @@ def list_for_resource(type, fields, &filter)
   end.flatten(1).compact
   resource_list.empty? ? nil : Hash[resource_list]
 end
-# rubocop: enable Metrics/AbcSize, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
 #
 # Define a fact based on a OCI resource

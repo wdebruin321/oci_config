@@ -4,7 +4,6 @@ module Puppet_X
   module EnterpriseModules
     module Oci
       # Add Documentation
-      # rubocop: disable Metrics/ModuleLength
       module Type
         def self.included(parent)
           parent.send(:include, EasyType)
@@ -54,7 +53,6 @@ module Puppet_X
           @oci_api_data[:compartment_id] ||= client.api_client.config.tenancy #
         end
 
-        # rubocop: disable Metrics/AbcSize
         def on_create
           Puppet.debug "create #{object_type} #{name} "
           #
@@ -115,9 +113,7 @@ module Puppet_X
           end
           nil
         end
-        # rubocop: enable Metrics/AbcSize
 
-        # rubocop: disable Metrics/AbcSize
         def on_destroy
           Puppet.debug "destroy #{object_type} #{name} "
           handle_oci_request(object_type, synchronized, provider.id) do
@@ -140,7 +136,6 @@ module Puppet_X
           end
           nil
         end
-        # rubocop: enable Metrics/AbcSize
 
         def wait_for_work_request(wait_for_resource_id)
           Puppet.debug "Wait on work-request with id #{wait_for_resource_id}..."
@@ -159,7 +154,6 @@ module Puppet_X
           )
         end
 
-        # rubocop: disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         def wait_for_state(oci_object_type, id, type)
           ready_states = type == :create ? present_states : absent_states
           ready_states << 'UNKNOWN' # Some objects don't have a state. So they are ready directly
@@ -182,13 +176,11 @@ module Puppet_X
         rescue OCI::Errors::ServiceError => e
           fail "#{path}: OCI raised error: #{e.message}" unless e.status_code == 404 && type == :destroy
         end
-        # rubocop: enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
         #
         # Generates a nice error when an OCI error is raised in the yield. Also waits for the state specified in the
         # type parameter.
         #
-        # rubocop: disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         def handle_oci_request(oci_object_type = nil, oci_synchronized = nil, id = nil)
           oci_object_type ||= object_type
           oci_synchronized = synchronized if oci_synchronized.nil?
@@ -217,7 +209,6 @@ module Puppet_X
           end
           operation_result
         end
-        # rubocop: enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
         private
 
@@ -270,7 +261,6 @@ module Puppet_X
             'oci_config'
           end
 
-          # rubocop: disable Metrics/AbcSize, Metrics/MethodLength
           def execute_prefetch(resources, provider)
             tenants = resources.map { |title, _content| title.split('/').first }.uniq.map { |e| e.gsub(' (root)', '') }
             compartments = resources.map { |title, _content| title.split(%r{/|:})[1...-1].join('/') }.map { |e| e.empty? ? '/' : e }.uniq
@@ -305,14 +295,12 @@ module Puppet_X
             end
             resources
           end
-          # rubocop: enable Metrics/AbcSize, Metrics/MethodLength
 
           #
           # Check if the resource names are in the manifest and if the resources
           # contain any tags that are on the list of explicit list fo tags that we need
           # or explicitly on the list of tags we want to skip.
           #
-          # rubocop: disable Metrics/AbcSize
           def resource_names_in_manifest(resources)
             resources.keys.select do |name|
               if Puppet['tags'].empty?
@@ -322,7 +310,6 @@ module Puppet_X
               end
             end
           end
-          # rubocop: enable Metrics/AbcSize
 
           def client(tenant = nil)
             client_for(client_class, tenant)
@@ -371,7 +358,7 @@ module Puppet_X
           # Based on the value of ensure, do an autorequire or an autobefore
           #
           #
-          # rubocop: disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Style/NestedTernaryOperator, Metrics/MethodLength, Metrics/PerceivedComplexity, Style/IfInsideElse, Style/IfUnlessModifierOfIfUnless, Metrics/BlockNesting
+          # rubocop: disable Style/NestedTernaryOperator, Style/IfInsideElse, Style/IfUnlessModifierOfIfUnless
           def child_of(id, variable = nil, &proc)
             type = ServiceInfo.id_to_type(id)
             autorequire(type) do
@@ -413,10 +400,9 @@ module Puppet_X
               Puppet.debug "Skipping setting autobefore on #{type}"
             end
           end
-          # rubocop: enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Style/NestedTernaryOperator, Metrics/MethodLength, Metrics/PerceivedComplexity, Style/IfInsideElse, Style/IfUnlessModifierOfIfUnless, Metrics/BlockNesting
+          # rubocop: enable Style/NestedTernaryOperator, Style/IfInsideElse, Style/IfUnlessModifierOfIfUnless
         end
       end
-      # rubocop: enable Metrics/ModuleLength
     end
   end
 end

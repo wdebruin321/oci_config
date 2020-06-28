@@ -10,7 +10,6 @@ module Puppet_X
           added_records.each { |r| add_record(r) }
         end
 
-        # rubocop: disable Metrics/AbcSize
         def self.translate_to_resource(raw_resource, _resource)
           resource_id         = raw_resource['id']
           tenant              = raw_resource['tenant']
@@ -36,7 +35,6 @@ module Puppet_X
           Puppet.debug "Skip fetching property #{name} because of an authorization failure."
           []
         end
-        # rubocop: enable Metrics/AbcSize
 
         private
 

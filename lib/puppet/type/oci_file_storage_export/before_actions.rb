@@ -16,7 +16,6 @@ def before_create
   before_action
 end
 
-# rubocop: disable Metrics/AbcSize
 def before_action
   client = client_for(OCI::FileStorage::FileStorageClient, tenant)
   mount_target_id = resolver.name_to_ocid(tenant, mount_target, :mounttarget)
@@ -26,4 +25,3 @@ def before_action
   @oci_api_data[:display_name] = bare_name.to_s
   @oci_api_data[:path] = bare_name.to_s
 end
-# rubocop: enable Metrics/AbcSize

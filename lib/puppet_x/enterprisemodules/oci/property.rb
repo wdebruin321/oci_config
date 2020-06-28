@@ -4,7 +4,6 @@ module Puppet_X
   module EnterpriseModules
     module Oci
       # Docs
-      # rubocop: disable Metrics/ClassLength
       class Property < Puppet::Property
         include EasyType
 
@@ -32,7 +31,7 @@ module Puppet_X
           self.class.reference_type
         end
 
-        # rubocop: disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Naming/MethodParameterName
+        # rubocop: disable Naming/MethodParameterName
         def insync_values?(is, should)
           if should.is_a?(Hash)
             value = is == :absent ? {} : is
@@ -48,9 +47,7 @@ module Puppet_X
             is.to_s == should.to_s
           end
         end
-        # rubocop: enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Naming/MethodParameterName
 
-        # rubocop: disable Naming/MethodParameterName
         def insync?(is)
           insync_values?(is, should)
         end
@@ -61,7 +58,6 @@ module Puppet_X
           fill_in_reference_in_enumerable(resource.oci_api_data[name]) if reference_attributes.any?
         end
 
-        # rubocop: disable Metrics/AbcSize
         def fill_in_reference_in_enumerable(data)
           return data.each { |v| fill_in_reference_in_enumerable(v) } if data.is_a?(Array)
 
@@ -92,7 +88,6 @@ module Puppet_X
             data.delete("#{reference_property}_type")
           end
         end
-        # rubocop: enable Metrics/AbcSize
 
         def reference_attributes
           self.class.data_type.to_alias_expanded_s.scan(/'(\w*?_ids?|id)'/).flatten
@@ -115,7 +110,6 @@ module Puppet_X
           @resolver ||= Puppet_X::EnterpriseModules::Oci::NameResolver.instance(@tenant)
         end
 
-        # rubocop: disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity, Metrics/BlockNesting, Metrics/AbcSize
         def self.fill_in_references(value)
           return value.collect { |v| fill_in_references(v) } if value.is_a?(Array)
 
@@ -160,9 +154,7 @@ module Puppet_X
           end
           value
         end
-        # rubocop: enable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity, Metrics/BlockNesting, Metrics/AbcSize
 
-        # rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/AbcSize
         def self.translate_to_resource(raw_resource, partial_resource)
           @tenant = raw_resource['tenant']
           value = if @reference && (raw_resource[@reference.to_s] || partial_resource[@reference])
@@ -183,9 +175,7 @@ module Puppet_X
                   end
           fill_in_references(value)
         end
-        # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/AbcSize
       end
-      # rubocop: enable Metrics/ClassLength
     end
   end
 end

@@ -34,7 +34,6 @@ module Puppet_X
           OCI::ApiClientProxySettings.new(proxy_address, proxy_port, proxy_user, proxy_password)
         end
 
-        # rubocop: disable Metrics/AbcSize, Metrics/CyclomaticComplexity
         def retry_config(tenant)
           settings                          = settings_for(tenant)
           base_sleep_time_millis            = settings['base_sleep_time_millis'] || 50
@@ -58,7 +57,6 @@ module Puppet_X
             end
           )
         end
-        # rubocop: enable Metrics/AbcSize, Metrics/CyclomaticComplexity
 
         def default_tenant
           configuration.keys.first
@@ -68,7 +66,6 @@ module Puppet_X
           configuration.fetch(tenant)
         end
 
-        # rubocop: disable Metrics/AbcSize
         def config_for_settings(tenant)
           extend(EasyType::Encryption)
           settings = settings_for(tenant)
@@ -86,7 +83,6 @@ module Puppet_X
           config.pass_phrase = decrypted_value(settings['private_key_password']) if settings['private_key_password']
           config
         end
-        # rubocop: enable Metrics/AbcSize
       end
     end
   end

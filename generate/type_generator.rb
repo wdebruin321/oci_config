@@ -39,7 +39,6 @@ class TypeGenerator
     write_template('identity.rb.erb', "./lib/puppet/provider/#{type}/.identity.rb", binding)
   end
 
-  # rubocop: disable Metrics/AbcSize, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
   def generate_properties(type, _data)
     @data[type]['properties'].each do |property|
       name = property.first
@@ -65,7 +64,6 @@ class TypeGenerator
     end
     generate_name_parameter(type, "#{type}_name")
   end
-  # rubocop: enable Metrics/AbcSize, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
   def reference_properties(type)
     @data[type]['properties'].reject { |_k, v| v['deprecated'] == true || v['skip'] == true }.keys.grep(/_ids?$/)

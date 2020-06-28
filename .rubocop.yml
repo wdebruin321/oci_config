@@ -20,6 +20,10 @@ AllCops:
     - 'pkg/**/*'
     - 'bin/*'
 
+Metrics:
+  Enabled: false
+Style/RedundantFetchBlock:
+  Enabled:  true      # (0.86)
 Lint/MixedRegexpCaptureTypes:
   Enabled: true       # (0.85)
 Style/RedundantRegexpCharacterClass:
@@ -90,8 +94,3 @@ Layout/LineLength:
 Naming/AccessorMethodName:
   Enabled: false
 
-Metrics/MethodLength:
-  Max: 20
-
-Metrics/BlockLength:
-  Enabled: false

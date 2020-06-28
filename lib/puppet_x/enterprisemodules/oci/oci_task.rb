@@ -75,7 +75,6 @@ module Puppet_X
           report
         end
 
-        # rubocop: disable Metrics/AbcSize
         def fetch_input
           @result = {}
           params = JSON.parse(STDIN.read)
@@ -97,7 +96,6 @@ module Puppet_X
           @resolver = Puppet_X::EnterpriseModules::Oci::NameResolver.instance(@tenant)
           @client = client_for(client_class, @tenant)
         end
-        # rubocop: enable Metrics/AbcSize
 
         def report
           puts @result.to_json

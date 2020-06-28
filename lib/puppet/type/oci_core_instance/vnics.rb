@@ -7,8 +7,6 @@ newproperty(:vnics, :parent => Puppet_X::EnterpriseModules::Oci::AssociatedHashP
   desc <<-DESC
   DESC
   data_type('Hash[String[1], Any]')
-
-  # rubocop: disable Metrics/AbcSize
   def before_create
     primary_nic = value.select { |_k, v| v['is_primary'] == true }
     fail 'More then 1 primary VNic declared' if primary_nic.size > 1
@@ -17,7 +15,6 @@ newproperty(:vnics, :parent => Puppet_X::EnterpriseModules::Oci::AssociatedHashP
     nic_info['subnet_id'] = resolver.name_to_ocid(resource.tenant, nic_info['subnet'], :subnet) if nic_info['subnet']
     resource.oci_api_data['create_vnic_details'] = OCI::Core::Models::CreateVnicDetails.new(nic_info)
   end
-  # rubocop: enable Metrics/AbcSize
 
   def before_destroy
     # Nothing. Don't destroy the vnic's. Let OCI handle this

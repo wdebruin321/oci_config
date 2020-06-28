@@ -8,7 +8,6 @@ module OCI
   # to do multiple calls and only return when all data is available.
   #
   class ApiClient
-    # rubocop: disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
     def call_api(http_method, path, endpoint, opts, &block)
       http_method = http_method.to_sym.downcase
 
@@ -56,6 +55,5 @@ module OCI
       response.api_call = proc
       response
     end
-    # rubocop: enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
   end
 end

@@ -23,8 +23,6 @@ Puppet::Functions.create_function('oci_config::wait_until_unavailable') do
     optional_param 'Hash[String[1], Any]', :options
     return_type 'ResultSet'
   end
-
-  # rubocop: disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity, Metrics/AbcSize
   def wait_until_unavailable(targets, options = nil)
     unless Puppet[:tasks]
       raise Puppet::ParseErrorWithIssue.
@@ -66,5 +64,4 @@ Puppet::Functions.create_function('oci_config::wait_until_unavailable') do
       end
     end
   end
-  # rubocop: enable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity, Metrics/AbcSize
 end

@@ -8,7 +8,6 @@ module Puppet_X
         #
         # Print a good change message when changing the contents of an array
         #
-        # rubocop: disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         def change_to_s(current, should)
           return if insync?(current)
 
@@ -27,7 +26,6 @@ module Puppet_X
           end
           messages.join(' and ') << '.'
         end
-        # rubocop: enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
         def insync?(_)
           should.only_change_diff(current_value).values.all? { |v| v == {} }
@@ -38,7 +36,6 @@ module Puppet_X
           (added_records + updated_records).each { |r| add_record(r, requested_value[r]) }
         end
 
-        # rubocop: disable Metrics/AbcSize
         def self.translate_to_resource(raw_resource, _resource)
           resource_id         = raw_resource['id']
           tenant              = raw_resource['tenant']
@@ -63,7 +60,6 @@ module Puppet_X
           Puppet.debug "Skip fetching property #{name} because of an authorization failure."
           {}
         end
-        # rubocop: enable Metrics/AbcSize
 
         def self.resource_name(tenant, record)
           resolver = Puppet_X::EnterpriseModules::Oci::NameResolver.instance(tenant)

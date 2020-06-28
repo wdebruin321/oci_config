@@ -46,7 +46,6 @@ class Hash
     _deep_transform_keys_in_object(self, &block)
   end
 
-  # rubocop: disable Metrics/AbcSize
   def deep_diff(value2)
     value1 = self
     (value1.keys | value2.keys).each_with_object({}) do |key, diff|
@@ -60,7 +59,6 @@ class Hash
     end
   end
 
-  # rubocop: enable Metrics/AbcSize
   def only_change_diff(value2)
     value1 = self
     value1.keys.each_with_object({}) do |key, diff|

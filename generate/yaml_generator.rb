@@ -32,7 +32,6 @@ class YamlGenerator
 
   private
 
-  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
   def generate_yaml_entry_for(type)
     type_class = @module_identifier.to_s.split('::').last.underscore
     type_name =  "oci_#{type_class}_#{type.to_s.underscore}"
@@ -74,7 +73,6 @@ class YamlGenerator
       end
     end
   end
-  # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
 
   def properties_in(type_class)
     klass = Kernel.const_get(type_class)
@@ -85,7 +83,6 @@ class YamlGenerator
     module_identifier.const_get('Models').constants.reject { |e| e.to_s =~ /Update|Create|Detail|Summary|Validator/ }
   end
 
-  # rubocop: disable Metrics/AbcSize
   def translate_data_type(data_type)
     case data_type.to_s
     when /OCI::/
@@ -107,5 +104,4 @@ class YamlGenerator
       data_type.to_s.tr('<', '[').tr('>', ']').gsub('Object', 'Any')
     end
   end
-  # rubocop: enable Metrics/AbcSize
 end

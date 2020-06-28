@@ -4,12 +4,9 @@ module Puppet_X
   module EnterpriseModules
     module Oci
       # Docs
-      # rubocop: disable Metrics/ClassLength
       class ResourceLister
         include Config
         include Settings
-
-        # rubocop: disable  Metrics/AbcSize
         def initialize(tenant, object_class)
           @tenant        = tenant
           @object_class  = object_class
@@ -18,9 +15,7 @@ module Puppet_X
           @tenant_id     = settings_for(@tenant)['tenancy_ocid'] || Facter.value(:oci_instance)['compartment_id']
           @resolver      = Puppet_X::EnterpriseModules::Oci::NameResolver.instance(tenant)
         end
-        # rubocop: enable  Metrics/AbcSize
 
-        # rubocop: disable Metrics/CyclomaticComplexity, Metrics/MethodLength
         def resource_list(compartment_id = nil)
           all_resources = case ServiceInfo.type_to_lookup_method(@resource_type)
                           when :root
@@ -46,7 +41,6 @@ module Puppet_X
                           end
           all_resources
         end
-        # rubocop: enable Metrics/CyclomaticComplexity, Metrics/MethodLength
 
         private
 
@@ -71,7 +65,6 @@ module Puppet_X
           specified_compartment.nil? ? @resolver.compartments(@tenant).map(&:id) << @tenant_id : [specified_compartment]
         end
 
-        # rubocop: disable Metrics/AbcSize, Metrics/MethodLength
         def resources_in_compartments(specified_compartment, details_get = false)
           compartment_list(specified_compartment).collect do |compartment_id|
             handle_authorisation_errors(compartment_id) do
@@ -98,7 +91,6 @@ module Puppet_X
           end.flatten.compact.uniq(&:id)
         end
 
-        # rubocop: enable Metrics/AbcSize, Metrics/MethodLength
         def resources_in_protocol(specified_compartment)
           compartment_list(specified_compartment).collect do |compartment_id|
             handle_authorisation_errors(compartment_id) do
@@ -109,7 +101,6 @@ module Puppet_X
           end.flatten.compact.uniq(&:id)
         end
 
-        # rubocop: disable Metrics/AbcSize
         def resources_in_db_systems(specified_compartment)
           compartment_list(specified_compartment).collect do |compartment_id|
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
@@ -121,9 +112,7 @@ module Puppet_X
             end
           end.flatten.compact.uniq(&:id)
         end
-        # rubocop: enable Metrics/AbcSize
 
-        # rubocop: disable Metrics/AbcSize
         def resources_in_vncs(specified_compartment)
           compartment_list(specified_compartment).collect do |compartment_id|
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
@@ -135,9 +124,7 @@ module Puppet_X
             end
           end.flatten.compact.uniq(&:id)
         end
-        # rubocop: enable Metrics/AbcSize
 
-        # rubocop: disable Metrics/AbcSize
         def resources_in_namespace(specified_compartment)
           namespace = client.get_namespace.data
           compartment_list(specified_compartment).collect do |compartment_id|
@@ -148,9 +135,7 @@ module Puppet_X
             end
           end.flatten.compact.uniq(&:name)
         end
-        # rubocop: enable Metrics/AbcSize
 
-        # rubocop: disable Metrics/AbcSize
         def resources_in_vaults(specified_compartment)
           compartment_list(specified_compartment).collect do |compartment_id|
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
@@ -163,9 +148,7 @@ module Puppet_X
             end
           end.flatten.compact.uniq(&:id)
         end
-        # rubocop: enable Metrics/AbcSize
 
-        # rubocop: disable Metrics/AbcSize
         def resources_in_availability_domains(specified_compartment)
           compartment_list(specified_compartment).collect do |compartment_id|
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
@@ -182,7 +165,6 @@ module Puppet_X
             end
           end.flatten.compact.uniq(&:id)
         end
-        # rubocop: enable Metrics/AbcSize
 
         def db_systems_in(compartment_id)
           handle_authorisation_errors(compartment_id) do
@@ -226,7 +208,6 @@ module Puppet_X
           end
         end
       end
-      # rubocop: enable Metrics/ClassLength
     end
   end
 end

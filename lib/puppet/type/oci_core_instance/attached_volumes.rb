@@ -66,7 +66,6 @@ newproperty(:attached_volumes, :parent => Puppet_X::EnterpriseModules::Oci::Asso
     "/dev/oracleoci/oraclevd#{letter}"
   end
 
-  # rubocop: disable Metrics/AbcSize
   def before_apply
     #
     # Fill in missing device names
@@ -87,7 +86,6 @@ newproperty(:attached_volumes, :parent => Puppet_X::EnterpriseModules::Oci::Asso
       next_device = next_available_device(next_device)
     end
   end
-  # rubocop: enable Metrics/AbcSize
 
   def self.translate_to_resource(_raw_resource, _resource)
     nil

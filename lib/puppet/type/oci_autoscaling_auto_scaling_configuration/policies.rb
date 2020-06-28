@@ -19,7 +19,6 @@ newproperty(:policies, :array_matching => :all, :parent => Puppet_X::EnterpriseM
   #
   # This property returns a Hash, but it only contains one reference, so we translate it directly
   #
-  # rubocop: disable Metrics/AbcSize
   def self.translate_to_resource(raw_resource, _resource)
     @tenant = raw_resource['tenant']
     id = raw_resource['id']
@@ -32,5 +31,4 @@ newproperty(:policies, :array_matching => :all, :parent => Puppet_X::EnterpriseM
     end
     values.map(&:to_hash).map(&:to_puppet).map { |e| e.delete('id') && e }
   end
-  # rubocop: enable Metrics/AbcSize
 end
