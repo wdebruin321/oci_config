@@ -66,6 +66,7 @@ supply string values using the API.
   property :time_created
   property :defined_tags
   property :freeform_tags
+  property :destination_region
 
   validate do
     validate_reference_propery(:compartment_id, self)

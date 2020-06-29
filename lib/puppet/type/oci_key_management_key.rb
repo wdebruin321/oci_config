@@ -56,9 +56,12 @@ Puppet::Type.newtype(:oci_key_management_key) do
   property :time_of_deletion
   property :vault
   property :vault_id
+  property :restored_from_key
+  property :restored_from_key_id
 
   validate do
     validate_reference_propery(:compartment_id, self)
     validate_reference_propery(:vault_id, self)
+    validate_reference_propery(:restored_from_key_id, self)
   end
 end

@@ -2008,6 +2008,8 @@ oci_core_instance:
       data_type: Boolean
       desc: Whether to enable in-transit encryption for the data volume's paravirtualized
         attachment. The default value is false.
+    shape_config:
+      data_type: Oci_config::LaunchInstanceShapeConfigDetails
   desc: |-
     A compute host. The image used to launch the instance determines its operating system and other
     software. The shape specified during the launch process determines the number of CPUs and memory
@@ -2576,6 +2578,8 @@ oci_core_volume_backup_policy:
         predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 
         Example: `{\"Department\": \"Finance\"}`
+    destination_region:
+      data_type: String
   desc: |-
     A policy for automatically creating volume backups according to a
     recurring schedule. Has a set of one or more schedules that control when and
@@ -3175,6 +3179,8 @@ oci_identity_user:
     is_mfa_activated:
       data_type: Boolean
       desc: Flag indicates if MFA has been activated for the user.
+    email_verified:
+      data_type: Boolean
   desc: |-
     An individual employee or system that needs to manage or use your company's Oracle Cloud Infrastructure
     resources. Users might need to launch instances, manage remote disks, work with your cloud network, etc. Users
@@ -3556,6 +3562,10 @@ oci_database_autonomous_database:
     time_maintenance_end:
       data_type: Runtime
       desc: The date and time when maintenance will end.
+    private_endpoint_ip:
+      data_type: String
+    available_upgrade_versions:
+      data_type: Array[String]
   desc: An Oracle Autonomous Database.
 oci_key_management_key:
   desc: An encryption key.
@@ -3611,6 +3621,9 @@ oci_key_management_key:
     vault_id:
       reference_type: vault
       data_type: String
+    restored_from_key_id:
+      reference_type: key
+      data_type: String
 oci_key_management_vault:
   desc: A vault to manage keys.
   example: |-
@@ -3660,6 +3673,9 @@ oci_key_management_vault:
         degrees of isolation and has different options and pricing.
     wrappingkey_id:
       reference_type: key
+      data_type: String
+    restored_from_vault_id:
+      reference_type: vault_id
       data_type: String
 oci_core_public_ip:
   example: |-
@@ -3938,6 +3954,10 @@ oci_autoscaling_auto_scaling_configuration:
         The date and time the AutoScalingConfiguration was created, in the format defined by RFC3339.
 
         Example: `2016-08-25T21:10:29.600Z`
+    max_resource_count:
+      data_type: Integer
+    min_resource_count:
+      data_type: Integer
   desc: |-
     An autoscaling configuration allows you to dynamically scale the resources in a Compute instance pool.
     For more information, see [Autoscaling](https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/autoscalinginstancepools.htm).
@@ -4021,6 +4041,8 @@ oci_object_storage_bucket:
     is_read_only:
       data_type: Boolean
     id:
+      data_type: String
+    versioning:
       data_type: String
 oci_file_storage_file_system:
   example: |-
@@ -4510,6 +4532,14 @@ oci_database_db_system:
     db_home:
       data_type: Oci_config::CreateDbHomeDetails
       desc: This attribute is required.
+    maintenance_window:
+      data_type: Oci_config::MaintenanceWindow
+    last_maintenance_run_id:
+      reference_type: maintenance_run
+      data_type: String
+    next_maintenance_run_id:
+      reference_type: maintenance_run
+      data_type: String
   desc: DbSystem model.
 oci_database_database:
   klass: OCI::Database::Models::Database
@@ -4595,4 +4625,72 @@ oci_database_database:
         at least nine characters and contain at least two uppercase, two lowercase,
         two numbers, and two special characters. The special characters must be _,
         \\#, or -.
+    last_backup_timestamp:
+      data_type: Runtime
   desc: Database model.
+oci_database_autonomous_container_database:
+  klass: OCI::Database::Models::AutonomousContainerDatabase
+  properties:
+    id:
+      data_type: String
+      desc: The OCID of the Autonomous Container Database.
+    compartment_id:
+      data_type: String
+      desc: The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+        of the compartment containing the Autonomous Container Database.
+    display_name:
+      data_type: String
+      desc: The display name for the Autonomous Container Database.
+    service_level_agreement_type:
+      data_type: String
+      desc: The service level agreement type of the Autonomous Container Database.
+        The default is STANDARD. For a mission critical Autonomous Container Database,
+        the specified Autonomous Exadata Infrastructure must be associated with a
+        remote Autonomous Exadata Infrastructure.
+    autonomous_exadata_infrastructure_id:
+      reference_type: autonomous_exadata_infrastructure
+      data_type: String
+      desc: The OCID of the Autonomous Exadata Infrastructure.
+    lifecycle_state:
+      data_type: String
+      desc: The current state of the Autonomous Container Database.
+    time_created:
+      data_type: Runtime
+      desc: The date and time the Autonomous Container Database was created.
+    patch_model:
+      data_type: String
+      desc: Database Patch model preference.
+    last_maintenance_run_id:
+      reference_type: maintenance_run
+      data_type: String
+      desc: The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+        of the last maintenance run.
+    next_maintenance_run_id:
+      reference_type: maintenance_run
+      data_type: String
+      desc: The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+        of the next maintenance run.
+    maintenance_window:
+      data_type: Oci_config::MaintenanceWindow
+      desc: ''
+    freeform_tags:
+      data_type: Hash[String, String]
+      desc: |-
+        Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+        For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+
+        Example: `{\"Department\": \"Finance\"}`
+    defined_tags:
+      data_type: Hash[String, Hash[String, Any]]
+      desc: |-
+        Defined tags for this resource. Each key is predefined and scoped to a namespace.
+        For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+    availability_domain:
+      data_type: String
+      desc: The availability domain of the Autonomous Container Database.
+    db_version:
+      data_type: String
+    backup_config:
+      data_type: Oci_config::AutonomousContainerDatabaseBackupConfig
+      desc: ''
+  desc: AutonomousContainerDatabase model.

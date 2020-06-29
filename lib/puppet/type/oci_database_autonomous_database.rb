@@ -69,6 +69,8 @@ Puppet::Type.newtype(:oci_database_autonomous_database) do
   property :data_safe_status
   property :time_maintenance_begin
   property :time_maintenance_end
+  property :private_endpoint_ip
+  property :available_upgrade_versions
 
   validate do
     validate_reference_propery(:compartment_id, self)

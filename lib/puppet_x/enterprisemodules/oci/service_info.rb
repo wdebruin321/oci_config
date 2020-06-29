@@ -85,7 +85,10 @@ module Puppet_X
           [:unknown,                                    :vip,                        'UNDEFINED',                                          'UNDEFINED',                               :compartment],
           [:unknown,                                    :scan_dns_record,            'UNDEFINED',                                          'UNDEFINED',                               :compartment],
           [:unknown,                                    :db_home,                    'UNDEFINED',                                          'UNDEFINED',                               :compartment],
-          [:unknown,                                    :vm_cluster,                 'UNDEFINED',                                          'UNDEFINED',                               :compartment]
+          [:unknown,                                    :vm_cluster,                 'UNDEFINED',                                          'UNDEFINED',                               :compartment],
+          [:unknown,                                    :maintenancerun,             'UNDEFINED',                                          'UNDEFINED',                               :compartment],
+          [:unknown,                                    :autonomous_exadata_infrastructure,
+           'UNDEFINED', 'UNDEFINED', :compartment]
         ]
         # rubocop: enable Layout/LineLength
 

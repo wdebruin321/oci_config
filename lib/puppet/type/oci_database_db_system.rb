@@ -76,6 +76,11 @@ Puppet::Type.newtype(:oci_database_db_system) do
   property :initial_data_storage_size_in_gb
   property :source
   property :db_home
+  property :maintenance_window
+  property :last_maintenance_run
+  property :last_maintenance_run_id
+  property :next_maintenance_run
+  property :next_maintenance_run_id
 
   validate do
     validate_reference_propery(:compartment_id, self)
@@ -87,5 +92,7 @@ Puppet::Type.newtype(:oci_database_db_system) do
     validate_reference_propery(:scan_ip_ids, self)
     validate_reference_propery(:vip_ids, self)
     validate_reference_propery(:scan_dns_record_id, self)
+    validate_reference_propery(:last_maintenance_run_id, self)
+    validate_reference_propery(:next_maintenance_run_id, self)
   end
 end

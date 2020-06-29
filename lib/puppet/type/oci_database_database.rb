@@ -55,6 +55,7 @@ Puppet::Type.newtype(:oci_database_database) do
   property :defined_tags
   property :connection_strings
   property :admin_password
+  property :last_backup_timestamp
 
   validate do
     validate_reference_propery(:compartment_id, self)

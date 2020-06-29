@@ -74,6 +74,7 @@ using the API.
   property :defined_tags
   property :capabilities
   property :is_mfa_activated
+  property :email_verified
 
   validate do
     validate_reference_propery(:compartment_id, self)
