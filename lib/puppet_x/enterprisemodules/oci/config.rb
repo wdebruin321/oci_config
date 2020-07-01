@@ -49,6 +49,7 @@ module Puppet_X
             :max_elapsed_time_millis => max_elapsed_time_millis,
             :max_sleep_between_attempts_millis => max_sleep_between_attempts_millis,
             :should_retry_exception_proc => ->(data) do
+              return false if data.last_exception.is_a?(OCI::Errors::NetworkError)
               return false unless data.last_exception.status_code == 404
 
               request = data.last_exception.request_made
