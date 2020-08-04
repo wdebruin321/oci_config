@@ -149,6 +149,13 @@ module Puppet_X
                 raise unless e.service_code == 'NotAuthorizedOrNotFound'
 
                 Puppet.debug "Skip fetching property 'id' because of an authorization failure."
+              rescue RuntimeError => e
+                #
+                # If we fetch an unkown if, just continue
+                #
+                raise unless e.message =~ /Object with .* not found/
+
+                Puppet.debug "Skip fetching property 'id' because of an unkown or not existing reference."
               end
             end
           end
