@@ -33,7 +33,12 @@ class Hash
     case object
     when Hash
       object.each_with_object({}) do |(key, value), result|
-        result[yield(key)] = _deep_transform_keys_in_object(value, &block)
+        # We don't want to transform the content of the tags. Leave them as they are
+        result[yield(key)] = if [:defined_tags, :freeform_tags, :definedTags, :freeformTags].include?(key)
+                               value
+                             else
+                               _deep_transform_keys_in_object(value, &block)
+                             end
       end
     when Array
       object.map { |e| _deep_transform_keys_in_object(e, &block) }
