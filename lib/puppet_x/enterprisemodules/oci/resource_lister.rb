@@ -17,31 +17,30 @@ module Puppet_X
         end
 
         def resource_list(compartment_id = nil)
-          all_resources = case ServiceInfo.type_to_lookup_method(@resource_type)
-                          when :root
-                            resources_at_root
-                          when :vcn
-                            resources_in_vncs(compartment_id)
-                          when :db_systems
-                            resources_in_db_systems(compartment_id)
-                          when :systems
-                            resources_in_systems(compartment_id)
-                          when :protocol
-                            resources_in_protocol(compartment_id)
-                          when :availability_domains
-                            resources_in_availability_domains(compartment_id)
-                          when :compartment
-                            resources_in_compartments(compartment_id)
-                          when :compartment_detailed
-                            resources_in_compartments(compartment_id, true)
-                          when :vault
-                            resources_in_vaults(compartment_id)
-                          when :namespace
-                            resources_in_namespace(compartment_id)
-                          else
-                            fail "Internal error: invalid primary_key for #{@resource_type}"
-                          end
-          all_resources
+          case ServiceInfo.type_to_lookup_method(@resource_type)
+          when :root
+            resources_at_root
+          when :vcn
+            resources_in_vncs(compartment_id)
+          when :db_systems
+            resources_in_db_systems(compartment_id)
+          when :systems
+            resources_in_systems(compartment_id)
+          when :protocol
+            resources_in_protocol(compartment_id)
+          when :availability_domains
+            resources_in_availability_domains(compartment_id)
+          when :compartment
+            resources_in_compartments(compartment_id)
+          when :compartment_detailed
+            resources_in_compartments(compartment_id, true)
+          when :vault
+            resources_in_vaults(compartment_id)
+          when :namespace
+            resources_in_namespace(compartment_id)
+          else
+            fail "Internal error: invalid primary_key for #{@resource_type}"
+          end
         end
 
         private

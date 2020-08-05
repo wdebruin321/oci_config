@@ -25,12 +25,13 @@ module Puppet_X
           # hower the first parameter is the availability_domain.
           #
           first_parameter = client.method("list_#{association_name}s").parameters[0]
-          if first_parameter == [:req, :availability_domain]
+          case first_parameter
+          when [:req, :availability_domain]
             assoc_data = client.send("list_#{association_name}s",
                                      provider.availability_domain,
                                      provider.compartment_id,
                                      association_from => provider.id).data
-          elsif first_parameter == [:req, :compartment_id]
+          when [:req, :compartment_id]
             assoc_data = client.send("list_#{association_name}s",
                                      provider.compartment_id,
                                      association_from => provider.id).data
@@ -104,13 +105,14 @@ module Puppet_X
         def remove_record_by_id(id)
           Puppet.debug "Removing association between #{resource.name} and #{id}"
           first_parameter = client.method("list_#{association_name}s").parameters[0]
-          if first_parameter == [:req, :availability_domain]
+          case first_parameter
+          when [:req, :availability_domain]
             association = client.send("list_#{association_name}s",
                                       provider.availability_domain,
                                       provider.compartment_id,
                                       association_to => id,
                                       association_from => provider.id).data.select(&:present?).first
-          elsif first_parameter == [:req, :compartment_id]
+          when [:req, :compartment_id]
             association = client.send("list_#{association_name}s",
                                       provider.compartment_id,
                                       association_to => id,

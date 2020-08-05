@@ -20,6 +20,25 @@ AllCops:
     - 'pkg/**/*'
     - 'bin/*'
 
+
+Lint/DuplicateElsifCondition:
+  Enabled: true       # (0.88)
+Style/AccessorGrouping:
+  Enabled: true       # (0.87)
+Style/ArrayCoercion:
+  Enabled: true       # (0.88)
+Style/BisectedAttrAccessor:
+  Enabled: true       # (0.87)
+Style/CaseLikeIf:
+  Enabled: true       # (0.88)
+Style/HashAsLastArrayItem:
+  Enabled: true       # (0.88)
+Style/HashLikeCase:
+  Enabled: true       # (0.88)
+Style/RedundantAssignment:
+  Enabled: true       # (0.87)
+Style/RedundantFileExtensionInRequire:
+  Enabled: true       # (0.88)
 Metrics:
   Enabled: false
 Style/RedundantFetchBlock:
