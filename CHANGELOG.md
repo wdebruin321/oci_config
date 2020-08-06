@@ -1,6 +1,15 @@
 History
 ========
 
+## 0.10.0
+
+- [core] Fix fetching when referencing unknown or terminated resources
+- [core] Pass tag keys and values unaltered to OCI
+- [core] Fix undefined method `status_code' for #<OCI::Errors::NetworkError:>
+- [wait_until_unavailable] Stop sending analytics for oci_config::wait_until_unavaliable to bolt/puppet
+- [core] Update to SDK 2.9.0
+- [oci_database_database] Initial implementation (experimental)
+
 ## 0.9.0
 
 - [oci_database_db_system] Initial implementation (experimental)
