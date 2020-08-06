@@ -110,7 +110,7 @@ describe 'oci_core_instance' do
           source_details      => {
             source_type => 'image',
             image_type => 'image',
-            image => oci_config::latest_image_for('Oracle Linux', '7.7', /^((?!GPU).)*$/),
+            image => oci_config::latest_image_for('Oracle Linux', '7.8', /^((?!GPU).)*$/),
           },
           vnics               => {
           'nic1' => {
@@ -153,7 +153,7 @@ describe 'oci_core_instance' do
           source_details      => {
             source_type => 'image',
             image_type => 'image',
-            image => oci_config::latest_image_for('Oracle Linux', '7.7', /^((?!GPU).)*$/),
+            image => oci_config::latest_image_for('Oracle Linux', '7.8', /^((?!GPU).)*$/),
           },
           vnics               => {
           'nic1' => {
