@@ -50,12 +50,13 @@ class TypeGenerator
       next if property[1]['deprecated'] || property[1]['skip']
 
       generate_property(type, name, binding)
-      if name =~ /_id$/
+      case name
+      when /_id$/
         referenced_property = name[0...-3]
         generate_reference_property(type, referenced_property, binding)
         generate_referenced_property(type, name, binding)
-      elsif name =~ /_ids$/
-        referenced_property = name[0...-4] + 's'
+      when /_ids$/
+        referenced_property = "#{name[0...-4]}s"
         generate_reference_array_property(type, referenced_property, binding)
         generate_referenced_array_property(type, name, binding)
       else

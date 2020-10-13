@@ -77,7 +77,7 @@ module Puppet_X
 
         def fetch_input
           @result = {}
-          params = JSON.parse(STDIN.read)
+          params = JSON.parse($stdin.read)
           #
           # Fetch defined variables from input
           #

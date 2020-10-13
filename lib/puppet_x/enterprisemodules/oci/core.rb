@@ -5,7 +5,7 @@ require_relative './monkey_patches/dir'
 require 'pathname'
 require 'etc'
 $LOAD_PATH.unshift(Pathname.new(__FILE__).dirname.parent.parent)
-$LOAD_PATH.unshift(Pathname.new(__FILE__).dirname.parent.parent.parent.parent + 'easy_type' + 'lib')
+$LOAD_PATH.unshift("#{Pathname.new(__FILE__).dirname.parent.parent.parent.parent}easy_typelib")
 
 begin
   require 'oci'

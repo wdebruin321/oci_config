@@ -18,7 +18,7 @@ module Puppet_X
         end
 
         def tenant_config(tenant = nil)
-          OCI.logger = Logger.new(STDOUT) if ENV['OCI_CONFIG_DEBUG']
+          OCI.logger = Logger.new($stdout) if ENV['OCI_CONFIG_DEBUG']
           tenant = self.tenant if tenant.nil?
           config_for_settings(tenant)
         end

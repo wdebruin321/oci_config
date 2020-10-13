@@ -1,6 +1,7 @@
 # Common configuration.
 AllCops:
   # Include common Ruby source files.
+  NewCops: enable
 
   Include:
     - '**/*.rb'
@@ -21,56 +22,11 @@ AllCops:
     - 'bin/*'
 
 
-Lint/DuplicateElsifCondition:
-  Enabled: true       # (0.88)
-Style/AccessorGrouping:
-  Enabled: true       # (0.87)
-Style/ArrayCoercion:
-  Enabled: true       # (0.88)
-Style/BisectedAttrAccessor:
-  Enabled: true       # (0.87)
-Style/CaseLikeIf:
-  Enabled: true       # (0.88)
-Style/HashAsLastArrayItem:
-  Enabled: true       # (0.88)
-Style/HashLikeCase:
-  Enabled: true       # (0.88)
-Style/RedundantAssignment:
-  Enabled: true       # (0.87)
-Style/RedundantFileExtensionInRequire:
-  Enabled: true       # (0.88)
 Metrics:
   Enabled: false
-Style/RedundantFetchBlock:
-  Enabled:  true      # (0.86)
-Lint/MixedRegexpCaptureTypes:
-  Enabled: true       # (0.85)
-Style/RedundantRegexpCharacterClass:
-  Enabled: true       # (0.85)
-Style/RedundantRegexpEscape:
-  Enabled: true       # (0.85)
-Lint/DeprecatedOpenSSLConstant:
-  Enabled: true      # (0.84)
-Layout/EmptyLinesAroundAttributeAccessor:
-  Enabled: true     # (0.83)
-Style/SlicingWithRange:
-  Enabled: true     # (0.83)
-Layout/SpaceAroundMethodCallOperator:
-  Enabled: true     # (0.82)
-Style/ExponentialNotation:
-  Enabled: true     # (0.82)
-# Rubocop 0.80 and 0.8.1
-Lint/RaiseException:
-  Enabled: true
-Lint/StructNewOverride:
-  Enabled: true
-Style/HashEachMethods:
-  Enabled: true
-Style/HashTransformKeys:
-  Enabled: true
-Style/HashTransformValues:
-  Enabled: true
 #
+Style/OptionalBooleanParameter:
+  Enabled: false
 #
 Layout/HeredocIndentation:
   Enabled: false
