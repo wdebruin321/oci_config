@@ -1,6 +1,10 @@
 History
 ========
 
+## 0.10.1
+
+- [core] Handle casing for resource types
+
 ## 0.10.0
 
 - [core] Fix fetching when referencing unknown or terminated resources
