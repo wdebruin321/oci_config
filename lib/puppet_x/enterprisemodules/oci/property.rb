@@ -64,7 +64,7 @@ module Puppet_X
           reference_attributes.each do |property|
             if property == 'id'
               reference_property = 'name'
-              property_type = data['type']
+              property_type = data['type'].downcase
             else
               reference_property = property.scan(/(.*)_id(s)?/).flatten.join
               property_type = data["#{reference_property}_type"]
