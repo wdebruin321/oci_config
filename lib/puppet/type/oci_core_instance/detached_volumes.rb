@@ -9,7 +9,7 @@ newproperty(:detached_volumes, :parent => Puppet_X::EnterpriseModules::Oci::Asso
     regular `volumes` property in the sense that this is only about the specified
     volumes. It doesn't care about any other volumes attached. It doesn't describe the
     the full state, but only the partial state of this volume.
-    
+
     Here is an example on how to use this:
 
         oci_core_instance { 'tenant (root)/my_instance':

@@ -109,6 +109,8 @@ supply string values using the API.
   property :user_data
   property :ssh_authorized_keys
   property :shape_config
+  property :instance_options
+  property :availability_config
 
   validate do
     validate_reference_propery(:compartment_id, self)

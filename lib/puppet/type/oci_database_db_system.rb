@@ -81,6 +81,8 @@ Puppet::Type.newtype(:oci_database_db_system) do
   property :last_maintenance_run_id
   property :next_maintenance_run
   property :next_maintenance_run_id
+  property :point_in_time_data_disk_clone_timestamp
+  property :private_ip
 
   validate do
     validate_reference_propery(:compartment_id, self)

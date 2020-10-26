@@ -20,8 +20,6 @@ module Puppet_X
           case ServiceInfo.type_to_lookup_method(@resource_type)
           when :root
             resources_at_root
-          when :vcn
-            resources_in_vncs(compartment_id)
           when :db_systems
             resources_in_db_systems(compartment_id)
           when :systems
@@ -121,18 +119,6 @@ module Puppet_X
               handle_authorisation_errors(compartment_id) do
                 Puppet.debug "Inspecting database #{system_id}..."
                 client.send("list_#{object_type_plural}", compartment_id, :system_id => system_id).data
-              end
-            end
-          end.flatten.compact.uniq(&:id)
-        end
-
-        def resources_in_vncs(specified_compartment)
-          compartment_list(specified_compartment).collect do |compartment_id|
-            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
-            vncs_in(compartment_id).collect do |vnc_id|
-              handle_authorisation_errors(compartment_id) do
-                Puppet.debug "Inspecting vnc #{vnc_id}..."
-                client.send("list_#{object_type_plural}", compartment_id, vnc_id).data
               end
             end
           end.flatten.compact.uniq(&:id)

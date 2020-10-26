@@ -59,9 +59,12 @@ supply string values using the API.
   property :time_created
   property :vcn
   property :vcn_id
+  property :public_ip
+  property :public_ip_id
 
   validate do
     validate_reference_propery(:compartment_id, self)
     validate_reference_propery(:vcn_id, self)
+    validate_reference_propery(:public_ip_id, self)
   end
 end

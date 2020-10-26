@@ -63,10 +63,13 @@ supply string values using the API.
   property :private_ip_id
   property :scope
   property :time_created
+  property :public_ip_pool
+  property :public_ip_pool_id
 
   validate do
     validate_reference_propery(:assigned_entity_id, self)
     validate_reference_propery(:compartment_id, self)
     validate_reference_propery(:private_ip_id, self)
+    validate_reference_propery(:public_ip_pool_id, self)
   end
 end

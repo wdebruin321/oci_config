@@ -7,7 +7,7 @@ newproperty(:instance_principal) do
   include EasyType::YamlProperty
 
   desc <<-DESC
-  Authenticate as an instance principal. 
+  Authenticate as an instance principal.
 
   This means for this tenancy, the oci_config module will connect to OCI without any
   of the other authorisation properties and behave like an instance principal.

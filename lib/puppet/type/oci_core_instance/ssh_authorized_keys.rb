@@ -18,7 +18,7 @@ newproperty(:ssh_authorized_keys, :parent => Puppet_X::EnterpriseModules::Oci::P
 
         ...
       }
-  
+
   This property is an helper property and in the end, will fill in the values in the property `metadata`. If you specify
   values in both `metadata` and `ssh_authorized_keys`, you might get unexpected results.
   DESC

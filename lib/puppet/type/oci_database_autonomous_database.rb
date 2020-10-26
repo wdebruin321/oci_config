@@ -71,6 +71,20 @@ Puppet::Type.newtype(:oci_database_autonomous_database) do
   property :time_maintenance_end
   property :private_endpoint_ip
   property :available_upgrade_versions
+  property :infrastructure_type
+  property :is_refreshable_clone
+  property :time_of_last_refresh
+  property :time_of_last_refresh_point
+  property :time_of_next_refresh
+  property :open_mode
+  property :refreshable_status
+  property :refreshable_mode
+  property :permission_level
+  property :time_of_last_switchover
+  property :time_of_last_failover
+  property :is_data_guard_enabled
+  property :failed_data_recovery_in_seconds
+  property :standby_db
 
   validate do
     validate_reference_propery(:compartment_id, self)

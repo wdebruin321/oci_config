@@ -7,7 +7,7 @@ newproperty(:max_attempts) do
   include EasyType::YamlProperty
 
   desc <<-DESC
-  The number of attempts for OCI calls before we stop trying 
+  The number of attempts for OCI calls before we stop trying
   to make calls and declare a timeout or that we have no rights to access the resource.
 
   ** WARNING **
