@@ -6,7 +6,7 @@ describe 'oci_identity_tag_namespace' do
   include_context 'setup'
   test_name = unique_test_name
 
-  let(:resource_name) { "acceptance_tests/test_tag_#{test_name}" }
+  let(:resource_name) { "acceptance_tests/test_namespace_#{test_name}" }
 
   before(:all) do
     manifest = <<-EOD
@@ -47,7 +47,7 @@ end
       apply_manifest(manifest, :catch_changes => true)
     end
 
-    it "should remove the tag namespace idempotent" do
+    xit "should remove the tag namespace idempotent" do
       manifest = <<-EOD
         oci_identity_tag_namespace { 'enterprisemodules (root)/#{resource_name}':
           ensure  => 'absent',

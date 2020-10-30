@@ -21,6 +21,34 @@ Puppet 5.5 Unit test:
 oci_core_instance Acceptance test:
   extends: .named_litmus_acceptance_test
   variables:
+    type: oci_identity_tag_default
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_identity_tag_default.rb"
+      - "lib/puppet/type/oci_identity_tag_default/*.rb"
+      - "lib/provider/oci_identity_tag_default/*.rb"
+      - "spec/acceptance/oci_identity_tag_default_spec.rb"
+
+oci_core_instance Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_identity_tag
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_identity_tag.rb"
+      - "lib/puppet/type/oci_identity_tag/*.rb"
+      - "lib/provider/oci_identity_tag/*.rb"
+      - "spec/acceptance/oci_identity_tag_spec.rb"
+
+oci_core_instance Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
     type: oci_core_instance
     image: acc_base
   only:
