@@ -18,7 +18,7 @@ Puppet 5.5 Unit test:
 #
 # Acceptance tests
 #
-oci_core_instance Acceptance test:
+oci_identity_tag_default Acceptance test:
   extends: .named_litmus_acceptance_test
   variables:
     type: oci_identity_tag_default
@@ -32,7 +32,7 @@ oci_core_instance Acceptance test:
       - "lib/provider/oci_identity_tag_default/*.rb"
       - "spec/acceptance/oci_identity_tag_default_spec.rb"
 
-oci_core_instance Acceptance test:
+oci_identity_tag Acceptance test:
   extends: .named_litmus_acceptance_test
   variables:
     type: oci_identity_tag
