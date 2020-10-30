@@ -57,6 +57,8 @@ module Puppet_X
           [:oci_identity_identity_provider,             :saml2idp,                  'OCI::Identity::Models::IdentityProvider',            'OCI::Identity::IdentityClient',            :protocol],
           [:oci_identity_policy,                        :policy,                    'OCI::Identity::Models::Policy',                      'OCI::Identity::IdentityClient',            :compartment],
           [:oci_identity_tag_namespace,                 :tagnamespace,              'OCI::Identity::Models::TagNamespace',                'OCI::Identity::IdentityClient',            :compartment],
+          [:oci_identity_tag,                           :tagdefinition,             'OCI::Identity::Models::Tag',                         'OCI::Identity::IdentityClient',            :tag_namespace],
+          [:oci_identity_tag_default,                   :tagdefault,                'OCI::Identity::Models::TagDefault',                  'OCI::Identity::IdentityClient',            :compartment_detailed],
           [:oci_identity_user,                          :user,                      'OCI::Identity::Models::User',                        'OCI::Identity::IdentityClient',            :compartment],
           [:oci_database_autonomous_database,           :autonomousdatabase,        'OCI::Database::Models::AutonomousDatabase',          'OCI::Database::DatabaseClient',            :compartment],
           [:oci_key_management_vault,                   :vault,                     'OCI::KeyManagement::Models::Vault',                  'OCI::KeyManagement::KmsVaultClient',       :compartment],

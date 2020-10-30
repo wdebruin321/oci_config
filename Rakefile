@@ -180,6 +180,8 @@ namespace :generate do
     YamlGenerator.new(OCI::Identity, '^IdentityProvider$').generate
     YamlGenerator.new(OCI::Identity, '^Policy$').generate
     YamlGenerator.new(OCI::Identity, '^TagNamespace$').generate
+    YamlGenerator.new(OCI::Identity, '^Tag$').generate
+    YamlGenerator.new(OCI::Identity, '^TagDefault$').generate
     YamlGenerator.new(OCI::Identity, '^User$').generate
     #
     # Object storage

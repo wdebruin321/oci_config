@@ -4771,3 +4771,141 @@ oci_database_autonomous_container_database:
     # kms_key_version_id:
     #   data_type: String
   desc: AutonomousContainerDatabase model.
+oci_identity_tag:
+  klass: OCI::Identity::Models::Tag
+  properties:
+    compartment_id:
+      data_type: String
+      desc: The OCID of the compartment that contains the tag definition.
+    tag_namespace_id:
+      reference_type: tagnamespace
+      data_type: String
+      desc: The OCID of the namespace that contains the tag definition.
+    tag_namespace_name:
+      data_type: String
+      desc: The name of the tag namespace that contains the tag definition.
+    id:
+      data_type: String
+      desc: The OCID of the tag definition.
+    name:
+      data_type: String
+      desc: |-
+        The name you assign to the tag during creation. This is the tag key definition.
+        The name must be unique within the tag namespace and cannot be changed.
+    description:
+      data_type: String
+      desc: The description you assign to the tag during creation.
+    freeform_tags:
+      data_type: Hash[String, String]
+      desc: |-
+        Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+        For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+
+        Example: `{\"Department\": \"Finance\"}`
+    defined_tags:
+      data_type: Hash[String, Hash[String, Any]]
+      desc: |-
+        Defined tags for this resource. Each key is predefined and scoped to a namespace.
+        For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+
+        Example: `{\"Operations\": {\"CostCenter\": \"42\"}}`
+    is_retired:
+      data_type: Boolean
+      desc: |-
+        Indicates whether the tag is retired.
+        See [Retiring Key Definitions and Namespace Definitions](https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
+    lifecycle_state:
+      data_type: String
+      desc: The tag's current state. After creating a tag, make sure its `lifecycleState`
+        is ACTIVE before using it. After retiring a tag, make sure its `lifecycleState`
+        is INACTIVE before using it. If you delete a tag, you cannot delete another
+        tag until the deleted tag's `lifecycleState` changes from DELETING to DELETED.
+    time_created:
+      data_type: Runtime
+      desc: |-
+        Date and time the tag was created, in the format defined by RFC3339.
+
+        Example: `2016-08-25T21:10:29.600Z`
+    is_cost_tracking:
+      data_type: Boolean
+      desc: Indicates whether the tag is enabled for cost tracking.
+    validator:
+      data_type: Oci_config::BaseTagDefinitionValidator
+      desc: |-
+        The tag must have a value type, which is specified with a validator. Tags can use either a
+        static value or a list of possible values. Static values are entered by a user applying the tag
+        to a resource. Lists are created by you and the user must apply a value from the list. Lists
+        are validiated.
+
+        If you use the default validiator (or don't define a validator), the user applying the tag
+        enters a value. No additional validation is performed.
+
+        To clear the validator, call UpdateTag with
+        [DefaultTagDefinitionValidator](https://docs.cloud.oracle.com/api/#/en/identity/latest/datatypes/DefaultTagDefinitionValidator).
+  desc: |-
+    A tag definition that belongs to a specific tag namespace.  \"Defined tags\" must be set up in your tenancy before
+    you can apply them to resources.
+    For more information, see [Managing Tags and Tag Namespaces](https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm).
+
+    **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values
+    using the API.
+oci_identity_tag_default:
+  klass: OCI::Identity::Models::TagDefault
+  properties:
+    id:
+      data_type: String
+      desc: The OCID of the tag default.
+    compartment_id:
+      data_type: String
+      desc: The OCID of the compartment. The tag default will be applied to all new
+        resources created in this compartment.
+    tag_namespace_id:
+      reference_type: tagnamespace
+      data_type: String
+      desc: The OCID of the tag namespace that contains the tag definition.
+    tag_definition_id:
+      reference_type: tagdefinition
+      data_type: String
+      desc: The OCID of the tag definition. The tag default will always assign a default
+        value for this tag definition.
+    tag_definition_name:
+      data_type: String
+      desc: The name used in the tag definition. This field is informational in the
+        context of the tag default.
+    value:
+      data_type: String
+      desc: The default value for the tag definition. This will be applied to all
+        new resources created in the compartment.
+    time_created:
+      data_type: Runtime
+      desc: |-
+        Date and time the `TagDefault` object was created, in the format defined by RFC3339.
+
+        Example: `2016-08-25T21:10:29.600Z`
+    lifecycle_state:
+      data_type: String
+      desc: The tag default's current state. After creating a `TagDefault`, make sure
+        its `lifecycleState` is ACTIVE before using it.
+    is_required:
+      data_type: Boolean
+      desc: |-
+        If you specify that a value is required, a value is set during resource creation (either by
+        the user creating the resource or another tag defualt). If no value is set, resource
+        creation is blocked.
+
+        * If the `isRequired` flag is set to \"true\", the value is set during resource creation.
+        * If the `isRequired` flag is set to \"false\", the value you enter is set during resource creation.
+
+        Example: `false`
+  desc: |-
+    Tag defaults let you specify a default tag (tagnamespace.tag=\"value\") to apply to all resource types
+    in a specified compartment. The tag default is applied at the time the resource is created. Resources
+    that exist in the compartment before you create the tag default are not tagged. The `TagDefault` object
+    specifies the tag and compartment details.
+
+    Tag defaults are inherited by child compartments. This means that if you set a tag default on the root compartment
+    for a tenancy, all resources that are created in the tenancy are tagged. For more information about
+    using tag defaults, see [Managing Tag Defaults](https://docs.cloud.oracle.com/Content/Identity/Tasks/managingtagdefaults.htm).
+
+    To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized,
+    talk to an administrator.

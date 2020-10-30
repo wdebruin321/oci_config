@@ -75,18 +75,26 @@ module Puppet_X
         def name_to_ocid(tenant, full_name, id_type = :compartment)
           return full_name.collect { |n| name_to_ocid(tenant, n, id_type) } if full_name.is_a?(Array)
 
-          full_name = full_name.gsub('//', '/') # Handle double seperators
-          tenancy, relative_name = full_name.scan(%r{^(?:(.*) \(root\)/)?(.*)?}).first
-          return relative_name if valid_ocid?(relative_name)
-          fail "tenancy #{tenancy} different than tenancy in name #{full_name}" if tenancy && tenant != tenancy
+          #
+          # For creation of a tag namespace or a tag, you can specify a compartment, but
+          # when referencing it, you don't.
+          #
+          if [:tagnamespace, :tagdefinition].include?(id_type)
+            name = full_name
+          else
+            full_name = full_name.gsub('//', '/') # Handle double seperators
+            tenancy, relative_name = full_name.scan(%r{^(?:(.*) \(root\)/)?(.*)?}).first
+            return relative_name if valid_ocid?(relative_name)
+            fail "tenancy #{tenancy} different than tenancy in name #{full_name}" if tenancy && tenant != tenancy
 
-          compartment_name, name = relative_name.scan(%r{^(?:(.*)/)?(.*)$}).first
-          compartment_id = if compartment_name.nil?
-                             @tenant_ids[tenant]
-                           else
-                             name_to_ocid(tenant, compartment_name, :compartment)
-                           end
-          return compartment_id if name.empty?
+            compartment_name, name = relative_name.scan(%r{^(?:(.*)/)?(.*)$}).first
+            compartment_id = if compartment_name.nil?
+                               @tenant_ids[tenant]
+                             else
+                               name_to_ocid(tenant, compartment_name, :compartment)
+                             end
+            return compartment_id if name.empty?
+          end
 
           object = find_in_cache(tenant, id_type, name, compartment_id)
           if object.nil? # Not in cache, fetch it
@@ -104,12 +112,12 @@ module Puppet_X
           object.id
         end
 
-        def find_in_cache(tenant, id_type, name, compartment_id)
-          if compartment_id == @tenant_ids[tenant]
+        def find_in_cache(tenant, id_type, name, compartment_id = nil)
+          if compartment_id && compartment_id == @tenant_ids[tenant]
             @cache[tenant].find { |o| o.id_type == id_type && o.puppet_name == name && (o.compartment_id == compartment_id || o.compartment_id.nil?) }
           else
             @cache[tenant].find do |object|
-              if object.respond_to?(:compartment_id)
+              if compartment_id && object.respond_to?(:compartment_id)
                 object.id_type == id_type && object.puppet_name == name && object.compartment_id == compartment_id
               else
                 #
@@ -155,7 +163,11 @@ module Puppet_X
           # we use the display_name.
           #
           name = object.respond_to?(:name) ? object.name : object.display_name
-          return name if compartment_id.nil?
+          #
+          # Some resources originate a compartment, but don't actually reside in there
+          # For those resources we return the base name
+          #
+          return name if compartment_id.nil? || ocid =~ /tagnamespace|tagdefinition/
 
           names = [name]
           loop do

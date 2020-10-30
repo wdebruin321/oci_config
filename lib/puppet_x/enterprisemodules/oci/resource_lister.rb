@@ -36,6 +36,8 @@ module Puppet_X
             resources_in_vaults(compartment_id)
           when :namespace
             resources_in_namespace(compartment_id)
+          when :tag_namespace
+            resources_in_tag_namespace
           else
             fail "Internal error: invalid primary_key for #{@resource_type}"
           end
@@ -69,6 +71,8 @@ module Puppet_X
             handle_authorisation_errors(compartment_id) do
               Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
               case object_type_plural
+              when 'tag_defaults'
+                client.list_tag_defaults(:compartment_id => compartment_id).data
               when 'exports'
                 summary_data = client.list_exports(:compartment_id => compartment_id).data
                 summary_data.collect do |export|
@@ -135,6 +139,21 @@ module Puppet_X
           end.flatten.compact.uniq(&:name)
         end
 
+        def resources_in_tag_namespace
+          compartment_list(nil).collect do |compartment_id|
+            handle_authorisation_errors(compartment_id) do
+              Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
+              tag_namespaces_in(compartment_id).collect do |tag_namespace_id|
+                handle_authorisation_errors(compartment_id) do
+                  Puppet.debug "Inspecting tag namespace #{tag_namespace_id}..."
+                  summary_data = client.list_tags(tag_namespace_id).data
+                  summary_data.collect { |s| client.get_tag(tag_namespace_id, s.name).data }
+                end
+              end
+            end
+          end.flatten.compact.uniq(&:name)
+        end
+
         def resources_in_vaults(specified_compartment)
           compartment_list(specified_compartment).collect do |compartment_id|
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
@@ -176,6 +195,13 @@ module Puppet_X
           handle_authorisation_errors(compartment_id) do
             vcn_client = client_for(OCI::Core::VirtualNetworkClient, @tenant)
             vcn_client.send('list_vcns', compartment_id).data.collect(&:id)
+          end
+        end
+
+        def tag_namespaces_in(compartment_id)
+          handle_authorisation_errors(compartment_id) do
+            identity_client = client_for(OCI::Identity::IdentityClient, @tenant)
+            identity_client.list_tag_namespaces(compartment_id).data.collect(&:id)
           end
         end
 

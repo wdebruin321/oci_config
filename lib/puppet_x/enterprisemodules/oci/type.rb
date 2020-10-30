@@ -62,6 +62,10 @@ module Puppet_X
           @oci_api_data = @oci_api_data.to_oci
           handle_oci_request do
             @oci_api_data = case object_type
+                            when 'tag'
+                              tag_namespace_id = resolver.name_to_ocid(tenant, tag_namespace_name, :tagnamespace)
+                              create_details = create_class.new(@oci_api_data)
+                              client.create_tag(tag_namespace_id, create_details)
                             when 'instance'
                               launch_details = launch_class.new(@oci_api_data)
                               client.launch_instance(launch_details)
@@ -101,6 +105,9 @@ module Puppet_X
           if update_details.to_hash != {} # There are changes here
             handle_oci_request do
               case object_type
+              when 'tag'
+                tag_namespace_id = resolver.name_to_ocid(tenant, tag_namespace_name, :tagnamespace)
+                client.update_tag(tag_namespace_id, tag_name, update_details)
               when 'bucket'
                 bucket_name = name.split('/').last
                 client.send("update_#{object_type}", provider.namespace, bucket_name, update_details)
@@ -118,6 +125,14 @@ module Puppet_X
           Puppet.debug "destroy #{object_type} #{name} "
           handle_oci_request(object_type, synchronized, provider.id) do
             case object_type
+            when 'tag'
+              tag_namespace_id = resolver.name_to_ocid(tenant, tag_namespace_name, :tagnamespace)
+              #
+              # We can only remove the tag after it has been retired. So we make
+              # it one kind of operation. Maybe in the future, we can add ensure > 'retired'
+              #
+              client.update_tag(tag_namespace_id, tag_name, { 'isRetired' => true })
+              client.delete_tag(tag_namespace_id, tag_name)
             when 'bucket'
               bucket_name = name.split('/').last
               client.send("delete_#{object_type}", provider.namespace, bucket_name)
@@ -152,6 +167,12 @@ module Puppet_X
             :max_interval_seconds => oci_wait_interval,
             :max_wait_seconds => oci_timeout
           )
+        rescue OCI::Errors::ServiceError => e
+          #
+          # If we are not autorized or the resource is not found, infer the work request
+          # is done and we are finished
+          #
+          raise unless e.service_code == 'NotAuthorizedOrNotFound'
         end
 
         def wait_for_state(oci_object_type, id, type)
@@ -200,8 +221,8 @@ module Puppet_X
           #
           if wait_for_resource_id && oci_object_type != 'instance'
             wait_for_work_request(wait_for_resource_id)
-          elsif oci_object_type == 'bucket'
-            # Do nothing. We can't sync bucket operations
+          elsif %w[bucket tag].include?(oci_object_type)
+            # Do nothing. We can't sync bucket or tag operations
           elsif id.nil? # We need the id from the operation and the operation is a create or update operation
             wait_for_state(oci_object_type, operation_result.data.id, :create)
           else
@@ -263,7 +284,17 @@ module Puppet_X
 
           def execute_prefetch(resources, provider)
             tenants = resources.map { |title, _content| title.split('/').first }.uniq.map { |e| e.gsub(' (root)', '') }
-            compartments = resources.map { |title, _content| title.split(%r{/|:})[1...-1].join('/') }.map { |e| e.empty? ? '/' : e }.uniq
+            #
+            # because the title of the identity tage contains not only the compartment, but also the
+            # name of the tag namespace, we need an other way to calculate the compartments to search.
+            # We have implemented it like this because we might use this for some other types that
+            # are now a bit strange on title usage.
+            #
+            compartments = if ['Puppet::Type::Oci_identity_tag::ProviderSdk', 'Puppet::Type::Oci_identity_tag_default::ProviderSdk'].include?(provider.to_s)
+                             resources.map { |title, _content| title.split(%r{/|:})[1...-2].join('/') }.map { |e| e.empty? ? '/' : e }.uniq
+                           else
+                             resources.map { |title, _content| title.split(%r{/|:})[1...-1].join('/') }.map { |e| e.empty? ? '/' : e }.uniq
+                           end
             raw_resources = tenants.collect do |tenant|
               compartments.collect do |compartment_name|
                 lister = ResourceLister.new(tenant, object_class)

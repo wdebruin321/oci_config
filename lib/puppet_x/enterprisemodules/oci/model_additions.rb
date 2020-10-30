@@ -76,6 +76,8 @@ models = [
   OCI::Identity::Models::IdentityProvider,
   OCI::Identity::Models::Policy,
   OCI::Identity::Models::TagNamespace,
+  OCI::Identity::Models::Tag,
+  OCI::Identity::Models::TagDefaultSummary,
   OCI::Identity::Models::User,
   OCI::Identity::Models::TagNamespaceSummary,
   OCI::Identity::Models::UserGroupMembership,
