@@ -1,6 +1,14 @@
 History
 ========
 
+## 0.11.0
+
+- [oci_identity_tag_default] Initial implementation
+- [oci_identity_tag] Initial implementation
+- [core] Add basic support for tag namespaces and tag definitions
+- [facts] Fix long waiting times for fetching oci client facts
+- [core] Update to gem 2.10.0
+
 ## 0.10.1
 
 - [core] Handle casing for resource types
