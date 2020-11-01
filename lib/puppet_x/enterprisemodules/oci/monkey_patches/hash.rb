@@ -34,7 +34,7 @@ class Hash
     when Hash
       object.each_with_object({}) do |(key, value), result|
         # We don't want to transform the content of the tags. Leave them as they are
-        result[yield(key)] = if [:defined_tags, :freeform_tags, :definedTags, :freeformTags].include?(key)
+        result[yield(key)] = if [:defined_tags, :freeform_tags, :definedTags, :freeformTags, :metadata].include?(key)
                                value
                              else
                                _deep_transform_keys_in_object(value, &block)
