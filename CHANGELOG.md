@@ -1,6 +1,10 @@
 History
 ========
 
+## 0.11.1
+
+- [core] Fix casing issue on metadata
+
 ## 0.11.0
 
 - [oci_identity_tag_default] Initial implementation
