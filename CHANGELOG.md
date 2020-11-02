@@ -1,6 +1,11 @@
 History
 ========
 
+## 0.11.2
+
+- [oci_identity_tag_defaults] Fix idempotency issues
+- [oci_core_instance] Fix handling of ssh-authorized-keys & user_data
+
 ## 0.11.1
 
 - [core] Fix casing issue on metadata
