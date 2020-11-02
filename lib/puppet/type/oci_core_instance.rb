@@ -61,6 +61,13 @@ supply string values using the API.
 
   DESC
 
+  def before_create
+    super
+    @oci_api_data[:metadata] ||= {}
+    @oci_api_data[:metadata]['user_data'] = Base64.encode64(user_data).chop if user_data
+    @oci_api_data[:metadata]['ssh_authorized_keys'] = ssh_authorized_keys if ssh_authorized_keys
+  end
+
   add_title_attributes(:instance_name)
 
   ensurable
@@ -106,8 +113,8 @@ supply string values using the API.
   # Some helper properties. These properties make it easier to specificy some
   # often used values
   #
-  property :user_data
-  property :ssh_authorized_keys
+  parameter :user_data
+  parameter :ssh_authorized_keys
   property :shape_config
   property :instance_options
   property :availability_config
