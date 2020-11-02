@@ -44,7 +44,6 @@ talk to an administrator.
   parameter :present_states
   parameter :absent_states
   parameter :synchronized
-  # parameter :tag_definition_name
   parameter :compartment
   property  :id
   property  :compartment_id

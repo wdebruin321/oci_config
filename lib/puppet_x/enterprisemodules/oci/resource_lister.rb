@@ -151,7 +151,7 @@ module Puppet_X
                 end
               end
             end
-          end.flatten.compact.uniq(&:name)
+          end.flatten.compact
         end
 
         def resources_in_vaults(specified_compartment)

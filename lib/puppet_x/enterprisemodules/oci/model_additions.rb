@@ -106,3 +106,16 @@ models = [
 models.each do |model|
   model.class_eval { include Puppet_X::EnterpriseModules::Oci::ModelAdditions }
 end
+
+#
+# The name of a tag is the name of the namespace doubld colon and then
+# the name of the tag itself
+#
+class OCI::Identity::Models::Tag
+  #
+  # The name puppet uses
+  #
+  def puppet_name
+    "#{tag_namespace_name}:#{name}"
+  end
+end

@@ -16,6 +16,10 @@ newproperty(:tag_definition, :parent => Puppet_X::EnterpriseModules::Oci::Proper
   references :tag_definition_id
   reference_type :tagdefinition
   data_type('Optional[String]')
+
+  def before_apply
+    resource.oci_api_data[references] = reference_to_id("#{resource[:tag_namespace]}:#{value}", reference_type)
+  end
 end
 
 # child_of(:tagdefinition, :tag_definition) { "#{tenant_string}/#{tag_definition}" }
