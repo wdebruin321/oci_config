@@ -1,6 +1,6 @@
 {
   "name": "enterprisemodules-oci_config",
-  "version": "0.11.2",
+  "version": "0.11.3",
   "author": "Bert Hajee",
   "summary": "Puppet types, classes and facts to aid in Oracle Cloud Infrastructure deployments",
   "license": "proprietary",

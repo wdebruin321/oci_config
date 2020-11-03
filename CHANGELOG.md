@@ -1,6 +1,12 @@
 History
 ========
 
+## 0.11.3
+
+- [core] Use our own oci 2.10.1 gem
+- [oci_core_instance] Don’t camel case extended_metadata
+- [oci_core_instance] user_data needs struct base64 encoding to work
+
 ## 0.11.2
 
 - [oci_identity_tag_defaults] Fix idempotency issues
