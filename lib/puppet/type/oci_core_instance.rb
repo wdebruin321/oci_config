@@ -64,7 +64,7 @@ supply string values using the API.
   def before_create
     super
     @oci_api_data[:metadata] ||= {}
-    @oci_api_data[:metadata]['user_data'] = Base64.encode64(user_data).chop if user_data
+    @oci_api_data[:metadata]['user_data'] = Base64.strict_encode64(user_data) if user_data
     @oci_api_data[:metadata]['ssh_authorized_keys'] = ssh_authorized_keys if ssh_authorized_keys
   end
 
