@@ -80,7 +80,7 @@ module Puppet_X
 
           config.user        = settings['user_ocid']
           config.fingerprint = settings['fingerprint']
-          config.key_content = decrypted_value(settings['private_key'])
+          config.key_content = decrypted_value(settings['private_key']) if settings['private_key']
           config.pass_phrase = decrypted_value(settings['private_key_password']) if settings['private_key_password']
           config
         end
