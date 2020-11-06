@@ -68,7 +68,15 @@ module Puppet_X
                               client.create_tag(tag_namespace_id, create_details)
                             when 'instance'
                               launch_details = launch_class.new(@oci_api_data)
-                              client.launch_instance(launch_details)
+                              creation_data = client.launch_instance(launch_details)
+                              #
+                              # The creation of an instance also create's a boot image. To allow searching for it
+                              # in the cache, invalidate the cache of boot volumes. This is not very efficient. Specialy
+                              # in large environments.
+                              # TODO: Find a way to make this more effecient
+                              #
+                              resolver.invalidate(tenant, :bootvolume)
+                              creation_data
                             when 'bucket'
                               namespace = client.get_namespace.data
                               create_details = create_class.new(@oci_api_data)
@@ -78,6 +86,13 @@ module Puppet_X
                               client.send("create_#{object_type}", create_details)
                             end
           end
+          #
+          # Add the created resource to the name cache so new Puppet resources can find it
+          #
+          resolver.add_to_cache(tenant, @oci_api_data.data, ServiceInfo.type_to_id(type))
+          #
+          # Report the information back to the provide
+          #
           hash = @oci_api_data.data.to_hash.to_puppet
           hash['tenant'] = tenant
           hash['name'] = name
@@ -102,7 +117,9 @@ module Puppet_X
           #
           @oci_api_data = @oci_api_data.to_oci
           update_details = update_class.new(@oci_api_data)
-          if update_details.to_hash != {} # There are changes here
+          if update_details.to_hash == {} # There are changes here
+            Puppet.debug 'No changes in main data. Defering changes to specific properties.'
+          else
             handle_oci_request do
               case object_type
               when 'tag'
@@ -115,8 +132,6 @@ module Puppet_X
                 client.send("update_#{object_type}", provider.id, update_details)
               end
             end
-          else
-            Puppet.debug 'No changes in main data. Defering changes to specific properties.'
           end
           nil
         end

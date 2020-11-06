@@ -2,6 +2,7 @@ $volumes = [
   'enterprisemodules (root)/data_disk_1',
   'enterprisemodules (root)/data_disk_2',
 ]
+$host_name = 'test7'
 
 oci_core_volume { $volumes :
   ensure              => 'present',
@@ -10,7 +11,7 @@ oci_core_volume { $volumes :
   size_in_gbs         => 512,
 }
 
-oci_core_instance { 'enterprisemodules (root)/bert2':
+oci_core_instance { "enterprisemodules (root)/${host_name}":
   ensure              => 'present',
   availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
   fault_domain        => 'FAULT-DOMAIN-2',
@@ -20,19 +21,19 @@ oci_core_instance { 'enterprisemodules (root)/bert2':
   source_details      => {
     source_type => 'image',
     image_type  => 'image',
-    image       => oci_config::latest_image_for('Oracle Linux', '7.7', /^((?!GPU).)*$/),
+    image       => oci_config::latest_image_for('Oracle Linux', '7.8', /^((?!GPU).)*$/),
   },
   vnics               => {
     'nic1' => {
       # 'availability_domain' => 'arMl:EU-FRANKFURT-1-AD-1',
       'nic_index' => 0,
       # 'vlan_tag' => 1478,
-      'hostname_label' => 'testhost2',
+      'hostname_label' => $host_name,
       'is_primary' => true,
       # 'mac_address' => '02:00:17:01:75:04',
       # 'private_ip' => '10.0.0.11',
       'skip_source_dest_check' => true,
-      'subnet' => 'Public Subnet'
+      'subnet' => 'EM Public'
     }
   },
   volumes             => {

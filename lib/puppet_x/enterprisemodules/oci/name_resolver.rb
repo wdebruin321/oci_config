@@ -15,14 +15,14 @@ module Puppet_X
         def initialize
           @clients      = {}
           @cache        = {}
-          @cached_types = []
+          @cached_types = {}
           @tenant_ids   = {}
         end
 
         def initialize_for_tenant(tenant)
           return if @clients[tenant]
 
-          @clients[tenant]    = client_for(OCI::Identity::IdentityClient, tenant)
+          @clients[tenant] = client_for(OCI::Identity::IdentityClient, tenant)
           #
           # If we are using an instance principal then use compartment_id as tenant
           #
@@ -31,6 +31,7 @@ module Puppet_X
           # We now use a large limit, be we need to modify it to use multiple calls.
           #
           @cache[tenant] = @clients[tenant].list_compartments(@tenant_ids[tenant], :limit => 9_999_999, :access_level => 'ACCESSIBLE', :compartment_id_in_subtree => true).data
+          @cached_types[tenant] = []
         end
 
         def self.instance(tenant)
@@ -51,20 +52,34 @@ module Puppet_X
           ocid.scan(/ocid1\.(\w*)\./).first.first.to_sym
         end
 
+        #
+        # Allow refresh of resources for the specified ocid_type
+        #
+        def invalidate(tenant, ocid_type)
+          @cached_types[tenant].delete(ocid_type)
+        end
+
+        #
+        # Add objects to the cache
+        #
+        def add_to_cache(tenant, objects, ocid_type)
+          @cache[tenant] += Array(objects)
+          @cache[tenant].uniq(&:id) # remove duplicate from cache
+          @cached_types[tenant] << ocid_type
+        end
+
         def from_cache(tenant, ocid)
           ocid_type = id_type(ocid)
           object = @cache[tenant].find { |e| e.id == ocid && e.id_type == ocid_type }
           return object if object
 
-          unless @cached_types.include?(ocid_type)
+          unless @cached_types[tenant].include?(ocid_type)
             #
             # Fetch all objects of specified type
             #
             object_class = ServiceInfo.id_to_class(ocid_type)
             lister = ResourceLister.new(tenant, object_class)
-            @cache[tenant] += lister.resource_list.select(&:present?)
-            @cache[tenant].uniq(&:id) # remove duplicate from cache
-            @cached_types << ocid_type
+            add_to_cache(tenant, lister.resource_list.select(&:present?), ocid_type)
             object = @cache[tenant].find { |e| e.id == ocid && e.id_type == ocid_type }
           end
           fail "Object with #{ocid} not found." if object.nil?
