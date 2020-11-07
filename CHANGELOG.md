@@ -1,6 +1,11 @@
 History
 ========
 
+## 0.11.4
+
+- [oci_core_instance] Fix fetching of bootdisk id’s when launching multiple instances
+- [core] for instance principals you don’t need a private key
+
 ## 0.11.3
 
 - [core] Use our own oci 2.10.1 gem
