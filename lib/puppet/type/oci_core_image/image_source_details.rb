@@ -11,5 +11,15 @@ newproperty(:image_source_details, :parent => Puppet_X::EnterpriseModules::Oci::
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[Oci_config::ImageSourceDetails]')
+  data_type(<<~DATA_TYPE)
+    Optional[
+      # The details of the image source
+      type Oci_Config::ImageSourceDetails = Struct[{
+        Optional[operating_system]         => String[1],
+        Optional[operating_system_version] => String[1],
+        Optional[image_type]               => String[1],
+        Optional[image]                    => String[1],
+      }]
+    ]
+  DATA_TYPE
 end

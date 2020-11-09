@@ -14,8 +14,17 @@ newproperty(:policies, :array_matching => :all, :parent => Puppet_X::EnterpriseM
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[Array[Oci_config::CreateAutoScalingPolicyDetails]]')
-
+  data_type(<<~DATA_TYPE)
+    Optional[
+      # The details of the auto scaling policy
+      type Oci_Config::CreateAutoScalingPolicyDetails = Struct[{
+        Optional[capacity]     => Oci_config::Capacity,
+        Optional[display_name] => String,
+        Optional[policy_type]  => String,
+        Optional[rules]        => Array[Any],
+      }]
+    ]
+  DATA_TYPE
   #
   # This property returns a Hash, but it only contains one reference, so we translate it directly
   #

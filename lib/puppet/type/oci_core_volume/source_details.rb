@@ -13,5 +13,14 @@ When specified, the new Block volume will contain data from the source volume or
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[Oci_config::VolumeSourceDetails]')
+  data_type(<<~DATA_TYPE)
+    Optional[
+      # The details of the volume source
+      type Oci_Config::VolumeSourceDetails = Struct[{
+        Optional['type'] => String[1],
+        Optional[id]     => String[1],
+        Optional[name]   => String[1],
+      }]
+    ]
+  DATA_TYPE
 end

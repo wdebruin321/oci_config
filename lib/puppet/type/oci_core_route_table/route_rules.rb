@@ -11,5 +11,17 @@ newproperty(:route_rules, :array_matching => :all, :parent => Puppet_X::Enterpri
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[Array[Oci_config::RouteRule]]')
+  data_type(<<~DATA_TYPE)
+    Optional[Array[
+      # The details of the route rule
+      type Oci_Config::RouteRule = Struct[{
+        Optional[cidr_block]         => String[1],
+        Optional[destination]         => String[1],
+        Optional[destination_type]    => String[1],
+        Optional[network_entity_id]   => String[1],
+        Optional[network_entity]      => String[1],
+        Optional[network_entity_type] => String[1],
+      }]]
+    ]
+  DATA_TYPE
 end

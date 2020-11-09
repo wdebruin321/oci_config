@@ -11,5 +11,17 @@ newproperty(:capabilities, :parent => Puppet_X::EnterpriseModules::Oci::Property
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[Oci_config::UserCapabilities]')
+  data_type(<<~DATA_TYPE)
+    Optional[
+      # The details of the user capabilities
+      type Oci_Config::UserCapabilities = Struct[{
+        Optional[can_use_console_password]           => Boolean,
+        Optional[can_use_api_keys]                   => Boolean,
+        Optional[can_use_auth_tokens]                => Boolean,
+        Optional[can_use_smtp_credentials]           => Boolean,
+        Optional[can_use_customer_secret_keys]       => Boolean,
+        Optional[can_use_o_auth2_client_credentials] => Boolean,
+      }]
+    ]
+  DATA_TYPE
 end

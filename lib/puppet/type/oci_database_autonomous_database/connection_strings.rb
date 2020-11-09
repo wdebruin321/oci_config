@@ -11,5 +11,16 @@ newproperty(:connection_strings, :parent => Puppet_X::EnterpriseModules::Oci::Pr
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[Oci_config::AutonomousDatabaseConnectionStrings]')
+  data_type(<<~DATA_TYPE)
+    Optional[
+      # The details of an autonomous Database connection String
+      type Oci_Config::AutonomousDatabaseConnectionStrings = Struct[{
+        Optional[high]                   => String[1],
+        Optional[medium]                 => String[1],
+        Optional[low]                    => String[1],
+        Optional[dedicated]              => String[1],
+        Optional[all_connection_strings] => Hash[String, String],
+      }]
+    ]
+  DATA_TYPE
 end

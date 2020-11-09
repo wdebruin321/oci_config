@@ -11,5 +11,13 @@ newproperty(:db_home, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[Oci_config::CreateDbHomeDetails]')
+  data_type(<<~DATA_TYPE)
+    Optional[
+      type Oci_Config::CreateDbHomeDetails = Struct[{
+        Optional[display_name] => String[1],
+        Optional[db_version] => String[1],
+        Optional[database] => Oci_ConfigCreateDatabaseDetails,
+      }]
+    ]
+  DATA_TYPE
 end

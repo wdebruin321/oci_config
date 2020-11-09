@@ -12,5 +12,12 @@ advertise across the connection.
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[Array[Oci_config::CreateVirtualCircuitPublicPrefixDetails]]')
+  data_type(<<~DATA_TYPE)
+    Optional[
+      # The details of the virtual circuit public prefix
+      type Oci_Config::CreateVirtualCircuitPublicPrefixDetails = Struct[{
+        Optional[cidr_block] => String[1],
+      }]
+    ]
+  DATA_TYPE
 end

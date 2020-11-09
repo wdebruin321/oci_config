@@ -12,5 +12,13 @@ newparam(:key_shape, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
 
-  data_type('Optional[Oci_config::KeyShape]')
+  data_type(<<~DATA_TYPE)
+    Optional[
+      # The details of the key shape
+      type Oci_Config::KeyShape = Struct[{
+        Optional[algorithm] => String[1],
+        Optional[length]    => Integer,
+      }]
+    ]
+  DATA_TYPE
 end

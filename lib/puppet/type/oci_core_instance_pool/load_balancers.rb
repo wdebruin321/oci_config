@@ -11,5 +11,16 @@ newproperty(:load_balancers, :array_matching => :all, :parent => Puppet_X::Enter
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[Array[Oci_config::AttachLoadBalancerDetails]]')
+  data_type(<<~DATA_TYPE)
+    Optional[
+      # The details of a Load Balancer attachment
+      type Oci_Config::AttachLoadBalancerDetails = Struct[{
+        Optional[load_balancer_id] => String,
+        Optional[load_balancer]    => String,
+        Optional[backend_set_name] => String,
+        Optional[port]             => Integer,
+        Optional[vnic_selection]   => String,
+      }]
+    ]
+  DATA_TYPE
 end

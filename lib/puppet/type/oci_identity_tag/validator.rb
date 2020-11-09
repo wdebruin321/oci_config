@@ -20,5 +20,12 @@ To clear the validator, call UpdateTag with
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[Oci_config::BaseTagDefinitionValidator]')
+  data_type(<<~DATA_TYPE)
+    Optional[
+      type Oci_Config::BaseTagDefinitionValidator = Struct[{
+        Optional['validator_type'] => String[1],
+        Optional['values'] => Optional[Tuple],
+      }]
+    ]
+  DATA_TYPE
 end

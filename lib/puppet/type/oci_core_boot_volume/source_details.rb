@@ -12,5 +12,14 @@ This is a mandatory field for a boot volume.
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[Oci_config::BootVolumeSourceDetails]')
+  data_type(<<~DATA_TYPE)
+    Optional[
+      # The details of a boot volume source
+      type Oci_Config::BootVolumeSourceDetails = Struct[{
+        Optional['type'] => String[1],
+        Optional[id]     => String[1],
+        Optional[name]   => String[1],
+      }]
+    ]
+  DATA_TYPE
 end

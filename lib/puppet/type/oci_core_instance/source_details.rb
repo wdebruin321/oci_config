@@ -12,5 +12,15 @@ Use this parameter to specify whether a boot volume or an image should be used t
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[Oci_config::InstanceSourceDetails]')
+  data_type(<<~DATA_TYPE)
+    Optional[
+      # The details of the instance source
+      type Oci_Config::InstanceSourceDetails = Struct[{
+        source_type           => String[1],
+        Optional[image_id]    => String[1],
+        Optional[image]       => String[1],
+        Optional[image_type]  => String[1],
+      }]
+    ]
+  DATA_TYPE
 end

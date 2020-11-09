@@ -19,5 +19,15 @@ as the rule's destination and the service gateway as the rule's target. See
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[Array[Oci_config::ServiceIdRequestDetails]]')
+  data_type(<<~DATA_TYPE)
+    Optional[Array[
+      # The details of the service id request
+      type Oci_Config::ServiceIdRequestDetails = Struct[{
+        Optional[service_id]   => String[1],
+        Optional[service]      => String[1],
+        Optional[service_name] => String[1],
+        Optional[service_type] => String[1],
+      }]]
+    ]
+  DATA_TYPE
 end

@@ -32,5 +32,18 @@ defaults to:
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[Array[Oci_config::ClientOptions]]')
+
+  data_type(<<~DATA_TYPE)
+    Optional[Array[
+      # The details of the client options
+      type Oci_Config::ClientOptions= Struct[{
+        Optional[source]                         => String,
+        Optional[require_privileged_source_port] => Boolean,
+        Optional[access]                         => String,
+        Optional[identity_squash]                => String,
+        Optional[anonymous_uid]                  => Integer,
+        Optional[anonymous_gid]                  => Integer,
+      }]]
+    ]
+  DATA_TYPE
 end

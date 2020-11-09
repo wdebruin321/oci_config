@@ -20,5 +20,17 @@ configuration.
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
-  data_type('Optional[Array[Oci_config::CreateInstancePoolPlacementConfigurationDetails]]')
+
+  data_type(<<~DATA_TYPE)
+    Optional[
+      # The details of the instance pool placement configuration
+      type Oci_Config::CreateInstancePoolPlacementConfigurationDetails = Struct[{
+        Optional[availability_domain] => String,
+        Optional[primary_subnet_type] => String,
+        Optional[primary_subnet_id]   => String,
+        Optional[primary_subnet]      => String,
+        # Optional[secondary_vnic_subnets] => Array[Oci_config::InstancePoolPlacementSecondaryVnicSubnet]
+      }]
+    ]
+  DATA_TYPE
 end
