@@ -17,5 +17,17 @@ newproperty(:<%= name %>, :parent => Puppet_X::EnterpriseModules::Oci::Property)
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
 <% end -%>
+<% if @data[type]['properties'][name]['data_type'] =~ /Oci_config::/ -%>
+  data_type(<<~DATA_TYPE)
+<% type_name = @data[type]['properties'][name]['data_type'].scan(/Oci_config::(\w*)/).flatten.first.downcase -%>
+    Optional[
+<% lines = File.read("./types/#{type_name}.pp").split("\n") -%>
+<% lines.each do | line |-%>
+      <%= line %>
+<% end -%>
+    ]
+  DATA_TYPE
+<% else -%>
   data_type('Optional[<%= @data[type]['properties'][name]['data_type'] -%>]')
+<% end -%>
 end

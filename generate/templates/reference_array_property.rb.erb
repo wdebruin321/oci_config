@@ -19,7 +19,19 @@ newproperty(:<%= referenced_property %>, :array_matching => :all, :parent => Pup
   references :<%= name %>
 <% fail "no reference type for #{name}" unless @data[type]['properties'][name]['reference_type'] -%>
   reference_type :<%= @data[type]['properties'][name]['reference_type'] %>
+<% if @data[type]['properties'][name]['data_type'] =~ /Oci_config::/ -%>
+  data_type(<<~DATA_TYPE)
+<% type_name = @data[type]['properties'][name]['data_type'].scan(/Oci_config::(\w*)/).flatten.first.downcase -%>
+    Optional[
+<% lines = File.read("./types/#{type_name}.pp").split("\n") -%>
+<% lines.each do | line |-%>
+      <%= line %>
+<% end -%>
+    ]
+  DATA_TYPE
+<% else -%>
   data_type('Optional[<%= @data[type]['properties'][name]['data_type'] -%>]')
+<% end -%>
 end
 
 child_of(:<%= @data[type]['properties'][name]['reference_type'] %>, :<%= referenced_property %>) { "#{tenant_string}/#{<%= referenced_property %>}" }
