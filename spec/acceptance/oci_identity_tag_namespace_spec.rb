@@ -11,13 +11,13 @@ describe 'oci_identity_tag_namespace' do
   before(:all) do
     manifest = <<-EOD
     EOD
-    # apply_manifest(manifest, :expect_changes => true)
+    apply_manifest(manifest, :expect_changes => true)
   end
 
   after(:all) do
     manifest = <<-EOD
     EOD
-    # apply_manifest(manifest, :expect_changes => true)
+    apply_manifest(manifest, :expect_changes => true)
 end
 
 

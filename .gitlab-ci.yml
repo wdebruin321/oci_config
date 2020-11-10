@@ -18,33 +18,33 @@ Puppet 5.5 Unit test:
 #
 # Acceptance tests
 #
-oci_identity_tag_default Acceptance test:
-  extends: .named_litmus_acceptance_test
-  variables:
-    type: oci_identity_tag_default
-    image: acc_base
-  only:
-    changes:
-      - "lib/puppet/feature/*.rb"
-      - "lib/puppet_x/**/*.rb"
-      - "lib/puppet/type/oci_identity_tag_default.rb"
-      - "lib/puppet/type/oci_identity_tag_default/*.rb"
-      - "lib/provider/oci_identity_tag_default/*.rb"
-      - "spec/acceptance/oci_identity_tag_default_spec.rb"
+# oci_identity_tag_default Acceptance test:
+#   extends: .named_litmus_acceptance_test
+#   variables:
+#     type: oci_identity_tag_default
+#     image: acc_base
+#   only:
+#     changes:
+#       - "lib/puppet/feature/*.rb"
+#       - "lib/puppet_x/**/*.rb"
+#       - "lib/puppet/type/oci_identity_tag_default.rb"
+#       - "lib/puppet/type/oci_identity_tag_default/*.rb"
+#       - "lib/provider/oci_identity_tag_default/*.rb"
+#       - "spec/acceptance/oci_identity_tag_default_spec.rb"
 
-oci_identity_tag Acceptance test:
-  extends: .named_litmus_acceptance_test
-  variables:
-    type: oci_identity_tag
-    image: acc_base
-  only:
-    changes:
-      - "lib/puppet/feature/*.rb"
-      - "lib/puppet_x/**/*.rb"
-      - "lib/puppet/type/oci_identity_tag.rb"
-      - "lib/puppet/type/oci_identity_tag/*.rb"
-      - "lib/provider/oci_identity_tag/*.rb"
-      - "spec/acceptance/oci_identity_tag_spec.rb"
+# oci_identity_tag Acceptance test:
+#   extends: .named_litmus_acceptance_test
+#   variables:
+#     type: oci_identity_tag
+#     image: acc_base
+#   only:
+#     changes:
+#       - "lib/puppet/feature/*.rb"
+#       - "lib/puppet_x/**/*.rb"
+#       - "lib/puppet/type/oci_identity_tag.rb"
+#       - "lib/puppet/type/oci_identity_tag/*.rb"
+#       - "lib/provider/oci_identity_tag/*.rb"
+#       - "spec/acceptance/oci_identity_tag_spec.rb"
 
 oci_core_instance Acceptance test:
   extends: .named_litmus_acceptance_test
@@ -218,19 +218,19 @@ oci_identity_policy Acceptance test:
       - "lib/provider/oci_identity_policy/*.rb"
       - "spec/acceptance/oci_identity_policy_spec.rb"
 
-oci_identity_tag_namespace Acceptance test:
-  extends: .named_litmus_acceptance_test
-  variables:
-    type: oci_identity_tag_namespace
-    image: acc_base
-  only:
-    changes:
-      - "lib/puppet/feature/*.rb"
-      - "lib/puppet_x/**/*.rb"
-      - "lib/puppet/type/oci_identity_tag_namespace.rb"
-      - "lib/puppet/type/oci_identity_tag_namespace/*.rb"
-      - "lib/provider/oci_identity_tag_namespace/*.rb"
-      - "spec/acceptance/oci_identity_tag_namespace_spec.rb"
+# oci_identity_tag_namespace Acceptance test:
+#   extends: .named_litmus_acceptance_test
+#   variables:
+#     type: oci_identity_tag_namespace
+#     image: acc_base
+#   only:
+#     changes:
+#       - "lib/puppet/feature/*.rb"
+#       - "lib/puppet_x/**/*.rb"
+#       - "lib/puppet/type/oci_identity_tag_namespace.rb"
+#       - "lib/puppet/type/oci_identity_tag_namespace/*.rb"
+#       - "lib/provider/oci_identity_tag_namespace/*.rb"
+#       - "spec/acceptance/oci_identity_tag_namespace_spec.rb"
 
 oci_core_volume_group Acceptance test:
   extends: .named_litmus_acceptance_test

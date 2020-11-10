@@ -33,7 +33,7 @@ describe 'oci_identity_tag_default' do
       }
     EOD
     # It won't delete all the tags
-    # apply_manifest(manifest, :expect_changes => true)
+    apply_manifest(manifest, :expect_changes => true)
 end
 
 
