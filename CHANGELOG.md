@@ -1,6 +1,10 @@
 History
 ========
 
+## 0.11.5
+
+- [core] Add data_type definitions to properties that reference them
+
 ## 0.11.4
 
 - [oci_core_instance] Fix fetching of bootdisk id’s when launching multiple instances
