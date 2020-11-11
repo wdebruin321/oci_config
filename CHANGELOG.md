@@ -1,6 +1,10 @@
 History
 ========
 
+## 0.11.6
+
+- [core] ncrease timeouts when creating resources
+
 ## 0.11.5
 
 - [core] Add data_type definitions to properties that reference them
