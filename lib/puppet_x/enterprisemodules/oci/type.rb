@@ -208,10 +208,10 @@ module Puppet_X
                                when :create
                                  #
                                  # When creating a resource we allow more time and retries before we signal an error
-                                 # For now we use hardcoded values that are large. Means we have maximum 3 seconds for a
+                                 # For now we use hardcoded values that are large. Means we have maximum 30 seconds for a
                                  # create before we return an error.
                                  #
-                                 retry_config(tenant, 'sleep_calc_millis' => 500, 'max_attempts' => 6)
+                                 retry_config(tenant, 'sleep_calc_millis' => 1500, 'max_attempts' => 20)
                                else
                                  retry_config(tenant)
                                end
