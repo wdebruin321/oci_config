@@ -1,6 +1,10 @@
 History
 ========
 
+## 0.11.7
+
+- [core] Increate the timeouts for creation even more
+
 ## 0.11.6
 
 - [core] ncrease timeouts when creating resources
