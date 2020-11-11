@@ -34,13 +34,13 @@ module Puppet_X
           OCI::ApiClientProxySettings.new(proxy_address, proxy_port, proxy_user, proxy_password)
         end
 
-        def retry_config(tenant)
+        def retry_config(tenant, override = {})
           settings                          = settings_for(tenant)
-          base_sleep_time_millis            = settings['base_sleep_time_millis'] || 50
-          sleep_calc_millis                 = settings['sleep_calc_millis'] || 200
-          max_attempts                      = settings['max_attempts'] || 2
-          max_elapsed_time_millis           = settings['max_elapsed_time_millis'] || 300_000
-          max_sleep_between_attempts_millis = settings['max_sleep_between_attempts_millis'] || 500
+          base_sleep_time_millis            = determine_setting_for('base_sleep_time_millis', override, settings, 50)
+          sleep_calc_millis                 = determine_setting_for('sleep_calc_millis', override, settings, 200)
+          max_attempts                      = determine_setting_for('max_attempts', override, settings, 2)
+          max_elapsed_time_millis           = determine_setting_for('max_elapsed_time_millis', override, settings, 300_000)
+          max_sleep_between_attempts_millis = determine_setting_for('max_sleep_between_attempts_millis', override, settings, 500)
           OCI::Retry::RetryConfig.new(
             :base_sleep_time_millis => base_sleep_time_millis,
             :exponential_growth_factor => 2,
@@ -57,6 +57,10 @@ module Puppet_X
               true
             end
           )
+        end
+
+        def determine_setting_for(key, override, settings, default)
+          override[key] || settings[key] || default
         end
 
         def default_tenant

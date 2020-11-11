@@ -202,7 +202,19 @@ module Puppet_X
             end
             ready_states.include?(state)
           end
-          local_retry_config = type == :destroy ? nil : retry_config(tenant)
+          local_retry_config = case type
+                               when :destroy
+                                 nil
+                               when :create
+                                 #
+                                 # When creating a resource we allow more time and retries before we signal an error
+                                 # For now we use hardcoded values that are large. Means we have maximum 3 seconds for a
+                                 # create before we return an error.
+                                 #
+                                 retry_config(tenant, 'sleep_calc_millis' => 500, 'max_attempts' => 6)
+                               else
+                                 retry_config(tenant)
+                               end
           waiter_result = client.send("get_#{oci_object_type}", id, :retry_config => local_retry_config)
           waiter_result.wait_until(
             :eval_proc => eval_proc,
