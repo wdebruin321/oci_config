@@ -98,6 +98,7 @@ models = [
   OCI::FileStorage::Models::FileSystemSummary,
   OCI::FileStorage::Models::MountTargetSummary,
   OCI::FileStorage::Models::Export,
+  OCI::FileStorage::Models::SnapshotSummary,
   OCI::Database::Models::DbSystemSummary,
   OCI::Database::Models::DbNodeSummary,
   OCI::Database::Models::DatabaseSummary

@@ -430,6 +430,20 @@ oci_file_storage_export Acceptance test:
       - "lib/provider/oci_file_storage_export/*.rb"
       - "spec/acceptance/oci_file_storage_export_spec.rb"
 
+oci_file_storage_snapshot Acceptance test:
+  extends: .named_litmus_acceptance_test
+  variables:
+    type: oci_file_storage_snapshot
+    image: acc_base
+  only:
+    changes:
+      - "lib/puppet/feature/*.rb"
+      - "lib/puppet_x/**/*.rb"
+      - "lib/puppet/type/oci_file_storage_snapshot.rb"
+      - "lib/puppet/type/oci_file_storage_snapshot/*.rb"
+      - "lib/provider/oci_file_storage_snapshot/*.rb"
+      - "spec/acceptance/oci_file_storage_snapshot_spec.rb"
+
 oci_file_storage_file_system Acceptance test:
   extends: .named_litmus_acceptance_test
   variables:

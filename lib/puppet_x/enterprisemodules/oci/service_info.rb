@@ -71,6 +71,7 @@ module Puppet_X
           [:oci_file_storage_file_system,               :filesystem,                'OCI::FileStorage::Models::FileSystem',               'OCI::FileStorage::FileStorageClient',      :availability_domains],
           [:oci_file_storage_mount_target,              :mounttarget,               'OCI::FileStorage::Models::MountTarget',              'OCI::FileStorage::FileStorageClient',      :availability_domains],
           [:oci_file_storage_export,                    :export,                    'OCI::FileStorage::Models::Export',                   'OCI::FileStorage::FileStorageClient',      :compartment],
+          [:oci_file_storage_snapshot,                  :snapshot,                  'OCI::FileStorage::Models::Snapshot',                 'OCI::FileStorage::FileStorageClient',      :availability_domains],
           [:oci_database_db_system,                     :dbsystem,                  'OCI::Database::Models::DbSystem',                    'OCI::Database::DatabaseClient',            :compartment],
           [:oci_database_db_node,                       :dbnode,                    'OCI::Database::Models::DbNode',                      'OCI::Database::DatabaseClient',            :db_systems],
           [:oci_database_database,                      :database,                  'OCI::Database::Models::Database',                    'OCI::Database::DatabaseClient',            :systems],
