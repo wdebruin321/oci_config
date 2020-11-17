@@ -1,0 +1,26 @@
+{
+    "description": "Create a snapshot of a specified file system.",
+    "input_method": "stdin",
+    "files": [
+      "easy_type/lib/",
+      "oci_config/lib/"
+    ],
+    "parameters": {
+      "name": {
+        "description": "The name of the snapshot",
+        "type": "String[1]"
+      },
+      "source": {
+        "description": "The full name of the file system to create a snapshot from.",
+        "type": "String[1]"
+      },
+      "defined_tags": {
+        "description": "The defined tags applied to this backup",
+        "type": "Optional[Hash]"
+      },
+      "freeform_tags": {
+        "description": "The freeform tags applied to this backup",
+        "type": "Optional[Hash]"
+      }
+    }
+  }
