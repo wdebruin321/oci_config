@@ -1,5 +1,5 @@
 {
-  "description": "Execute an instance action on the specfied instance",
+  "description": "Execute an instance action on the specified instance",
   "input_method": "stdin",
   "files": [
     "easy_type/lib/",

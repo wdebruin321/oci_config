@@ -1,5 +1,5 @@
 {
-  "description": "Execute an database action on the specfied node of a database server",
+  "description": "Execute an database action on the specified node of a database server",
   "input_method": "stdin",
   "files": [
     "easy_type/lib/",

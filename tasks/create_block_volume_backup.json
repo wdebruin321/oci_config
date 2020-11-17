@@ -1,5 +1,5 @@
 {
-  "description": "Create a backup from the specfied block volume. The backup will be made in the same compartment as the source volume.",
+  "description": "Create a backup from the specified block volume. The backup will be made in the same compartment as the source volume.",
   "input_method": "stdin",
   "files": [
     "easy_type/lib/",

@@ -105,10 +105,10 @@
 
 **Tasks**
 
-* [`create_block_volume_backup`](#create_block_volume_backup): Create a backup from the specfied block volume. The backup will be made in the same compartment as the source volume.
-* [`database_action`](#database_action): Execute an database action on the specfied node of a database server
+* [`create_block_volume_backup`](#create_block_volume_backup): Create a backup from the specified block volume. The backup will be made in the same compartment as the source volume.
+* [`database_action`](#database_action): Execute an database action on the specified node of a database server
 * [`delete_block_volume_backup`](#delete_block_volume_backup): Delete a block volume backup .
-* [`instance_action`](#instance_action): Execute an instance action on the specfied instance
+* [`instance_action`](#instance_action): Execute an instance action on the specified instance
 
 **Plans**
 
@@ -2354,7 +2354,7 @@ Alias of `Struct[{
 
 ### create_block_volume_backup
 
-Create a backup from the specfied block volume. The backup will be made in the same compartment as the source volume.
+Create a backup from the specified block volume. The backup will be made in the same compartment as the source volume.
 
 **Supports noop?** false
 
@@ -2392,7 +2392,7 @@ The freeform tags applied to this backup
 
 ### database_action
 
-Execute an database action on the specfied node of a database server
+Execute an database action on the specified node of a database server
 
 **Supports noop?** false
 
@@ -2432,7 +2432,7 @@ The full name of the block volume backup to be deleted.
 
 ### instance_action
 
-Execute an instance action on the specfied instance
+Execute an instance action on the specified instance
 
 **Supports noop?** false
 
