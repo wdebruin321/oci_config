@@ -178,7 +178,7 @@ module Puppet_X
                   client.send("list_#{object_type_plural}", compartment_id, availability_domain).data
                 when 'snapshot'
                   file_systems = client.list_file_systems(compartment_id, availability_domain).data
-                  file_systems.collect {|fs| client.list_snapshots(fs.id).data}
+                  file_systems.collect { |fs| client.list_snapshots(fs.id).data }
                 else
                   client.send("list_#{object_type_plural}", availability_domain, compartment_id).data
                 end

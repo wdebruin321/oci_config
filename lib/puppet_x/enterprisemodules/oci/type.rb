@@ -14,6 +14,12 @@ module Puppet_X
           parent.extend(Settings)
         end
 
+        MULTI_ELEMENT_PROVIDERS ||= [
+          'Puppet::Type::Oci_file_storage_snapshot::ProviderSdk',
+          'Puppet::Type::Oci_identity_tag::ProviderSdk',
+          'Puppet::Type::Oci_identity_tag_default::ProviderSdk'
+        ].freeze
+
         PUPPET_META_ATTRIBUTES ||= [:name,
                                     :alias,
                                     :audit,
@@ -317,7 +323,7 @@ module Puppet_X
             # We have implemented it like this because we might use this for some other types that
             # are now a bit strange on title usage.
             #
-            compartments = if ['Puppet::Type::Oci_file_storage_snapshot::ProviderSdk','Puppet::Type::Oci_identity_tag::ProviderSdk', 'Puppet::Type::Oci_identity_tag_default::ProviderSdk'].include?(provider.to_s)
+            compartments = if MULTI_ELEMENT_PROVIDERS.include?(provider.to_s)
                              resources.map { |title, _content| title.split(%r{/|:})[1...-2].join('/') }.map { |e| e.empty? ? '/' : e }.uniq
                            else
                              resources.map { |title, _content| title.split(%r{/|:})[1...-1].join('/') }.map { |e| e.empty? ? '/' : e }.uniq

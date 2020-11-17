@@ -17,7 +17,6 @@ newparam(:name) do
   data_type('String[1]')
 
   to_translate_to_resource do |raw_resource|
-    require 'byebug';debugger
     tenant = raw_resource['tenant']
     client = client_for(OCI::FileStorage::FileStorageClient, tenant)
     export_set_id = raw_resource['export_set_id']

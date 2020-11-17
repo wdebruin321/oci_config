@@ -25,9 +25,9 @@ class CreateFileSystemSnapshotTask < Puppet_X::EnterpriseModules::Oci::PuppetTas
     source_ocid = @resolver.name_to_ocid(@tenant, @source, :filesystem)
     create_snapshot_details = OCI::FileStorage::Models::CreateSnapshotDetails.new(
       :file_system_id => source_ocid,
-      :name           => @name,
-      :defined_tags   => @defined_tags,
-      :freeform_tags  => @freeform_tags
+      :name => @name,
+      :defined_tags => @defined_tags,
+      :freeform_tags => @freeform_tags
     )
     @client.create_snapshot(create_snapshot_details).data
   end

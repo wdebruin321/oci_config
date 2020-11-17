@@ -93,6 +93,7 @@ module Puppet_X
                       text[1] if text
                     end
           fail 'invalid formatted oci_tenant specified.' if @tenant == ''
+
           @resolver = Puppet_X::EnterpriseModules::Oci::NameResolver.instance(@tenant)
           @client = client_for(client_class, @tenant)
         end
