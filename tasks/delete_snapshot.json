@@ -1,0 +1,14 @@
+{
+    "description": "Delete a specified snapshot.",
+    "input_method": "stdin",
+    "files": [
+      "easy_type/lib/",
+      "oci_config/lib/"
+    ],
+    "parameters": {
+      "name": {
+        "description": "The full name of the snapshot.",
+        "type": "String[1]"
+      },
+    }
+  }
