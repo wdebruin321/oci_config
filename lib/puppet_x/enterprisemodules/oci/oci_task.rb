@@ -95,7 +95,7 @@ module Puppet_X
           fail 'invalid formatted oci_tenant specified.' if @tenant == ''
 
           @resolver = Puppet_X::EnterpriseModules::Oci::NameResolver.instance(@tenant)
-          @client = client_for(client_class, @tenant)
+          @client = client_for(client_class, @tenant) if client_class
         end
 
         def report
