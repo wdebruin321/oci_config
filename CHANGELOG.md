@@ -1,6 +1,14 @@
 History
 ========
 
+## 0.12.0
+
+- [tasks/get_resource_data] Initial implementation
+- [task/delete_snapshot] Fix metadata
+- [tasks/delete_snapshot] Initial implementation
+- [tasks/create_snapshot] initial implementation
+- [oci_file_storage_snapshot] initial implementation
+
 ## 0.11.7
 
 - [core] Increate the timeouts for creation even more
