@@ -1,6 +1,11 @@
 History
 ========
 
+## 0.13.0
+
+- [tasks/get_resource_data] Initial implementation
+- [tasks/get_metadata] Renamed from get resource_data
+
 ## 0.12.0
 
 - [tasks/get_resource_data] Initial implementation
