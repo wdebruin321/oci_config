@@ -1,0 +1,26 @@
+{
+  "description": "Fetch all OCI data for a specified resource",
+  "input_method": "stdin",
+  "files": [
+    "easy_type/lib/",
+    "oci_config/lib/"
+  ],
+  "parameters": {
+    "resource_id": {
+      "description": "The ocid of the resource you want fetch the data from.",
+      "type": "Optional[String[1]]"
+    },
+    "resource_name": {
+      "description": "The name of the resource you want to fetch the data from.",
+      "type": "Optional[String[1]]"
+    },
+    "ocid_type": {
+      "description": "The OCID type of the resource.",
+      "type": "String[1]"
+    },
+    "field_selection": {
+      "description": "The field you want to get of the data",
+      "type": "Optional[String[1]]"
+    }
+  }
+}
