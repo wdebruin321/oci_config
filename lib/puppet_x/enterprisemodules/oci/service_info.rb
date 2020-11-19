@@ -120,6 +120,10 @@ module Puppet_X
           with_id_entry(id) { |e| e[PUPPET_TYPE] }
         end
 
+        def self.id_to_client(type)
+          with_id_entry(type) { |e| Object.const_get(e[SDK_CLIENT]) }
+        end
+
         def self.with_type_entry(type)
           entry = @information.find { |e| e[PUPPET_TYPE] == type }
           fail "Internal error: No information found for #{type}" if entry.nil?

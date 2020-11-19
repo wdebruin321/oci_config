@@ -15,6 +15,10 @@ class Hash
     end
   end
 
+  def stringify_keys
+    deep_transform_keys(&:to_s)
+  end
+
   def to_oci
     #
     # The keys sometimes use Gbs and Mbs, we don't want to underscore this.

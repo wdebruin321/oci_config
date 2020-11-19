@@ -17,23 +17,22 @@ ServiceInfo = Puppet_X::EnterpriseModules::Oci::ServiceInfo
 # docs
 class GetResourceDataTask < Puppet_X::EnterpriseModules::Oci::PuppetTask
   parameter :resource_name
-  parameter :resource_id
-  parameter :resource_type
+  parameter :puppet_type
+  parameter :field_selection
 
   oci_info  :resource_name
 
   def call_oci
-    object_class = ServiceInfo.type_to_class(@resource_type.to_sym)
-    object_type  = object_class.to_s.split('::').last.underscore
-    object_id    = ServiceInfo.type_to_id(@resource_type.to_sym)
+    Puppet[:codedir] = "#{__dir__}/.."
+    Puppet[:vardir]  = '/tmp'
 
-    ocid = if @resource_name
-             @resolver.name_to_ocid(@tenant, @resource_name, object_id)
-           else
-             @resource_id
-           end
-    client = client_for(ServiceInfo.type_to_client(@resource_type.to_sym), @tenant)
-    client.send("get_#{object_type}", ocid).data
+    puppet_type = Puppet::Type.type(@puppet_type)
+    resource = puppet_type.new(:name => @resource_name, :ensure => 'present')
+    data = puppet_type.execute_prefetch({ @resource_name => resource }, puppet_type.defaultprovider, :all_properties => true)
+    raise Puppet::Error, "Resource #{@puppet_type}[#{@resource_name}] not found." if data.nil?
+
+    resource_data = data[@resource_name].provider.to_hash
+    @field_selection.nil? ? resource_data : resource_data.stringify_keys.dig(*@field_selection.split('.'))
   end
 end
 

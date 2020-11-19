@@ -315,7 +315,7 @@ module Puppet_X
             'oci_config'
           end
 
-          def execute_prefetch(resources, provider)
+          def execute_prefetch(resources, provider, options = {})
             tenants = resources.map { |title, _content| title.split('/').first }.uniq.map { |e| e.gsub(' (root)', '') }
             #
             # because the title of the identity tage contains not only the compartment, but also the
@@ -347,15 +347,19 @@ module Puppet_X
             end.flatten.compact
             raw_resources.each do |raw_resource|
               name_parameter_class = paramclass(:name)
-              name = name_parameter_class.translate_to_resource(raw_resource)     # Get the full name
-              next unless resource_names_in_manifest(resources).include?(name)    # Skip if not in manifest
+              name = name_parameter_class.translate_to_resource(raw_resource) # Get the full name
+              if options[:all_properties] && resources[name]
+                resources[name].provider = provider.map_raw_to_resource(raw_resource)
+              else
+                next unless resource_names_in_manifest(resources).include?(name) # Skip if not in manifest
 
-              specified_properties = resources[name].to_hash.reject { |key, _value| PUPPET_META_ATTRIBUTES.include?(key) }.keys
-              #
-              # There are anumber of properties we always need. So add them to the list
-              #
-              specified_properties += [:id, :compartment_id, :namespace, :subnet_id, :vcn_id, :compartment, :mount_target_id, :backup_policy_id, :volumes]
-              resources[name].provider = provider.map_raw_to_resource(raw_resource, specified_properties)
+                specified_properties = resources[name].to_hash.reject { |key, _value| PUPPET_META_ATTRIBUTES.include?(key) }.keys
+                #
+                # There are anumber of properties we always need. So add them to the list
+                #
+                specified_properties += [:id, :compartment_id, :namespace, :subnet_id, :vcn_id, :compartment, :mount_target_id, :backup_policy_id, :volumes]
+                resources[name].provider = provider.map_raw_to_resource(raw_resource, specified_properties)
+              end
             end
             resources
           end
