@@ -1,6 +1,12 @@
 History
 ========
 
+## 0.13.1
+
+- [core] better error message when specifying undefined tenant
+- [tasks/get_resource_data] Throw error when resource does not exists
+- [release] Update required version of easy_type
+
 ## 0.13.0
 
 - [tasks/get_resource_data] Initial implementation
