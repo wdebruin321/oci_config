@@ -10,7 +10,7 @@
   "dependencies": [
     {
       "name": "enterprisemodules-easy_type",
-      "version_requirement": ">= 2.13.6 < 3.0.0"
+      "version_requirement": ">= 2.18.0 < 3.0.0"
     }
   ],
   "operatingsystem_support": [
