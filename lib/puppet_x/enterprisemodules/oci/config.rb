@@ -68,7 +68,7 @@ module Puppet_X
         end
 
         def settings_for(tenant)
-          configuration.fetch(tenant)
+          configuration.fetch(tenant) { fail "OCI tenant #{tenant} not defined" }
         end
 
         def config_for_settings(tenant)
