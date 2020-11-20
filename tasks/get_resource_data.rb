@@ -27,9 +27,10 @@ class GetResourceDataTask < Puppet_X::EnterpriseModules::Oci::PuppetTask
     Puppet[:vardir]  = '/tmp'
 
     puppet_type = Puppet::Type.type(@puppet_type)
+    raise Puppet::Error,  'Selected puppet_type not found.' if puppet_type.nil?
     resource = puppet_type.new(:name => @resource_name, :ensure => 'present')
     data = puppet_type.execute_prefetch({ @resource_name => resource }, puppet_type.defaultprovider, :all_properties => true)
-    raise Puppet::Error, "Resource #{@puppet_type}[#{@resource_name}] not found." if data.nil?
+    raise Puppet::Error, "Resource #{@puppet_type}[#{@resource_name}] not found." if data[@resource_name].provider.ensure == :absent
 
     resource_data = data[@resource_name].provider.to_hash
     @field_selection.nil? ? resource_data : resource_data.stringify_keys.dig(*@field_selection.split('.'))

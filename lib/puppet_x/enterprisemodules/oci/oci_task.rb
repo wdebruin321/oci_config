@@ -67,7 +67,7 @@ module Puppet_X
           fetch_input
           execute
         rescue StandardError => e
-          @result[:_error] = {
+          @result[:_error] ||= {
             :msg => e.message,
             :kind => 'enterprisemodules-oci_config/generic'
           }
