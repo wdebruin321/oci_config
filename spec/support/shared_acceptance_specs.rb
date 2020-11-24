@@ -7,6 +7,6 @@ shared_context 'setup' do
         description     => 'Compartment for acceptance tests',
       }
     EOD
-    apply_manifest(manifest, :expect_changes => true)
+    apply_manifest(manifest, :catch_failures => true)
   end
 end

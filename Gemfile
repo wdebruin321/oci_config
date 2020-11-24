@@ -1,11 +1,11 @@
 
 source ENV['GEM_SOURCE'] || 'https://rubygems.org'
 
-puppetversion = ENV.key?('PUPPET_GEM_VERSION') ? "#{ENV['PUPPET_GEM_VERSION']}" :  '6.15.0'
+puppetversion = ENV.key?('PUPPET_GEM_VERSION') ? "#{ENV['PUPPET_GEM_VERSION']}" :  '6.18.0'
 
 gem 'puppet', puppetversion, :require => false, :groups => [:test]
 if Gem::Version.new(puppetversion) > Gem::Version.new('5.0.0')
-  gem 'pdk',  '>1.9.0', '<1.14.0'
+  gem 'pdk',  '>1.9.0'
 end
 
 if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('2.3.0')
@@ -20,13 +20,15 @@ group :unit_test do
   gem 'hiera-puppet-helper'
   gem 'rspec-puppet'
   gem 'rspec-puppet-utils'
-  gem 'rspec-puppet-facts', '1.9.2'
-  gem 'mocha', '1.3.0'
+  gem 'rspec-puppet-facts'
 end
 
-group :acceptance_test do
-  gem 'bolt', git: 'https://github.com/enterprisemodules/bolt.git'
-  gem 'puppet_litmus', git: 'https://github.com/enterprisemodules/puppet_litmus.git'
+group 'acceptance_test' do
+  gem 'bolt'
+  # For tests that need the software of a specific name, we neet to have these fixes.
+  # But including the git repo fails the unit tests on older puppet versions
+  # gem 'puppet_litmus' ,git: 'https://github.com/enterprisemodules/puppet_litmus.git', ref: 'fix_append_cli'
+  gem 'puppet_litmus'
   gem 'serverspec'
   gem 'rspec-retry'
   if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('2.0.0')
@@ -43,8 +45,10 @@ group :release, :acceptance_test do
     gem 'rake'
   end
   gem 'puppet-blacksmith'
-  gem 'em_tasks', :git => "https://github.com/enterprisemodules/em_tasks.git" if RUBY_VERSION > '2.1.2'
+  gem 'em_tasks', :git => "https://github.com/enterprisemodules/em_tasks.git", :ref => 'hajee/ch162/start-using-latest-versions-of-litmus-again' if RUBY_VERSION > '2.1.2'
 end
+
+gem 'byebug'
 
 group :quality do
   gem 'brakeman'

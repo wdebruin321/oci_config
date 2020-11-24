@@ -204,9 +204,9 @@ end
 
 desc "Run Litmus setup"
 task :litmus do
-  Rake::Task['litmus:provision'].invoke('docker_exp', 'enterprisemodules/acc_base', '-h oci_config')
+  Rake::Task['litmus:provision'].invoke('docker_exp', 'enterprisemodules/acc_base', nil, '-h oci_config')
   proj_root = File.expand_path(File.join(File.dirname(__FILE__)))
-  node_name = YAML.load_file("#{proj_root}/inventory.yaml").dig('groups',0,'nodes',0, 'name')
+  node_name = YAML.load_file("#{proj_root}/inventory.yaml").dig('groups',0, 'targets',0,'uri')
   ENV['TARGET_HOST'] = node_name
   Rake::Task['litmus:install_agent'].invoke
   Rake::Task['litmus:install_module'].invoke
@@ -217,7 +217,7 @@ namespace :litmus do
   desc "Prepare the system for the tests"
   task :prepare do
     include BoltSpec::Run
-    extend PuppetLitmus::Serverspec
+    include PuppetLitmus::PuppetHelpers
     # Project root
     proj_root = File.expand_path(File.join(File.dirname(__FILE__)))
     puts `docker exec #{ENV['TARGET_HOST']} yum install git which -y`
