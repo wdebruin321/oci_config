@@ -39,7 +39,7 @@ describe 'oci_core_vcn' do
       manifest = <<-EOD
         oci_core_vcn { 'enterprisemodules (root)/#{resource_name}':
           ensure          => 'present',
-          freeform_tags   => {'test' => 'yes'},
+          freeform_tags   => {'test' => 'again'},
         }
       EOD
       apply_manifest(manifest, :expect_changes => true)

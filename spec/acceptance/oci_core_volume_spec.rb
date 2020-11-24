@@ -40,10 +40,10 @@ describe 'oci_core_volume' do
     it "should change the volume idempotent" do
       manifest = <<-EOD
         oci_core_volume { 'enterprisemodules (root)/#{resource_name}':
-          ensure          => 'present',
+          ensure        => 'present',
           size_in_gbs   => 60,
-          vpus_per_gb         => 20,
-          freeform_tags   => {'test' => 'yes'},
+          vpus_per_gb   => 20,
+          freeform_tags => {'test' => 'yes'},
         }
       EOD
       apply_manifest(manifest, :expect_changes => true)

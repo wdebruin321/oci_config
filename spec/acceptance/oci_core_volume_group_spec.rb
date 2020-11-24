@@ -50,7 +50,7 @@ describe 'oci_core_volume_group' do
         oci_core_volume_group { 'enterprisemodules (root)/#{resource_name}':
           ensure              => 'present',
           availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
-          freeform_tags       => {'test' => 'yes'},
+          freeform_tags       => {'test' => 'again'},
         }
       EOD
       apply_manifest(manifest, :expect_changes => true)

@@ -15,7 +15,7 @@ describe 'oci_core_internet_gateway' do
       cidr_block    => '10.0.0.0/16',
     }
     EOD
-    apply_manifest(manifest, :expect_changes => true)
+    apply_manifest(manifest, :catch_failures => true)
   end
 
   after(:all) do
@@ -24,7 +24,7 @@ describe 'oci_core_internet_gateway' do
       ensure => 'absent',
     }
     EOD
-    apply_manifest(manifest, :expect_changes => true)
+    apply_manifest(manifest, :catch_failures => true)
   end
 
 
@@ -46,9 +46,9 @@ describe 'oci_core_internet_gateway' do
     it "should change the internet gateway idempotent" do
       manifest = <<-EOD
         oci_core_internet_gateway { 'enterprisemodules (root)/#{resource_name}':
-            ensure     => 'present',
-            vcn        => 'acceptance_tests/vcn_#{test_name}',
-            is_enabled => false,
+            ensure        => 'present',
+            vcn           => 'acceptance_tests/vcn_#{test_name}',
+            freeform_tags => {'test' => 'no'},
           }
       EOD
       apply_manifest(manifest, :expect_changes => true)
