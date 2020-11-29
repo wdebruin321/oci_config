@@ -66,6 +66,10 @@ supply string values using the API.
     @oci_api_data[:metadata] ||= {}
     @oci_api_data[:metadata]['user_data'] = Base64.strict_encode64(user_data) if user_data
     @oci_api_data[:metadata]['ssh_authorized_keys'] = ssh_authorized_keys if ssh_authorized_keys
+    return unless augment_metadata
+
+    @oci_api_data[:metadata]['compartment'] = compartment || '/'
+    @oci_api_data[:metadata]['oci_name'] = name
   end
 
   add_title_attributes(:instance_name)
@@ -73,6 +77,7 @@ supply string values using the API.
   ensurable
 
   parameter :name
+  parameter :augment_metadata
   parameter :instance_name
   parameter :tenant
   parameter :oci_timeout

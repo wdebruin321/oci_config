@@ -11,7 +11,7 @@ oci_core_volume { $volumes :
   size_in_gbs         => 512,
 }
 
-oci_core_instance { "enterprisemodules (root)/${host_name}":
+oci_core_instance { "enterprisemodules (root)/test_compartment_1/${host_name}":
   ensure              => 'present',
   availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
   fault_domain        => 'FAULT-DOMAIN-2',
