@@ -221,7 +221,7 @@ namespace :litmus do
     # Project root
     proj_root = File.expand_path(File.join(File.dirname(__FILE__)))
     puts `docker exec #{ENV['TARGET_HOST']} yum install git which -y`
-    puts `docker exec #{ENV['TARGET_HOST']} /opt/puppetlabs/puppet/bin/gem install specific_install --no-ri --no-rdoc`
+    puts `docker exec #{ENV['TARGET_HOST']} /opt/puppetlabs/puppet/bin/gem install specific_install`
     puts `docker exec #{ENV['TARGET_HOST']} /opt/puppetlabs/puppet/bin/gem specific_install -l https://github.com/enterprisemodules/oci-ruby-sdk.git`
     if ENV['OCI_TENANT_INFO'] 
       bolt_upload_file(ENV['OCI_TENANT_INFO'], '/root/tenant_setup.pp')
