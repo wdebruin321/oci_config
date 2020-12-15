@@ -5,6 +5,7 @@
 #
 require 'net/http'
 require 'json'
+require_relative '../puppet_x/enterprisemodules/oci/monkey_patches/hash'
 
 def instance_path
   '/opc/v1/instance/'
@@ -21,28 +22,19 @@ def get_data(path)
   end
   json_data = response.body
   begin
-    camel_case_data = JSON.parse(json_data)
-    convert_hash_keys(camel_case_data)
+    data = JSON.parse(json_data)
+    convert_keys(data)
   rescue JSON::ParserError
     nil
   end
 end
 
-def to_snake_case(string)
-  string.gsub(/::/, '/').
-    gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').
-    gsub(/([a-z\d])([A-Z])/, '\1_\2').
-    tr('-', '_').
-    downcase
-end
-
-def convert_hash_keys(value)
+def convert_keys(value)
   case value
   when Array
-    value.map { |v| convert_hash_keys(v) }
-  # or `value.map(&method(:convert_hash_keys))`
+    value.map { |v| convert_keys(v) }
   when Hash
-    Hash[value.map { |k, v| [to_snake_case(k), convert_hash_keys(v)] }]
+    value.to_puppet
   else
     value
   end
