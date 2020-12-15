@@ -1,6 +1,11 @@
 History
 ========
 
+## 0.14.0
+
+- [facts] Fix casing conversion of tags
+- [oci_core_instance] Add compartment and name to instance metadata
+
 ## 0.13.1
 
 - [core] better error message when specifying undefined tenant
