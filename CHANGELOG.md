@@ -1,6 +1,10 @@
 History
 ========
 
+## 0.14.1
+
+- [facts] Fix fact resolution
+
 ## 0.14.0
 
 - [facts] Fix casing conversion of tags
