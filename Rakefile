@@ -204,14 +204,11 @@ end
 
 desc "Run Litmus setup"
 task :litmus do
-  Rake::Task['litmus:provision'].invoke('docker_exp', 'enterprisemodules/acc_base', nil, '-h oci_config')
-  proj_root = File.expand_path(File.join(File.dirname(__FILE__)))
-  node_name = YAML.load_file("#{proj_root}/inventory.yaml").dig('groups',0, 'targets',0,'uri')
-  ENV['TARGET_HOST'] = node_name
-  Rake::Task['litmus:install_agent'].invoke
-  Rake::Task['litmus:install_module'].invoke
-  Rake::Task['litmus:prepare'].invoke(node_name)
+  docker_image =  'enterprisemodules/acc_base'
+  node_name = 'oci_config'
+  Rake::Task['litmus:litmus_setup'].invoke(docker_image, node_name)
 end
+
 
 namespace :litmus do
   desc "Prepare the system for the tests"

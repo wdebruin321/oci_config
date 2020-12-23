@@ -7,7 +7,7 @@ docker run --rm -d --name oci_config \
   -v $PWD/../easy_type:/etc/puppetlabs/code/environments/production/modules/easy_type \
   -v ~/software:/software \
   enterprisemodules/acc_base:latest /usr/sbin/init
-docker exec oci_config rpm -Uvh https://yum.puppet.com/puppet6/puppet6-release-el-7.noarch.rpm
+docker exec oci_config rpm -Uvh https://yum.puppet.com/puppet7/puppet-release-el-7.noarch.rpm
 docker exec oci_config rpm -Uvh https://yum.puppet.com/puppet-tools-release-el-7.noarch.rpm
 #
 # Install bolt stuff

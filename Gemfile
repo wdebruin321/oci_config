@@ -1,7 +1,7 @@
 
 source ENV['GEM_SOURCE'] || 'https://rubygems.org'
 
-puppetversion = ENV.key?('PUPPET_GEM_VERSION') ? "#{ENV['PUPPET_GEM_VERSION']}" :  '6.18.0'
+puppetversion = ENV.key?('PUPPET_GEM_VERSION') ? "#{ENV['PUPPET_GEM_VERSION']}" :  '7.1.0'
 
 gem 'puppet', puppetversion, :require => false, :groups => [:test]
 if Gem::Version.new(puppetversion) > Gem::Version.new('5.0.0')
@@ -24,11 +24,10 @@ group :unit_test do
 end
 
 group 'acceptance_test' do
-  gem 'bolt'
-  # For tests that need the software of a specific name, we neet to have these fixes.
-  # But including the git repo fails the unit tests on older puppet versions
-  # gem 'puppet_litmus' ,git: 'https://github.com/enterprisemodules/puppet_litmus.git', ref: 'fix_append_cli'
-  gem 'puppet_litmus'
+  if Gem::Version.new(puppetversion) >= Gem::Version.new('6.11.0')
+    gem 'bolt'
+    gem 'puppet_litmus', git: 'https://github.com/enterprisemodules/puppet_litmus.git', ref: 'remove_append_cli'
+  end
   gem 'serverspec'
   gem 'rspec-retry'
   if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('2.0.0')
