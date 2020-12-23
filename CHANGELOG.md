@@ -1,6 +1,10 @@
 History
 ========
 
+## 0.15.0
+
+- [release] Add puppet 7 support to metadata
+
 ## 0.14.1
 
 - [facts] Fix fact resolution
