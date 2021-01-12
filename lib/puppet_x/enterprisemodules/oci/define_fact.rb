@@ -28,7 +28,7 @@ def list_for_resource(type, fields, &filter)
       end
     end
   end.flatten(1).compact
-  resource_list.empty? ? nil : Hash[resource_list]
+  resource_list.empty? ? nil : resource_list.to_h
 end
 
 #

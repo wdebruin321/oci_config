@@ -5,7 +5,9 @@ module Puppet_X
     module Oci
       # Docs
       module Config
+        # rubocop: disable Lint/OrAssignmentToConstant
         Puppet_X::EnterpriseModules::Oci::Settings::SETTINGS_FILE ||= '/etc/oci_tenant.yaml'
+        # rubocop: enable Lint/OrAssignmentToConstant
 
         def client_for(klass, tenant, options = {})
           if settings_for(tenant)['instance_principal']

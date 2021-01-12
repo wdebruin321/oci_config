@@ -18,7 +18,10 @@ module Puppet_X
           end
         end
 
+        # rubocop: disable Lint/OrAssignmentToConstant
         ACTIVE_ASSOCIATIONS ||= %w[ACTIVE ATTACHED].freeze
+        # rubocop: enable Lint/OrAssignmentToConstant
+
         def before_destroy
           #
           # Most of the time, we access the list by only differentiation on compartment_id. Sometimes

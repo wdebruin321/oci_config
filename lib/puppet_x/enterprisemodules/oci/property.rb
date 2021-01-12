@@ -68,7 +68,7 @@ module Puppet_X
             else
               reference_property = property.scan(/(.*)_id(s)?/).flatten.join
               property_type = data["#{reference_property}_type"]
-              property_type ||= reference_property[-1] == 's' ? reference_property [0...-1] : reference_property
+              property_type ||= reference_property[-1] == 's' ? reference_property[0...-1] : reference_property
             end
             if data[reference_property].is_a?(Array)
               data[reference_property].each { |v| fill_in_reference_in_enumerable(v) }

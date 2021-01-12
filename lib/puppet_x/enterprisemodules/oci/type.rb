@@ -14,6 +14,7 @@ module Puppet_X
           parent.extend(Settings)
         end
 
+        # rubocop: disable Lint/OrAssignmentToConstant
         MULTI_ELEMENT_PROVIDERS ||= [
           'Puppet::Type::Oci_file_storage_snapshot::ProviderSdk',
           'Puppet::Type::Oci_identity_tag::ProviderSdk',
@@ -33,6 +34,7 @@ module Puppet_X
                                     :subscribe,
                                     :tag,
                                     :provider].freeze
+        # rubocop: enable Lint/OrAssignmentToConstant
 
         def oci_api_data
           @oci_api_data

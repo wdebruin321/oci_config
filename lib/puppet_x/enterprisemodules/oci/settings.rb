@@ -30,7 +30,7 @@ module Puppet_X
           if File.exist?(settings_file)
             open(settings_file) { |f| YAML.safe_load(f) }
           else
-            Hash['default', {}]
+            { 'default' => {} }
           end
         end
         # rubocop: enable Security/Open

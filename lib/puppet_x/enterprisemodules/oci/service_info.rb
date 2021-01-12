@@ -6,6 +6,7 @@ module Puppet_X
   module EnterpriseModules
     module Oci
       # Docs
+      # rubocop: disable Lint/OrAssignmentToConstant
       class ServiceInfo
         #
         # The indexes in the information array
@@ -15,6 +16,7 @@ module Puppet_X
         SDK_MODEL     ||= 2
         SDK_CLIENT    ||= 3
         LOOKUP_METHOD ||= 4
+        # rubocop: enable Lint/OrAssignmentToConstant
 
         # rubocop: disable Layout/LineLength
         @information = [
