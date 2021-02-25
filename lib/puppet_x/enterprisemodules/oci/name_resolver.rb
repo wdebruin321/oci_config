@@ -53,19 +53,28 @@ module Puppet_X
         end
 
         #
-        # Allow refresh of resources for the specified ocid_type
+        # Allow refresh of resources for the specified ocid_type.
+        # This means a new search will re-fetch all resource names
+        # into the cache
         #
         def invalidate(tenant, ocid_type)
           @cached_types[tenant].delete(ocid_type)
         end
 
         #
-        # Add objects to the cache
+        # Mark the specified type in the specified tenant as available
+        # in the cache. New searches will only be resolved from the cache.
         #
-        def add_to_cache(tenant, objects, ocid_type)
+        def mark_as_cached(tenant, ocid_type)
+          @cached_types[tenant] << ocid_type # Mark the ocid type as cached
+        end
+
+        #
+        # Add objects to the cache.
+        #
+        def add_to_cache(tenant, objects)
           @cache[tenant] += Array(objects)
           @cache[tenant].uniq(&:id) # remove duplicate from cache
-          @cached_types[tenant] << ocid_type
         end
 
         def from_cache(tenant, ocid)
@@ -79,7 +88,8 @@ module Puppet_X
             #
             object_class = ServiceInfo.id_to_class(ocid_type)
             lister = ResourceLister.new(tenant, object_class)
-            add_to_cache(tenant, lister.resource_list.select(&:present?), ocid_type)
+            add_to_cache(tenant, lister.resource_list.select(&:present?))
+            mark_as_cached(tenant, ocid_type)
             object = @cache[tenant].find { |e| e.id == ocid && e.id_type == ocid_type }
           end
           fail "Object with #{ocid} not found." if object.nil?

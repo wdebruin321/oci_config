@@ -97,7 +97,7 @@ module Puppet_X
           #
           # Add the created resource to the name cache so new Puppet resources can find it
           #
-          resolver.add_to_cache(tenant, @oci_api_data.data, ServiceInfo.type_to_id(type))
+          resolver.add_to_cache(tenant, @oci_api_data.data)
           #
           # Report the information back to the provide
           #
