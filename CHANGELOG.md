@@ -1,6 +1,10 @@
 History
 ========
 
+## 0.15.1
+
+[core] Fix name caching when single entry is added to empty cache
+
 ## 0.15.0
 
 - [release] Add puppet 7 support to metadata
