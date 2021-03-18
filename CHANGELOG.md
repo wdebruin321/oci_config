@@ -1,6 +1,10 @@
 History
 ========
 
+## 0.17.0
+
+- [plan/start_instances] Add max_retries
+
 ## 0.16.0
 
 - [tasks/get_metadata] Add retry parameter
