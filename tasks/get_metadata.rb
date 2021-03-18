@@ -20,10 +20,12 @@ class GetMetadataTask < Puppet_X::EnterpriseModules::Oci::PuppetTask
   parameter :resource_id
   parameter :ocid_type
   parameter :field_selection
+  parameter :max_retries, 1
 
   oci_info  :resource_name
 
   def call_oci
+    retries = 0
     fail 'We need either a resource name or a resource id' if @resource_id.nil?
 
     ocid = if @resource_name
@@ -32,7 +34,13 @@ class GetMetadataTask < Puppet_X::EnterpriseModules::Oci::PuppetTask
              @resource_id
            end
     client = client_for(ServiceInfo.id_to_client(@ocid_type.to_sym), @tenant)
-    data = client.send("get_#{@ocid_type}", ocid).data.to_hash.to_puppet
+    begin
+      data = client.send("get_#{@ocid_type}", ocid).data.to_hash.to_puppet
+    rescue OCI::Errors::ServiceError
+      retries += 1
+      retry if retries <= @max_retries
+      raise
+    end
     @field_selection.nil? ? data : data[*@field_selection.split('.')]
   end
 end

@@ -21,6 +21,10 @@
     "field_selection": {
       "description": "The field you want to get of the data",
       "type": "Optional[String[1]]"
+    },
+    "max_retries": {
+      "description": "The number of retries before signaling an error.",
+      "type": "Optional[Integer[0,5]]"
     }
   }
 }
