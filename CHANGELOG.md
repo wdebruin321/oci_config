@@ -1,6 +1,12 @@
 History
 ========
 
+## 0.16.0
+
+- [tasks/get_metadata] Add retry parameter
+- [tasks/database_action] Add retry parameter
+- [tasks/instance_action] Add retry parameter
+
 ## 0.15.1
 
 [core] Fix name caching when single entry is added to empty cache
