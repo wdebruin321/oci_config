@@ -3,12 +3,6 @@ include:
 - project: enterprisemodules/gitlab_ci
   file: module-defaults.yml
 
-# Skip 4.10 unit tests
-Puppet 4.10 Unit Test:
-  only:
-    refs:
-      - never_do_this
-
 # Skip 5.5 unit tests
 Puppet 5.5 Unit test:
   only:
