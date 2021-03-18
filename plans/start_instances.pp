@@ -18,6 +18,7 @@
 #--++--
 plan oci_config::start_instances(
   TargetSpec $instances,
+  Integer    $max_retries       = 2,
   TargetSpec $oci_master        = 'localhost',
 ) {
   if get_targets($oci_master).length > 1 {
@@ -38,6 +39,7 @@ plan oci_config::start_instances(
       notice("Execute startup on OCI-level for ${hostname} with ocid ${instance_id}...")
       run_task('oci_config::instance_action', $oci_master,
         instance_id => $instance_id,
+        max_retries => $max_retries,
         action => 'START' )
     }
   }
