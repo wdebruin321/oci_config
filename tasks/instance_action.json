@@ -17,6 +17,10 @@
     "action": {
       "description": "The action you want to apply on the specified instance.",
       "type": "Enum['START','STOP','SOFTRESET','SOFTSTOP','RESET']"
+    },
+    "max_retries": {
+      "description": "The number of retries before signaling an error.",
+      "type": "Optional[Integer[0,5]]"
     }
   }
 }
