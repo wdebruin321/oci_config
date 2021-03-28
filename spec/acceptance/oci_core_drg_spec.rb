@@ -23,7 +23,7 @@ describe 'oci_core_drg' do
   end
 
   context "drg exists" do
-    it "should change the drg idempotent" do
+    xit "should change the drg idempotent" do
       manifest = <<-EOD
         oci_core_drg { 'enterprisemodules (root)/#{resource_name}':
           ensure          => 'present',
