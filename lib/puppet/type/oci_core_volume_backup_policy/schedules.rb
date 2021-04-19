@@ -14,7 +14,7 @@ see [Schedules](https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulin
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
   data_type(<<~DATA_TYPE)
-    Optional[
+    Optional[Arra[
       # The details of the volume backup schedule
       type Oci_Config::VolumeBackupSchedule = Struct[{
         Optional[backup_type]       => String[1],
@@ -27,7 +27,7 @@ see [Schedules](https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulin
         Optional[month]             => String[1],
         Optional[retention_seconds] => Integer,
         Optional[time_zone]         => String[1],
-      }]
+      }]]
     ]
   DATA_TYPE
 end

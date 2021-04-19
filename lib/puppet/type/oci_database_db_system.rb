@@ -83,6 +83,12 @@ Puppet::Type.newtype(:oci_database_db_system) do
   property :next_maintenance_run_id
   property :point_in_time_data_disk_clone_timestamp
   property :private_ip
+  property :kms_key
+  property :kms_key_id
+  property :source_db_system
+  property :source_db_system_id
+  property :kms_key_version
+  property :kms_key_version_id
 
   validate do
     validate_reference_propery(:compartment_id, self)
@@ -96,5 +102,8 @@ Puppet::Type.newtype(:oci_database_db_system) do
     validate_reference_propery(:scan_dns_record_id, self)
     validate_reference_propery(:last_maintenance_run_id, self)
     validate_reference_propery(:next_maintenance_run_id, self)
+    validate_reference_propery(:kms_key_id, self)
+    validate_reference_propery(:source_db_system_id, self)
+    validate_reference_propery(:kms_key_version_id, self)
   end
 end

@@ -115,29 +115,27 @@ module Puppet_X
 
           if value.is_a?(Hash)
             value.keys.grep(/_ids?|^id$/).each do |key|
-              begin
-                if key == 'id'
-                  new_key = 'name'
-                else
-                  new_key = key.scan(/(.*)_id(s)?|id$/).flatten.join
-                  value["#{new_key}_type"] = resolver.id_type(value[key]).to_s
-                end
-                value[new_key] = resolver.ocid_to_name(@tenant, value[key])
-              rescue  RuntimeError => e
-                #
-                # TODO: make the resolver throw a real error, so it is easier to catch here.
-                #
-                raise unless e.message =~ /Object with .* not found/
-
-                value[new_key] = e.message
-              rescue OCI::Errors::ServiceError => e
-                #
-                # If we are not autorized, return an empty Hash and leave the property blank
-                #
-                raise unless e.service_code == 'NotAuthorizedOrNotFound'
-
-                Puppet.debug "Skip fetching property '#{name}'' because of an authorization failure."
+              if key == 'id'
+                new_key = 'name'
+              else
+                new_key = key.scan(/(.*)_id(s)?|id$/).flatten.join
+                value["#{new_key}_type"] = resolver.id_type(value[key]).to_s
               end
+              value[new_key] = resolver.ocid_to_name(@tenant, value[key])
+            rescue  RuntimeError => e
+              #
+              # TODO: make the resolver throw a real error, so it is easier to catch here.
+              #
+              raise unless e.message =~ /Object with .* not found/
+
+              value[new_key] = e.message
+            rescue OCI::Errors::ServiceError => e
+              #
+              # If we are not autorized, return an empty Hash and leave the property blank
+              #
+              raise unless e.service_code == 'NotAuthorizedOrNotFound'
+
+              Puppet.debug "Skip fetching property '#{name}'' because of an authorization failure."
             end
             if value.keys.include?('id')
               begin

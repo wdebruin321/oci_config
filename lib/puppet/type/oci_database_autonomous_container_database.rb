@@ -56,6 +56,24 @@ Puppet::Type.newtype(:oci_database_autonomous_container_database) do
   property :kms_key_id
   property :vault
   property :vault_id
+  property :patch
+  property :patch_id
+  property :standby_maintenance_buffer_in_days
+  property :role
+  property :key_store
+  property :key_store_id
+  property :key_store_wallet_name
+  property :peer_autonomous_exadata_infrastructure
+  property :peer_autonomous_exadata_infrastructure_id
+  property :peer_autonomous_container_database_display_name
+  property :protection_mode
+  property :peer_autonomous_vm_cluster
+  property :peer_autonomous_vm_cluster_id
+  property :peer_autonomous_container_database_compartment
+  property :peer_autonomous_container_database_compartment_id
+  property :peer_autonomous_container_database_backup_config
+  property :kms_key_version
+  property :kms_key_version_id
 
   validate do
     validate_reference_propery(:compartment_id, self)
@@ -65,5 +83,11 @@ Puppet::Type.newtype(:oci_database_autonomous_container_database) do
     validate_reference_propery(:autonomous_vm_cluster_id, self)
     validate_reference_propery(:kms_key_id, self)
     validate_reference_propery(:vault_id, self)
+    validate_reference_propery(:patch_id, self)
+    validate_reference_propery(:key_store_id, self)
+    validate_reference_propery(:peer_autonomous_exadata_infrastructure_id, self)
+    validate_reference_propery(:peer_autonomous_vm_cluster_id, self)
+    validate_reference_propery(:peer_autonomous_container_database_compartment_id, self)
+    validate_reference_propery(:kms_key_version_id, self)
   end
 end

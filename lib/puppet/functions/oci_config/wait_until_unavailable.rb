@@ -47,16 +47,14 @@ Puppet::Functions.create_function('oci_config::wait_until_unavailable') do
       executor.log_action(description, targets) do
         executor.batch_execute(targets) do |transport, batch|
           executor.with_node_logging('Checking availability', batch) do
-            begin
-              executor.wait_until(wait_time, retry_interval) { !transport.batch_connected?(batch) }
-              batch.map { |target| Bolt::Result.new(target, :action => 'wait_until_unavailable', :object => description) }
-            rescue TimeoutError => e
-              available, unavailable = batch.partition { |target| !transport.batch_connected?([target]) }
-              (
-                available.map { |target| Bolt::Result.new(target, :action => 'wait_until_unavailable', :object => description) } +
-                unavailable.map { |target| Bolt::Result.from_exception(target, e, :action => 'wait_until_unavailable') }
-              )
-            end
+            executor.wait_until(wait_time, retry_interval) { !transport.batch_connected?(batch) }
+            batch.map { |target| Bolt::Result.new(target, :action => 'wait_until_unavailable', :object => description) }
+          rescue TimeoutError => e
+            available, unavailable = batch.partition { |target| !transport.batch_connected?([target]) }
+            (
+              available.map { |target| Bolt::Result.new(target, :action => 'wait_until_unavailable', :object => description) } +
+              unavailable.map { |target| Bolt::Result.from_exception(target, e, :action => 'wait_until_unavailable') }
+            )
           end
         end
       end

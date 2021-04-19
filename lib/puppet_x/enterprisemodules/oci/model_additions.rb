@@ -41,6 +41,7 @@ end
 models = [
   OCI::Budget::Models::Budget,
   OCI::Core::Models::AppCatalogSubscription,
+  OCI::Core::Models::AppCatalogSubscriptionSummary,
   OCI::Core::Models::BootVolume,
   OCI::Core::Models::BootVolumeBackup,
   OCI::Core::Models::Cpe,
@@ -101,7 +102,8 @@ models = [
   OCI::FileStorage::Models::SnapshotSummary,
   OCI::Database::Models::DbSystemSummary,
   OCI::Database::Models::DbNodeSummary,
-  OCI::Database::Models::DatabaseSummary
+  OCI::Database::Models::DatabaseSummary,
+  OCI::Database::Models::AutonomousContainerDatabase
 ].freeze
 
 models.each do |model|

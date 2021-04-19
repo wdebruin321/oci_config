@@ -57,11 +57,18 @@ Puppet::Type.newtype(:oci_database_database) do
   property :admin_password
   property :last_backup_timestamp
   property :source_database_point_in_time_recovery_timestamp
+  property :kms_key
+  property :kms_key_id
+  property :database_software_image
+  property :database_software_image_id
+  property :tde_wallet_password
 
   validate do
     validate_reference_propery(:compartment_id, self)
     validate_reference_propery(:db_home_id, self)
     validate_reference_propery(:db_system_id, self)
     validate_reference_propery(:vm_cluster_id, self)
+    validate_reference_propery(:kms_key_id, self)
+    validate_reference_propery(:database_software_image_id, self)
   end
 end

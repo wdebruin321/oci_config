@@ -75,6 +75,8 @@ using the API.
   property :capabilities
   property :is_mfa_activated
   property :email_verified
+  property :last_successful_login_time
+  property :previous_successful_login_time
 
   validate do
     validate_reference_propery(:compartment_id, self)

@@ -1,8 +1,9 @@
 # Common configuration.
 AllCops:
-  # Include common Ruby source files.
   NewCops: enable
+  SuggestExtensions: false
 
+  # Include common Ruby source files.
   Include:
     - '**/*.rb'
 

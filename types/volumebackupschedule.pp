@@ -1,5 +1,5 @@
 # The details of the volume backup schedule
-type Oci_Config::VolumeBackupSchedule = Struct[{
+type Oci_Config::VolumeBackupSchedule = Array[Struct[{
   Optional[backup_type]       => String[1],
   Optional[offset_seconds]    => Integer,
   Optional[period]            => String[1],
@@ -10,4 +10,4 @@ type Oci_Config::VolumeBackupSchedule = Struct[{
   Optional[month]             => String[1],
   Optional[retention_seconds] => Integer,
   Optional[time_zone]         => String[1],
-}]
+}]]

@@ -7,8 +7,8 @@
 #
 newproperty(:restored_from_vault, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   references :restored_from_vault_id
-  reference_type :vault_id
+  reference_type :vault
   data_type('Optional[String]')
 end
 
-child_of(:vault_id, :restored_from_vault) { "#{tenant_string}/#{restored_from_vault}" }
+child_of(:vault, :restored_from_vault) { "#{tenant_string}/#{restored_from_vault}" }

@@ -60,6 +60,7 @@ Puppet::Type.newtype(:oci_database_autonomous_database) do
   property :admin_password
   property :is_preview_version_with_service_terms_accepted
   property :source
+  property :source_id
   property :subnet
   property :subnet_id
   property :nsgs
@@ -85,11 +86,21 @@ Puppet::Type.newtype(:oci_database_autonomous_database) do
   property :is_data_guard_enabled
   property :failed_data_recovery_in_seconds
   property :standby_db
+  property :backup_config
+  property :data_storage_size_in_gbs
+  property :is_access_control_enabled
+  property :operations_insights_status
+  property :role
+  property :key_store
+  property :key_store_id
+  property :key_store_wallet_name
 
   validate do
     validate_reference_propery(:compartment_id, self)
     validate_reference_propery(:autonomous_container_database_id, self)
     validate_reference_propery(:subnet_id, self)
     validate_reference_propery(:nsg_ids, self)
+    validate_reference_propery(:source_id, self)
+    validate_reference_propery(:key_store_id, self)
   end
 end

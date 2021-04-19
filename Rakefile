@@ -108,6 +108,7 @@ task :generate => ['generate:yaml', 'generate:types', 'docs']
 namespace :generate do
   desc 'Generate yaml file for all types'
   task :yaml do
+    require_relative './generate/yaml_generator'
     #
     #
     # Types for autoscaling

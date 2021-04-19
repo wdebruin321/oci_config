@@ -159,7 +159,7 @@ module Puppet_X
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
             vaults_in(compartment_id).collect do |vault|
               handle_authorisation_errors(compartment_id) do
-                kms_management_client = client_for(OCI::KeyManagement::KmsManagementClient, tenant, :endpoint => vault.management_endpoin)
+                kms_management_client = client_for(OCI::KeyManagement::KmsManagementClient, @tenant, :endpoint => vault.management_endpoint)
                 Puppet.debug "Inspecting vault #{vault.id}..."
                 kms_management_client.send("list_#{object_type_plural}", compartment_id).data
               end

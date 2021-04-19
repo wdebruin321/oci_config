@@ -64,6 +64,7 @@ supply string values using the API.
   property :time_created
   property :vcn_domain_name
   property :is_ipv6_enabled
+  property :cidr_blocks
 
   validate do
     validate_reference_propery(:compartment_id, self)
