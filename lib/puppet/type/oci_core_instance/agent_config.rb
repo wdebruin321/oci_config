@@ -12,6 +12,7 @@ newproperty(:agent_config, :parent => Puppet_X::EnterpriseModules::Oci::Property
       type Oci_Config::LaunchInstanceAgentConfigDetails = Struct[{
         Optional[is_monitoring_disabled] => Boolean,
         Optional[is_management_disabled] => Boolean,
+        Optional[are_all_plugins_disabled] => Boolean,
       }]
     ]
   DATA_TYPE
