@@ -62,15 +62,19 @@ describe 'oci_core_instance' do
           ensure              => 'present',
           availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
           fault_domain        => 'FAULT-DOMAIN-2',
-          launch_mode         => 'NATIVE',
+          launch_mode         => 'PARAVIRTUALIZED',
           ssh_authorized_keys => 'ssh-rsa BBB3NzaC1y fakekey',
           user_data           => "echo 'hello there'",
           region              => 'eu-frankfurt-1',
-          shape               => 'VM.Standard1.1',
+          shape               => 'VM.Standard.E3.Flex',
+          shape_config        => {
+            'ocpus'         => 1.0,
+            'memory_in_gbs' => 2.0,
+          },
           source_details      => {
             source_type => 'image',
             image_type => 'image',
-            image => oci_config::latest_image_for('Oracle Linux', '7.9', /^((?!GPU).)*$/),
+            image => oci_config::latest_image_for('Oracle Linux', '7.9', /7.9-2021\./),
           },
           vnics               => {
           'nic1' => {
@@ -104,13 +108,17 @@ describe 'oci_core_instance' do
           ensure              => 'present',
           availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
           fault_domain        => 'FAULT-DOMAIN-2',
-          launch_mode         => 'NATIVE',
+          launch_mode         => 'PARAVIRTUALIZED',
           region              => 'eu-frankfurt-1',
-          shape               => 'VM.Standard1.1',
+          shape               => 'VM.Standard.E3.Flex',
+          shape_config        => {
+            'ocpus'         => 1.0,
+            'memory_in_gbs' => 2.0,
+          },
           source_details      => {
             source_type => 'image',
             image_type => 'image',
-            image => oci_config::latest_image_for('Oracle Linux', '7.9', /^((?!GPU).)*$/),
+            image => oci_config::latest_image_for('Oracle Linux', '7.9', /7.9-2021\./),
           },
           vnics               => {
           'nic1' => {
@@ -147,13 +155,17 @@ describe 'oci_core_instance' do
           ensure              => 'present',
           availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
           fault_domain        => 'FAULT-DOMAIN-2',
-          launch_mode         => 'NATIVE',
+          launch_mode         => 'PARAVIRTUALIZED',
           region              => 'eu-frankfurt-1',
-          shape               => 'VM.Standard1.1',
+          shape               => 'VM.Standard.E3.Flex',
+          shape_config        => {
+            'ocpus'         => 1.0,
+            'memory_in_gbs' => 2.0,
+          },
           source_details      => {
             source_type => 'image',
             image_type => 'image',
-            image => oci_config::latest_image_for('Oracle Linux', '7.9', /^((?!GPU).)*$/),
+            image => oci_config::latest_image_for('Oracle Linux', '7.9', /7.9-2021\./),
           },
           vnics               => {
           'nic1' => {
@@ -190,9 +202,13 @@ describe 'oci_core_instance' do
           ensure              => 'present',
           availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
           fault_domain        => 'FAULT-DOMAIN-2',
-          launch_mode         => 'NATIVE',
+          launch_mode         => 'PARAVIRTUALIZED',
           region              => 'eu-frankfurt-1',
-          shape               => 'VM.Standard1.1',
+          shape               => 'VM.Standard.E3.Flex',
+          shape_config        => {
+            'ocpus'         => 1.0,
+            'memory_in_gbs' => 2.0,
+          },
           vnics               => {
           'nic1' => {
               'nic_index' => 0,
@@ -215,9 +231,13 @@ describe 'oci_core_instance' do
           ensure              => 'present',
           availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
           fault_domain        => 'FAULT-DOMAIN-2',
-          launch_mode         => 'NATIVE',
+          launch_mode         => 'PARAVIRTUALIZED',
           region              => 'eu-frankfurt-1',
-          shape               => 'VM.Standard1.1',
+          shape               => 'VM.Standard.E3.Flex',
+          shape_config        => {
+            'ocpus'         => 1.0,
+            'memory_in_gbs' => 2.0,
+          },
           vnics               => {
           'nic1' => {
               'nic_index' => 0,
@@ -247,9 +267,13 @@ describe 'oci_core_instance' do
           ensure              => 'present',
           availability_domain => 'arMl:EU-FRANKFURT-1-AD-1',
           fault_domain        => 'FAULT-DOMAIN-2',
-          launch_mode         => 'NATIVE',
+          launch_mode         => 'PARAVIRTUALIZED',
           region              => 'eu-frankfurt-1',
-          shape               => 'VM.Standard1.1',
+          shape               => 'VM.Standard.E3.Flex',
+          shape_config        => {
+            'ocpus'         => 1.0,
+            'memory_in_gbs' => 2.0,
+          },
           vnics               => {
           'nic1' => {
               'nic_index' => 0,
