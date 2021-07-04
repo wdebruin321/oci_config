@@ -22,6 +22,8 @@ AllCops:
     - 'pkg/**/*'
     - 'bin/*'
 
+Naming/InclusiveLanguage:
+  Enabled: false
 
 Metrics:
   Enabled: false
