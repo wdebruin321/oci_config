@@ -31,25 +31,25 @@ newproperty(:attached_volumes, :parent => Puppet_X::EnterpriseModules::Oci::Asso
 
   def used_devices_in_provider
     values = provider.volumes
-    values = values.is_a?(Hash) ? values : {}
+    values = {} unless values.is_a?(Hash)
     values.collect { |_k, v| v['device'] } || []
   end
 
   def used_devices_in_volumes
     values = resource.volumes
-    values = values.is_a?(Hash) ? values : {}
+    values = {} unless values.is_a?(Hash)
     values.collect { |_k, v| v['device'] } || []
   end
 
   def used_devices_in_attached_volumes
     values = resource.attached_volumes
-    values = values.is_a?(Hash) ? values : {}
+    values = {} unless values.is_a?(Hash)
     values.collect { |_k, v| v['device'] } || []
   end
 
   def used_devices_in_detached_volumes
     values = resource.detached_volumes
-    values = values.is_a?(Hash) ? values : {}
+    values = {} unless values.is_a?(Hash)
     values.collect { |_k, v| v['device'] } || []
   end
 
