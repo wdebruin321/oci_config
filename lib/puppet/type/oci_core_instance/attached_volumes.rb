@@ -78,6 +78,7 @@ newproperty(:attached_volumes, :parent => Puppet_X::EnterpriseModules::Oci::Asso
       properties['device'] = next_device
       next_device = next_available_device(next_device)
     end
+    # Probably a rubocop bug
     resource.oci_api_data[:attached_volumes]&.each do |volume, properties|
       next unless properties['device'].nil?
 

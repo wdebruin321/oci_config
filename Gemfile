@@ -57,7 +57,7 @@ group :quality do
   gem 'overcommit'
   gem 'puppet-lint'
   gem 'reek'
-  gem 'rubocop', :require => false
+  gem 'rubocop',  :require => false
   gem 'rubocop-performance' if Gem::Version.new(RUBY_VERSION) > Gem::Version.new('2.3.0')
 end
 
