@@ -7,11 +7,6 @@ require 'etc'
 $LOAD_PATH.unshift(File.absolute_path("#{__dir__}/../.."))
 $LOAD_PATH.unshift(File.absolute_path("#{__dir__}/../../../../easy_type/lib"))
 
-begin
-  require 'oci'
-rescue LoadError
-  raise Puppet::Error, 'oci gem is not installed. Please install this gem before using oci_ puppet resources.'
-end
 require 'easy_type'
 require_relative './settings'
 require_relative './type'
