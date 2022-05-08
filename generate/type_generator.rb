@@ -96,7 +96,7 @@ class TypeGenerator
   end
 
   def write_template(template_name, output, binding)
-    template = ERB.new(File.read("./generate/templates/#{template_name}"), nil, '-')
+    template = ERB.new(File.read("./generate/templates/#{template_name}"), :trim_mode => '-')
     content = template.result(binding)
     File.write(output, content)
   end

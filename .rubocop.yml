@@ -72,3 +72,8 @@ Layout/LineLength:
 Naming/AccessorMethodName:
   Enabled: false
 
+Style/SlicingWithRange:
+  Enabled: false
+
+Style/EmptyHeredoc:
+  Enabled: false
