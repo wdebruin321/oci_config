@@ -74,6 +74,3 @@ Naming/AccessorMethodName:
 
 Style/SlicingWithRange:
   Enabled: false
-
-Style/EmptyHeredoc:
-  Enabled: false
