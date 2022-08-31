@@ -1,6 +1,10 @@
 History
 ========
 
+## 0.18.0
+
+- [core] Update to SDK V2.18.0
+
 ## 0.17.0
 
 - [plan/start_instances] Add max_retries
