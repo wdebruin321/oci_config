@@ -54,20 +54,21 @@ supply string values using the API.
   property :freeform_tags
   property :system_tags
   property :is_hydrated
-  property :kms_key_id
   property :kms_key
+  property :kms_key_id
   property :lifecycle_state
   property :size_in_gbs
   property :size_in_mbs
   property :source_details
   property :time_created
-  property :volume_group_id
   property :volume_group
-  property :backup_policy_id
+  property :volume_group_id
   property :backup_policy
+  property :backup_policy_id
   property :vpus_per_gb
   property :is_auto_tune_enabled
   property :auto_tuned_vpus_per_gb
+  property :block_volume_replicas
 
   validate do
     validate_reference_propery(:compartment_id, self)

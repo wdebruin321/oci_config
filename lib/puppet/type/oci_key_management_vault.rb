@@ -51,6 +51,7 @@ Puppet::Type.newtype(:oci_key_management_vault) do
   property :wrappingkey_id
   property :restored_from_vault
   property :restored_from_vault_id
+  property :is_primary
 
   validate do
     validate_reference_propery(:compartment_id, self)

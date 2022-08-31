@@ -12,20 +12,21 @@ newproperty(:ingress_security_rules, :array_matching => :all, :parent => Puppet_
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
   data_type(<<~DATA_TYPE)
-    Optional[Array[
       # The details of ingress security rule
-      type Oci_Config::IngressSecurityRule = Struct[{
-        Optional[description]      => String[1],
-        Optional[source_type]      => String[1],
-        Optional[source]           => String[1],
-        Optional[destination]      => String[1],
-        Optional[destination_type] => String[1],
-        Optional[icmp_options]     => Oci_config::IcmpOptions,
-        Optional[is_stateless]     => Boolean,
-        Optional[protocol]         => String[1],
-        Optional[tcp_options]      => Oci_config::TcpOptions,
-        Optional[udp_options]      => Oci_config::UdpOptions,
-      }]]
-    ]
+      # type Oci_Config::IngressSecurityRule =
+      Array[
+        Struct[{
+          Optional[description]      => String[1],
+          Optional[source_type]      => String[1],
+          Optional[source]           => String[1],
+          Optional[destination]      => String[1],
+          Optional[destination_type] => String[1],
+          Optional[icmp_options]     => Oci_config::IcmpOptions,
+          Optional[is_stateless]     => Boolean,
+          Optional[protocol]         => String[1],
+          Optional[tcp_options]      => Oci_config::TcpOptions,
+          Optional[udp_options]      => Oci_config::UdpOptions,
+        }]
+      ]
   DATA_TYPE
 end

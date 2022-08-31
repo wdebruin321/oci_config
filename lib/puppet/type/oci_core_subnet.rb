@@ -80,6 +80,8 @@ supply string values using the API.
   property :vcn_id
   property :virtual_router_ip
   property :virtual_router_mac
+  property :prohibit_internet_ingress
+  property :ipv6_cidr_blocks
 
   validate do
     validate_reference_propery(:compartment_id, self)

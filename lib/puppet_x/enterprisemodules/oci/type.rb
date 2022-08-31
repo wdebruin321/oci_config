@@ -89,6 +89,14 @@ module Puppet_X
                               namespace = client.get_namespace.data
                               create_details = create_class.new(@oci_api_data)
                               client.send("create_#{object_type}", namespace, create_details)
+                            when 'vcn'
+                              #
+                              # Version 2.18 of the sdk always sets the is_oracle_gua_allocation_enabled property. This causes the
+                              # API to fail that why we set it to nil when it isn't explicitly set to true
+                              #
+                              create_details = create_class.new(@oci_api_data)
+                              create_details.is_oracle_gua_allocation_enabled = nil unless is_oracle_gua_allocation_enabled.to_s == 'true'
+                              client.send("create_#{object_type}", create_details)
                             else
                               create_details = create_class.new(@oci_api_data)
                               client.send("create_#{object_type}", create_details)
@@ -431,6 +439,10 @@ module Puppet_X
           # rubocop: disable Style/NestedTernaryOperator, Style/IfInsideElse, Style/IfUnlessModifierOfIfUnless
           def child_of(id, variable = nil, &proc)
             type = ServiceInfo.id_to_type(id)
+            if type.nil?
+              Puppet.debug "No type found for #{id}; skipping lookup and referencing."
+              return
+            end
             autorequire(type) do
               begin
                 present = self[:ensure].to_s == 'present'

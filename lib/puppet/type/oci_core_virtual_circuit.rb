@@ -74,6 +74,11 @@ supply string values using the API.
   property :time_created
   property :type
   property :customer_asn
+  property :bgp_ipv6_session_state
+  property :routing_policy
+  property :ip_mtu
+  property :bgp_admin_state
+  property :is_bfd_enabled
 
   validate do
     validate_reference_propery(:compartment_id, self)

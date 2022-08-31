@@ -33,14 +33,24 @@ Puppet::Type.newtype(:oci_database_autonomous_database) do
   property  :compartment_id
 
   property :lifecycle_state
-  property :lifecycle_details
+  property :kms_key
+  property :kms_key_id
+  property :vault
+  property :vault_id
+  property :kms_key_version
+  property :kms_key_version_id
   property :db_name
   property :is_free_tier
   property :system_tags
   property :time_reclamation_of_free_autonomous_database
   property :time_deletion_of_free_autonomous_database
+  property :backup_config
+  property :key_history_entry
   property :cpu_core_count
+  property :ocpu_count
   property :data_storage_size_in_tbs
+  property :data_storage_size_in_gbs
+  property :infrastructure_type
   property :is_dedicated
   property :autonomous_container_database
   property :autonomous_container_database_id
@@ -52,27 +62,26 @@ Puppet::Type.newtype(:oci_database_autonomous_database) do
   property :used_data_storage_size_in_tbs
   property :freeform_tags
   property :defined_tags
-  property :db_version
-  property :is_preview
-  property :db_workload
-  property :whitelisted_ips
-  property :is_auto_scaling_enabled
-  property :admin_password
-  property :is_preview_version_with_service_terms_accepted
-  property :source
-  property :source_id
   property :subnet
   property :subnet_id
   property :nsgs
   property :nsg_ids
   property :private_endpoint
   property :private_endpoint_label
+  property :private_endpoint_ip
+  property :db_version
+  property :is_preview
+  property :db_workload
+  property :is_access_control_enabled
+  property :whitelisted_ips
+  property :are_primary_whitelisted_ips_used
+  property :standby_whitelisted_ips
+  property :is_auto_scaling_enabled
   property :data_safe_status
+  property :operations_insights_status
+  property :database_management_status
   property :time_maintenance_begin
   property :time_maintenance_end
-  property :private_endpoint_ip
-  property :available_upgrade_versions
-  property :infrastructure_type
   property :is_refreshable_clone
   property :time_of_last_refresh
   property :time_of_last_refresh_point
@@ -80,27 +89,56 @@ Puppet::Type.newtype(:oci_database_autonomous_database) do
   property :open_mode
   property :refreshable_status
   property :refreshable_mode
+  property :source
+  property :source_id
   property :permission_level
   property :time_of_last_switchover
   property :time_of_last_failover
   property :is_data_guard_enabled
   property :failed_data_recovery_in_seconds
   property :standby_db
-  property :backup_config
-  property :data_storage_size_in_gbs
-  property :is_access_control_enabled
-  property :operations_insights_status
   property :role
+  property :available_upgrade_versions
   property :key_store
   property :key_store_id
   property :key_store_wallet_name
+  property :supported_regions_to_clone_to
+  property :customer_contacts
+  property :time_local_data_guard_enabled
+  property :dataguard_region_type
+  property :time_data_guard_role_changed
+  property :peer_dbs
+  property :peer_db_ids
+  property :is_mtls_connection_required
+  property :is_reconnect_clone_enabled
+  property :time_until_reconnect_clone_enabled
+  property :autonomous_maintenance_schedule_type
+  property :scheduled_operations
+  property :admin_password
+  property :is_preview_version_with_service_terms_accepted
+  property :character_set
+  property :ncharacter_set
+  property :provisionable_cpus
+  property :memory_per_oracle_compute_unit_in_gbs
+  property :is_local_data_guard_enabled
+  property :is_remote_data_guard_enabled
+  property :local_standby_db
+  property :is_auto_scaling_for_storage_enabled
+  property :allocated_storage_size_in_tbs
+  property :actual_used_data_storage_size_in_tbs
+  property :max_cpu_core_count
+  property :database_edition
 
   validate do
     validate_reference_propery(:compartment_id, self)
+    validate_reference_propery(:kms_key_id, self)
+    validate_reference_propery(:vault_id, self)
+    validate_reference_propery(:kms_key_version_id, self)
     validate_reference_propery(:autonomous_container_database_id, self)
     validate_reference_propery(:subnet_id, self)
     validate_reference_propery(:nsg_ids, self)
     validate_reference_propery(:source_id, self)
     validate_reference_propery(:key_store_id, self)
+    validate_reference_propery(:peer_db_ids, self)
   end
 end

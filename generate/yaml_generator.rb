@@ -47,6 +47,8 @@ class YamlGenerator
                      'OCI::Core::Models::LaunchInstanceDetails'
                    when 'oci_core_dhcp_options'
                      'OCI::Core::Models::CreateDhcpDetails'
+                   when 'oci_core_instance_pool_instance'
+                     'OCI::Core::Models::CreateInstancePoolDetails'
                    else
                      "#{@module_identifier}::Models::Create#{type}Details"
                    end

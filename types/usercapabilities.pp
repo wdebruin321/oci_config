@@ -6,6 +6,5 @@ type Oci_Config::UserCapabilities = Struct[{
   Optional[can_use_smtp_credentials]           => Boolean,
   Optional[can_use_customer_secret_keys]       => Boolean,
   Optional[can_use_o_auth2_client_credentials] => Boolean,
+  Optional[can_use_db_credentials]             => Boolean,
 }]
-
-

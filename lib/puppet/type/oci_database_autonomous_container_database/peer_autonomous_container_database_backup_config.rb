@@ -7,9 +7,11 @@
 #
 newproperty(:peer_autonomous_container_database_backup_config, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   data_type(<<~DATA_TYPE)
-    Optional[Struct[{
-      Optional[manual_backup_bucket_name] => String[1],
-      Optional[manual_backup_type]        => String[1],
-    }]]
+    Optional[
+      type Oci_Config::PeerAutonomousContainerDatabaseBackupConfig = Struct[{
+        Optional[manual_backup_bucket_name] => String[1],
+        Optional[manual_backup_type]        => String[1],
+      }]
+    ]
   DATA_TYPE
 end

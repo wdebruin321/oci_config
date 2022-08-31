@@ -60,6 +60,7 @@ supply string values using the API.
   property :vpus_per_gb
   property :is_auto_tune_enabled
   property :auto_tuned_vpus_per_gb
+  property :boot_volume_replicas
 
   validate do
     validate_reference_propery(:compartment_id, self)

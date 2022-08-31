@@ -56,6 +56,8 @@ supply string values using the API.
   property :image_source_details
   property :instance
   property :instance_id
+  property :listing_type
+  property :billable_size_in_gbs
 
   validate do
     validate_reference_propery(:base_image_id, self)

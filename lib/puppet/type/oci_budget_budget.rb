@@ -55,6 +55,8 @@ Puppet::Type.newtype(:oci_budget_budget) do
   property :time_updated
   property :freeform_tags
   property :defined_tags
+  property :budget_processing_period_start_offset
+  property :processing_period_type
 
   validate do
     validate_reference_propery(:compartment_id, self)

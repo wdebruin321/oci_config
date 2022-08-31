@@ -13,13 +13,13 @@ newproperty(:connection_strings, :parent => Puppet_X::EnterpriseModules::Oci::Pr
   DESC
   data_type(<<~DATA_TYPE)
     Optional[
-      # The details of an autonomous Database connection String
-      type Oci_Config::AutonomousDatabaseConnectionStrings = Struct[{
-        Optional[high]                   => String[1],
-        Optional[medium]                 => String[1],
-        Optional[low]                    => String[1],
-        Optional[dedicated]              => String[1],
-        Optional[all_connection_strings] => Hash[String, String],
+      type Oci_Config::DatabaseConnectionStrings = Struct[{
+        Optional['high'] => String,
+        Optional['medium'] => String,
+        Optional['low'] => String,
+        Optional['dedicated'] => String,
+        Optional['all_connection_strings'] => Hash[String, String],
+        Optional['profiles'] => Array[Oci_config::DatabaseConnectionStringProfile],
       }]
     ]
   DATA_TYPE

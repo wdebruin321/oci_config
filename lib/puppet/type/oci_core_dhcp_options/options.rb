@@ -12,14 +12,14 @@ newproperty(:options, :array_matching => :all, :parent => Puppet_X::EnterpriseMo
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC
   data_type(<<~DATA_TYPE)
-    Optional[Array[
+    Optional[ Array[
       # The details of the DHCP option
       type Oci_Config::DhcpOption = Struct[{
         Optional['type']              => String[1],
         Optional[server_type]         => String[1],
         Optional[search_domain_names] => Array,
         Optional[custom_dns_servers]  => Array,
-      }]]
+    }]]
     ]
   DATA_TYPE
 end

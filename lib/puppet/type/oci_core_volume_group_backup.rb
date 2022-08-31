@@ -54,10 +54,15 @@ supply string values using the API.
   property :volume_backup_ids
   property :volume_group
   property :volume_group_id
+  property :expiration_time
+  property :source_type
+  property :source_volume_group_backup
+  property :source_volume_group_backup_id
 
   validate do
     validate_reference_propery(:compartment_id, self)
     validate_reference_propery(:volume_backup_ids, self)
     validate_reference_propery(:volume_group_id, self)
+    validate_reference_propery(:source_volume_group_backup_id, self)
   end
 end

@@ -7,7 +7,7 @@
 #
 newproperty(:lifecycle_state, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   desc <<-DESC
-  The current state of the database.
+  The current state of the Autonomous Database.
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC

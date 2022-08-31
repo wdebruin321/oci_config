@@ -21,11 +21,7 @@ using the API.
 
   DESC
 
-  full_regexp = Regexp.new('^((.*) \\(root\)\\/(.*):(.*))$')
-
-  map_titles_to_attributes([
-                             full_regexp, [:name, :tenant, :tag_namespace_name, :tag_name]
-                           ])
+  add_title_attributes(:tag_name)
 
   ensurable
 
@@ -36,12 +32,14 @@ using the API.
   parameter :oci_wait_interval
   parameter :present_states
   parameter :absent_states
-  parameter :tag_namespace_name
   parameter :synchronized
+  parameter :compartment
   property  :id
+  property  :compartment_id
 
-  property :tag_namespace_id
   property :tag_namespace
+  property :tag_namespace_id
+  property :tag_namespace_name
   property :description
   property :freeform_tags
   property :defined_tags
@@ -52,6 +50,7 @@ using the API.
   property :validator
 
   validate do
+    validate_reference_propery(:compartment_id, self)
     validate_reference_propery(:tag_namespace_id, self)
   end
 end

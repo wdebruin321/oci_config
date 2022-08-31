@@ -4,8 +4,7 @@
 # See the file "LICENSE" for the full license governing this code.
 #
 newproperty(:vnics, :parent => Puppet_X::EnterpriseModules::Oci::AssociatedHashProperty) do
-  desc <<-DESC
-  DESC
+  desc ''
   data_type('Hash[String[1], Any]')
   def before_create
     primary_nic = value.select { |_k, v| v['is_primary'] == true }

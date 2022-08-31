@@ -58,9 +58,13 @@ supply string values using the API.
   property :volumes
   property :volume_ids
   property :is_hydrated
+  property :volume_group_replicas
+  property :backup_policy
+  property :backup_policy_id
 
   validate do
     validate_reference_propery(:compartment_id, self)
     validate_reference_propery(:volume_ids, self)
+    validate_reference_propery(:backup_policy_id, self)
   end
 end

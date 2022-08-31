@@ -7,7 +7,7 @@
 #
 newproperty(:cpu_core_count, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   desc <<-DESC
-  The number of CPU cores to be made available to the database.
+  The number of OCPU cores to be made available to the database.
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC

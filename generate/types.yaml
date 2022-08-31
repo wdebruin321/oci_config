@@ -76,6 +76,10 @@ oci_budget_budget:
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 
         Example: `{\"Operations\": {\"CostCenter\": \"42\"}}`
+    budget_processing_period_start_offset:
+      data_type: Integer
+    processing_period_type:
+      data_type: String
   desc: A budget.
   example: |-
     Here is an example on how to use this:
@@ -223,6 +227,8 @@ oci_core_dhcp_options:
       reference_type: vcn
       data_type: String
       desc: The OCID of the VCN the set of DHCP options belongs to.
+    domain_name_type:
+      data_type: String
   desc: |-
     A set of DHCP options. Used by the VCN to automatically provide configuration
     information to the instances when they boot up. There are two options you can set:
@@ -286,6 +292,11 @@ oci_core_drg:
         The date and time the DRG was created, in the format defined by RFC3339.
 
         Example: `2016-08-25T21:10:29.600Z`
+    default_drg_route_tables:
+      data_type: Oci_config::DefaultDrgRouteTables
+    default_export_drg_route_distribution_id:
+      reference_type: drg_route_distribution
+      data_type: String
   desc: |-
     A dynamic routing gateway (DRG), which is a virtual router that provides a path for private
     network traffic between your VCN and your existing network. You use it with other Networking
@@ -456,6 +467,9 @@ oci_core_local_peering_gateway:
       reference_type: vcn
       data_type: String
       desc: The OCID of the VCN the LPG belongs to.
+    peer_id:
+      reference_type: peer
+      data_type: String
   desc: |-
     A local peering gateway (LPG) is an object on a VCN that lets that VCN peer
     with another VCN in the same region. *Peering* means that the two VCNs can
@@ -1191,6 +1205,10 @@ oci_core_subnet:
         The MAC address of the virtual router.
 
         Example: `00:00:17:B6:4D:DD`
+    prohibit_internet_ingress:
+      data_type: Boolean
+    ipv6_cidr_blocks:
+      data_type: Array[String]
   desc: |-
     A logical subdivision of a VCN. Each subnet
     consists of a contiguous range of IP addresses that do not overlap with
@@ -1338,6 +1356,14 @@ oci_core_vcn:
         Example: `true`
     cidr_blocks:
       data_type: Array[String]
+    ipv6_cidr_blocks:
+      data_type: Array[String]
+    byoipv6_cidr_blocks:
+      data_type: Array[String]
+    ipv6_private_cidr_blocks:
+      data_type: Array[String]
+    is_oracle_gua_allocation_enabled:
+      data_type: Boolean
   desc: |-
     A virtual cloud network (VCN). For more information, see
     [Overview of the Networking Service](https://docs.cloud.oracle.com/Content/Network/Concepts/overview.htm).
@@ -1492,6 +1518,16 @@ oci_core_virtual_circuit:
         Can be a 2-byte or 4-byte ASN. Uses \"asplain\" format.
 
         Example: `12345` (2-byte) or `1587232876` (4-byte)
+    bgp_ipv6_session_state:
+      data_type: String
+    routing_policy:
+      data_type: Array[String]
+    ip_mtu:
+      data_type: String
+    bgp_admin_state:
+      data_type: String
+    is_bfd_enabled:
+      data_type: Boolean
   desc: |-
     For use with Oracle Cloud Infrastructure FastConnect.
 
@@ -1632,6 +1668,10 @@ oci_core_dedicated_vm_host:
     remaining_ocpus:
       data_type: Float
       desc: The available OCPUs of the dedicated VM host.
+    total_memory_in_gbs:
+      data_type: Float
+    remaining_memory_in_gbs:
+      data_type: Float
   desc: |-
     A dedicated virtual machine host that enables you to host multiple VM instances
     on a dedicated host that is not shared with other tenancies.
@@ -1728,6 +1768,10 @@ oci_core_image:
       reference_type: instance
       data_type: String
       desc: The OCID of the instance you want to use as the basis for the image.
+    listing_type:
+      data_type: String
+    billable_size_in_gbs:
+      data_type: Integer
   desc: |-
     A boot disk image for launching an instance. For more information, see
     [Overview of the Compute Service](https://docs.cloud.oracle.com/Content/Compute/Concepts/computeoverview.htm).
@@ -2019,6 +2063,13 @@ oci_core_instance:
       data_type: Oci_config::InstanceOptions
     availability_config:
       data_type: Oci_config::LaunchInstanceAvailabilityConfigDetails
+    capacity_reservation_id:
+      reference_type: capacityreservation
+      data_type: String
+    preemptible_instance_config:
+      data_type: Oci_config::PreemptibleInstanceConfigDetails
+    platform_config:
+      data_type: Oci_config::LaunchInstancePlatformConfig
   desc: |-
     A compute host. The image used to launch the instance determines its operating system and other
     software. The shape specified during the launch process determines the number of CPUs and memory
@@ -2076,6 +2127,8 @@ oci_core_instance_console_connection:
     public_key:
       data_type: String
       desc: The SSH public key used to authenticate the console connection.
+    service_host_key_fingerprint:
+      data_type: String
   desc: |-
     The `InstanceConsoleConnection` API provides you with console access to Compute instances,
     enabling you to troubleshoot malfunctioning instances remotely.
@@ -2182,6 +2235,8 @@ oci_core_boot_volume:
       data_type: Boolean
     auto_tuned_vpus_per_gb:
       data_type: Integer
+    boot_volume_replicas:
+      data_type: Array[Oci_config::BootVolumeReplicaDetails]
   desc: |-
     A detachable boot volume device that contains the image used to boot a Compute instance. For more information, see
     [Overview of Boot Volumes](https://docs.cloud.oracle.com/Content/Block/Concepts/bootvolumes.htm).
@@ -2406,6 +2461,8 @@ oci_core_volume:
       data_type: Boolean
     auto_tuned_vpus_per_gb:
       data_type: Integer
+    block_volume_replicas:
+      data_type: Array[Oci_config::BlockVolumeReplicaDetails]
   desc: |-
     A detachable block volume device that allows you to dynamically expand
     the storage capacity of an instance. For more information, see
@@ -2665,6 +2722,11 @@ oci_core_volume_group:
       data_type: Boolean
       desc: Specifies whether the newly created cloned volume group's data has finished
         copying from the source volume group or backup.
+    volume_group_replicas:
+      data_type: Array[Oci_config::VolumeGroupReplicaDetails]
+    backup_policy_id:
+      reference_type: volumebackuppolicy
+      data_type: String
   desc: |-
     Specifies a volume group which is a collection of
     volumes. For more information, see [Volume Groups](https://docs.cloud.oracle.com/Content/Block/Concepts/volumegroups.htm).
@@ -2743,6 +2805,13 @@ oci_core_volume_group_backup:
       reference_type: volumegroup
       data_type: String
       desc: The OCID of the volume group that needs to be backed up.
+    expiration_time:
+      data_type: Runtime
+    source_type:
+      data_type: String
+    source_volume_group_backup_id:
+      reference_type: volume_group_backup
+      data_type: String
   desc: |-
     A point-in-time copy of a volume group that can then be used to create a new volume group
     or restore a volume group. For more information, see [Volume Groups](https://docs.cloud.oracle.com/Content/Block/Concepts/volumegroups.htm).
@@ -3114,6 +3183,8 @@ oci_identity_tag_namespace:
       desc: |-
         Date and time the tagNamespace was created, in the format defined by RFC3339.
         Example: `2016-08-25T21:10:29.600Z`
+    locks:
+      data_type: Array[Oci_config::AddLockDetails]
   desc: |-
     A managed container for defined tags. A tag namespace is unique in a tenancy. For more information,
     see [Managing Tags and Tag Namespaces](https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm).
@@ -3202,6 +3273,8 @@ oci_identity_user:
       data_type: Runtime
     previous_successful_login_time:
       data_type: Runtime
+    db_user_name:
+      data_type: String
   desc: |-
     An individual employee or system that needs to manage or use your company's Oracle Cloud Infrastructure
     resources. Users might need to launch instances, manage remote disks, work with your cloud network, etc. Users
@@ -3426,212 +3499,6 @@ oci_core_ip_sec_connection:
 
     **Warning:** Oracle recommends that you avoid using any confidential information when you
     supply string values using the API.
-# oci_database_autonomous_database:
-#   klass: OCI::Database::Models::AutonomousDatabase
-#   properties:
-#     id:
-#       data_type: String
-#       desc: The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
-#         of the Autonomous Database.
-#     compartment_id:
-#       reference_type: compartment
-#       data_type: String
-#       desc: The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
-#         of the compartment.
-#     lifecycle_state:
-#       data_type: String
-#       desc: The current state of the database.
-#     lifecycle_details:
-#       data_type: String[1]
-#       desc: Information about the current lifecycle state.
-#     db_name:
-#       data_type: String
-#       desc: The database name.
-#     is_free_tier:
-#       data_type: Boolean
-#       desc: Indicates if this is an Always Free resource. The default value is false.
-#         Note that Always Free Autonomous Databases have 1 CPU and 20GB memory. For
-#         Always Free databases, memory and CPU cannot be scaled.
-#     system_tags:
-#       data_type: Hash[String, Hash[String, Any]]
-#       desc: |-
-#         System tags for this resource. Each key is predefined and scoped to a namespace.
-#         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-#     time_reclamation_of_free_autonomous_database:
-#       data_type: Runtime
-#       desc: The date and time the Always Free database will be stopped because of
-#         inactivity. If this time is reached without any database activity, the database
-#         will automatically be put into the STOPPED state.
-#     time_deletion_of_free_autonomous_database:
-#       data_type: Runtime
-#       desc: The date and time the Always Free database will be automatically deleted
-#         because of inactivity. If the database is in the STOPPED state and without
-#         activity until this time, it will be deleted.
-#     cpu_core_count:
-#       data_type: Integer
-#       desc: The number of CPU cores to be made available to the database.
-#     data_storage_size_in_tbs:
-#       data_type: Integer
-#       desc: The quantity of data in the database, in terabytes.
-#     is_dedicated:
-#       data_type: Boolean
-#       desc: True if the database uses the [dedicated deployment](https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm)
-#         option.
-#     autonomous_container_database_id:
-#       reference_type: autonomouscontainerdatabase
-#       data_type: String
-#       desc: The Autonomous Container Database [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-#     time_created:
-#       data_type: Runtime
-#       desc: The date and time the database was created.
-#     display_name:
-#       data_type: String
-#       desc: The user-friendly name for the Autonomous Database. The name does not
-#         have to be unique.
-#     service_console_url:
-#       data_type: String
-#       desc: The URL of the Service Console for the Autonomous Database.
-#     connection_strings:
-#       data_type: Oci_config::AutonomousDatabaseConnectionStrings
-#       desc: The connection string used to connect to the Autonomous Database. The
-#         username for the Service Console is ADMIN. Use the password you entered when
-#         creating the Autonomous Database for the password value.
-#     connection_urls:
-#       data_type: Oci_config::AutonomousDatabaseConnectionUrls
-#       desc: ''
-#     license_model:
-#       data_type: String
-#       desc: The Oracle license model that applies to the Oracle Autonomous Database.
-#         The default for Autonomous Database using the [shared deployment] is BRING_YOUR_OWN_LICENSE.
-#         Note that when provisioning an Autonomous Database using the [dedicated deployment](https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm)
-#         option, this attribute must be null because the attribute is already set on
-#         Autonomous Exadata Infrastructure level.
-#     used_data_storage_size_in_tbs:
-#       data_type: Integer
-#       desc: The amount of storage that has been used, in terabytes.
-#     freeform_tags:
-#       data_type: Hash[String, String]
-#       desc: |-
-#         Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-#         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-
-#         Example: `{\"Department\": \"Finance\"}`
-#     defined_tags:
-#       data_type: Hash[String, Hash[String, Any]]
-#       desc: |-
-#         Defined tags for this resource. Each key is predefined and scoped to a namespace.
-#         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-#     db_version:
-#       data_type: String
-#       desc: A valid Oracle Database version for Autonomous Database.
-#     is_preview:
-#       data_type: Boolean
-#       desc: Indicates if the Autonomous Database version is a preview version.
-#     db_workload:
-#       data_type: String
-#       desc: The Autonomous Database workload type. OLTP indicates an Autonomous Transaction
-#         Processing database and DW indicates an Autonomous Data Warehouse database.
-#     whitelisted_ips:
-#       data_type: Array[String]
-#       desc: |-
-#         The client IP access control list (ACL). This feature is available for [serverless deployments](https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) only.
-#         Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet.
-#     is_auto_scaling_enabled:
-#       data_type: Boolean
-#       desc: Indicates if auto scaling is enabled for the Autonomous Database CPU core
-#         count. Note that auto scaling is available for [serverless deployments](https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI)
-#         only.
-#     admin_password:
-#       data_type: String
-#     is_preview_version_with_service_terms_accepted:
-#       data_type: Boolean
-#     source:
-#       data_type: String
-#     subnet_id:
-#       reference_type: subnet
-#       data_type: String
-#       desc: |-
-#         The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the resource is associated with.
-
-#         **Subnet Restrictions:**
-#         - For bare metal DB systems and for single node virtual machine DB systems, do not use a subnet that overlaps with 192.168.16.16/28.
-#         - For Exadata and virtual machine 2-node RAC DB systems, do not use a subnet that overlaps with 192.168.128.0/20.
-#         - For Autonomous Database, setting this will disable public secure access to the database.
-
-#         These subnets are used by the Oracle Clusterware private interconnect on the database instance.
-#         Specifying an overlapping subnet will cause the private interconnect to malfunction.
-#         This restriction applies to both the client subnet and the backup subnet.
-#     nsg_ids:
-#       data_type: Array[String]
-#       reference_type: networksecuritygroup
-#       desc: |-
-#         A list of the [OCIDs](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
-#         **NsgIds restrictions:**
-#         - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty.
-#     private_endpoint:
-#       data_type: String
-#       desc: The private endpoint for the resource.
-#     private_endpoint_label:
-#       data_type: String
-#       desc: The private endpoint label for the resource.
-#     data_safe_status:
-#       data_type: String
-#       desc: Status of the Data Safe registration for this Autonomous Database.
-#     time_maintenance_begin:
-#       data_type: Runtime
-#       desc: The date and time when maintenance will begin.
-#     time_maintenance_end:
-#       data_type: Runtime
-#       desc: The date and time when maintenance will end.
-#     private_endpoint_ip:
-#       data_type: String
-#     available_upgrade_versions:
-#       data_type: Array[String]
-#     infrastructure_type:
-#       data_type: String
-#     is_refreshable_clone:
-#       data_type: Boolean
-#     time_of_last_refresh:
-#       data_type: Runtime
-#     time_of_last_refresh_point:
-#       data_type: Runtime
-#     time_of_next_refresh:
-#       data_type: Runtime
-#     open_mode:
-#       data_type: String
-#     refreshable_status:
-#       data_type: String
-#     refreshable_mode:
-#       data_type: String
-#     permission_level:
-#       data_type: String
-#     time_of_last_switchover:
-#       data_type: Runtime
-#     time_of_last_failover:
-#       data_type: Runtime
-#     is_data_guard_enabled:
-#       data_type: Boolean
-#     failed_data_recovery_in_seconds:
-#       data_type: Integer
-#     standby_db:
-#       data_type: Oci_config::AutonomousDatabaseStandbySummary
-#     backup_config:
-#       data_type: Oci_config::AutonomousDatabaseBackupConfig
-#     data_storage_size_in_gbs:
-#       data_type: Integer
-#     is_access_control_enabled:
-#       data_type: Boolean
-#     operations_insights_status:
-#       data_type: String
-#     source_id:
-#       data_type: String
-#     role:
-#       data_type: String
-#     key_store_id:
-#       data_type: String
-#     key_store_wallet_name:
-#       data_type: String
-#   desc: An Oracle Autonomous Database.
 oci_key_management_key:
   desc: An encryption key.
   example: |-
@@ -3691,6 +3558,8 @@ oci_key_management_key:
       data_type: String
     protection_mode:
       data_type: String
+    is_primary:
+      data_type: Boolean
 oci_key_management_vault:
   desc: A vault to manage keys.
   example: |-
@@ -3744,6 +3613,8 @@ oci_key_management_vault:
     restored_from_vault_id:
       reference_type: vault
       data_type: String
+    is_primary:
+      data_type: Boolean
 oci_core_public_ip:
   example: |-
     Here is an example on how to use this:
@@ -4114,6 +3985,8 @@ oci_object_storage_bucket:
       data_type: String
     versioning:
       data_type: String
+    auto_tiering:
+      data_type: String
 oci_file_storage_file_system:
   example: |-
     Here is an example on how to use this:
@@ -4178,6 +4051,13 @@ oci_file_storage_file_system:
       data_type: String
       desc: The OCID of KMS key used to encrypt the encryption keys associated with
         this file system.
+    is_clone_parent:
+      data_type: Boolean
+    is_hydrated:
+      data_type: Boolean
+    source_snapshot_id:
+      reference_type: snapshot
+      data_type: String
   desc: |-
     An NFS file system. To allow access to a file system, add it
     to an export set and associate the export set with a mount
@@ -4625,6 +4505,15 @@ oci_database_db_system:
     kms_key_version_id:
       reference_type: kms_key_version
       data_type: String
+    scan_dns_name:
+      data_type: String
+    zone_id:
+      reference_type: zone
+      data_type: String
+    memory_size_in_gbs:
+      data_type: Integer
+    storage_volume_performance_mode:
+      data_type: String
   desc: DbSystem model.
 oci_database_database:
   klass: OCI::Database::Models::Database
@@ -4724,6 +4613,18 @@ oci_database_database:
       data_type: String
     tde_wallet_password:
       data_type: String
+    is_cdb:
+      data_type: Boolean
+    database_management_config:
+      data_type: Oci_config::CloudDatabaseManagementConfig
+    sid_prefix:
+      data_type: String
+    kms_key_version_id:
+      data_type: String
+      reference_type: kms_key_version
+    vault_id:
+      reference_type: vault
+      data_type: String
   desc: Database model.
 oci_database_autonomous_container_database:
   klass: OCI::Database::Models::AutonomousContainerDatabase
@@ -4806,7 +4707,7 @@ oci_database_autonomous_container_database:
       reference_type: vault
       data_type: String
     patch_id:
-      reference_type: patch 
+      reference_type: patch
       data_type: String
     standby_maintenance_buffer_in_days:
       data_type: Integer
@@ -4825,7 +4726,7 @@ oci_database_autonomous_container_database:
     protection_mode:
       data_type: String
     peer_autonomous_vm_cluster_id:
-      reference_type: peer_autonomous_vm_cluster
+      reference_type: vm_cluster
       data_type: String
     peer_autonomous_container_database_compartment_id:
       reference_type: peer_autonomous_container_database_compartment
@@ -4835,6 +4736,28 @@ oci_database_autonomous_container_database:
     kms_key_version_id:
       reference_type: kms_key_version
       data_type: String
+    cloud_autonomous_vm_cluster_id:
+      reference_type: vm_cluster
+      data_type: String
+    key_history_entry:
+      data_type: Array[Oci_config::AutonomousDatabaseKeyHistoryEntry]
+    is_automatic_failover_enabled:
+      data_type: Boolean
+    peer_cloud_autonomous_vm_cluster_id:
+      reference_type: vm_cluster
+      data_type: String
+    peer_db_unique_name:
+      data_type: String
+    memory_per_oracle_compute_unit_in_gbs:
+      data_type: Integer
+    available_cpus:
+      data_type: Float
+    total_cpus:
+      data_type: Integer
+    reclaimable_cpus:
+      data_type: Float
+    provisionable_cpus:
+      data_type: Array[Float]
   desc: AutonomousContainerDatabase model.
 oci_identity_tag:
   klass: OCI::Identity::Models::Tag
@@ -4962,6 +4885,8 @@ oci_identity_tag_default:
         * If the `isRequired` flag is set to \"false\", the value you enter is set during resource creation.
 
         Example: `false`
+    locks:
+      data_type: Array[Oci_config::AddLockDetails]
   desc: |-
     Tag defaults let you specify a default tag (tagnamespace.tag=\"value\") to apply to all resource types
     in a specified compartment. The tag default is applied at the time the resource is created. Resources
@@ -5017,7 +4942,563 @@ oci_file_storage_snapshot:
         Defined tags for this resource. Each key is predefined and scoped to a namespace.
         For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
         Example: `{\"Operations\": {\"CostCenter\": \"42\"}}`
+    provenance_id:
+      data_type: String
+      reference_type: provenance
+    is_clone_source:
+      data_type: Boolean
   desc: |-
     A point-in-time snapshot of a specified file system.
 
     **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
+oci_core_drg_route_table:
+  klass: OCI::Core::Models::DrgRouteTable
+  properties:
+    id:
+      data_type: String
+    compartment_id:
+      data_type: String
+    drg_id:
+      data_type: String
+      reference_type: drg
+    defined_tags:
+      data_type: Hash[String, Hash[String, Any]]
+    display_name:
+      data_type: String
+    freeform_tags:
+      data_type: Hash[String, String]
+    time_created:
+      data_type: Runtime
+    lifecycle_state:
+      data_type: String
+    import_drg_route_distribution_id:
+      reference_type: drg_route_distribution
+      data_type: String
+    is_ecmp_enabled:
+      data_type: Boolean
+oci_core_instance_pool_instance:
+  klass: OCI::Core::Models::InstancePoolInstance
+  properties:
+    id:
+      data_type: String
+    instance_pool_id:
+      reference_type: instance_pool
+      data_type: String
+    availability_domain:
+      data_type: String
+    lifecycle_state:
+      data_type: String
+    compartment_id:
+      data_type: String
+      desc: The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+        of the compartment containing the instance pool.
+    display_name:
+      data_type: String
+      desc: |-
+        A user-friendly name for the instance pool. Does not have to be unique, and it's
+        changeable. Avoid entering confidential information.
+    fault_domain:
+      data_type: String
+    instance_configuration_id:
+      reference_type: instanceconfiguration
+      data_type: String
+      desc: |-
+        The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance configuration associated
+        with the instance pool.
+    region:
+      data_type: String
+    shape:
+      data_type: String
+    state:
+      data_type: String
+    time_created:
+      data_type: Runtime
+    load_balancer_backends:
+      data_type: Array[Oci_config::InstancePoolInstanceLoadBalancerBackend]
+    defined_tags:
+      data_type: Hash[String, Hash[String, Any]]
+      desc: |-
+        Defined tags for this resource. Each key is predefined and scoped to a
+        namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+
+        Example: `{\"Operations\": {\"CostCenter\": \"42\"}}`
+    freeform_tags:
+      data_type: Hash[String, String]
+      desc: |-
+        Free-form tags for this resource. Each tag is a simple key-value pair with no
+        predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+
+        Example: `{\"Department\": \"Finance\"}`
+    placement_configurations:
+      data_type: Array[Oci_config::CreateInstancePoolPlacementConfigurationDetails]
+      desc: |-
+        The placement configurations for the instance pool. Provide one placement configuration for
+        each availability domain.
+
+        To use the instance pool with a regional subnet, provide a placement configuration for
+        each availability domain, and include the regional subnet in each placement
+        configuration.
+    size:
+      data_type: Integer
+      desc: The number of instances that should be in the instance pool.
+    load_balancers:
+      data_type: Array[Oci_config::AttachLoadBalancerDetails]
+      desc: The load balancers to attach to the instance pool.
+oci_database_autonomous_database:
+  klass: OCI::Database::Models::AutonomousDatabase
+  properties:
+    id:
+      data_type: String
+      desc: The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+        of the Autonomous Database.
+    compartment_id:
+      data_type: String
+      desc: The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+        of the compartment.
+    lifecycle_state:
+      data_type: String
+      desc: The current state of the Autonomous Database.
+    kms_key_id:
+      reference_type: key
+      data_type: String
+    vault_id:
+      reference_type: vault
+      data_type: String
+    kms_key_version_id:
+      reference_type: kms_key_version
+      data_type: String
+    db_name:
+      data_type: String
+      desc: The database name.
+    is_free_tier:
+      data_type: Boolean
+      desc: Indicates if this is an Always Free resource. The default value is false.
+        Note that Always Free Autonomous Databases have 1 CPU and 20GB of memory.
+        For Always Free databases, memory and CPU cannot be scaled.
+    system_tags:
+      data_type: Hash[String, Hash[String, Any]]
+      desc: |-
+        System tags for this resource. Each key is predefined and scoped to a namespace.
+        For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+    time_reclamation_of_free_autonomous_database:
+      data_type: Runtime
+      desc: The date and time the Always Free database will be stopped because of
+        inactivity. If this time is reached without any database activity, the database
+        will automatically be put into the STOPPED state.
+    time_deletion_of_free_autonomous_database:
+      data_type: Runtime
+      desc: The date and time the Always Free database will be automatically deleted
+        because of inactivity. If the database is in the STOPPED state and without
+        activity until this time, it will be deleted.
+    backup_config:
+      data_type: Oci_config::AutonomousDatabaseBackupConfig
+    key_history_entry:
+      data_type: Array[Oci_config::AutonomousDatabaseKeyHistoryEntry]
+    cpu_core_count:
+      data_type: Integer
+      desc: The number of OCPU cores to be made available to the database.
+    ocpu_count:
+      data_type: Float
+    data_storage_size_in_tbs:
+      data_type: Integer
+      desc: The quantity of data in the database, in terabytes.
+    data_storage_size_in_gbs:
+      data_type: Integer
+    infrastructure_type:
+      data_type: String
+    is_dedicated:
+      data_type: Boolean
+      desc: True if the database uses [dedicated Exadata infrastructure](https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm).
+    autonomous_container_database_id:
+      reference_type: autonomous_container_database
+      data_type: String
+      desc: The Autonomous Container Database [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+    time_created:
+      data_type: Runtime
+      desc: The date and time the Autonomous Database was created.
+    display_name:
+      data_type: String
+      desc: The user-friendly name for the Autonomous Database. The name does not
+        have to be unique.
+    service_console_url:
+      data_type: String
+      desc: The URL of the Service Console for the Autonomous Database.
+    connection_strings:
+      data_type: Oci_config::AutonomousDatabaseConnectionStrings
+      desc: The connection string used to connect to the Autonomous Database. The
+        username for the Service Console is ADMIN. Use the password you entered when
+        creating the Autonomous Database for the password value.
+    connection_urls:
+      data_type: Oci_config::AutonomousDatabaseConnectionUrls
+      desc: ''
+    license_model:
+      data_type: String
+      desc: |-
+        The Oracle license model that applies to the Oracle Autonomous Database. Note that when provisioning an Autonomous Database on [dedicated Exadata infrastructure](https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm), this attribute must be null because the attribute is already set at the
+        Autonomous Exadata Infrastructure level. When using [shared Exadata infrastructure](https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI), if a value is not specified, the system will supply the value of `BRING_YOUR_OWN_LICENSE`.
+    used_data_storage_size_in_tbs:
+      data_type: Integer
+      desc: The amount of storage that has been used, in terabytes.
+    freeform_tags:
+      data_type: Hash[String, String]
+      desc: |-
+        Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+        For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+
+        Example: `{\"Department\": \"Finance\"}`
+    defined_tags:
+      data_type: Hash[String, Hash[String, Any]]
+      desc: |-
+        Defined tags for this resource. Each key is predefined and scoped to a namespace.
+        For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+    subnet_id:
+      reference_type: subnet
+      data_type: String
+      desc: |-
+        The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the resource is associated with.
+
+        **Subnet Restrictions:**
+        - For bare metal DB systems and for single node virtual machine DB systems, do not use a subnet that overlaps with 192.168.16.16/28.
+        - For Exadata and virtual machine 2-node RAC DB systems, do not use a subnet that overlaps with 192.168.128.0/20.
+        - For Autonomous Database, setting this will disable public secure access to the database.
+
+        These subnets are used by the Oracle Clusterware private interconnect on the database instance.
+        Specifying an overlapping subnet will cause the private interconnect to malfunction.
+        This restriction applies to both the client subnet and the backup subnet.
+    nsg_ids:
+      reference_type: networksecuritygroup
+      data_type: Array[String]
+      desc: |-
+        A list of the [OCIDs](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+        **NsgIds restrictions:**
+        - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty.
+    private_endpoint:
+      data_type: String
+      desc: The private endpoint for the resource.
+    private_endpoint_label:
+      data_type: String
+      desc: The private endpoint label for the resource.
+    private_endpoint_ip:
+      data_type: String
+    db_version:
+      data_type: String
+      desc: A valid Oracle Database version for Autonomous Database.
+    is_preview:
+      data_type: Boolean
+      desc: Indicates if the Autonomous Database version is a preview version.
+    db_workload:
+      data_type: String
+      desc: |-
+        The Autonomous Database workload type. The following values are valid:
+
+        - OLTP - indicates an Autonomous Transaction Processing database
+        - DW - indicates an Autonomous Data Warehouse database
+    is_access_control_enabled:
+      data_type: Boolean
+    whitelisted_ips:
+      data_type: Array[String]
+      desc: |-
+        The client IP access control list (ACL). This feature is available for databases on [shared Exadata infrastructure](https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) only.
+        Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID.
+
+        To add the whitelist VCN specific subnet or IP, use a semicoln ';' as a deliminator to add the VCN specific subnets or IPs.
+        Example: `[\"1.1.1.1\",\"1.1.1.0/24\",\"ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw\",\"ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.1.1\",\"ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.0.0/16\"]`
+    are_primary_whitelisted_ips_used:
+      data_type: Boolean
+    standby_whitelisted_ips:
+      data_type: Array[String]
+    is_auto_scaling_enabled:
+      data_type: Boolean
+      desc: Indicates if auto scaling is enabled for the Autonomous Database CPU core
+        count. Note that auto scaling is available for databases on [shared Exadata
+        infrastructure](https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI)
+        only.
+    data_safe_status:
+      data_type: String
+      desc: Status of the Data Safe registration for this Autonomous Database.
+    operations_insights_status:
+      data_type: String
+    database_management_status:
+      data_type: String
+    time_maintenance_begin:
+      data_type: Runtime
+      desc: The date and time when maintenance will begin.
+    time_maintenance_end:
+      data_type: Runtime
+      desc: The date and time when maintenance will end.
+    is_refreshable_clone:
+      data_type: Boolean
+    time_of_last_refresh:
+      data_type: Runtime
+    time_of_last_refresh_point:
+      data_type: Runtime
+    time_of_next_refresh:
+      data_type: Runtime
+    open_mode:
+      data_type: String
+    refreshable_status:
+      data_type: String
+    refreshable_mode:
+      data_type: String
+    source_id:
+      reference_type: source
+      data_type: String
+    permission_level:
+      data_type: String
+    time_of_last_switchover:
+      data_type: Runtime
+    time_of_last_failover:
+      data_type: Runtime
+    is_data_guard_enabled:
+      data_type: Boolean
+    failed_data_recovery_in_seconds:
+      data_type: Integer
+    standby_db:
+      data_type: Oci_config::AutonomousDatabaseStandbySummary
+    role:
+      data_type: String
+    available_upgrade_versions:
+      data_type: Array[String]
+    key_store_id:
+      reference_type: key_store
+      data_type: String
+    key_store_wallet_name:
+      data_type: String
+    supported_regions_to_clone_to:
+      data_type: Array[String]
+    customer_contacts:
+      data_type: Array[Oci_config::CustomerContact]
+    time_local_data_guard_enabled:
+      data_type: Runtime
+    dataguard_region_type:
+      data_type: String
+    time_data_guard_role_changed:
+      data_type: Runtime
+    peer_db_ids:
+      reference_type: peer_db
+      data_type: Array[String]
+    is_mtls_connection_required:
+      data_type: Boolean
+    is_reconnect_clone_enabled:
+      data_type: Boolean
+    time_until_reconnect_clone_enabled:
+      data_type: Runtime
+    autonomous_maintenance_schedule_type:
+      data_type: String
+    scheduled_operations:
+      data_type: Array[Oci_config::ScheduledOperationDetails]
+    admin_password:
+      data_type: String
+    is_preview_version_with_service_terms_accepted:
+      data_type: Boolean
+    source:
+      data_type: String
+    character_set:
+      data_type: String
+    ncharacter_set:
+      data_type: String
+    provisionable_cpus:
+      data_type: Array[Float]
+    memory_per_oracle_compute_unit_in_gbs:
+      data_type: Integer
+    is_local_data_guard_enabled:
+      data_type: Boolean
+    is_remote_data_guard_enabled:
+      data_type: Boolean
+    local_standby_db:
+      data_type: Oci_config::AutonomousDatabaseStandbySummary
+    is_auto_scaling_for_storage_enabled:
+      data_type: Boolean
+    allocated_storage_size_in_tbs:
+      data_type: Float
+    actual_used_data_storage_size_in_tbs:
+      data_type: Float
+    max_cpu_core_count:
+      data_type: Integer
+    database_edition:
+      data_type: String
+  desc: An Oracle Autonomous Database.
+oci_database_external_non_container_database:
+  klass: OCI::Database::Models::ExternalNonContainerDatabase
+  properties:
+    operations_insights_config:
+      data_type: Oci_config::OperationsInsightsConfig
+    compartment_id:
+      data_type: String
+    freeform_tags:
+      data_type: Hash[String, String]
+    defined_tags:
+      data_type: Hash[String, Hash[String, Any]]
+    display_name:
+      data_type: String
+    id:
+      data_type: String
+    lifecycle_state:
+      data_type: String
+    time_created:
+      data_type: Runtime
+    db_unique_name:
+      data_type: String
+    db_id:
+      reference_type: db
+      data_type: String
+    database_version:
+      data_type: String
+    database_edition:
+      data_type: String
+    time_zone:
+      data_type: String
+    character_set:
+      data_type: String
+    ncharacter_set:
+      data_type: String
+    db_packs:
+      data_type: String
+    database_configuration:
+      data_type: String
+    database_management_config:
+      data_type: Oci_config::DatabaseManagementConfig
+    stack_monitoring_config:
+      data_type: Oci_config::StackMonitoringConfig
+oci_database_external_container_database:
+  klass: OCI::Database::Models::ExternalContainerDatabase
+  properties:
+    compartment_id:
+      data_type: String
+    freeform_tags:
+      data_type: Hash[String, String]
+    defined_tags:
+      data_type: Hash[String, Hash[String, Any]]
+    display_name:
+      data_type: String
+    id:
+      data_type: String
+    lifecycle_state:
+      data_type: String
+    time_created:
+      data_type: Runtime
+    db_unique_name:
+      data_type: String
+    db_id:
+      reference_type: db
+      data_type: String
+    database_version:
+      data_type: String
+    database_edition:
+      data_type: String
+    time_zone:
+      data_type: String
+    character_set:
+      data_type: String
+    ncharacter_set:
+      data_type: String
+    db_packs:
+      data_type: String
+    database_configuration:
+      data_type: String
+    database_management_config:
+      data_type: Oci_config::DatabaseManagementConfig
+    stack_monitoring_config:
+      data_type: Oci_config::StackMonitoringConfig
+oci_database_external_pluggable_database:
+  klass: OCI::Database::Models::ExternalPluggableDatabase
+  properties:
+    source_id:
+      reference_type: source
+      data_type: String
+    external_container_database_id:
+      reference_type: container_database
+      data_type: String
+    operations_insights_config:
+      data_type: Oci_config::OperationsInsightsConfig
+    compartment_id:
+      data_type: String
+    freeform_tags:
+      data_type: Hash[String, String]
+    defined_tags:
+      data_type: Hash[String, Hash[String, Any]]
+    display_name:
+      data_type: String
+    id:
+      data_type: String
+    lifecycle_state:
+      data_type: String
+    time_created:
+      data_type: Runtime
+    db_unique_name:
+      data_type: String
+    db_id:
+      reference_type: db
+      data_type: String
+    database_version:
+      data_type: String
+    database_edition:
+      data_type: String
+    time_zone:
+      data_type: String
+    character_set:
+      data_type: String
+    ncharacter_set:
+      data_type: String
+    db_packs:
+      data_type: String
+    database_configuration:
+      data_type: String
+    database_management_config:
+      data_type: Oci_config::DatabaseManagementConfig
+    stack_monitoring_config:
+      data_type: Oci_config::StackMonitoringConfig
+oci_database_pluggable_database:
+  klass: OCI::Database::Models::PluggableDatabase
+  properties:
+    id:
+      data_type: String
+    container_database_id:
+      reference_type: container_database
+      data_type: String
+    pdb_name:
+      data_type: String
+    lifecycle_state:
+      data_type: String
+    time_created:
+      data_type: Runtime
+    connection_strings:
+      data_type: Oci_config::PluggableDatabaseConnectionStrings
+    open_mode:
+      data_type: String
+    is_restricted:
+      data_type: Boolean
+    compartment_id:
+      data_type: String
+    freeform_tags:
+      data_type: Hash[String, String]
+    defined_tags:
+      data_type: Hash[String, Hash[String, Any]]
+    pdb_admin_password:
+      data_type: String
+    tde_wallet_password:
+      data_type: String
+    should_pdb_admin_account_be_locked:
+      data_type: Boolean
+oci_core_drg_route_distribution:
+  klass: OCI::Core::Models::DrgRouteDistribution
+  properties:
+    drg_id:
+      reference_type: drg
+      data_type: String
+    compartment_id:
+      data_type: String
+    defined_tags:
+      data_type: Hash[String, Hash[String, Any]]
+    display_name:
+      data_type: String
+    freeform_tags:
+      data_type: Hash[String, String]
+    id:
+      data_type: String
+    lifecycle_state:
+      data_type: String
+    time_created:
+      data_type: Runtime
+    distribution_type:
+      data_type: String

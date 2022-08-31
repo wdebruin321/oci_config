@@ -17,3 +17,5 @@ newproperty(:tag_namespace, :parent => Puppet_X::EnterpriseModules::Oci::Propert
   reference_type :tagnamespace
   data_type('Optional[String]')
 end
+
+child_of(:tagnamespace, :tag_namespace) { "#{tenant_string}/#{tag_namespace}" }

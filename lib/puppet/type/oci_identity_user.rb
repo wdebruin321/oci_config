@@ -77,6 +77,7 @@ using the API.
   property :email_verified
   property :last_successful_login_time
   property :previous_successful_login_time
+  property :db_user_name
 
   validate do
     validate_reference_propery(:compartment_id, self)

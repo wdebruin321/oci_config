@@ -31,7 +31,7 @@ module Puppet_X
         def present?
           return true unless respond_to?(:lifecycle_state)
 
-          %w[PROVISIONING SCALING AVAILABLE RUNNING ACTIVE ATTACHED ATTACHING ENABLED].include?(lifecycle_state)
+          %w[PROVISIONING SCALING AVAILABLE RUNNING ACTIVE ATTACHED ATTACHING ENABLED NOT_CONNECTED].include?(lifecycle_state)
         end
       end
     end
@@ -50,6 +50,8 @@ models = [
   OCI::Core::Models::DedicatedVmHost,
   OCI::Core::Models::DhcpOptions,
   OCI::Core::Models::Drg,
+  OCI::Core::Models::DrgRouteDistribution,
+  OCI::Core::Models::DrgRouteTable,
   OCI::Core::Models::Image,
   OCI::Core::Models::Instance,
   OCI::Core::Models::InstanceConsoleConnection,
@@ -103,7 +105,11 @@ models = [
   OCI::Database::Models::DbSystemSummary,
   OCI::Database::Models::DbNodeSummary,
   OCI::Database::Models::DatabaseSummary,
-  OCI::Database::Models::AutonomousContainerDatabase
+  OCI::Database::Models::AutonomousContainerDatabase,
+  OCI::Database::Models::ExternalContainerDatabaseSummary,
+  OCI::Database::Models::ExternalNonContainerDatabaseSummary,
+  OCI::Database::Models::ExternalPluggableDatabaseSummary,
+  OCI::Database::Models::PluggableDatabaseSummary
 ].freeze
 
 models.each do |model|
@@ -120,5 +126,14 @@ class OCI::Identity::Models::Tag
   #
   def puppet_name
     "#{tag_namespace_name}:#{name}"
+  end
+end
+
+#
+# The class doesn't have an id method, but a listing_id. So we create an alias
+#
+class OCI::Core::Models::AppCatalogSubscriptionSummary
+  def id
+    listing_id
   end
 end

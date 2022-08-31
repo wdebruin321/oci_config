@@ -8,5 +8,3 @@ type Oci_Config::EgressSecurityRule = Struct[{
   Optional[tcp_options]      => Oci_config::TcpOptions,
   Optional[udp_options]      => Oci_config::UdpOptions,
 }]
-
-

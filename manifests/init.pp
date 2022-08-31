@@ -24,6 +24,7 @@ class oci_config(
       ensure   => $version,
       provider => 'puppet_gem',
       source   => $source_file,
+      install_options => '--no-doc'
     }
 
     -> exec {'cleanup gem source':

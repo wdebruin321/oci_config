@@ -58,9 +58,14 @@ Policies](https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstart
   property :defined_tags
   property :kms_key
   property :kms_key_id
+  property :is_clone_parent
+  property :is_hydrated
+  property :source_snapshot
+  property :source_snapshot_id
 
   validate do
     validate_reference_propery(:compartment_id, self)
     validate_reference_propery(:kms_key_id, self)
+    validate_reference_propery(:source_snapshot_id, self)
   end
 end

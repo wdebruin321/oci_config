@@ -45,6 +45,7 @@ For more information about console access, see
   property :lifecycle_state
   property :vnc_connection_string
   property :public_key
+  property :service_host_key_fingerprint
 
   validate do
     validate_reference_propery(:compartment_id, self)

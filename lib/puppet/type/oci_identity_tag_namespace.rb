@@ -49,6 +49,7 @@ using the API.
   property :is_retired
   property :lifecycle_state
   property :time_created
+  property :locks
 
   validate do
     validate_reference_propery(:compartment_id, self)

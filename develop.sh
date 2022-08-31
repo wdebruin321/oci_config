@@ -14,7 +14,6 @@ docker exec oci_config rpm -Uvh https://yum.puppet.com/puppet-tools-release-el-7
 #
 docker exec oci_config yum install gcc make puppet git which puppet-bolt -y
 docker exec oci_config /opt/puppetlabs/bolt/bin/gem install  specific_install byebug pry bolt
-docker exec oci_config /opt/puppetlabs/bolt/bin/gem specific_install -l https://github.com/enterprisemodules/oci-ruby-sdk.git
 #
 # handle puppet stuff
 #

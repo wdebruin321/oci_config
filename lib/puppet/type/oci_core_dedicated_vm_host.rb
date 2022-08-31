@@ -42,6 +42,8 @@ on a dedicated host that is not shared with other tenancies.
   property :time_created
   property :total_ocpus
   property :remaining_ocpus
+  property :total_memory_in_gbs
+  property :remaining_memory_in_gbs
 
   validate do
     validate_reference_propery(:compartment_id, self)

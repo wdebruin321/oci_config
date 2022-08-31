@@ -34,6 +34,10 @@ module Puppet_X
             resources_in_compartments(compartment_id, true)
           when :vault
             resources_in_vaults(compartment_id)
+          when :drg
+            resources_in_drgs(compartment_id)
+          when :instance_pool
+            resources_in_instance_pools(compartment_id)
           when :namespace
             resources_in_namespace(compartment_id)
           when :tag_namespace
@@ -71,6 +75,8 @@ module Puppet_X
             handle_authorisation_errors(compartment_id) do
               Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
               case object_type_plural
+              when 'pluggable_databases'
+                client.list_pluggable_databases(:compartment_id => compartment_id).data
               when 'tag_defaults'
                 client.list_tag_defaults(:compartment_id => compartment_id).data
               when 'exports'
@@ -80,6 +86,8 @@ module Puppet_X
                 end
               when 'public_ips'
                 client.list_public_ips('REGION', compartment_id, :lifetime => 'RESERVED').data
+              when 'network_security_groups'
+                client.list_network_security_groups(:compartment_id => compartment_id).data
               else
                 summary_data = client.send("list_#{object_type_plural}", compartment_id).data
                 Puppet.debug "Found #{summary_data.size} #{object_type_plural}..."
@@ -167,6 +175,30 @@ module Puppet_X
           end.flatten.compact.uniq(&:id)
         end
 
+        def resources_in_drgs(specified_compartment)
+          compartment_list(specified_compartment).collect do |compartment_id|
+            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
+            drgs_in(compartment_id).collect do |drg_id|
+              handle_authorisation_errors(compartment_id) do
+                Puppet.debug "Inspecting drg #{drg_id}..."
+                client.send("list_#{object_type_plural}", drg_id).data
+              end
+            end
+          end.flatten.compact.uniq(&:id)
+        end
+
+        def resources_in_instance_pools(specified_compartment)
+          compartment_list(specified_compartment).collect do |compartment_id|
+            Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
+            instance_pools_in(compartment_id).collect do |instance_pool_id|
+              handle_authorisation_errors(compartment_id) do
+                Puppet.debug "Inspecting instance_pool #{instance_pool_id}..."
+                client.send("list_#{object_type_plural}", compartment_id, instance_pool_id).data
+              end
+            end
+          end.flatten.compact.uniq(&:id)
+        end
+
         def resources_in_availability_domains(specified_compartment)
           compartment_list(specified_compartment).collect do |compartment_id|
             Puppet.debug "Inspecting compartment #{@resolver.ocid_to_full_name(@tenant, compartment_id)} for #{object_type_plural}..."
@@ -211,7 +243,21 @@ module Puppet_X
         def vaults_in(compartment_id)
           handle_authorisation_errors(compartment_id) do
             vault_client = client_for(OCI::KeyManagement::KmsVaultClient, @tenant)
-            vault_client.send('list_vaults', compartment_id).data
+            vault_client.send('list_vaults', compartment_id).data.reject { |e| e.lifecycle_state =~ /DELETE/ }
+          end
+        end
+
+        def drgs_in(compartment_id)
+          handle_authorisation_errors(compartment_id) do
+            drg_client = client_for(OCI::Core::VirtualNetworkClient, @tenant)
+            drg_client.send('list_drgs', compartment_id).data.collect(&:id)
+          end
+        end
+
+        def instance_pools_in(compartment_id)
+          handle_authorisation_errors(compartment_id) do
+            drg_client = client_for(OCI::Core::ComputeManagementClient, @tenant)
+            drg_client.send('list_instance_pools', compartment_id).data.collect(&:id)
           end
         end
 

@@ -131,6 +131,7 @@ namespace :generate do
     YamlGenerator.new(OCI::Core, 'Cpe$').generate
     YamlGenerator.new(OCI::Core, 'DhcpOptions$').generate
     YamlGenerator.new(OCI::Core, 'Drg$').generate
+    YamlGenerator.new(OCI::Core, 'DrgRouteDistribution$').generate
     YamlGenerator.new(OCI::Core, 'InternetGateway$').generate
     YamlGenerator.new(OCI::Core, 'IpSecConnection$').generate
     YamlGenerator.new(OCI::Core, 'LocalPeeringGateway$').generate
@@ -218,9 +219,7 @@ namespace :litmus do
     include PuppetLitmus::PuppetHelpers
     # Project root
     proj_root = File.expand_path(File.join(File.dirname(__FILE__)))
-    puts `docker exec #{ENV['TARGET_HOST']} yum install git which -y`
-    puts `docker exec #{ENV['TARGET_HOST']} /opt/puppetlabs/puppet/bin/gem install specific_install`
-    puts `docker exec #{ENV['TARGET_HOST']} /opt/puppetlabs/puppet/bin/gem specific_install -l https://github.com/enterprisemodules/oci-ruby-sdk.git`
+    puts `docker exec #{ENV['TARGET_HOST']} /opt/puppetlabs/puppet/bin/gem install /etc/puppetlabs/code/environments/production/modules/oci_config//files/oci-2.18.0.gem --no-doc`
     if ENV['OCI_TENANT_INFO'] 
       bolt_upload_file(ENV['OCI_TENANT_INFO'], '/root/tenant_setup.pp')
     else

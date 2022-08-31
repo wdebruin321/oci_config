@@ -7,7 +7,10 @@
 #
 newproperty(:db_workload, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   desc <<-DESC
-  The Autonomous Database workload type. OLTP indicates an Autonomous Transaction Processing database and DW indicates an Autonomous Data Warehouse database.
+  The Autonomous Database workload type. The following values are valid:
+
+- OLTP - indicates an Autonomous Transaction Processing database
+- DW - indicates an Autonomous Data Warehouse database
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC

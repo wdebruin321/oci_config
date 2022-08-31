@@ -45,7 +45,12 @@ Puppet::Type.newtype(:oci_file_storage_snapshot) do
   property :freeform_tags
   property :defined_tags
 
+  property :provenance
+  property :provenance_id
+  property :is_clone_source
+
   validate do
     validate_reference_propery(:file_system_id, self)
+    validate_reference_propery(:provenance_id, self)
   end
 end

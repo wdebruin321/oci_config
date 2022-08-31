@@ -4,8 +4,7 @@
 # See the file "LICENSE" for the full license governing this code.
 #
 newproperty(:boot_volumes, :array_matching => :all, :parent => Puppet_X::EnterpriseModules::Oci::AssociatedHashProperty) do
-  desc <<-DESC
-  DESC
+  desc ''
   data_type('Hash[String[1], Any]')
 
   def before_destroy

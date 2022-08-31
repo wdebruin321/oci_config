@@ -54,8 +54,12 @@ supply string values using the API.
   property :freeform_tags
   property :lifecycle_state
   property :time_created
+  property :default_drg_route_tables
+  property :default_export_drg_route_distribution
+  property :default_export_drg_route_distribution_id
 
   validate do
     validate_reference_propery(:compartment_id, self)
+    validate_reference_propery(:default_export_drg_route_distribution_id, self)
   end
 end

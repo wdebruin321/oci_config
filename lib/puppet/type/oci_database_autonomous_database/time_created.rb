@@ -7,7 +7,7 @@
 #
 newproperty(:time_created, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   desc <<-DESC
-  The date and time the database was created.
+  The date and time the Autonomous Database was created.
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC

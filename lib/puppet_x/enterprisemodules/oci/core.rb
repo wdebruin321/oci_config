@@ -31,3 +31,4 @@ end
 require_relative './monkey_patches/hash'
 require_relative './monkey_patches/string'
 require_relative './monkey_patches/oci'
+require_relative './monkey_patches/easy_type'

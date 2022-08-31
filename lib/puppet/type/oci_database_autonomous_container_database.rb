@@ -74,6 +74,18 @@ Puppet::Type.newtype(:oci_database_autonomous_container_database) do
   property :peer_autonomous_container_database_backup_config
   property :kms_key_version
   property :kms_key_version_id
+  property :cloud_autonomous_vm_cluster
+  property :cloud_autonomous_vm_cluster_id
+  property :key_history_entry
+  property :is_automatic_failover_enabled
+  property :peer_cloud_autonomous_vm_cluster
+  property :peer_cloud_autonomous_vm_cluster_id
+  property :peer_db_unique_name
+  property :memory_per_oracle_compute_unit_in_gbs
+  property :available_cpus
+  property :total_cpus
+  property :reclaimable_cpus
+  property :provisionable_cpus
 
   validate do
     validate_reference_propery(:compartment_id, self)
@@ -89,5 +101,7 @@ Puppet::Type.newtype(:oci_database_autonomous_container_database) do
     validate_reference_propery(:peer_autonomous_vm_cluster_id, self)
     validate_reference_propery(:peer_autonomous_container_database_compartment_id, self)
     validate_reference_propery(:kms_key_version_id, self)
+    validate_reference_propery(:cloud_autonomous_vm_cluster_id, self)
+    validate_reference_propery(:peer_cloud_autonomous_vm_cluster_id, self)
   end
 end

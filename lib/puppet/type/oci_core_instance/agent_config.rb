@@ -13,6 +13,7 @@ newproperty(:agent_config, :parent => Puppet_X::EnterpriseModules::Oci::Property
         Optional[is_monitoring_disabled] => Boolean,
         Optional[is_management_disabled] => Boolean,
         Optional[are_all_plugins_disabled] => Boolean,
+        Optional[plugins_config] => Oci_config::InstanceAgentPluginConfigDetails,
       }]
     ]
   DATA_TYPE

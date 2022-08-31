@@ -65,6 +65,10 @@ supply string values using the API.
   property :vcn_domain_name
   property :is_ipv6_enabled
   property :cidr_blocks
+  property :ipv6_cidr_blocks
+  property :byoipv6_cidr_blocks
+  property :ipv6_private_cidr_blocks
+  property :is_oracle_gua_allocation_enabled
 
   validate do
     validate_reference_propery(:compartment_id, self)

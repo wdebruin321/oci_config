@@ -89,6 +89,11 @@ Puppet::Type.newtype(:oci_database_db_system) do
   property :source_db_system_id
   property :kms_key_version
   property :kms_key_version_id
+  property :scan_dns_name
+  property :zone
+  property :zone_id
+  property :memory_size_in_gbs
+  property :storage_volume_performance_mode
 
   validate do
     validate_reference_propery(:compartment_id, self)
@@ -105,5 +110,6 @@ Puppet::Type.newtype(:oci_database_db_system) do
     validate_reference_propery(:kms_key_id, self)
     validate_reference_propery(:source_db_system_id, self)
     validate_reference_propery(:kms_key_version_id, self)
+    validate_reference_propery(:zone_id, self)
   end
 end

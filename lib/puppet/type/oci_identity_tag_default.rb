@@ -26,13 +26,7 @@ talk to an administrator.
 
   DESC
 
-  full_regexp           = Regexp.new('^((.*) \\(root\)\\/(.*)\\/(.*):(.*))$')
-  top_level_regexp      = Regexp.new('^((.*) \\(root\)\\/(.*):(.*))$')
-
-  map_titles_to_attributes([
-                             full_regexp, [:name, :tenant, :compartment, :tag_namespace, :tag_definition],
-                             top_level_regexp, [:name, :tenant, :tag_namespace, :tag_definition]
-                           ])
+  add_title_attributes(:tag_default_name)
 
   ensurable
 
@@ -48,14 +42,16 @@ talk to an administrator.
   property  :id
   property  :compartment_id
 
-  property :tag_namespace_id
   property :tag_namespace
-  property :tag_definition_id
+  property :tag_namespace_id
   property :tag_definition
+  property :tag_definition_id
+  property :tag_definition_name
   property :value
   property :time_created
   property :lifecycle_state
   property :is_required
+  property :locks
 
   validate do
     validate_reference_propery(:compartment_id, self)

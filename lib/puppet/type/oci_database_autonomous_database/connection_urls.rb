@@ -13,6 +13,7 @@ newproperty(:connection_urls, :parent => Puppet_X::EnterpriseModules::Oci::Prope
         Optional['sql_dev_web_url']                      => String[1],
         Optional['apex_url']                             => String[1],
         Optional['machine_learning_user_management_url'] => String[1],
+        Optional['graph_studio_url']                     => String[1],
       }]
     ]
   DATA_TYPE

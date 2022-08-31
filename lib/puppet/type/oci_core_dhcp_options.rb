@@ -77,6 +77,7 @@ supply string values using the API.
   property :time_created
   property :vcn
   property :vcn_id
+  property :domain_name_type
 
   validate do
     validate_reference_propery(:compartment_id, self)

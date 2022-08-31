@@ -7,8 +7,8 @@
 #
 newproperty(:peer_autonomous_vm_cluster, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   references :peer_autonomous_vm_cluster_id
-  reference_type :peer_autonomous_vm_cluster
+  reference_type :vm_cluster
   data_type('Optional[String]')
 end
 
-child_of(:peer_autonomous_vm_cluster, :peer_autonomous_vm_cluster) { "#{tenant_string}/#{peer_autonomous_vm_cluster}" }
+child_of(:vm_cluster, :peer_autonomous_vm_cluster) { "#{tenant_string}/#{peer_autonomous_vm_cluster}" }
