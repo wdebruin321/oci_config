@@ -10,7 +10,7 @@ require 'puppet_x/enterprisemodules/oci/core'
 Puppet::Type.newtype(:oci_identity_tag_default) do
   include Puppet_X::EnterpriseModules::Oci::Type
   desc <<-DESC
-  Tag defaults let you specify a default tag (tagnamespace.tag=\"value\") to apply to all resource types
+  Tag defaults let you specify a default tag (tagnamespace.tag="value") to apply to all resource types
 in a specified compartment. The tag default is applied at the time the resource is created. Resources
 that exist in the compartment before you create the tag default are not tagged. The `TagDefault` object
 specifies the tag and compartment details.

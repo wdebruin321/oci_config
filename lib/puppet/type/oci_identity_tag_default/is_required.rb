@@ -11,8 +11,8 @@ newproperty(:is_required, :parent => Puppet_X::EnterpriseModules::Oci::Property)
 the user creating the resource or another tag defualt). If no value is set, resource
 creation is blocked.
 
-* If the `isRequired` flag is set to \"true\", the value is set during resource creation.
-* If the `isRequired` flag is set to \"false\", the value you enter is set during resource creation.
+* If the `isRequired` flag is set to "true", the value is set during resource creation.
+* If the `isRequired` flag is set to "false", the value you enter is set during resource creation.
 
 Example: `false`
 

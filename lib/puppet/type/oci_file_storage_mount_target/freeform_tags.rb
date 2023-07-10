@@ -10,7 +10,7 @@ newproperty(:freeform_tags, :parent => Puppet_X::EnterpriseModules::Oci::Propert
   Free-form tags for this resource. Each tag is a simple key-value pair
  with no predefined name, type, or namespace.
 For more information, see [Resource Tags](https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-Example: `{\"Department\": \"Finance\"}`
+Example: `{"Department": "Finance"}`
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC

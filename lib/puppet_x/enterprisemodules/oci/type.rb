@@ -406,8 +406,8 @@ module Puppet_X
           end
 
           def add_title_attributes(*attributes)
-            full_regexp           = Regexp.new("^((.*) \\(root\\)\/(.*)\/(.*))$")
-            top_level_regexp      = Regexp.new("^((.*) \\(root\\)\/(.*))$")
+            full_regexp           = Regexp.new('^((.*) \\(root\\)/(.*)/(.*))$')
+            top_level_regexp      = Regexp.new('^((.*) \\(root\\)/(.*))$')
 
             map_titles_to_attributes([
                                        full_regexp, [:name] + [:tenant] + [:compartment] + attributes,

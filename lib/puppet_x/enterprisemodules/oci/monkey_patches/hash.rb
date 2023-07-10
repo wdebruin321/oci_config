@@ -26,7 +26,7 @@ class Hash
     #
     deep_transform_keys do |key|
       key.to_s.
-        gsub(/_gb/, '_g_b').
+        gsub('_gb', '_g_b').
         gsub('_gbs', '_g_bs').
         gsub('_mbs', '_m_bs').
         split('_').collect(&:capitalize).join.downcase_first_letter

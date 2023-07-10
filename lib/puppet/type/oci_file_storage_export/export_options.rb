@@ -12,10 +12,10 @@ defaults to:
 
        [
          {
-            \"source\" : \"0.0.0.0/0\",
-            \"requirePrivilegedSourcePort\" : false,
-            \"access\" : \"READ_WRITE\",
-            \"identitySquash\" : \"NONE\"
+            "source" : "0.0.0.0/0",
+            "requirePrivilegedSourcePort" : false,
+            "access" : "READ_WRITE",
+            "identitySquash" : "NONE"
           }
        ]
 

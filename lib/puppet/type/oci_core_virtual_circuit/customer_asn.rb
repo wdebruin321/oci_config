@@ -10,7 +10,7 @@ newproperty(:customer_asn, :parent => Puppet_X::EnterpriseModules::Oci::Property
   Your BGP ASN (either public or private). Provide this value only if
 there's a BGP session that goes from your edge router to Oracle.
 Otherwise, leave this empty or null.
-Can be a 2-byte or 4-byte ASN. Uses \"asplain\" format.
+Can be a 2-byte or 4-byte ASN. Uses "asplain" format.
 
 Example: `12345` (2-byte) or `1587232876` (4-byte)
 

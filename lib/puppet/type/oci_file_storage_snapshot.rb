@@ -22,7 +22,7 @@ Puppet::Type.newtype(:oci_file_storage_snapshot) do
 
   ensurable
 
-  full_regexp = Regexp.new("^((.*) \\(root\\)\/(.*)\/(.*))$")
+  full_regexp = Regexp.new('^((.*) \\(root\\)/(.*)/(.*))$')
 
   map_titles_to_attributes([
                              full_regexp, [:name, :tenant, :file_system, :snapshot_name]

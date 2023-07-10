@@ -8,7 +8,7 @@
 newproperty(:system_tags, :parent => Puppet_X::EnterpriseModules::Oci::Property) do
   desc <<-DESC
   System tags for this resource. Each key is predefined and scoped to a namespace.
-Example: `{\"foo-namespace\": {\"bar-key\": \"value\"}}`
+Example: `{"foo-namespace": {"bar-key": "value"}}`
 
   This documentation is generated from the [Ruby OCI SDK](https://github.com/oracle/oci-ruby-sdk).
   DESC

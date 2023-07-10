@@ -18,7 +18,7 @@ major part of your organization. For more information, see
 [Overview of the IAM Service](https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm) and also
 [Setting Up Your Tenancy](https://docs.cloud.oracle.com/Content/GSG/Concepts/settinguptenancy.htm).
 
-To place a resource in a compartment, simply specify the compartment ID in the \"Create\" request object when
+To place a resource in a compartment, simply specify the compartment ID in the "Create" request object when
 initially creating the resource. For example, to launch an instance into a particular compartment, specify
 that compartment's OCID in the `LaunchInstance` request. You can't move an existing resource from one
 compartment to another.

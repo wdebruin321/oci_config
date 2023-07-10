@@ -24,13 +24,13 @@ endpoint listening on 169.254.169.254. You can use the service to:
  You can use the following metadata key names to provide information to
  Cloud-Init:
 
- **\"ssh_authorized_keys\"** - Provide one or more public SSH keys to be
+ **"ssh_authorized_keys"** - Provide one or more public SSH keys to be
  included in the `~/.ssh/authorized_keys` file for the default user on the
  instance. Use a newline character to separate multiple keys. The SSH
  keys must be in the format necessary for the `authorized_keys` file, as shown
  in the example below.
 
- **\"user_data\"** - Provide your own base64-encoded data to be used by
+ **"user_data"** - Provide your own base64-encoded data to be used by
  Cloud-Init to run custom scripts or provide custom Cloud-Init configuration. For
  information about how to take advantage of user data, see the
  [Cloud-Init Documentation](http://cloudinit.readthedocs.org/en/latest/topics/format.html).
@@ -41,18 +41,18 @@ endpoint listening on 169.254.169.254. You can use the service to:
 
  `http://169.254.169.254/openstack/latest/meta_data.json` - This JSON blob
  contains, among other things, the SSH keys that you provided for
-  **\"ssh_authorized_keys\"**.
+  **"ssh_authorized_keys"**.
 
  `http://169.254.169.254/openstack/latest/user_data` - Contains the
- base64-decoded data that you provided for **\"user_data\"**.
+ base64-decoded data that you provided for **"user_data"**.
 
  **Metadata Example**
 
-      \"metadata\" : {
-         \"quake_bot_level\" : \"Severe\",
-         \"ssh_authorized_keys\" : \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCZ06fccNTQfq+xubFlJ5ZR3kt+uzspdH9tXL+lAejSM1NXM+CFZev7MIxfEjas06y80ZBZ7DUTQO0GxJPeD8NCOb1VorF8M4xuLwrmzRtkoZzU16umt4y1W0Q4ifdp3IiiU0U8/WxczSXcUVZOLqkz5dc6oMHdMVpkimietWzGZ4LBBsH/LjEVY7E0V+a0sNchlVDIZcm7ErReBLcdTGDq0uLBiuChyl6RUkX1PNhusquTGwK7zc8OBXkRuubn5UKXhI3Ul9Nyk4XESkVWIGNKmw8mSpoJSjR8P9ZjRmcZVo8S+x4KVPMZKQEor== ryan.smith@company.com
-         ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAzJSAtwEPoB3Jmr58IXrDGzLuDYkWAYg8AsLYlo6JZvKpjY1xednIcfEVQJm4T2DhVmdWhRrwQ8DmayVZvBkLt+zs2LdoAJEVimKwXcJFD/7wtH8Lnk17HiglbbbNXsemjDY0hea4JUE5CfvkIdZBITuMrfqSmA4n3VNoorXYdvtTMoGG8fxMub46RPtuxtqi9bG9Zqenordkg5FJt2mVNfQRqf83CWojcOkklUWq4CjyxaeLf5i9gv1fRoBo4QhiA8I6NCSppO8GnoV/6Ox6TNoh9BiifqGKC9VGYuC89RvUajRBTZSK2TK4DPfaT+2R+slPsFrwiT/oPEhhEK1S5Q== rsa-key-20160227\",
-         \"user_data\" : \"SWYgeW91IGNhbiBzZWUgdGhpcywgdGhlbiBpdCB3b3JrZWQgbWF5YmUuCg==\"
+      "metadata" : {
+         "quake_bot_level" : "Severe",
+         "ssh_authorized_keys" : "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCZ06fccNTQfq+xubFlJ5ZR3kt+uzspdH9tXL+lAejSM1NXM+CFZev7MIxfEjas06y80ZBZ7DUTQO0GxJPeD8NCOb1VorF8M4xuLwrmzRtkoZzU16umt4y1W0Q4ifdp3IiiU0U8/WxczSXcUVZOLqkz5dc6oMHdMVpkimietWzGZ4LBBsH/LjEVY7E0V+a0sNchlVDIZcm7ErReBLcdTGDq0uLBiuChyl6RUkX1PNhusquTGwK7zc8OBXkRuubn5UKXhI3Ul9Nyk4XESkVWIGNKmw8mSpoJSjR8P9ZjRmcZVo8S+x4KVPMZKQEor== ryan.smith@company.com
+         ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAzJSAtwEPoB3Jmr58IXrDGzLuDYkWAYg8AsLYlo6JZvKpjY1xednIcfEVQJm4T2DhVmdWhRrwQ8DmayVZvBkLt+zs2LdoAJEVimKwXcJFD/7wtH8Lnk17HiglbbbNXsemjDY0hea4JUE5CfvkIdZBITuMrfqSmA4n3VNoorXYdvtTMoGG8fxMub46RPtuxtqi9bG9Zqenordkg5FJt2mVNfQRqf83CWojcOkklUWq4CjyxaeLf5i9gv1fRoBo4QhiA8I6NCSppO8GnoV/6Ox6TNoh9BiifqGKC9VGYuC89RvUajRBTZSK2TK4DPfaT+2R+slPsFrwiT/oPEhhEK1S5Q== rsa-key-20160227",
+         "user_data" : "SWYgeW91IGNhbiBzZWUgdGhpcywgdGhlbiBpdCB3b3JrZWQgbWF5YmUuCg=="
       }
  **Getting Metadata on the Instance**
 

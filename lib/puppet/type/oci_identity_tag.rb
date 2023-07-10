@@ -10,7 +10,7 @@ require 'puppet_x/enterprisemodules/oci/core'
 Puppet::Type.newtype(:oci_identity_tag) do
   include Puppet_X::EnterpriseModules::Oci::Type
   desc <<-DESC
-  A tag definition that belongs to a specific tag namespace.  \"Defined tags\" must be set up in your tenancy before
+  A tag definition that belongs to a specific tag namespace.  "Defined tags" must be set up in your tenancy before
 you can apply them to resources.
 For more information, see [Managing Tags and Tag Namespaces](https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm).
 
