@@ -58,7 +58,7 @@ module Puppet_X
           #
           # If the compartment_id is nil, it means we are at the root and use the tenant ocid
           #
-          @oci_api_data[:compartment_id] ||= client.api_client.config.tenancy #
+          @oci_api_data[:compartment_id] ||= client.api_client.config.tenancy
         end
 
         def on_create

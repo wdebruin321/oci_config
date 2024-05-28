@@ -28,7 +28,7 @@ module OCI
           opts[:query_params][:start] = page if opts[:return_type] == 'OCI::ObjectStorage::Models::ListObjects'
         end
 
-        return call_api_inner(http_method, path, endpoint, opts, &block)
+        call_api_inner(http_method, path, endpoint, opts, &block)
       }
       next_page = nil
       agregated_data = []

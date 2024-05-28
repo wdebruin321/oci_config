@@ -6,7 +6,9 @@ def optional_require(file)
   end
 end
 
-import '../easy_type/lib/tasks/docs.rake' if File.exists?('../easy_type/lib/tasks/docs.rake')
+require 'puppet'
+
+import '../easy_type/lib/tasks/docs.rake' if File.exist?('../easy_type/lib/tasks/docs.rake')
 optional_require 'tty/spinner'
 optional_require 'puppet-lint/tasks/puppet-lint'
 optional_require 'puppet-syntax/tasks/puppet-syntax'

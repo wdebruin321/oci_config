@@ -11,6 +11,6 @@ newproperty(:boot_volumes, :array_matching => :all, :parent => Puppet_X::Enterpr
     # Nothing. Don't destroy the boot volumes. Let OCI handle this
   end
 
-  association :boot_volume_attachment => \
+  association :boot_volume_attachment =>
     { :from => :instance_id, :to => :boot_volume_id, :model => OCI::Core::Models::AttachBootVolumeDetails, :remove => :detach_boot_volume, :add => :attach_boot_volume }
 end
