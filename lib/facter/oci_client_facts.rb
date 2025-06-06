@@ -9,17 +9,24 @@ require_relative '../puppet_x/enterprisemodules/oci/monkey_patches/hash'
 require_relative '../puppet_x/enterprisemodules/oci/monkey_patches/string'
 
 def instance_path
-  '/opc/v1/instance/'
+  '/opc/v2/instance/'
 end
 
 def vnic_path
-  '/opc/v1/vnics/'
+  '/opc/v2/vnics/'
+end
+
+def add_authorization_header(request)
+  request['Authorization'] = "Bearer Oracle"
 end
 
 def get_data(path)
+  request = Net::HTTP::Get.new(URI("http://169.254.169.254#{path}"))
+  add_authorization_header(request)
   response = Net::HTTP.start('169.254.169.254', 80, :read_timeout => 0.5, :open_timeout => 0.5) do |http|
     http.read_timeout = 0.5
     http.get(path)
+    http.request(request)
   end
   json_data = response.body
   begin
