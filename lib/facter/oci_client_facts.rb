@@ -110,24 +110,24 @@ Facter.add(:oci_freeform_tags) do
   end
 end
 
-Facter.add(:oci_ocpus) do
-  confine :oci_instance do |oci_instance|
-    !oci_instance.nil?
-  end
+# Facter.add(:oci_ocpus) do
+#   confine :oci_instance do |oci_instance|
+#     !oci_instance.nil?
+#   end
 
-  setcode do
-    begin
-      require 'oci'
+#   setcode do
+#     begin
+#       require 'oci'
 
-      signer = OCI::Auth::Signers::InstancePrincipalsSecurityTokenSigner.new
-      compute_client = OCI::Core::ComputeClient.new(signer: signer)
+#       signer = OCI::Auth::Signers::InstancePrincipalsSecurityTokenSigner.new
+#       compute_client = OCI::Core::ComputeClient.new(signer: signer)
 
-      instance_id = Facter.value(:oci_instance)['id']
-      instance = compute_client.get_instance(instance_id).data
-      instance.shape_config.ocpus
-    rescue => e
-      Facter.debug("Failed to get ocpus: #{e}")
-      nil
-    end
-  end
-end
+#       instance_id = Facter.value(:oci_instance)['id']
+#       instance = compute_client.get_instance(instance_id).data
+#       instance.shape_config.ocpus
+#     rescue => e
+#       Facter.debug("Failed to get ocpus: #{e}")
+#       nil
+#     end
+#   end
+# end
