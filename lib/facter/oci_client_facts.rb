@@ -90,10 +90,8 @@ Facter.add(:oci_instance) do
         Facter.debug("Instance ID: #{instance_id}")
         instance = compute_client.get_instance(instance_id).data
 
-        if instance && instance.shape_config
-          data['shape_config']['ocpus'] = instance.shape_config.ocpus
-          Facter.debug("Overschreven ocpus: #{instance.shape_config.ocpus}")
-        end
+        data['shape_config']['ocpus'] = instance.shape_config.ocpus
+        Facter.debug("Overschreven ocpus: #{instance.shape_config.ocpus}")
       rescue LoadError => le
         Facter.debug("Kon OCI gem niet laden: #{le}")
       rescue => e
