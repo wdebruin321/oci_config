@@ -67,7 +67,11 @@ end
 
 Facter.add(:oci_instance) do
   setcode do
-    instance_data
+    data = instance_data
+    if data && data['shapeConfig']
+      data['shapeConfig']['ocpus'] = 4  # vaste waarde forceren
+    end
+    data
   end
 end
 
@@ -110,31 +114,31 @@ Facter.add(:oci_freeform_tags) do
   end
 end
 
-Facter.add(:oci_ocpus) do
-  confine :oci_instance do |oci_instance|
-    !oci_instance.nil?
-  end
+# Facter.add(:oci_ocpus) do
+#   confine :oci_instance do |oci_instance|
+#     !oci_instance.nil?
+#   end
 
-  setcode do
-    begin
-      require 'oci'
-      Facter.debug("OCI gem geladen")
+#   setcode do
+#     begin
+#       require 'oci'
+#       Facter.debug("OCI gem geladen")
 
-      signer = OCI::Auth::Signers::InstancePrincipalsSecurityTokenSigner.new
-      compute_client = OCI::Core::ComputeClient.new(signer: signer)
+#       signer = OCI::Auth::Signers::InstancePrincipalsSecurityTokenSigner.new
+#       compute_client = OCI::Core::ComputeClient.new(signer: signer)
 
-      instance_id = Facter.value(:oci_instance)['id']
-      Facter.debug("Instance ID: #{instance_id}")
-      instance = compute_client.get_instance(instance_id).data
-      ocpus = instance.shape_config.ocpus
-      Facter.debug("OCPUs: #{ocpus}")
-      ocpus
-    rescue LoadError => le
-      Facter.debug("Could not load OCI gem: #{le}")
-      nil
-    rescue => e
-      Facter.debug("Failed to get ocpus: #{e}")
-      nil
-    end
-  end
-end
+#       instance_id = Facter.value(:oci_instance)['id']
+#       Facter.debug("Instance ID: #{instance_id}")
+#       instance = compute_client.get_instance(instance_id).data
+#       ocpus = instance.shape_config.ocpus
+#       Facter.debug("OCPUs: #{ocpus}")
+#       ocpus
+#     rescue LoadError => le
+#       Facter.debug("Could not load OCI gem: #{le}")
+#       nil
+#     rescue => e
+#       Facter.debug("Failed to get ocpus: #{e}")
+#       nil
+#     end
+#   end
+# end
