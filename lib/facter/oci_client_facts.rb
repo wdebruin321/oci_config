@@ -111,9 +111,9 @@ Facter.add(:oci_freeform_tags) do
 end
 
 Facter.add(:oci_ocpus) do
-  # confine :oci_instance do |oci_instance|
-  #   !oci_instance.nil?
-  # end
+  confine :oci_instance do |oci_instance|
+    !oci_instance.nil?
+  end
 
   setcode do
     begin
@@ -126,7 +126,7 @@ Facter.add(:oci_ocpus) do
       instance_id = Facter.value(:oci_instance)['id']
       Facter.debug("Instance ID: #{instance_id}")
       instance = compute_client.get_instance(instance_id).data
-      instance.shape_config.ocpus
+      ocpus = instance.shape_config.ocpus
       Facter.debug("OCPUs: #{ocpus}")
       ocpus
     rescue LoadError => le
