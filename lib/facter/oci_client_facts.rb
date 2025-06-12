@@ -142,6 +142,8 @@
 
 require 'net/http'
 require 'json'
+require_relative '../puppet_x/enterprisemodules/oci/monkey_patches/hash'
+require_relative '../puppet_x/enterprisemodules/oci/monkey_patches/string'
 
 def instance_path
   '/opc/v2/instance/'
