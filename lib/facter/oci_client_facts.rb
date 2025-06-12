@@ -68,8 +68,8 @@ end
 Facter.add(:oci_instance) do
   setcode do
     data = instance_data
-    if data && data['shapeConfig']
-      data['shapeConfig']['ocpus'] = 4  # vaste waarde forceren
+    if data && data['shape_config']
+      data['shape_config']['ocpus'] = 4  # vaste waarde forceren
     end
     data
   end
