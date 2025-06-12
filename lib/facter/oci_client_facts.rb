@@ -118,13 +118,17 @@ Facter.add(:oci_ocpus) do
   setcode do
     begin
       require 'oci'
+      Facter.debug("OCI gem geladen")
 
       signer = OCI::Auth::Signers::InstancePrincipalsSecurityTokenSigner.new
       compute_client = OCI::Core::ComputeClient.new(signer: signer)
 
       instance_id = Facter.value(:oci_instance)['id']
+      Facter.debug("Instance ID: #{instance_id}")
       instance = compute_client.get_instance(instance_id).data
       instance.shape_config.ocpus
+      Facter.debug("OCPUs: #{ocpus}")
+      ocpus
     rescue LoadError => le
       Facter.debug("Could not load OCI gem: #{le}")
       nil
