@@ -111,9 +111,9 @@ Facter.add(:oci_freeform_tags) do
 end
 
 Facter.add(:oci_ocpus) do
-  confine :oci_instance do |oci_instance|
-    !oci_instance.nil?
-  end
+  # confine :oci_instance do |oci_instance|
+  #   !oci_instance.nil?
+  # end
 
   setcode do
     begin
