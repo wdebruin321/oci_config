@@ -65,11 +65,40 @@ def instance_data
   oci_try { get_data(instance_path) }
 end
 
+# Facter.add(:oci_instance) do
+#   setcode do
+#     data = instance_data
+#     if data && data['shape_config']
+#       data['shape_config']['ocpus'] = 4  # vaste waarde forceren
+#     end
+#     data
+#   end
+# end
+
 Facter.add(:oci_instance) do
   setcode do
     data = instance_data
-    if data && data['shape_config']
-      data['shape_config']['ocpus'] = 4  # vaste waarde forceren
+    if data && data['shapeConfig']
+      begin
+        require 'oci'
+        Facter.debug("OCI gem geladen")
+
+        signer = OCI::Auth::Signers::InstancePrincipalsSecurityTokenSigner.new
+        compute_client = OCI::Core::ComputeClient.new(signer: signer)
+
+        instance_id = data['id']
+        Facter.debug("Instance ID: #{instance_id}")
+        instance = compute_client.get_instance(instance_id).data
+
+        if instance && instance.shape_config
+          data['shapeConfig']['ocpus'] = instance.shape_config.ocpus
+          Facter.debug("Overschreven ocpus: #{instance.shape_config.ocpus}")
+        end
+      rescue LoadError => le
+        Facter.debug("Kon OCI gem niet laden: #{le}")
+      rescue => e
+        Facter.debug("Fout bij ophalen shape config: #{e}")
+      end
     end
     data
   end
