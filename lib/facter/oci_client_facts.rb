@@ -149,3 +149,55 @@ Facter.add(:oci_freeform_tags) do
     oci_instance['freeform_tags']
   end
 end
+
+# Facter.add(:oci_instance) do
+#   setcode do
+#     instance_data
+#   end
+# end
+
+# Facter.add(:oci_ocpus) do
+#   confine :oci_instance do |oci_instance|
+#     !oci_instance.nil?
+#   end
+
+#   setcode do
+#     data = Facter.value(:oci_instance)
+#     ocpus = data.dig('shape_config', 'ocpus')
+#     shape = data['shape']
+
+#     if shape&.start_with?('Exadata')
+#       begin
+#         # Stel juiste GEM-paden in
+#         Gem.paths = {
+#           'GEM_PATH' => '/usr/share/gems:/opt/puppetlabs/puppet/lib/ruby/gems/2.7.0'
+#         }
+#         $LOAD_PATH.unshift('/usr/share/gems/gems/oci-2.20.0/lib') unless $LOAD_PATH.include?('/usr/share/gems/gems/oci-2.20.0/lib')
+
+#         require 'oci'
+#         Facter.debug("OCI gem geladen")
+
+#         signer = OCI::Auth::Signers::InstancePrincipalsSecurityTokenSigner.new
+#         db_client = OCI::Database::DatabaseClient.new(signer: signer)
+
+#         compartment_id = data['compartment_id']
+#         hostname = data['hostname']
+#         Facter.debug("Compartment: #{compartment_id}, Hostname: #{hostname}")
+
+#         db_nodes = db_client.list_db_nodes(compartment_id: compartment_id).data
+#         node = db_nodes.find { |n| n.hostname == hostname }
+
+#         if node && node.shape_config
+#           ocpus = node.shape_config.ocpus
+#           Facter.debug("Exadata OCPUs overschreven naar: #{ocpus}")
+#         end
+#       rescue => e
+#         Facter.debug("Fout bij ophalen oci_ocpus voor Exadata: #{e}")
+#       end
+#     else
+#       Facter.debug("Geen Exadata shape, gebruik standaard IMDS ocpus: #{ocpus}")
+#     end
+
+#     ocpus
+#   end
+# end
