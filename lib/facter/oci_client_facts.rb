@@ -65,88 +65,51 @@ def instance_data
   oci_try { get_data(instance_path) }
 end
 
-# Facter.add(:oci_instance) do
-#   setcode do
-#     data = instance_data
-#     if data && data['shape_config']
-#       data['shape_config']['ocpus'] = 4  # vaste waarde forceren
-#     end
-#     data
-#   end
-# end
 Facter.add(:oci_instance) do
   setcode do
     data = instance_data
 
     if data && data['shape_config']
-      begin
-        # Zorg dat de oci gem gevonden wordt
-        Gem.paths = { 'GEM_PATH' => '/usr/share/gems:/opt/puppetlabs/puppet/lib/ruby/gems/2.7.0' }
-        $LOAD_PATH.unshift('/usr/share/gems/gems/oci-2.20.0/lib') unless $LOAD_PATH.include?('/usr/share/gems/gems/oci-2.20.0/lib')
-        require 'oci'
-        Facter.debug("OCI gem geladen")
+      shape = data['shape'] || data['shapeConfig']
 
-        signer = OCI::Auth::Signers::InstancePrincipalsSecurityTokenSigner.new
-        db_client = OCI::Database::DatabaseClient.new(signer: signer)
+      if shape && shape.start_with?('Exadata')
+        begin
+          Gem.paths = { 'GEM_PATH' => '/usr/share/gems:/opt/puppetlabs/puppet/lib/ruby/gems/2.7.0' }
+          $LOAD_PATH.unshift('/usr/share/gems/gems/oci-2.20.0/lib') unless $LOAD_PATH.include?('/usr/share/gems/gems/oci-2.20.0/lib')
+          require 'oci'
+          Facter.debug("OCI gem geladen")
 
-        compartment_id = data['compartment_id'] || data['compartmentId']
-        hostname = data['hostname']
-        Facter.debug("Compartment ID gebruikt: #{compartment_id}")
-        Facter.debug("Hostname: #{hostname}")
+          signer = OCI::Auth::Signers::InstancePrincipalsSecurityTokenSigner.new
+          db_client = OCI::Database::DatabaseClient.new(signer: signer)
 
-        # Haal alle db-nodes op
-        db_nodes = db_client.list_db_nodes(compartment_id: compartment_id).data
+          compartment_id = data['compartment_id'] || data['compartmentId']
+          hostname = data['hostname']
+          Facter.debug("Compartment ID gebruikt: #{compartment_id}")
+          Facter.debug("Hostname: #{hostname}")
 
-        # Zoek de juiste node op basis van hostname
-        node = db_nodes.find { |n| n.hostname == hostname }
+          db_nodes = db_client.list_db_nodes(compartment_id: compartment_id).data
+          node = db_nodes.find { |n| n.hostname == hostname }
 
-        if node && node.shape_config
-          ocpus = node.shape_config.ocpus
-          data['shape_config']['ocpus'] = ocpus
-          Facter.debug("Exadata OCPUs overschreven naar: #{ocpus}")
-        else
-          Facter.debug("Geen matching db-node gevonden voor hostname: #{hostname}")
+          if node && node.shape_config
+            ocpus = node.shape_config.ocpus
+            data['shape_config']['ocpus'] = ocpus
+            Facter.debug("Exadata OCPUs overschreven naar: #{ocpus}")
+          else
+            Facter.debug("Geen matching db-node gevonden voor hostname: #{hostname}")
+          end
+        rescue LoadError => le
+          Facter.debug("Kon OCI gem niet laden: #{le}")
+        rescue => e
+          Facter.debug("Fout bij ophalen Exadata shape config: #{e}")
         end
-
-      rescue LoadError => le
-        Facter.debug("Kon OCI gem niet laden: #{le}")
-      rescue => e
-        Facter.debug("Fout bij ophalen Exadata shape config: #{e}")
+      else
+        Facter.debug("Geen Exadata shape. OCPUs blijven zoals in IMDS.")
       end
     end
 
     data
   end
 end
-
-# Facter.add(:oci_instance) do
-#   setcode do
-#     data = instance_data
-#     if data && data['shape_config']
-#       begin
-#         Gem.paths = { 'GEM_PATH' => '/usr/share/gems:/opt/puppetlabs/puppet/lib/ruby/gems/2.7.0'}
-#         $LOAD_PATH.unshift('/usr/share/gems/gems/oci-2.20.0/lib')
-#         require 'oci'
-#         Facter.debug("OCI gem geladen")
-
-#         signer = OCI::Auth::Signers::InstancePrincipalsSecurityTokenSigner.new
-#         compute_client = OCI::Core::ComputeClient.new(signer: signer)
-
-#         instance_id = data['id']
-#         Facter.debug("Instance ID: #{instance_id}")
-#         instance = compute_client.get_instance(instance_id).data
-
-#         data['shape_config']['ocpus'] = instance.shape_config.ocpus
-#         Facter.debug("Overschreven ocpus: #{instance.shape_config.ocpus}")
-#       rescue LoadError => le
-#         Facter.debug("Kon OCI gem niet laden: #{le}")
-#       rescue => e
-#         Facter.debug("Fout bij ophalen shape config: #{e}")
-#       end
-#     end
-#     data
-#   end
-# end
 
 Facter.add(:oci_vnics) do
   setcode do
@@ -186,32 +149,3 @@ Facter.add(:oci_freeform_tags) do
     oci_instance['freeform_tags']
   end
 end
-
-# Facter.add(:oci_ocpus) do
-#   confine :oci_instance do |oci_instance|
-#     !oci_instance.nil?
-#   end
-
-#   setcode do
-#     begin
-#       require 'oci'
-#       Facter.debug("OCI gem geladen")
-
-#       signer = OCI::Auth::Signers::InstancePrincipalsSecurityTokenSigner.new
-#       compute_client = OCI::Core::ComputeClient.new(signer: signer)
-
-#       instance_id = Facter.value(:oci_instance)['id']
-#       Facter.debug("Instance ID: #{instance_id}")
-#       instance = compute_client.get_instance(instance_id).data
-#       ocpus = instance.shape_config.ocpus
-#       Facter.debug("OCPUs: #{ocpus}")
-#       ocpus
-#     rescue LoadError => le
-#       Facter.debug("Could not load OCI gem: #{le}")
-#       nil
-#     rescue => e
-#       Facter.debug("Failed to get ocpus: #{e}")
-#       nil
-#     end
-#   end
-# end
