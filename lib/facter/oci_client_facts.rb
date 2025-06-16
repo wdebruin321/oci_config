@@ -168,10 +168,8 @@ end
 
 #     if shape&.start_with?('Exadata')
 #       begin
-#         # Stel juiste GEM-paden in
 #         Gem.paths = {
-#           'GEM_PATH' => '/usr/share/gems:/opt/puppetlabs/puppet/lib/ruby/gems/2.7.0'
-#         }
+#           'GEM_PATH' => '/usr/share/gems:/opt/puppetlabs/puppet/lib/ruby/gems/2.7.0'}
 #         $LOAD_PATH.unshift('/usr/share/gems/gems/oci-2.20.0/lib') unless $LOAD_PATH.include?('/usr/share/gems/gems/oci-2.20.0/lib')
 
 #         require 'oci'
