@@ -8,13 +8,6 @@ require 'json'
 require_relative '../puppet_x/enterprisemodules/oci/monkey_patches/hash'
 require_relative '../puppet_x/enterprisemodules/oci/monkey_patches/string'
 
-ENV['GEM_PATH'] = [
-  '/opt/puppetlabs/puppet/lib/ruby/gems/2.7.0',
-  '/usr/share/gems',
-  '/root/.gem/ruby',
-  '/usr/local/share/gems'
-].join(':')
-
 def instance_path
   '/opc/v2/instance/'
 end
@@ -87,8 +80,8 @@ Facter.add(:oci_instance) do
     data = instance_data
     if data && data['shape_config']
       begin
-        Gem.paths = { 'GEM_PATH' => '/opt/puppetlabs/puppet/lib/ruby/gems/2.7.0' }
-        $LOAD_PATH.unshift('/opt/puppetlabs/puppet/lib/ruby/gems/2.7.0/gems/oci-2.20.0/lib')
+        Gem.paths = { 'GEM_PATH' => '/usr/share/gems:/opt/puppetlabs/puppet/lib/ruby/gems/2.7.0'}
+        $LOAD_PATH.unshift('/usr/share/gems/gems/oci-2.20.0/lib')
         require 'oci'
         Facter.debug("OCI gem geladen")
 
