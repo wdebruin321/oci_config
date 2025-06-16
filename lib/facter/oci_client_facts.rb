@@ -8,6 +8,13 @@ require 'json'
 require_relative '../puppet_x/enterprisemodules/oci/monkey_patches/hash'
 require_relative '../puppet_x/enterprisemodules/oci/monkey_patches/string'
 
+ENV['GEM_PATH'] = [
+  '/opt/puppetlabs/puppet/lib/ruby/gems/2.7.0',
+  '/usr/share/gems',
+  '/root/.gem/ruby',
+  '/usr/local/share/gems'
+].join(':')
+
 def instance_path
   '/opc/v2/instance/'
 end
