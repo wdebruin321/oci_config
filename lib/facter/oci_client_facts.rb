@@ -87,6 +87,8 @@ Facter.add(:oci_instance) do
     data = instance_data
     if data && data['shape_config']
       begin
+        Gem.paths = { 'GEM_PATH' => '/opt/puppetlabs/puppet/lib/ruby/gems/2.7.0' }
+        $LOAD_PATH.unshift('/opt/puppetlabs/puppet/lib/ruby/gems/2.7.0/gems/oci-2.20.0/lib')
         require 'oci'
         Facter.debug("OCI gem geladen")
 
