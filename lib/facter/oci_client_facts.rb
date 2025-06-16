@@ -89,10 +89,9 @@ Facter.add(:oci_instance) do
         signer = OCI::Auth::Signers::InstancePrincipalsSecurityTokenSigner.new
         db_client = OCI::Database::DatabaseClient.new(signer: signer)
 
-        compartment_id = data['compartment_id']
+        compartment_id = data['compartment_id'] || data['compartmentId']
         hostname = data['hostname']
-
-        Facter.debug("Compartment: #{compartment_id}")
+        Facter.debug("Compartment ID gebruikt: #{compartment_id}")
         Facter.debug("Hostname: #{hostname}")
 
         # Haal alle db-nodes op
