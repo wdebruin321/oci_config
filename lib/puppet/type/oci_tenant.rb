@@ -55,4 +55,9 @@ Puppet::Type.newtype(:oci_tenant) do
   property :max_attempts
   property :max_elapsed_time_millis
   property :max_sleep_between_attempts_millis
+
+  # haalt eventueel :name:bolt weg
+  def to_hash
+    super.reject { |key, _| key == :name }
+  end
 end
