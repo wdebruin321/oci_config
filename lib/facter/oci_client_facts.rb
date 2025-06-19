@@ -5,6 +5,7 @@
 #
 require 'net/http'
 require 'json'
+require 'uri'
 require_relative '../puppet_x/enterprisemodules/oci/monkey_patches/hash'
 require_relative '../puppet_x/enterprisemodules/oci/monkey_patches/string'
 
@@ -67,49 +68,99 @@ end
 
 Facter.add(:oci_instance) do
   setcode do
-    data = instance_data
+    begin
+      # Haal metadata op (zoals compartment_id en hostname)
+      imds_uri = URI("http://169.254.169.254/opc/v2/instance/")
+      imds_req = Net::HTTP::Get.new(imds_uri)
+      imds_req['Authorization'] = 'Bearer Oracle'
+      imds_res = Net::HTTP.start(imds_uri.hostname, imds_uri.port) { |http| http.request(imds_req) }
+      instance_data = JSON.parse(imds_res.body)
 
-    if data && data['shape_config']
-      shape = data['shape'] || data['shapeConfig']
+      # Token ophalen
+      token_uri = URI("http://169.254.169.254/opc/v2/instance/token")
+      token_req = Net::HTTP::Get.new(token_uri)
+      token_req['Authorization'] = 'Bearer Oracle'
+      token_res = Net::HTTP.start(token_uri.hostname, token_uri.port) { |http| http.request(token_req) }
+      token_data = JSON.parse(token_res.body)
+      security_token = token_data['token']
 
+      # Exadata check
+      shape = instance_data['shape']
       if shape && shape.start_with?('Exadata')
-        begin
-          Gem.paths = { 'GEM_PATH' => '/usr/share/gems:/opt/puppetlabs/puppet/lib/ruby/gems/2.7.0' }
-          $LOAD_PATH.unshift('/usr/share/gems/gems/oci-2.20.0/lib') unless $LOAD_PATH.include?('/usr/share/gems/gems/oci-2.20.0/lib')
-          require 'oci'
-          Facter.debug("OCI gem geladen")
+        compartment_id = instance_data['compartmentId']
+        hostname = instance_data['hostname']
 
-          signer = OCI::Auth::Signers::InstancePrincipalsSecurityTokenSigner.new
-          db_client = OCI::Database::DatabaseClient.new(signer: signer)
+        # Maak REST-call naar OCI API
+        region = instance_data['region']
+        uri = URI("https://iaas.#{region}.oraclecloud.com/20160918/dbNodes?compartmentId=#{compartment_id}")
 
-          compartment_id = data['compartment_id'] || data['compartmentId']
-          hostname = data['hostname']
-          Facter.debug("Compartment ID gebruikt: #{compartment_id}")
-          Facter.debug("Hostname: #{hostname}")
+        req = Net::HTTP::Get.new(uri)
+        req['Authorization'] = "Bearer #{security_token}"
+        req['Content-Type'] = 'application/json'
 
-          db_nodes = db_client.list_db_nodes(compartment_id: compartment_id).data
-          node = db_nodes.find { |n| n.hostname == hostname }
+        res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) { |http| http.request(req) }
+        nodes = JSON.parse(res.body)
 
-          if node && node.shape_config
-            ocpus = node.shape_config.ocpus
-            data['shape_config']['ocpus'] = ocpus
-            Facter.debug("Exadata OCPUs overschreven naar: #{ocpus}")
-          else
-            Facter.debug("Geen matching db-node gevonden voor hostname: #{hostname}")
-          end
-        rescue LoadError => le
-          Facter.debug("Kon OCI gem niet laden: #{le}")
-        rescue => e
-          Facter.debug("Fout bij ophalen Exadata shape config: #{e}")
-        end
-      else
-        Facter.debug("Geen Exadata shape. OCPUs blijven zoals in IMDS.")
+        node = nodes['items'].find { |n| n['hostname'] == hostname }
+        ocpus = node.dig('shapeConfig', 'ocpus') if node
+
+        instance_data['shape_config'] ||= {}
+        instance_data['shape_config']['ocpus'] = ocpus if ocpus
       end
-    end
 
-    data
+      instance_data
+    rescue => e
+      Facter.debug("Fout bij ophalen via REST API: #{e}")
+      {}
+    end
   end
 end
+
+# Facter.add(:oci_instance) do
+#   setcode do
+#     data = instance_data
+
+#     if data && data['shape_config']
+#       shape = data['shape'] || data['shapeConfig']
+
+#       if shape && shape.start_with?('Exadata')
+#         begin
+#           Gem.paths = { 'GEM_PATH' => '/usr/share/gems:/opt/puppetlabs/puppet/lib/ruby/gems/2.7.0' }
+#           $LOAD_PATH.unshift('/usr/share/gems/gems/oci-2.20.0/lib') unless $LOAD_PATH.include?('/usr/share/gems/gems/oci-2.20.0/lib')
+#           require 'oci'
+#           Facter.debug("OCI gem geladen")
+
+#           signer = OCI::Auth::Signers::InstancePrincipalsSecurityTokenSigner.new
+#           db_client = OCI::Database::DatabaseClient.new(signer: signer)
+
+#           compartment_id = data['compartment_id'] || data['compartmentId']
+#           hostname = data['hostname']
+#           Facter.debug("Compartment ID gebruikt: #{compartment_id}")
+#           Facter.debug("Hostname: #{hostname}")
+
+#           db_nodes = db_client.list_db_nodes(compartment_id: compartment_id).data
+#           node = db_nodes.find { |n| n.hostname == hostname }
+
+#           if node && node.shape_config
+#             ocpus = node.shape_config.ocpus
+#             data['shape_config']['ocpus'] = ocpus
+#             Facter.debug("Exadata OCPUs overschreven naar: #{ocpus}")
+#           else
+#             Facter.debug("Geen matching db-node gevonden voor hostname: #{hostname}")
+#           end
+#         rescue LoadError => le
+#           Facter.debug("Kon OCI gem niet laden: #{le}")
+#         rescue => e
+#           Facter.debug("Fout bij ophalen Exadata shape config: #{e}")
+#         end
+#       else
+#         Facter.debug("Geen Exadata shape. OCPUs blijven zoals in IMDS.")
+#       end
+#     end
+
+#     data
+#   end
+# end
 
 Facter.add(:oci_vnics) do
   setcode do
