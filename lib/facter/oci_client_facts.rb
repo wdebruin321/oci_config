@@ -68,47 +68,50 @@ end
 
 Facter.add(:oci_instance) do
   setcode do
-    begin
-      oci_instance = instance_data
-      return {} unless oci_instance
+    instance_data
+  end
+end
 
+
+Facter.add(:oci_ocpus_exa) do
+  confine :oci_instance do |oci_instance|
+    oci_instance && oci_instance['shape']&.start_with?('Exadata')
+  end
+
+  setcode do
+    begin
+      oci_instance = Facter.value(:oci_instance)
+      return nil unless oci_instance
+
+      # Token ophalen
       token_uri = URI("http://169.254.169.254/opc/v2/instance/token")
       token_req = Net::HTTP::Get.new(token_uri)
       token_req['Authorization'] = 'Bearer Oracle'
       token_res = Net::HTTP.start(token_uri.hostname, token_uri.port) { |http| http.request(token_req) }
       token_data = JSON.parse(token_res.body)
-      security_token = token_data['token']
+      token = token_data['token']
 
-      shape = oci_instance['shape']
-      if shape && shape.start_with?('Exadata')
-        compartment_id = oci_instance['compartmentId']
-        hostname = oci_instance['hostname']
-        region = oci_instance['region']
+      # API call naar dbNodes
+      compartment_id = oci_instance['compartmentId']
+      hostname = oci_instance['hostname']
+      region = oci_instance['region']
 
-        uri = URI("https://iaas.#{region}.oraclecloud.com/20160918/dbNodes?compartmentId=#{compartment_id}")
-        req = Net::HTTP::Get.new(uri)
-        req['Authorization'] = "Bearer #{security_token}"
-        req['Content-Type'] = 'application/json'
+      uri = URI("https://iaas.#{region}.oraclecloud.com/20160918/dbNodes?compartmentId=#{compartment_id}")
+      req = Net::HTTP::Get.new(uri)
+      req['Authorization'] = "Bearer #{token}"
+      req['Content-Type'] = 'application/json'
 
-        res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) { |http| http.request(req) }
-        nodes = JSON.parse(res.body)
+      res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) { |http| http.request(req) }
+      nodes = JSON.parse(res.body)
 
-        node = nodes['items'].find { |n| n['hostname'] == hostname }
-        ocpus = node.dig('shapeConfig', 'ocpus') if node
-
-        oci_instance['shape_config'] ||= {}
-        oci_instance['shape_config']['ocpus'] = ocpus if ocpus
-      end
-
-      oci_instance
+      node = nodes['items'].find { |n| n['hostname'] == hostname }
+      node.dig('shapeConfig', 'ocpus') if node
     rescue => e
-      Facter.debug("Fout bij ophalen via REST API: #{e.message}")
-      Facter.debug("Backtrace: #{e.backtrace.join("\n")}")
-      {}
+      Facter.debug("Fout in oci_ocpus_exa: #{e.message}")
+      nil
     end
   end
 end
-
 
 # Facter.add(:oci_instance) do
 #   setcode do
