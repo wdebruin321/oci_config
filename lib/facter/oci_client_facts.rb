@@ -74,9 +74,9 @@ end
 
 
 Facter.add(:oci_ocpus_exa) do
-  confine :oci_instance do |oci_instance|
-    oci_instance && oci_instance['shape']&.start_with?('Exadata')
-  end
+  # confine :oci_instance do |oci_instance|
+  #   oci_instance && oci_instance['shape']&.start_with?('Exadata')
+  # end
 
   setcode do
     begin
