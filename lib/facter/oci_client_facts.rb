@@ -69,14 +69,9 @@ end
 Facter.add(:oci_instance) do
   setcode do
     begin
-      # Haal metadata op (zoals compartment_id en hostname)
-      imds_uri = URI("http://169.254.169.254/opc/v2/instance/")
-      imds_req = Net::HTTP::Get.new(imds_uri)
-      imds_req['Authorization'] = 'Bearer Oracle'
-      imds_res = Net::HTTP.start(imds_uri.hostname, imds_uri.port) { |http| http.request(imds_req) }
-      instance_data = JSON.parse(imds_res.body)
+      oci_instance = instance_data
+      return {} unless oci_instance
 
-      # Token ophalen
       token_uri = URI("http://169.254.169.254/opc/v2/instance/token")
       token_req = Net::HTTP::Get.new(token_uri)
       token_req['Authorization'] = 'Bearer Oracle'
@@ -84,16 +79,13 @@ Facter.add(:oci_instance) do
       token_data = JSON.parse(token_res.body)
       security_token = token_data['token']
 
-      # Exadata check
-      shape = instance_data['shape']
+      shape = oci_instance['shape']
       if shape && shape.start_with?('Exadata')
-        compartment_id = instance_data['compartmentId']
-        hostname = instance_data['hostname']
+        compartment_id = oci_instance['compartmentId']
+        hostname = oci_instance['hostname']
+        region = oci_instance['region']
 
-        # Maak REST-call naar OCI API
-        region = instance_data['region']
         uri = URI("https://iaas.#{region}.oraclecloud.com/20160918/dbNodes?compartmentId=#{compartment_id}")
-
         req = Net::HTTP::Get.new(uri)
         req['Authorization'] = "Bearer #{security_token}"
         req['Content-Type'] = 'application/json'
@@ -104,17 +96,19 @@ Facter.add(:oci_instance) do
         node = nodes['items'].find { |n| n['hostname'] == hostname }
         ocpus = node.dig('shapeConfig', 'ocpus') if node
 
-        instance_data['shape_config'] ||= {}
-        instance_data['shape_config']['ocpus'] = ocpus if ocpus
+        oci_instance['shape_config'] ||= {}
+        oci_instance['shape_config']['ocpus'] = ocpus if ocpus
       end
 
-      instance_data
+      oci_instance
     rescue => e
-      Facter.debug("Fout bij ophalen via REST API: #{e}")
+      Facter.debug("Fout bij ophalen via REST API: #{e.message}")
+      Facter.debug("Backtrace: #{e.backtrace.join("\n")}")
       {}
     end
   end
 end
+
 
 # Facter.add(:oci_instance) do
 #   setcode do
