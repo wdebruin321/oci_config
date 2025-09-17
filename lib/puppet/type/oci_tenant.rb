@@ -33,7 +33,7 @@ Puppet::Type.newtype(:oci_tenant) do
 
   DESC
 
-  isnamevar
+  parameter :name
 
   property :fingerprint
   property :private_key
@@ -55,4 +55,8 @@ Puppet::Type.newtype(:oci_tenant) do
   property :max_attempts
   property :max_elapsed_time_millis
   property :max_sleep_between_attempts_millis
+
+  def settings_for_resource
+    super.reject { |key, _| key.to_s == 'name' }
+  end
 end
