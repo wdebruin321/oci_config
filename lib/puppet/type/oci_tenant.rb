@@ -57,6 +57,7 @@ Puppet::Type.newtype(:oci_tenant) do
   property :max_sleep_between_attempts_millis
 
   def settings_for_resource
+    Puppet.notice("settings_for_resource wordt aangeroepen voor #{name}")
     super.reject { |key, _| key.to_s == 'name' }
   end
 end
