@@ -73,6 +73,7 @@ Facter.add(:oci_instance) do
       region = data['canonical_region_name'] || 'eu-frankfurt-1'
 
       begin
+        Facter.debug("OCI CLI command: oci db node get --db-node-id #{node_ocid} --region #{region}")
         cli_output = %x[oci db node get --db-node-id #{node_ocid} --region #{region} --query 'data."cpu-core-count"' --raw-output]
         ocpus = cli_output.strip.to_f
         Facter.debug("OCPUs overschreven via OCI CLI: #{ocpus}")
