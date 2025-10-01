@@ -69,7 +69,7 @@ Facter.add(:oci_instance) do
   setcode do
     data = instance_data
     if data && data['shape_config'].is_a?(Hash)
-      node_ocid = data['display_name'] || data['id']
+      node_ocid = data['id']
       region = data['canonical_region_name'] || 'eu-frankfurt-1'
       Facter.debug("OCI CLI command: oci db node get --db-node-id #{node_ocid} --region #{region}")
 
