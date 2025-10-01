@@ -67,6 +67,7 @@ end
 
 def instance_data_ocpu
   instance_data['shape_config']['ocpus'] = 4.0
+  puts "[DEBUG] OCPUs worden overschreven naar 4.0"
 end
 
 Facter.add(:oci_instance) do
