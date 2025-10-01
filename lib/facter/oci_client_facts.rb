@@ -65,14 +65,14 @@ def instance_data
   oci_try { get_data(instance_path) }
 end
 
-def instance_data_ocpu
-  instance_data['shape_config']['ocpus'] = 4.0
-  puts "[DEBUG] OCPUs worden overschreven naar 4.0"
-end
-
 Facter.add(:oci_instance) do
   setcode do
-    instance_data_ocpu
+    data = instance_data
+    if data && data['shape_config'].is_a?(Hash)
+      data['shape_config']['ocpus'] = 4.0
+      puts "[DEBUG] OCPUs worden overschreven naar 4.0"
+    end
+    data
   end
 end
 
