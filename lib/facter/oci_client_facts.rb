@@ -61,9 +61,22 @@ def vnic_data
   oci_try { get_data(vnic_path) }
 end
 
+# def instance_data
+#   oci_try { get_data(instance_path) }
+# end
+
 def instance_data
-  oci_try { get_data(instance_path) }
+  raw = get_data(instance_path)
+  return nil unless raw
+
+  # Hardcoded override van OCPUs
+  if raw['shape_config'].is_a?(Hash)
+    raw['shape_config']['ocpus'] = 4.0
+  end
+
+  convert_keys(raw)
 end
+
 
 Facter.add(:oci_instance) do
   setcode do
