@@ -76,6 +76,7 @@ Facter.add(:oci_instance) do
       begin
         cli_output = %x[oci db node get --db-node-id #{node_ocid} --region #{region} --query 'data."cpu-core-count"' --raw-output]
         ocpus = cli_output.strip.to_f
+        puts "Aantal OCPUs volgens OCI CLI: #{ocpus}"
         Facter.debug("OCPUs overschreven via OCI CLI: #{ocpus}")
         data['shape_config']['ocpus'] = ocpus if ocpus > 0
       rescue => e
